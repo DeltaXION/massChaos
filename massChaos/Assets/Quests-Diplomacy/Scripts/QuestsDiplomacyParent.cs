@@ -7,7 +7,9 @@ public class QuestsDiplomacyParent : MonoBehaviour
 {
     public Text PrestigeNomads, PrestigeFerrarium, PrestigeFroots, PrestigeMimax;
     private GameObject QuestsDiplomacyManager;
-    private string[] QuestNodes;
+    private GameObject[] QuestNodes;
+    private int NumberofQuestNodes;
+  
     
 
     void Start()
@@ -24,22 +26,27 @@ public class QuestsDiplomacyParent : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        //if (Input.GetKeyDown("space"))   SetQuest();
     }
 
     void UpdateDiplomacyMap()
     {
         PrestigeNomads.text = ("Nomads Prestige : " + QuestsDiplomacyManager.GetComponent<QuestsDiplomacyManager>().Prestige_Nomads.ToString());
-        PrestigeFerrarium.text = ("Ferrarium Prestige : " + QuestsDiplomacyManager.GetComponent<QuestsDiplomacyManager>().Prestige_Ferrarium.ToString());
+        /*PrestigeFerrarium.text = ("Ferrarium Prestige : " + QuestsDiplomacyManager.GetComponent<QuestsDiplomacyManager>().Prestige_Ferrarium.ToString());
         PrestigeFroots.text = ("Froots Prestige : " + QuestsDiplomacyManager.GetComponent<QuestsDiplomacyManager>().Prestige_Froots.ToString());
-        PrestigeMimax.text = ("Mimax Prestige : " + QuestsDiplomacyManager.GetComponent<QuestsDiplomacyManager>().Prestige_Mimax.ToString());
+        PrestigeMimax.text = ("Mimax Prestige : " + QuestsDiplomacyManager.GetComponent<QuestsDiplomacyManager>().Prestige_Mimax.ToString());*/
     }
 
     void SetQuest()
     {
-        QuestNodes[0] = "what";
-        QuestNodes[1] = "where";
+        QuestNodes = GameObject.FindGameObjectsWithTag("QuestNode");
+        //NumberofQuestNodes = QuestNodes.Length;
 
-        Debug.Log(QuestNodes[1]);
+        foreach (GameObject item in QuestNodes)
+        {
+            
+            GameObject.Find(item.name).GetComponent<QuestNodes>().QuestNumber = Random.Range(0, 10);
+            Debug.Log("Node name is " + item.name + "and QuestNumber is " + GameObject.Find(item.name).GetComponent<QuestNodes>().QuestNumber);
+        }
     }
 }
