@@ -23,6 +23,8 @@ public abstract class EnemyBaseClass : MonoBehaviour, IGOAP
     public float staminaRegenRate;
     public float stamina;
     string enemyClass;
+    //need to replace getPlayerHealth with actual script
+    playerTest getPlayerHealth;
     //difficulty modifier will be incremented when a dungeon is raided successfully
     int difficultyModifier;
     //Booleans for procedural preconditons (AI)
@@ -38,8 +40,8 @@ public abstract class EnemyBaseClass : MonoBehaviour, IGOAP
     public bool bottomIsEmpty;
     public enemySurroundingSensor leftSensor;
     public bool leftIsEmpty;
-   
-  
+    bool playerDeath = false;
+
     void Start()
     {
        
@@ -84,15 +86,18 @@ public abstract class EnemyBaseClass : MonoBehaviour, IGOAP
 
     }
 
+    //The AI will basically try to change worldState variables as a goal, one of the actions should end with the variable declared as goal changing. if this has to be repeated, this variable value should change in world state
     public HashSet<KeyValuePair<string, object>> getWorldState()
     {
+        //replace getPlayerHealth with value from combat system player controller
+        
         HashSet<KeyValuePair<string, object>> worldData = new HashSet<KeyValuePair<string, object>>();
         worldData.Add(new KeyValuePair<string, object>("playerSpotted", playerSpotted));
-        //Need to replace true,false with dynamic values, these will control the patrolling
         worldData.Add(new KeyValuePair<string, object>("leftEmpty", leftIsEmpty));
         worldData.Add(new KeyValuePair<string, object>("rightEmpty", rightIsEmpty));
         worldData.Add(new KeyValuePair<string, object>("topEmpty", topIsEmpty));
         worldData.Add(new KeyValuePair<string, object>("bottomEmpty", bottomIsEmpty));
+        worldData.Add(new KeyValuePair<string, object>("damagePlayer", playerDeath )); //TODO change false to a boolean based on playerHealth
 
         return worldData;
     }
@@ -150,11 +155,21 @@ public abstract class EnemyBaseClass : MonoBehaviour, IGOAP
 
     }
     //updates variables that are required for AI to take a call on action
-    void updateTheWorldStateForAI()
+    public void updateTheWorldStateForAI()
     {
+        getPlayerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<playerTest>();
+        
+        if (getPlayerHealth.health <= 0)
+        {
+            playerDeath = true;
+            
+        } else
+        {
+            playerDeath = false;
+        }
         //playerSpotted true or false based on collision with trigger
         //playerSpotted can also be triggered when another enemy calls for help
-        
+
 
     }
 
@@ -244,8 +259,7 @@ public abstract class EnemyBaseClass : MonoBehaviour, IGOAP
     // Update is called once per frame
     void Update()
     {
-        updateStamina();
-       
+        
     }
 
     void updateStamina()

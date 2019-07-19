@@ -10,6 +10,7 @@ public class attackPlayerAction : GOAPAction
     
     public attackPlayerAction()
     {
+        addPrecondition("damagePlayer", false);
         addEffect("damagePlayer", true);
         cost = 1f;
 
@@ -35,6 +36,7 @@ public class attackPlayerAction : GOAPAction
 
     public override bool checkProceduralPrecondition(GameObject agent)
     {
+        
         // Currently target is automatically set to Player, this will be made dynamic later, with "Player" set first and then it changes to whoever has caused it most damage.
 
         target = GameObject.FindGameObjectWithTag("Player");

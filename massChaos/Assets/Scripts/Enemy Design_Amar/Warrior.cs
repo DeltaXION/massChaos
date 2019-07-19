@@ -15,7 +15,8 @@ public class Warrior : EnemyBaseClass
     void Update()
     {
         base.readSensorStatusAndUpdateFlags();
-
+        base.updateTheWorldStateForAI();
+        staminaRegen();
        
        
     }
