@@ -25,10 +25,23 @@ public class enemySurroundingSensor : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.CompareTag("wall"))
+
+        if (collision.gameObject.CompareTag("Wall"))
         {
             collidedObject = collision.gameObject;
         }
+        
+
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+
+        if (collision.gameObject == collidedObject)
+        {
+            collidedObject = null;
+        }
+
 
     }
 }

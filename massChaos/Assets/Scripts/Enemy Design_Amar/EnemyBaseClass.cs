@@ -29,13 +29,13 @@ public abstract class EnemyBaseClass : MonoBehaviour, IGoap
     bool playerSpotted = false;
     //Colliders and booleans for feeling walls
     public enemySurroundingSensor topSensor;
-    bool topIsEmpty;
+    public bool topIsEmpty;
     public enemySurroundingSensor rightSensor;
-    bool rightIsEmpty;
+    public bool rightIsEmpty;
     public enemySurroundingSensor bottomSensor;
-    bool bottomIsEmpty;
+    public bool bottomIsEmpty;
     public enemySurroundingSensor leftSensor;
-    bool leftIsEmpty;
+    public bool leftIsEmpty;
    
   
     public  virtual void Start()
@@ -62,22 +62,22 @@ public abstract class EnemyBaseClass : MonoBehaviour, IGoap
         //Create colliders on all four sides to surround enemy
         
         BoxCollider2D rightCollider = rightSensor.gameObject.AddComponent<BoxCollider2D>();
-        rightCollider.size = new Vector2(1, 1);
+        rightCollider.size = new Vector2(0.75f, 0.75f);
         rightCollider.offset = new Vector2(1, 0);
         rightCollider.isTrigger = true;
 
         BoxCollider2D leftCollider = leftSensor.gameObject.AddComponent<BoxCollider2D>();
-        leftCollider.size = new Vector2(1, 1);
+        leftCollider.size = new Vector2(0.75f, 0.75f);
         leftCollider.offset = new Vector2(-1, 0);
         leftCollider.isTrigger = true;
 
         BoxCollider2D topCollider = topSensor.gameObject.AddComponent<BoxCollider2D>();
-        topCollider.size = new Vector2(1, 1);
+        topCollider.size = new Vector2(0.75f, 0.75f);
         topCollider.offset = new Vector2(0, 1);
         topCollider.isTrigger = true;
 
         BoxCollider2D bottomCollider = bottomSensor.gameObject.AddComponent<BoxCollider2D>();
-        bottomCollider.size = new Vector2(1, 1);
+        bottomCollider.size = new Vector2(0.75f, 0.75f);
         bottomCollider.offset = new Vector2(0, -1);
         bottomCollider.isTrigger = true;
 
@@ -160,15 +160,15 @@ public abstract class EnemyBaseClass : MonoBehaviour, IGoap
 
     }
     //read values from sensors and update flags
-    void readSensorStatusAndUpdateFlags()
+    public void readSensorStatusAndUpdateFlags()
     {
         GameObject topCollidedBody = topSensor.returnCollidedObject();
         GameObject bottomCollidedBody = bottomSensor.returnCollidedObject();
         GameObject rightCollidedBody = rightSensor.returnCollidedObject();
         GameObject leftCollidedBody = leftSensor.returnCollidedObject();
-
+       
         //Check what topSensor has found, change corresponding flags
-       if(topCollidedBody.CompareTag("Wall"))
+       if(topCollidedBody != null && topCollidedBody.CompareTag("Wall"))
         {
             topIsEmpty = false;
         } else
@@ -178,7 +178,7 @@ public abstract class EnemyBaseClass : MonoBehaviour, IGoap
        //space for: Detecting traps
 
         //right sensor findings
-        if (rightCollidedBody.CompareTag("Wall"))
+        if (rightCollidedBody != null && rightCollidedBody.CompareTag("Wall"))
         {
             rightIsEmpty = false;
         }
@@ -187,7 +187,7 @@ public abstract class EnemyBaseClass : MonoBehaviour, IGoap
             rightIsEmpty = true;
         }
         //left sensor findings
-        if (leftCollidedBody.CompareTag("Wall"))
+        if (leftCollidedBody != null && leftCollidedBody.CompareTag("Wall"))
         {
             leftIsEmpty = false;
         }
@@ -196,7 +196,7 @@ public abstract class EnemyBaseClass : MonoBehaviour, IGoap
             leftIsEmpty = true;
         }
         //bottom sensor findings
-        if (bottomCollidedBody.CompareTag("Wall"))
+        if (bottomCollidedBody != null && bottomCollidedBody.CompareTag("Wall"))
         {
             bottomIsEmpty = false;
         }
@@ -212,6 +212,6 @@ public abstract class EnemyBaseClass : MonoBehaviour, IGoap
     // Update is called once per frame
     void Update()
     {
-        
+           
     }
 }

@@ -14,7 +14,7 @@ public class Warrior : EnemyBaseClass
     // Update is called once per frame
     void Update()
     {
-        
+        base.readSensorStatusAndUpdateFlags();
     }
     public override void InitializeEnemy(int dungeonLevel)
     {
