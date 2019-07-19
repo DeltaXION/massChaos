@@ -14,8 +14,7 @@ public class collect_wood : MonoBehaviour
     public void OnItemClicked()
 {
         //if(Input.GetMouseButtonDown(0))
-        woodCount++;
-        // = woodCount + 1;
+        woodCount = woodCount + 5;
         Debug.Log(woodCount);
         woods = GameObject.Find("woodCount").GetComponent<Text>();
         woods.text = woodCount.ToString();
