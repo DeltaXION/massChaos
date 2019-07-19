@@ -4,27 +4,29 @@ using UnityEngine;
 
 //Enemy base class, all enemy subtypes will inherit from this base class
 //Abstract because we do not use this class on an object directly, we first need to create a derived class from it
-public abstract class EnemyBaseClass : MonoBehaviour, IGoap
+public abstract class EnemyBaseClass : MonoBehaviour, IGOAP
 {
 
     //declaring variables common to all enemies;
-    float health;
+    //minimum distance between enemy and other things
+    public float minimumDistanceToInteract;
+    public float health;
+    public float maxStamina = 5;
     float rangeOfVisibility;
     float attackSpeed;
     float attackDamage;
-    float movementSpeed;
-    float poise;
+    public float movementSpeed;
+    public float poise;
     float poiseRegenRate;
     bool enemyIsDead;
-    bool enemyIsVulnerableToAttacks;
     float flinchTime;
-    float staminaRegenRate;
-    float stamina;
+    public float staminaRegenRate;
+    public float stamina;
     string enemyClass;
     //difficulty modifier will be incremented when a dungeon is raided successfully
     int difficultyModifier;
     //Booleans for procedural preconditons (AI)
-    bool hitStunned = false;
+    public bool hitStunned = false;
     //Booleans for worldstate
     bool playerSpotted = false;
     //Colliders and booleans for feeling walls
@@ -38,14 +40,13 @@ public abstract class EnemyBaseClass : MonoBehaviour, IGoap
     public bool leftIsEmpty;
    
   
-    public  virtual void Start()
+    void Start()
     {
        
         
     }
 
-    public abstract HashSet<KeyValuePair<string, object>> createGoalState ();
-
+   
     //function will be replaced in enemysubclasses
     // Dungeon level will be passed to enemy to set difficulty
     public virtual void InitializeEnemy(int dungeonLevel)
@@ -96,29 +97,57 @@ public abstract class EnemyBaseClass : MonoBehaviour, IGoap
         return worldData;
     }
 
+    public abstract HashSet<KeyValuePair<string, object>> createGoalState();
+
     public void planFailed(HashSet<KeyValuePair<string, object>> failedGoal)
     {
-
+        // Not handling this here since we are making sure our goals will always succeed.
+        // But normally you want to make sure the world state has changed before running
+        // the same goal again, or else it will just fail.
     }
 
-    public void planFound(HashSet<KeyValuePair<string, object>> goal, Queue<GoapAction> action)
+    public void planFound(HashSet<KeyValuePair<string, object>> goal, Queue<GOAPAction> action)
     {
+        Debug.Log("<color=green>Plan found</color> " + GOAPAgent.prettyPrint(action));
 
     }
 
+
+    public abstract void staminaRegen();
+    
     public void actionsFinished()
     {
+        Debug.Log("<color=blue>Actions completed</color>");
+    }
+
+    public void planAborted(GOAPAction aborter)
+    {
+        Debug.Log("<color=red>Plan Aborted</color> " + GOAPAgent.prettyPrint(aborter));
 
     }
 
-    public void planAborted(GoapAction aborter)
+    //gradually move the enemy towards the target location. (eg. for attack player, target will be player)
+    public  bool moveAgent(GOAPAction nextAction)
     {
+        Debug.Log("moveAgent");
+        
+        float step = movementSpeed * Time.deltaTime;
+        Rigidbody2D enemyBody = gameObject.GetComponent<Rigidbody2D>();
+        float distanceToTarget = Vector3.Distance(transform.position, nextAction.target.transform.position);
+        //move towards the object till you reach minimumDistance to Interact
+        //function returns true when you reach the interactable range
+        enemyBody.MovePosition(transform.position + Vector3.Normalize(nextAction.target.transform.position) * movementSpeed * Time.deltaTime);
 
-    }
+        
+        if(distanceToTarget <minimumDistanceToInteract)
+        {
+            nextAction.setInRange(true);
+            return true;
+        } else
+        {
+            return false;
+        }
 
-    public virtual bool moveAgent(GoapAction nextAction)
-    {
-        return false;
     }
     //updates variables that are required for AI to take a call on action
     void updateTheWorldStateForAI()
@@ -129,7 +158,10 @@ public abstract class EnemyBaseClass : MonoBehaviour, IGoap
 
     }
 
-    
+    public void attackPlayer()
+    {
+        Debug.Log("attackPlayer");
+    }
 
     //Sets playerSpotted to true if this enemy is in range of another enemy's cry for help
     public void enemyCallForHelp()
@@ -143,7 +175,7 @@ public abstract class EnemyBaseClass : MonoBehaviour, IGoap
         {
             
             playerSpotted = true;
-            Debug.Log("spotted");
+            
         }
             
     }
@@ -153,7 +185,7 @@ public abstract class EnemyBaseClass : MonoBehaviour, IGoap
         //Check if player ran from field of vision, if player is in field of vision, the enemy will be following them
         if (collision.gameObject.CompareTag("Player"))
         {
-            Debug.Log("Seen!");
+            
             playerSpotted = false;
         }
 
@@ -212,6 +244,19 @@ public abstract class EnemyBaseClass : MonoBehaviour, IGoap
     // Update is called once per frame
     void Update()
     {
-           
+        updateStamina();
+       
+    }
+
+    void updateStamina()
+    {
+        if (stamina <= maxStamina)
+        {
+            Invoke("staminaRegen", 1f);
+        }
+        else
+        {
+            stamina = maxStamina;
+        }
     }
 }

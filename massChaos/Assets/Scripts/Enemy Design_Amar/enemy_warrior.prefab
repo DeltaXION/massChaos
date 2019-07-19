@@ -145,6 +145,7 @@ GameObject:
   - component: {fileID: 4902377603629526039}
   - component: {fileID: 4902377603629526033}
   - component: {fileID: 4902377603629526030}
+  - component: {fileID: 7332761081655648935}
   m_Layer: 0
   m_Name: enemy_warrior
   m_TagString: Untagged
@@ -310,6 +311,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f5b6b2fb4788ce41be9e845e30d91a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minimumDistanceToInteract: 2
+  health: 5
+  maxStamina: 5
+  movementSpeed: 7
+  poise: 0
+  staminaRegenRate: 1
+  stamina: 5
+  hitStunned: 0
   topSensor: {fileID: 4902377603720712718}
   topIsEmpty: 0
   rightSensor: {fileID: 4902377602809188411}
@@ -347,6 +356,20 @@ PolygonCollider2D:
       - {x: -1.5059762, y: -3.6641188}
       - {x: 1.5196712, y: -3.659039}
       - {x: 0.15678442, y: 0.06075573}
+--- !u!114 &7332761081655648935
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4902377603629526038}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f77b87018b391914282796f82abfbf6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cost: 1
+  target: {fileID: 0}
 --- !u!1 &4902377603720712720
 GameObject:
   m_ObjectHideFlags: 0

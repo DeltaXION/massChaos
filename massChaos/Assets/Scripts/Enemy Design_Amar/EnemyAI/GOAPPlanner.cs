@@ -5,7 +5,7 @@ using UnityEngine;
 /**
  * Plans what actions can be completed in order to fulfill a goal state.
  */
-public class GoapPlanner
+public class GOAPPlanner
 {
 
 	/**
@@ -13,19 +13,19 @@ public class GoapPlanner
 	 * Returns null if a plan could not be found, or a list of the actions
 	 * that must be performed, in order, to fulfill the goal.
 	 */
-	public Queue<GoapAction> plan(GameObject agent,
-								  HashSet<GoapAction> availableActions, 
+	public Queue<GOAPAction> plan(GameObject agent,
+								  HashSet<GOAPAction> availableActions, 
 	                              HashSet<KeyValuePair<string,object>> worldState, 
 	                              HashSet<KeyValuePair<string,object>> goal) 
 	{
 		// reset the actions so we can start fresh with them
-		foreach (GoapAction a in availableActions) {
+		foreach (GOAPAction a in availableActions) {
 			a.doReset ();
 		}
 
 		// check what actions can run using their checkProceduralPrecondition
-		HashSet<GoapAction> usableActions = new HashSet<GoapAction> ();
-		foreach (GoapAction a in availableActions) {
+		HashSet<GOAPAction> usableActions = new HashSet<GOAPAction> ();
+		foreach (GOAPAction a in availableActions) {
 			if ( a.checkProceduralPrecondition(agent) )
 				usableActions.Add(a);
 		}
@@ -41,7 +41,7 @@ public class GoapPlanner
 
 		if (!success) {
 			// oh no, we didn't get a plan
-			Debug.Log("NO PLAN");
+			//Debug.Log("NO PLAN");
 			return null;
 		}
 
@@ -57,7 +57,7 @@ public class GoapPlanner
 		}
 
 		// get its node and work back through the parents
-		List<GoapAction> result = new List<GoapAction> ();
+		List<GOAPAction> result = new List<GOAPAction> ();
 		Node n = cheapest;
 		while (n != null) {
 			if (n.action != null) {
@@ -67,8 +67,8 @@ public class GoapPlanner
 		}
 		// we now have this action list in correct order
 
-		Queue<GoapAction> queue = new Queue<GoapAction> ();
-		foreach (GoapAction a in result) {
+		Queue<GOAPAction> queue = new Queue<GOAPAction> ();
+		foreach (GOAPAction a in result) {
 			queue.Enqueue(a);
 		}
 
@@ -82,12 +82,12 @@ public class GoapPlanner
 	 * 'runningCost' value where the lowest cost will be the best action
 	 * sequence.
 	 */
-	private bool buildGraph (Node parent, List<Node> leaves, HashSet<GoapAction> usableActions, HashSet<KeyValuePair<string, object>> goal)
+	protected bool buildGraph (Node parent, List<Node> leaves, HashSet<GOAPAction> usableActions, HashSet<KeyValuePair<string, object>> goal)
 	{
 		bool foundOne = false;
 
 		// go through each action available at this node and see if we can use it here
-		foreach (GoapAction action in usableActions) {
+		foreach (GOAPAction action in usableActions) {
 
 			// if the parent state has the conditions for this action's preconditions, we can use it here
 			if ( inState(action.Preconditions, parent.state) ) {
@@ -95,19 +95,21 @@ public class GoapPlanner
 				// apply the action's effects to the parent state
 				HashSet<KeyValuePair<string,object>> currentState = populateState (parent.state, action.Effects);
 				//Debug.Log(GoapAgent.prettyPrint(currentState));
-				Node node = new Node(parent, parent.runningCost+action.cost, currentState, action);
+				Node node = new Node(parent, parent.runningCost + action.cost, currentState, action);
 
-				if (inState(goal, currentState)) {
+				if (goalInState (goal, currentState)) {
 					// we found a solution!
-					leaves.Add(node);
+					leaves.Add (node);
 					foundOne = true;
 				} else {
-					// not at a solution yet, so test all the remaining actions and branch out the tree
-					HashSet<GoapAction> subset = actionSubset(usableActions, action);
+					// test all the remaining actions and branch out the tree
+					HashSet<GOAPAction> subset = actionSubset(usableActions, action);
 					bool found = buildGraph(node, leaves, subset, goal);
 					if (found)
 						foundOne = true;
 				}
+
+
 			}
 		}
 
@@ -117,20 +119,37 @@ public class GoapPlanner
 	/**
 	 * Create a subset of the actions excluding the removeMe one. Creates a new set.
 	 */
-	private HashSet<GoapAction> actionSubset(HashSet<GoapAction> actions, GoapAction removeMe) {
-		HashSet<GoapAction> subset = new HashSet<GoapAction> ();
-		foreach (GoapAction a in actions) {
+	protected HashSet<GOAPAction> actionSubset(HashSet<GOAPAction> actions, GOAPAction removeMe) {
+		HashSet<GOAPAction> subset = new HashSet<GOAPAction> ();
+		foreach (GOAPAction a in actions) {
 			if (!a.Equals(removeMe))
 				subset.Add(a);
 		}
 		return subset;
 	}
 
-	/**
+	/*
+	 * Checks if at least one goal is met. 
+	 * to-do: Create a system for weighting towards paths that fulfill more goals
+	 */
+	protected bool goalInState(HashSet<KeyValuePair<string,object>> test, HashSet<KeyValuePair<string,object>> state) {
+		bool match = false;
+		foreach (KeyValuePair<string,object> t in test) {
+			foreach (KeyValuePair<string,object> s in state) {
+				if (s.Equals (t)) {
+					match = true;
+					break;
+				}
+			}
+		}
+		return match;
+	}
+
+	/*
 	 * Check that all items in 'test' are in 'state'. If just one does not match or is not there
 	 * then this returns false.
 	 */
-	private bool inState(HashSet<KeyValuePair<string,object>> test, HashSet<KeyValuePair<string,object>> state) {
+	protected bool inState(HashSet<KeyValuePair<string,object>> test, HashSet<KeyValuePair<string,object>> state) {
 		bool allMatch = true;
 		foreach (KeyValuePair<string,object> t in test) {
 			bool match = false;
@@ -149,7 +168,7 @@ public class GoapPlanner
 	/**
 	 * Apply the stateChange to the currentState
 	 */
-	private HashSet<KeyValuePair<string,object>> populateState(HashSet<KeyValuePair<string,object>> currentState, HashSet<KeyValuePair<string,object>> stateChange) {
+	protected HashSet<KeyValuePair<string,object>> populateState(HashSet<KeyValuePair<string,object>> currentState, HashSet<KeyValuePair<string,object>> stateChange) {
 		HashSet<KeyValuePair<string,object>> state = new HashSet<KeyValuePair<string,object>> ();
 		// copy the KVPs over as new objects
 		foreach (KeyValuePair<string,object> s in currentState) {
@@ -161,7 +180,7 @@ public class GoapPlanner
 			bool exists = false;
 
 			foreach (KeyValuePair<string,object> s in state) {
-				if (s.Equals(change)) {
+				if (s.Key.Equals(change.Key)) {
 					exists = true;
 					break;
 				}
@@ -183,13 +202,13 @@ public class GoapPlanner
 	/**
 	 * Used for building up the graph and holding the running costs of actions.
 	 */
-	private class Node {
+	protected class Node {
 		public Node parent;
 		public float runningCost;
 		public HashSet<KeyValuePair<string,object>> state;
-		public GoapAction action;
+		public GOAPAction action;
 
-		public Node(Node parent, float runningCost, HashSet<KeyValuePair<string,object>> state, GoapAction action) {
+		public Node(Node parent, float runningCost, HashSet<KeyValuePair<string,object>> state, GOAPAction action) {
 			this.parent = parent;
 			this.runningCost = runningCost;
 			this.state = state;
@@ -198,5 +217,4 @@ public class GoapPlanner
 	}
 
 }
-
 

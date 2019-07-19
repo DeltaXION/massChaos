@@ -15,21 +15,25 @@ public class Warrior : EnemyBaseClass
     void Update()
     {
         base.readSensorStatusAndUpdateFlags();
+        
     }
+
+    public override void staminaRegen()
+    {
+        stamina += staminaRegenRate;
+    }
+
     public override void InitializeEnemy(int dungeonLevel)
     {
         
     }
 
-    public override bool moveAgent(GoapAction nextAction)
-    {
-        return base.moveAgent(nextAction);
-    }
+   
     public override HashSet<KeyValuePair<string, object>> createGoalState()
     {
         HashSet<KeyValuePair<string, object>> goal = new HashSet<KeyValuePair<string, object>>();
-        goal.Add(new KeyValuePair<string, object>("hurtPlayer", true));
-        goal.Add(new KeyValuePair<string, object>("Patrol", true));
+        goal.Add(new KeyValuePair<string, object>("damagePlayer", true));
+        //goal.Add(new KeyValuePair<string, object>("Patrol", true));
         return goal;
     }
 }
