@@ -31,7 +31,7 @@ public class HappinessIndex : MonoBehaviour
 
     void SetFrootHappiness()
     {
-        FrootHappiness = Mathf.RoundToInt(Foodfactor + FrootAssignments + BaseHealth + FrootBaseComfort);
+        FrootHappiness = Mathf.RoundToInt(Foodfactor + FrootAssignments + BaseHealth + FrootBaseComfort + FrootPrestige);
         FrootHappinessUI.text = "Froot Happiness:" + FrootHappiness;
 		Debug.Log("Froot Happiness" + FrootHappiness);
     }
@@ -124,6 +124,18 @@ public class HappinessIndex : MonoBehaviour
 		FrootBaseComfort = (x + y) / 10f;
 	}
 	
+	void SetFrootPrestige()
+	{
+		float TotalP = 5f;
+		float TotalPrestige = 100f;
+		float CurrentPrestige = 25f;
+
+		float PrestigeReduction = (TotalPrestige - CurrentPrestige) / TotalPrestige * 100f;
+
+		FrootPrestige = TotalP - ((PrestigeReduction / 100) * TotalP);
+
+	}
+
 
     void RecalculateHappinessIndex()
     {
@@ -131,6 +143,8 @@ public class HappinessIndex : MonoBehaviour
         SetAssignmentFactor();
 		SetBaseHealth();
 		SetBaseComfort();
+		SetFrootPrestige();
+		
 		SetFrootHappiness();
 
     }
