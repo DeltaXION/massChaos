@@ -1,11 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class QuestNodes : MonoBehaviour
 {
     public int QuestNumber;
+<<<<<<< HEAD
 
     private void Start()
     {
@@ -24,4 +24,6 @@ public class QuestNodes : MonoBehaviour
     {
         Debug.Log("InfoPopup");
     }
+=======
+>>>>>>> parent of 77614da... Incomplete UI
 }
