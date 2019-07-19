@@ -13,13 +13,9 @@ public class BaseCharachteristics
     public string type;
 
    
-    public BaseCharachteristics(int id,
-      string  name,
-     float affinity,
-     float foodIntake,
-     string type) {
-        this.id = id;
-        this.name = name;
+    public BaseCharachteristics(int id, string  name, float affinity, float foodIntake, string type) {
+      this.id = id;
+      this.name = name;
       this.affinity = affinity;
       this.foodIntake = foodIntake;
       this.type = type;
