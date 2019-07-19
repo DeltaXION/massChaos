@@ -44,8 +44,7 @@ public class QuestsDiplomacyParent : MonoBehaviour
 
         foreach (GameObject item in QuestNodes)
         {
-            
-            GameObject.Find(item.name).GetComponent<QuestNodes>().QuestNumber = Random.Range(0, 10);
+            GameObject.Find(item.name).GetComponent<QuestNodes>().QuestNumber = Random.Range(1, 3);
             Debug.Log("Node name is " + item.name + "and QuestNumber is " + GameObject.Find(item.name).GetComponent<QuestNodes>().QuestNumber);
         }
     }

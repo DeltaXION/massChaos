@@ -15,8 +15,10 @@ public class QuestNodes : MonoBehaviour
 
     void ShowQuest()
     {
-        Debug.Log("QuestMenuPopup");
+        Debug.Log("QuestMenuPopup for Node "+ gameObject.name + " with Quest number " + QuestNumber);
     }
+
+   
 
     private void OnMouseOver()
     {

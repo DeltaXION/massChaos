@@ -19,9 +19,9 @@ public class QuestsDiplomacyManager : MonoBehaviour
         if (Input.GetKeyDown("`"))
         {
             if (GameObject.Find("QuestsDiplomacyParent") == true)
-                GameObject.Find("QuestsDiplomacyParent");
+                DiplomacyMap.SetActive(false);
             else if (GameObject.Find("QuestsDiplomacyParent") == false)
-                Instantiate(DiplomacyMap);
+                DiplomacyMap.SetActive(true);
         }
     }
 }
