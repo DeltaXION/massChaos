@@ -26,8 +26,7 @@ public class QuestsDiplomacyParent : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown("space"))
-            SetQuest();
+       
 
     }
 
@@ -48,7 +47,7 @@ public class QuestsDiplomacyParent : MonoBehaviour
         foreach (GameObject item in QuestNodes)
         {
             Repeat:
-            RandomNumberPulled = Random.Range(1, 3);
+            RandomNumberPulled = Random.Range(1, 6);
             foreach(GameObject node in QuestNodes)
             {
                 if(GameObject.Find(node.name).GetComponent<QuestNodes>().QuestNumber == RandomNumberPulled)
@@ -56,7 +55,7 @@ public class QuestsDiplomacyParent : MonoBehaviour
 
             }
             GameObject.Find(item.name).GetComponent<QuestNodes>().QuestNumber = RandomNumberPulled;
-            Debug.Log("Node name is " + item.name + "and QuestNumber is " + GameObject.Find(item.name).GetComponent<QuestNodes>().QuestNumber);
+            //Debug.Log("Node name is " + item.name + "and QuestNumber is " + GameObject.Find(item.name).GetComponent<QuestNodes>().QuestNumber);
         }
 
 

@@ -20,7 +20,10 @@ public class QuestsDiplomacyManager : MonoBehaviour
 
         if (Input.GetKeyDown("`"))
         {
-            if (GameObject.Find("QuestsDiplomacyParent") == true)
+            if (GameObject.Find("QuestMenu") == true)
+                GameObject.Find("QuestMenu").SetActive(false);
+
+                if (GameObject.Find("QuestsDiplomacyParent") == true)
                 DiplomacyMap.SetActive(false);
             else if (GameObject.Find("QuestsDiplomacyParent") == false)
                 DiplomacyMap.SetActive(true);

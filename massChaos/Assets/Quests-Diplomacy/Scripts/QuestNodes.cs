@@ -8,6 +8,9 @@ public class QuestNodes : MonoBehaviour
     public int QuestNumber;
     public string QuestInformation;
 
+    public GameObject QuestMenu, QuestRewardsInfo;
+    //public Text QuestRewardsInfo;
+
 
     private void Start()
     {
@@ -18,10 +21,13 @@ public class QuestNodes : MonoBehaviour
 
     void ShowQuest()
     {
-        Debug.Log(QuestNumber);
-        QuestInformation = GameObject.Find("QuestList").GetComponent<QuestList>().FetchQuest(QuestNumber);
-        Debug.Log(QuestInformation);
+        if(GameObject.Find("QuestMenu") == false)
+        QuestMenu.SetActive(true);
         
+        Debug.Log("Quest number is " + QuestNumber);
+        
+        QuestRewardsInfo.GetComponent<Text>().text = GameObject.Find("QuestList").GetComponent<QuestList>().FetchQuest(QuestNumber);
+
     }
 
    
