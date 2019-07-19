@@ -15,8 +15,12 @@ public class Warrior : EnemyBaseClass
     void Update()
     {
         base.readSensorStatusAndUpdateFlags();
-        
+
+       
+       
     }
+
+    
 
     public override void staminaRegen()
     {

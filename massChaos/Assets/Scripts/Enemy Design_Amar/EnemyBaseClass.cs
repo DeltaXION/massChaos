@@ -129,17 +129,17 @@ public abstract class EnemyBaseClass : MonoBehaviour, IGOAP
     //gradually move the enemy towards the target location. (eg. for attack player, target will be player)
     public  bool moveAgent(GOAPAction nextAction)
     {
-        Debug.Log("moveAgent");
+        
         
         float step = movementSpeed * Time.deltaTime;
         Rigidbody2D enemyBody = gameObject.GetComponent<Rigidbody2D>();
         float distanceToTarget = Vector3.Distance(transform.position, nextAction.target.transform.position);
         //move towards the object till you reach minimumDistance to Interact
         //function returns true when you reach the interactable range
-        enemyBody.MovePosition(transform.position + Vector3.Normalize(nextAction.target.transform.position) * movementSpeed * Time.deltaTime);
+        enemyBody.MovePosition(transform.position + Vector3.Normalize(nextAction.target.transform.position - transform.position) * movementSpeed * Time.deltaTime);
 
         
-        if(distanceToTarget <minimumDistanceToInteract)
+        if(distanceToTarget <= minimumDistanceToInteract)
         {
             nextAction.setInRange(true);
             return true;

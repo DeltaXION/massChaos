@@ -2,15 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class attackPlayerAction : GOAPAction
+public class killPlayerAction : GOAPAction
 {
-    private bool attacked = false;
+    private bool playerDead = false;
     
     
     
-    public attackPlayerAction()
+    public killPlayerAction()
     {
-        addEffect("damagePlayer", true);
+        addPrecondition("damagePlayer", true);
+        addEffect("killPlayer", true);
         cost = 1f;
 
         
@@ -18,19 +19,19 @@ public class attackPlayerAction : GOAPAction
     }
     public override void reset()
     {
-        
-        attacked = false;
+
+        playerDead = false;
         target = null;
     }
 
     public override bool isDone()
     {
-        return attacked;
+        return playerDead;
     }
 
     public override bool requiresInRange()
     {
-        return true;
+        return false;
     }
 
     public override bool checkProceduralPrecondition(GameObject agent)
@@ -41,30 +42,25 @@ public class attackPlayerAction : GOAPAction
        
         Warrior currentEnemy = agent.GetComponent<Warrior>();
 
-        //Can attack only if target is real, enemy is not hitstunned and there is enough stamina
-        if (target != null && !currentEnemy.hitStunned && currentEnemy.stamina >= currentEnemy.maxStamina - cost) //here 5 is max stamina
-        {
-
+        //Will run only if enemy is dead,
+        if (target != null) {
             return true;
-        }
-        else
+        } else
         {
-
             return false;
         }
-        
+      
     }
 
     //run code that corresponds to performing the action. Returns true if performed successfully
     public override bool perform(GameObject agent)
     
     {
-        Warrior currentEnemy = agent.GetComponent<Warrior>();
-        currentEnemy.stamina -= currentEnemy.maxStamina - cost;
-        currentEnemy.attackPlayer();
+
+        Debug.Log("player dead");
         //Play attack animation;
-        attacked = true;
-        return attacked;
+        playerDead = true;
+        return playerDead;
     }
 
 }
