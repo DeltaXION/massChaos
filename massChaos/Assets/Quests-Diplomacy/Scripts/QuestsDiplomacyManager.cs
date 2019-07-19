@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class QuestsDiplomacyManager : MonoBehaviour
 {
+    public GameObject DiplomacyMap;
     public int Prestige_Nomads = 0, Prestige_Ferrarium = 0, Prestige_Froots = 0, Prestige_Mimax = 0,
                QuestsCompleted_Nomads, QuestsCompleted_Ferrarium, QuestsCompleted_Froots, QuestsCompleted_Mimax;
     // Start is called before the first frame update
@@ -15,8 +16,6 @@ public class QuestsDiplomacyManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-<<<<<<< HEAD
-<<<<<<< HEAD
         if (Input.GetKeyDown("`"))
         {
             if (GameObject.Find("QuestsDiplomacyParent") == true)
@@ -24,11 +23,5 @@ public class QuestsDiplomacyManager : MonoBehaviour
             else if (GameObject.Find("QuestsDiplomacyParent") == false)
                 DiplomacyMap.SetActive(true);
         }
-=======
-        
->>>>>>> parent of 77614da... Incomplete UI
-=======
-        
->>>>>>> parent of 77614da... Incomplete UI
     }
 }
