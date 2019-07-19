@@ -16,6 +16,7 @@ public class QuestsDiplomacyManager : MonoBehaviour
     void Update()
     {
 <<<<<<< HEAD
+<<<<<<< HEAD
         if (Input.GetKeyDown("`"))
         {
             if (GameObject.Find("QuestsDiplomacyParent") == true)
@@ -23,6 +24,9 @@ public class QuestsDiplomacyManager : MonoBehaviour
             else if (GameObject.Find("QuestsDiplomacyParent") == false)
                 DiplomacyMap.SetActive(true);
         }
+=======
+        
+>>>>>>> parent of 77614da... Incomplete UI
 =======
         
 >>>>>>> parent of 77614da... Incomplete UI

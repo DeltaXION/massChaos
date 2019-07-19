@@ -38,6 +38,7 @@ public class QuestsDiplomacyParent : MonoBehaviour
     void SetQuest()
     {
 <<<<<<< HEAD
+<<<<<<< HEAD
         QuestNodes = GameObject.FindGameObjectsWithTag("QuestNode");
         //NumberofQuestNodes = QuestNodes.Length;
 
@@ -47,10 +48,15 @@ public class QuestsDiplomacyParent : MonoBehaviour
             Debug.Log("Node name is " + item.name + "and QuestNumber is " + GameObject.Find(item.name).GetComponent<QuestNodes>().QuestNumber);
         }
 =======
+=======
+>>>>>>> parent of 77614da... Incomplete UI
         QuestNodes[0] = "what";
         QuestNodes[1] = "where";
 
         Debug.Log(QuestNodes[1]);
+<<<<<<< HEAD
+>>>>>>> parent of 77614da... Incomplete UI
+=======
 >>>>>>> parent of 77614da... Incomplete UI
     }
 }

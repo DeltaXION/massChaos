@@ -6,6 +6,7 @@ public class QuestNodes : MonoBehaviour
 {
     public int QuestNumber;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
     private void Start()
     {
@@ -24,6 +25,8 @@ public class QuestNodes : MonoBehaviour
     {
         Debug.Log("InfoPopup");
     }
+=======
+>>>>>>> parent of 77614da... Incomplete UI
 =======
 >>>>>>> parent of 77614da... Incomplete UI
 }
