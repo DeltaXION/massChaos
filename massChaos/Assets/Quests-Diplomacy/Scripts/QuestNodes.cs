@@ -1,21 +1,27 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class QuestNodes : MonoBehaviour
 {
     public int QuestNumber;
-<<<<<<< HEAD
+    public string QuestInformation;
+
 
     private void Start()
     {
         gameObject.GetComponent<Button>().onClick.AddListener(ShowQuest);
+
        
     }
 
     void ShowQuest()
     {
-        Debug.Log("QuestMenuPopup for Node "+ gameObject.name + " with Quest number " + QuestNumber);
+        Debug.Log(QuestNumber);
+        QuestInformation = GameObject.Find("QuestList").GetComponent<QuestList>().FetchQuest(QuestNumber);
+        Debug.Log(QuestInformation);
+        
     }
 
    
@@ -24,6 +30,5 @@ public class QuestNodes : MonoBehaviour
     {
         Debug.Log("InfoPopup");
     }
-=======
->>>>>>> parent of 77614da... Incomplete UI
+
 }
