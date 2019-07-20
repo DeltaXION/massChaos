@@ -1,0 +1,155 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &3682032357352426179
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 834766976113665407, guid: a04fca364dfc7b54eb8a8fdc82325c91,
+        type: 3}
+      propertyPath: m_Name
+      value: LootChestG Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 834766976113665344, guid: a04fca364dfc7b54eb8a8fdc82325c91,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.0874
+      objectReference: {fileID: 0}
+    - target: {fileID: 834766976113665344, guid: a04fca364dfc7b54eb8a8fdc82325c91,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 834766976113665344, guid: a04fca364dfc7b54eb8a8fdc82325c91,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 834766976113665344, guid: a04fca364dfc7b54eb8a8fdc82325c91,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 834766976113665344, guid: a04fca364dfc7b54eb8a8fdc82325c91,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 834766976113665344, guid: a04fca364dfc7b54eb8a8fdc82325c91,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 834766976113665344, guid: a04fca364dfc7b54eb8a8fdc82325c91,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 834766976113665344, guid: a04fca364dfc7b54eb8a8fdc82325c91,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 834766976113665344, guid: a04fca364dfc7b54eb8a8fdc82325c91,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 834766976113665344, guid: a04fca364dfc7b54eb8a8fdc82325c91,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 834766976113665344, guid: a04fca364dfc7b54eb8a8fdc82325c91,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 834766976113665406, guid: a04fca364dfc7b54eb8a8fdc82325c91,
+        type: 3}
+      propertyPath: lootDropTable.lootDropItems.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 834766976113665406, guid: a04fca364dfc7b54eb8a8fdc82325c91,
+        type: 3}
+      propertyPath: lootDropTable.lootDropItems.Array.data[0].item
+      value: 
+      objectReference: {fileID: 163137192591083477, guid: 6b6f091a254663c41b2556e4591e4579,
+        type: 3}
+    - target: {fileID: 834766976113665406, guid: a04fca364dfc7b54eb8a8fdc82325c91,
+        type: 3}
+      propertyPath: lootDropTable.lootDropItems.Array.data[1].item
+      value: 
+      objectReference: {fileID: 6445922253693453532, guid: 30985a6690eef2547a93eee4a2fecb22,
+        type: 3}
+    - target: {fileID: 834766976113665406, guid: a04fca364dfc7b54eb8a8fdc82325c91,
+        type: 3}
+      propertyPath: lootDropTable.lootDropItems.Array.data[2].item
+      value: 
+      objectReference: {fileID: 3576173669384027887, guid: db47edb9957a4f9419e85a08424514a6,
+        type: 3}
+    - target: {fileID: 834766976113665406, guid: a04fca364dfc7b54eb8a8fdc82325c91,
+        type: 3}
+      propertyPath: lootDropTable.lootDropItems.Array.data[0].probabilityWeight
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 834766976113665406, guid: a04fca364dfc7b54eb8a8fdc82325c91,
+        type: 3}
+      propertyPath: lootDropTable.lootDropItems.Array.data[0].probabilityPercent
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 834766976113665406, guid: a04fca364dfc7b54eb8a8fdc82325c91,
+        type: 3}
+      propertyPath: lootDropTable.lootDropItems.Array.data[0].probabilityRangeTo
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 834766976113665406, guid: a04fca364dfc7b54eb8a8fdc82325c91,
+        type: 3}
+      propertyPath: lootDropTable.lootDropItems.Array.data[1].probabilityPercent
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 834766976113665406, guid: a04fca364dfc7b54eb8a8fdc82325c91,
+        type: 3}
+      propertyPath: lootDropTable.lootDropItems.Array.data[1].probabilityRangeFrom
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 834766976113665406, guid: a04fca364dfc7b54eb8a8fdc82325c91,
+        type: 3}
+      propertyPath: lootDropTable.lootDropItems.Array.data[1].probabilityRangeTo
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 834766976113665406, guid: a04fca364dfc7b54eb8a8fdc82325c91,
+        type: 3}
+      propertyPath: lootDropTable.lootDropItems.Array.data[2].probabilityPercent
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 834766976113665406, guid: a04fca364dfc7b54eb8a8fdc82325c91,
+        type: 3}
+      propertyPath: lootDropTable.lootDropItems.Array.data[2].probabilityRangeFrom
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 834766976113665406, guid: a04fca364dfc7b54eb8a8fdc82325c91,
+        type: 3}
+      propertyPath: lootDropTable.lootDropItems.Array.data[2].probabilityRangeTo
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 834766976113665406, guid: a04fca364dfc7b54eb8a8fdc82325c91,
+        type: 3}
+      propertyPath: lootDropTable.lootDropItems.Array.data[2].probabilityWeight
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 834766976113665406, guid: a04fca364dfc7b54eb8a8fdc82325c91,
+        type: 3}
+      propertyPath: numItemsToDrop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 834766976113665406, guid: a04fca364dfc7b54eb8a8fdc82325c91,
+        type: 3}
+      propertyPath: lootDropTable.lootDropItems.Array.data[1].probabilityWeight
+      value: 30
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 0}
+  m_SourcePrefab: {fileID: 100100000, guid: a04fca364dfc7b54eb8a8fdc82325c91, type: 3}
