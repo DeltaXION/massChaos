@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6103910279063654762}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 353.0017, y: 387.25513, z: -61.25}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -40,10 +40,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 6103910279063654762}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec3a72820f4ec3c4284c2165a64415af, type: 3}
+  m_Script: {fileID: 11500000, guid: 0510460a3e8a8c64bb56257457f0442c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  goldText: {fileID: 0}
-  woodText: {fileID: 0}
-  foodText: {fileID: 0}
-  ironText: {fileID: 0}

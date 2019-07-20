@@ -40,7 +40,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 5948338452093097331}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f9353ad6bfee3a41aacaddc9fd8b2fb, type: 3}
+  m_Script: {fileID: 11500000, guid: 137cb8388a2dcd7478e64a54b46d6b70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dungeonGold: {fileID: 0}
+  dungeonGold: {fileID: 1206270187808451052, guid: 4b5b96ebc8b73404aaf2e73b8adba279,
+    type: 3}
+  dungeonAprefab: {fileID: 5630825671085661604, guid: 3800765750bf50749b3fefd81a4dccea,
+    type: 3}
+  dungeonBprefab: {fileID: 836437132030920804, guid: 52dffac502b5db44eb10bca40bd1e5d5,
+    type: 3}
+  dungeonCprefab: {fileID: 4989420977422824354, guid: 0558461f558483a4a886af0a65c020cf,
+    type: 3}
+  dungeonDprefab: {fileID: 2846485667901262843, guid: d84a2a6236a549d45b9886d8c6ae13b6,
+    type: 3}
