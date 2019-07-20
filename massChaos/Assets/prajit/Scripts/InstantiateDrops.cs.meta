@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 137cb8388a2dcd7478e64a54b46d6b70
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - dungeonGold: {fileID: 1206270187808451052, guid: 4b5b96ebc8b73404aaf2e73b8adba279,
+      type: 3}
+  - dungeonAprefab: {fileID: 5630825671085661604, guid: 3800765750bf50749b3fefd81a4dccea,
+      type: 3}
+  - dungeonBprefab: {fileID: 836437132030920804, guid: 52dffac502b5db44eb10bca40bd1e5d5,
+      type: 3}
+  - dungeonCprefab: {fileID: 4989420977422824354, guid: 0558461f558483a4a886af0a65c020cf,
+      type: 3}
+  - dungeonDprefab: {fileID: 2846485667901262843, guid: d84a2a6236a549d45b9886d8c6ae13b6,
+      type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
