@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5948338452093097331
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5948338452093097329}
+  - component: {fileID: 5948338452093097330}
+  m_Layer: 0
+  m_Name: InstantiateGold
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5948338452093097329
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5948338452093097331}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5948338452093097330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5948338452093097331}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 137cb8388a2dcd7478e64a54b46d6b70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dungeonGold: {fileID: 1206270187808451052, guid: 4b5b96ebc8b73404aaf2e73b8adba279,
+    type: 3}
+  dungeonAprefab: {fileID: 5630825671085661604, guid: 3800765750bf50749b3fefd81a4dccea,
+    type: 3}
+  dungeonBprefab: {fileID: 836437132030920804, guid: 52dffac502b5db44eb10bca40bd1e5d5,
+    type: 3}
+  dungeonCprefab: {fileID: 4989420977422824354, guid: 0558461f558483a4a886af0a65c020cf,
+    type: 3}
+  dungeonDprefab: {fileID: 2846485667901262843, guid: d84a2a6236a549d45b9886d8c6ae13b6,
+    type: 3}
