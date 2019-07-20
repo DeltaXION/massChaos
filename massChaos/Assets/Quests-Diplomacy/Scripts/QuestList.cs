@@ -19,13 +19,14 @@ public class QuestList : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+       
     }
 
     //Function to Provide Quest Description to Menu
     public string FetchQuest(int QuestID)
     {
         SelectQuest(QuestID);
+        QuestRewardsText = " ";
 
         int[] RewardsArray = {Prestige_Nomads, Prestige_Ferrarium, Prestige_Froots, Prestige_Mimax,
                                 LootReward_Iron, LootReward_Wood, LootReward_Food, LootReward_Gold,
@@ -39,6 +40,8 @@ public class QuestList : MonoBehaviour
         
         for(int count = 0; count < RewardsArray.Length; count++)
         {            
+            if(RewardsArray[count] != 0) //To make sure that only the relevant information is shown.
+
             QuestRewardsText = QuestRewardsText + RewardsArray[count].ToString() + " " + RewardsName[count].ToString() + "\n";            
         }
 
@@ -61,6 +64,9 @@ public class QuestList : MonoBehaviour
     public void SelectQuest(int NodeQuestNumber)
     {
         Questnumber = NodeQuestNumber;
+
+        Prestige_Nomads = Prestige_Ferrarium = Prestige_Froots = Prestige_Mimax = LootReward_Iron = LootReward_Wood = LootReward_Food = LootReward_Gold =
+                ItemReward_Uncommon = ItemReward_Common = ItemReward_Rare = ItemReward_Recipe = ItemReward_Boss = 0; //Basically set everything to zero
 
 
         if (Questnumber == 1)
