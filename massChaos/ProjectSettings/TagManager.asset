@@ -4,11 +4,13 @@
 TagManager:
   serializedVersion: 2
   tags:
+  - Wall
   - DungeonGold
   - goldText
   - woodText
   - foodText
   - ironText
+
   layers:
   - Default
   - TransparentFX
