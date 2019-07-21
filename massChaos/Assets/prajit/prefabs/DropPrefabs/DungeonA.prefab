@@ -75,17 +75,17 @@ PrefabInstance:
     - target: {fileID: 3533857695687146897, guid: 2070aec3ad7a4ad4889e14a668a79114,
         type: 3}
       propertyPath: lootDropTable.lootDropItems.Array.data[0].probabilityPercent
-      value: 50
+      value: 70
       objectReference: {fileID: 0}
     - target: {fileID: 3533857695687146897, guid: 2070aec3ad7a4ad4889e14a668a79114,
         type: 3}
       propertyPath: lootDropTable.lootDropItems.Array.data[1].probabilityPercent
-      value: 8.333333
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3533857695687146897, guid: 2070aec3ad7a4ad4889e14a668a79114,
         type: 3}
       propertyPath: lootDropTable.lootDropItems.Array.data[2].probabilityPercent
-      value: 8.333333
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3533857695687146897, guid: 2070aec3ad7a4ad4889e14a668a79114,
         type: 3}
@@ -96,12 +96,12 @@ PrefabInstance:
     - target: {fileID: 3533857695687146897, guid: 2070aec3ad7a4ad4889e14a668a79114,
         type: 3}
       propertyPath: lootDropTable.lootDropItems.Array.data[3].probabilityWeight
-      value: 40
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 3533857695687146897, guid: 2070aec3ad7a4ad4889e14a668a79114,
         type: 3}
       propertyPath: lootDropTable.lootDropItems.Array.data[3].probabilityPercent
-      value: 33.333332
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 3533857695687146897, guid: 2070aec3ad7a4ad4889e14a668a79114,
         type: 3}
@@ -111,7 +111,7 @@ PrefabInstance:
     - target: {fileID: 3533857695687146897, guid: 2070aec3ad7a4ad4889e14a668a79114,
         type: 3}
       propertyPath: lootDropTable.lootDropItems.Array.data[3].probabilityRangeTo
-      value: 120
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 3533857695687146897, guid: 2070aec3ad7a4ad4889e14a668a79114,
         type: 3}
@@ -134,27 +134,27 @@ PrefabInstance:
     - target: {fileID: 3533857695687146897, guid: 2070aec3ad7a4ad4889e14a668a79114,
         type: 3}
       propertyPath: lootDropTable.lootDropItems.Array.data[0].probabilityWeight
-      value: 60
+      value: 70
       objectReference: {fileID: 0}
     - target: {fileID: 3533857695687146897, guid: 2070aec3ad7a4ad4889e14a668a79114,
         type: 3}
       propertyPath: lootDropTable.lootDropItems.Array.data[0].probabilityRangeTo
-      value: 60
+      value: 70
       objectReference: {fileID: 0}
     - target: {fileID: 3533857695687146897, guid: 2070aec3ad7a4ad4889e14a668a79114,
         type: 3}
       propertyPath: lootDropTable.lootDropItems.Array.data[1].probabilityRangeFrom
-      value: 60
+      value: 70
       objectReference: {fileID: 0}
     - target: {fileID: 3533857695687146897, guid: 2070aec3ad7a4ad4889e14a668a79114,
         type: 3}
       propertyPath: lootDropTable.lootDropItems.Array.data[1].probabilityRangeTo
-      value: 70
+      value: 75
       objectReference: {fileID: 0}
     - target: {fileID: 3533857695687146897, guid: 2070aec3ad7a4ad4889e14a668a79114,
         type: 3}
       propertyPath: lootDropTable.lootDropItems.Array.data[2].probabilityRangeFrom
-      value: 70
+      value: 75
       objectReference: {fileID: 0}
     - target: {fileID: 3533857695687146897, guid: 2070aec3ad7a4ad4889e14a668a79114,
         type: 3}
@@ -164,12 +164,12 @@ PrefabInstance:
     - target: {fileID: 3533857695687146897, guid: 2070aec3ad7a4ad4889e14a668a79114,
         type: 3}
       propertyPath: lootDropTable.lootDropItems.Array.data[1].probabilityWeight
-      value: 10
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3533857695687146897, guid: 2070aec3ad7a4ad4889e14a668a79114,
         type: 3}
       propertyPath: lootDropTable.lootDropItems.Array.data[2].probabilityWeight
-      value: 10
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3533857695687146897, guid: 2070aec3ad7a4ad4889e14a668a79114,
         type: 3}
