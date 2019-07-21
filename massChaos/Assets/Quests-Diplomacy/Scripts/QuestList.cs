@@ -5,8 +5,11 @@ using UnityEngine.UI;
 
 public class QuestList : MonoBehaviour
 {
-    private int Questnumber;
-    public string QuestText, QuestRewardsText;
+    public int Questnumber;
+    public string QuestText, AdditionalQuestText, QuestRewardsText;
+
+    public GameObject NPCDataList;
+
 
     public int Prestige_Nomads, Prestige_Ferrarium, Prestige_Froots, Prestige_Mimax,
                 LootReward_Iron, LootReward_Wood, LootReward_Food, LootReward_Gold,
@@ -19,14 +22,15 @@ public class QuestList : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       
+        
+        
     }
 
     //Function to Provide Quest Description to Menu
     public string FetchQuest(int QuestID)
     {
         SelectQuest(QuestID);
-        QuestRewardsText = " ";
+        QuestRewardsText = QuestText + "\n" + AdditionalQuestText + "\n\n";
 
         int[] RewardsArray = {Prestige_Nomads, Prestige_Ferrarium, Prestige_Froots, Prestige_Mimax,
                                 LootReward_Iron, LootReward_Wood, LootReward_Food, LootReward_Gold,
@@ -60,6 +64,12 @@ public class QuestList : MonoBehaviour
     }
 
 
+
+    
+
+
+
+
     //NOMAD_QUESTS (1-15) FERRARUIM_QUESTS (16-30) FROOTS_QUESTS (31-45) MIMAX_QUESTS (46-60)
     public void SelectQuest(int NodeQuestNumber)
     {
@@ -68,6 +78,8 @@ public class QuestList : MonoBehaviour
         Prestige_Nomads = Prestige_Ferrarium = Prestige_Froots = Prestige_Mimax = LootReward_Iron = LootReward_Wood = LootReward_Food = LootReward_Gold =
                 ItemReward_Uncommon = ItemReward_Common = ItemReward_Rare = ItemReward_Recipe = ItemReward_Boss = 0; //Basically set everything to zero
 
+        AdditionalQuestText = " "; //To reset Additional Questtext
+
 
         if (Questnumber == 1)
         {
@@ -75,6 +87,13 @@ public class QuestList : MonoBehaviour
             Prestige_Nomads = -100;
             Prestige_Ferrarium = 50;
             LootReward_Wood = 10;
+
+            if(NPCDataList.GetComponent<TestNPCList>().Race == "Nomads")
+            {
+                AdditionalQuestText = "The Nomad valiantly springs forth from the crowd to answer the calling of his people";
+                Debug.Log("He is a nomad");
+            }
+            
             
         }
 
@@ -85,17 +104,17 @@ public class QuestList : MonoBehaviour
 
         if (Questnumber == 3)
         {
-            QuestText = "Deep in the mountainside are great deposits of iron .";
+            QuestText = "Deep in the mountainside are great deposits of iron. Help the Nomads claim this bounty.";
         }
 
         if (Questnumber == 4)
         {
-            QuestText = "This is the Quest you must read.";
+            QuestText = "A curse has befallen a Nomad hut. They begrudgingly request assistance from a mage.";
         }
 
         if (Questnumber == 5)
         {
-            QuestText = "This is the Quest you must read.";
+            QuestText = "Iron mining has reduced an entire forest to dirt. The Nomads are looking for help on the matter.";
         }
 
         if (Questnumber == 6)

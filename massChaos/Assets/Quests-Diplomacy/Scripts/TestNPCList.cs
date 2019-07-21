@@ -9,10 +9,25 @@ public class TestNPCList : MonoBehaviour
     //public string[] FollowerData;
     // Start is called before the first frame update
 
+
+    public void FollowerSlotisSelected(int SlotNumber)
+    {
+        FollowerSlotNo = SlotNumber;
+        FetchFollower(FollowerSlotNo);
+        Debug.Log("Slot number " + FollowerSlotNo + " is selected." + "Data is " + FollowerName + Race + Class + SecondaryItem);
+    }
     
     public void FetchFollower(int FollowerID)
     {
-        if(FollowerID == 1)
+        if (FollowerID == 0)
+        {
+            FollowerName = " ";
+            Race = " ";
+            Class = " ";
+            SecondaryItem = " ";
+        }
+
+        if (FollowerID == 1)
         {
             FollowerName = "Jerras";
             Race = "Nomads";

@@ -57,7 +57,7 @@ public class QuestsDiplomacyParent : MonoBehaviour
 
             }
             GameObject.Find(item.name).GetComponent<QuestNodes>().QuestNumber = RandomNumberPulled;
-            Debug.Log("Node name is " + item.name + "and QuestNumber is " + GameObject.Find(item.name).GetComponent<QuestNodes>().QuestNumber);
+            //Debug.Log("Node name is " + item.name + "and QuestNumber is " + GameObject.Find(item.name).GetComponent<QuestNodes>().QuestNumber);
         }
 
 
