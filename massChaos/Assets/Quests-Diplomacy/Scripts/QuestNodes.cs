@@ -19,8 +19,9 @@ public class QuestNodes : MonoBehaviour
        
     }
 
-    void ShowQuest()
+    public void ShowQuest()
     {
+        GameObject.Find("TestNPCList").GetComponent<TestNPCList>().FetchFollower(0); //To reset the NPC List
         if(GameObject.Find("QuestMenu") == false)
         QuestMenu.SetActive(true);
         
