@@ -2,16 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class killPlayerAction : GOAPAction
+public class attackPlayerAction : GOAPAction
 {
-    private bool playerDead = false;
-    
-    
-    
-    public killPlayerAction()
+    private bool attacked = false;
+    public int staminaCost = 3;
+
+
+    public attackPlayerAction()
     {
-        addPrecondition("damagePlayer", true);
-        addEffect("killPlayer", true);
+        addPrecondition("playerNotInRange", false);
+        addEffect("damagePlayer", true);
         cost = 1f;
 
         
@@ -19,48 +19,57 @@ public class killPlayerAction : GOAPAction
     }
     public override void reset()
     {
-
-        playerDead = false;
+        
+        attacked = false;
         target = null;
     }
 
     public override bool isDone()
     {
-        return playerDead;
+        return attacked;
     }
 
     public override bool requiresInRange()
     {
-        return false;
+        return true;
     }
 
     public override bool checkProceduralPrecondition(GameObject agent)
     {
+        
         // Currently target is automatically set to Player, this will be made dynamic later, with "Player" set first and then it changes to whoever has caused it most damage.
 
         target = GameObject.FindGameObjectWithTag("Player");
        
         Warrior currentEnemy = agent.GetComponent<Warrior>();
 
-        //Will run only if enemy is dead,
-        if (target != null) {
-            return true;
-        } else
+        //Can attack only if target is real, enemy is not hitstunned and there is enough stamina
+        if (target != null && !currentEnemy.hitStunned && currentEnemy.stamina >=  staminaCost) //here 5 is max stamina
         {
+
+            return true;
+        }
+        else
+        {
+
             return false;
         }
-      
+        
     }
 
     //run code that corresponds to performing the action. Returns true if performed successfully
     public override bool perform(GameObject agent)
     
     {
-
-        Debug.Log("player dead");
+        
+        target.GetComponent<playerTest>().health -= 1;
+        Warrior currentEnemy = agent.GetComponent<Warrior>();
+        currentEnemy.stamina -= staminaCost;
+        currentEnemy.attackPlayer();
         //Play attack animation;
-        playerDead = true;
-        return playerDead;
+        attacked = true;
+        return attacked;
     }
 
+    
 }
