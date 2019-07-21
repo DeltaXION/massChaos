@@ -21,7 +21,7 @@ public class Froots
         set { prestige = value; }
     }
 
-    public static float HappinessIndex
+    public float HappinessIndex
     {
         get { return happinessIndex; }
         set { happinessIndex = value; }

@@ -9,16 +9,12 @@ public class BaseCharachteristics
     public int id;
     public string name;
     public string type;
-    public char classType; //dummy for quest team
-    public string secItem; //dummy for quest team
 
-
-    public BaseCharachteristics(int id, string  name, string type, char classType, string secItem) {
+   
+    public BaseCharachteristics(int id, string  name, string type) {
       this.id = id;
       this.name = name;
       this.type = type;
-       this.classType = classType;
-        this.secItem = secItem;
     }
 
 
@@ -38,18 +34,6 @@ public class BaseCharachteristics
     {
         get { return id; }
         set { id = value; }
-    }
-
-    public char ClassType
-    {
-        get { return classType; }
-        set { classType = value; }
-    }
-
-    public string SecItem
-    {
-        get { return secItem; }
-        set { secItem = value; }
     }
 
 

@@ -21,7 +21,7 @@ public class Mimax
         set { prestige = value; }
     }
 
-    public static float HappinessIndex
+    public float HappinessIndex
     {
         get { return happinessIndex; }
         set { happinessIndex = value; }
