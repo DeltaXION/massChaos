@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TestNPCList : MonoBehaviour
 {
-    public int FollowerSlotNo;
+    public int FollowerSlotNo, FollowerIDnumber;
     public string FollowerName, Race, Class, SecondaryItem;
     //public string[] FollowerData;
     // Start is called before the first frame update
@@ -14,11 +14,13 @@ public class TestNPCList : MonoBehaviour
     {
         FollowerSlotNo = SlotNumber;
         FetchFollower(FollowerSlotNo);
-        Debug.Log("Slot number " + FollowerSlotNo + " is selected." + "Data is " + FollowerName + Race + Class + SecondaryItem);
+        //Debug.Log("Slot number " + FollowerSlotNo + " is selected." + "Data is " + FollowerName + Race + Class + SecondaryItem);
     }
     
     public void FetchFollower(int FollowerID)
     {
+        
+        FollowerIDnumber = FollowerID;//Reference for active questnodes.
         if (FollowerID == 0)
         {
             FollowerName = " ";
@@ -30,7 +32,7 @@ public class TestNPCList : MonoBehaviour
         if (FollowerID == 1)
         {
             FollowerName = "Jerras";
-            Race = "Nomads";
+            Race = "Nomad";
             Class = "Warrior";
             SecondaryItem = "None";
         }

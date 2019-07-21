@@ -49,8 +49,8 @@ public class QuestList : MonoBehaviour
             QuestRewardsText = QuestRewardsText + RewardsArray[count].ToString() + " " + RewardsName[count].ToString() + "\n";            
         }
 
-        Debug.Log(QuestText);
-        Debug.Log(QuestRewardsText);
+        //Debug.Log(QuestText);
+        //Debug.Log(QuestRewardsText);
 
         return QuestRewardsText;
     }
@@ -81,17 +81,19 @@ public class QuestList : MonoBehaviour
         AdditionalQuestText = " "; //To reset Additional Questtext
 
 
+        //NOMAD...NOMAD...NOMAD...NOMAD...NOMAD...NOMAD...NOMAD...NOMAD...NOMAD...NOMAD...NOMAD...NOMAD...NOMAD...NOMAD...NOMAD...NOMAD...NOMAD...NOMAD...NOMAD...
         if (Questnumber == 1)
         {
             QuestText = "The Nomads are looking for a fighter to help them with a dungeon.";
-            Prestige_Nomads = -100;
-            Prestige_Ferrarium = 50;
-            LootReward_Wood = 10;
+            Prestige_Nomads = 5;
+            
 
-            if(NPCDataList.GetComponent<TestNPCList>().Race == "Nomads")
+            if(NPCDataList.GetComponent<TestNPCList>().Race == "Nomad")
             {
-                AdditionalQuestText = "The Nomad valiantly springs forth from the crowd to answer the calling of his people";
-                Debug.Log("He is a nomad");
+                AdditionalQuestText = "The Nomad valiantly springs forth from the crowd to answer the call of Cleansing.";
+                Prestige_Nomads = 15;
+                
+
             }
             
             
@@ -118,6 +120,35 @@ public class QuestList : MonoBehaviour
         }
 
         if (Questnumber == 6)
+        {
+            QuestText = "This is the Quest you must read.";
+        }
+
+
+
+
+        //FERRARIUM...FERRARIUM...FERRARIUM...FERRARIUM...FERRARIUM...FERRARIUM...FERRARIUM...FERRARIUM...FERRARIUM...FERRARIUM...FERRARIUM...FERRARIUM...FERRARIUM...FERRARIUM...
+        if (Questnumber == 16)
+        {
+            QuestText = "This is the Quest you must read.";
+        }
+        if (Questnumber == 17)
+        {
+            QuestText = "This is the Quest you must read.";
+        }
+        if (Questnumber == 18)
+        {
+            QuestText = "This is the Quest you must read.";
+        }
+        if (Questnumber == 19)
+        {
+            QuestText = "This is the Quest you must read.";
+        }
+        if (Questnumber == 20)
+        {
+            QuestText = "This is the Quest you must read.";
+        }
+        if (Questnumber == 21)
         {
             QuestText = "This is the Quest you must read.";
         }
