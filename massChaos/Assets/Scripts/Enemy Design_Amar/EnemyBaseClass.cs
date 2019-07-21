@@ -30,6 +30,7 @@ public abstract class EnemyBaseClass : MonoBehaviour, IGOAP
     //Booleans for procedural preconditons (AI)
     public bool hitStunned = false;
     //Booleans for worldstate
+    bool playerNotInRange = true;
     bool playerSpotted = false;
     //Colliders and booleans for feeling walls
     public enemySurroundingSensor topSensor;
@@ -92,11 +93,13 @@ public abstract class EnemyBaseClass : MonoBehaviour, IGOAP
         //replace getPlayerHealth with value from combat system player controller
         
         HashSet<KeyValuePair<string, object>> worldData = new HashSet<KeyValuePair<string, object>>();
+        worldData.Add(new KeyValuePair<string, object>("playerNotInRange", playerNotInRange));
         worldData.Add(new KeyValuePair<string, object>("playerSpotted", playerSpotted));
         worldData.Add(new KeyValuePair<string, object>("leftEmpty", leftIsEmpty));
         worldData.Add(new KeyValuePair<string, object>("rightEmpty", rightIsEmpty));
         worldData.Add(new KeyValuePair<string, object>("topEmpty", topIsEmpty));
         worldData.Add(new KeyValuePair<string, object>("bottomEmpty", bottomIsEmpty));
+        worldData.Add(new KeyValuePair<string, object>("lowStamina", stamina < 3));
         worldData.Add(new KeyValuePair<string, object>("damagePlayer", playerDeath )); //TODO change false to a boolean based on playerHealth
 
         return worldData;
@@ -157,6 +160,7 @@ public abstract class EnemyBaseClass : MonoBehaviour, IGOAP
     //updates variables that are required for AI to take a call on action
     public void updateTheWorldStateForAI()
     {
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
         getPlayerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<playerTest>();
         
         if (getPlayerHealth.health <= 0)
@@ -167,6 +171,15 @@ public abstract class EnemyBaseClass : MonoBehaviour, IGOAP
         {
             playerDeath = false;
         }
+
+        //set playerInRange 
+        if(Vector3.Distance(transform.position,player.transform.position) <= minimumDistanceToInteract*2)
+        {
+            playerNotInRange = false;
+        } else
+        {
+            playerNotInRange = true;
+        }
         //playerSpotted true or false based on collision with trigger
         //playerSpotted can also be triggered when another enemy calls for help
 
@@ -175,7 +188,7 @@ public abstract class EnemyBaseClass : MonoBehaviour, IGOAP
 
     public void attackPlayer()
     {
-        Debug.Log("attackPlayer");
+        Debug.Log("attackPlayer:");
     }
 
     //Sets playerSpotted to true if this enemy is in range of another enemy's cry for help
@@ -262,7 +275,7 @@ public abstract class EnemyBaseClass : MonoBehaviour, IGOAP
         
     }
 
-    void updateStamina()
+    public void updateStamina()
     {
         if (stamina <= maxStamina)
         {
