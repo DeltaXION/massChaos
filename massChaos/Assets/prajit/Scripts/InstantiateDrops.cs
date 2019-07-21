@@ -5,7 +5,7 @@ using UnityEngine;
 public class InstantiateDrops : MonoBehaviour
 {
     public GameObject dungeonGold;
-    public static int dungeonNumber = 0;
+    public static int dungeonNumber = 1;
     public GameObject dungeonAprefab;
     public GameObject dungeonBprefab;
     public GameObject dungeonCprefab;
@@ -16,7 +16,7 @@ public class InstantiateDrops : MonoBehaviour
     {
 
 
-        dropGold(0, 0, 0, 0);
+        dropGold(1, 1, 0, 0);
     }
 
     // Update is called once per frame
@@ -41,23 +41,31 @@ public class InstantiateDrops : MonoBehaviour
         if(dungeonNumber==0)
         {
             //dungeonAprefab.gameObject.SetActive(true);
-         //  Instantiate(dungeonAprefab, new Vector2(enemyLocationX + n, enemyLocationY + n), Quaternion.identity);
+            //Instantiate(dungeonAprefab, new Vector2(enemyLocationX + n, enemyLocationY + n), Quaternion.identity);
+            GameObject A = dungeonAprefab.gameObject.GetComponent<TreasureChest>().CheckLootNearChest() as GameObject;
+            A.gameObject.GetComponent<TreasureChest>().DropLootNearChest(1);
         }
 
         if (dungeonNumber == 1)
         {
             //dungeonBprefab.gameObject.SetActive(true);
-            Instantiate(dungeonBprefab, new Vector2(enemyLocationX + n, enemyLocationY + n), Quaternion.identity);
+            //Instantiate(dungeonBprefab, new Vector2(enemyLocationX + n, enemyLocationY + n), Quaternion.identity);
+            GameObject B = dungeonAprefab.gameObject.GetComponent<TreasureChest>().CheckLootNearChest() as GameObject;
+            B.gameObject.GetComponent<TreasureChest>().DropLootNearChest(1);
         }
         if (dungeonNumber == 2)
         {
             //dungeonCprefab.gameObject.SetActive(true);
-            Instantiate(dungeonCprefab, new Vector2(enemyLocationX + n, enemyLocationY + n), Quaternion.identity);
+            //Instantiate(dungeonCprefab, new Vector2(enemyLocationX + n, enemyLocationY + n), Quaternion.identity);
+            GameObject C = dungeonAprefab.gameObject.GetComponent<TreasureChest>().CheckLootNearChest() as GameObject;
+            C.gameObject.GetComponent<TreasureChest>().DropLootNearChest(1);
         }
         if (dungeonNumber == 3)
         {
             //dungeonDprefab.gameObject.SetActive(true);
-            Instantiate(dungeonDprefab, new Vector2(enemyLocationX + n, enemyLocationY + n), Quaternion.identity);
+            // Instantiate(dungeonDprefab, new Vector2(enemyLocationX + n, enemyLocationY + n), Quaternion.identity);
+            GameObject D = dungeonAprefab.gameObject.GetComponent<TreasureChest>().CheckLootNearChest() as GameObject;
+            D.gameObject.GetComponent<TreasureChest>().DropLootNearChest(1);
         }
     }
 
