@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7909410917790272003}
   - component: {fileID: 5948308097202574455}
   m_Layer: 5
-  m_Name: foodIntake
+  m_Name: prestige
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
