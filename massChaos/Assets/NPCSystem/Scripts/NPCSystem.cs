@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class NPCSystem : MonoBehaviour
 {
@@ -9,17 +10,29 @@ public class NPCSystem : MonoBehaviour
     public static int id = 0;
     public static List<BaseCharachteristics> followers = new List<BaseCharachteristics>();
     BaseCharachteristics b;
+
+
+    public float totalHappiness;
+    public double totalNomads;
+    public double totalFerrarium;
+    public double totalFroots;
+    public double totalMimax;
+    public int baseCapacity;
+    public int numberOfNpcs;
     // Start is called before the first frame update
 
 
-void Start()
+    void Start()
     {
-        addFollower("Broom",  "N");
-        addFollower("Groom", "Fr");
+        setHappinessIndex();
+        addFollower("Broom",  "N", 'w', "gun");
+        addFollower("Groom", "Fr", 'm', "sword");
         setPrestige();
         can.SetActive(false);
+        AppplicantsCalculation();
         //b = GetFollowerByID(2);
         //Debug.Log(b.Name);
+        Debug.Log("Happpy = " + Nomad.HappinessIndex);
     }
 
     // Update is called once per frame
@@ -49,15 +62,15 @@ void Start()
 
     void setHappinessIndex()
     {
-        Nomad.happinessIndex = 12;
+        Nomad.happinessIndex = 57;
         Ferrarium.happinessIndex = 14;
         Froots.happinessIndex = 15;
         Mimax.happinessIndex = 17;
     }
 
-    public void addFollower( string name, string type) {
+    public void addFollower( string name, string type, char classType, string secItem) {
         id++;
-        followers.Add(new BaseCharachteristics(id, name, type));
+        followers.Add(new BaseCharachteristics(id, name, type, classType, secItem));
     }
 
     public void updateFollower()
@@ -98,6 +111,39 @@ void Start()
 
     public void classAssign() {
 
+    }
+
+    public void AppplicantsCalculation() {
+
+        numberOfNpcs = baseCapacity * 2;
+
+       // Debug.Log("Happpy2 = " + Nomad.HappinessIndex);
+
+        totalHappiness = Nomad.HappinessIndex + Ferrarium.HappinessIndex + Mimax.HappinessIndex + Froots.HappinessIndex;
+
+        float nomadCountDec = ((Nomad.happinessIndex / totalHappiness) * numberOfNpcs) ;
+
+        float ferrariumCountDec = ((Ferrarium.happinessIndex / totalHappiness) * numberOfNpcs);
+
+        float mimaxCountDec = ((Mimax.happinessIndex / totalHappiness) * numberOfNpcs) ;
+
+        float frootsCountDec = ((Froots.happinessIndex / totalHappiness) * numberOfNpcs);
+
+        totalNomads = Math.Round(nomadCountDec);
+
+        Debug.Log("Nomad Count = " + totalNomads);
+
+        totalFerrarium = Math.Round(ferrariumCountDec);
+
+        Debug.Log("ferrarium Count = " + totalFerrarium);
+
+        totalFroots = Math.Round(frootsCountDec);
+
+        Debug.Log("totalFroots = " + totalFroots);
+
+        totalMimax = Math.Round(mimaxCountDec);
+
+        Debug.Log("totalMimax = " + totalMimax);
     }
 
 }

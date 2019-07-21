@@ -25,6 +25,7 @@ public class NPCList : MonoBehaviour
             go.transform.SetParent(this.transform);
             go.transform.Find("id").GetComponent<Text>().text = o.Id.ToString();
             go.transform.Find("name").GetComponent<Text>().text = o.Name;
+            Debug.Log("Happpy" +Nomad.HappinessIndex);
           
             switch (o.Type)
             {
