@@ -11,21 +11,34 @@ public class HappinessIndex : MonoBehaviour
     private float FrootAssignments;
     private float BaseHealth;
     private float FrootPrestige;
-	private float TotalFollowers;
+	public float TotalFollowers = 20f;
 	private float IdleIsWrong;
 
-	float TotalFrootFollowers = 15;
-	float TotalFrootFollowersAssigned = 10;
+	public float TotalFrootFollowers = 15;
+	public float TotalFrootFollowersAssigned = 10;
 
-    private float BaseAssignmentAffinityBoost = 0.025f;
-	private float QuestAffinityBoost = 0.025f;
-	private float DuplexBoost = 0.0125f;
-	private float VillaBoost = 0.025f;
-	private float DamagedBuildingReduction = 0.15f;
-	private float DamagedAffinityBuildingReduction = 0.25f;
+    public float BaseAssignmentAffinityBoost = 0.025f;
+	public float QuestAffinityBoost = 0.025f;
+	public float DuplexBoost = 0.0125f;
+	public float VillaBoost = 0.025f;
+	public float DamagedBuildingReduction = 0.15f;
+	public float DamagedAffinityBuildingReduction = 0.25f;
 	private float IdleIsBad;
-	
-
+	public float IdlePenalty = 0.05f;
+	public float ConsumptionRate = 10f;
+    public float TotalFoodStock = 100f;
+	public float FrootFollowersAssignedAtBase = 6f;
+    public float FrootFollowersAssignedToAffinityBaseAssignments = 2f;
+	public float FrootFollowersAssignedToQuests = 5f;
+    public float FrootFollowersAssignedToAffinityQuests = 5f;
+	public float CurrentBaseHealth = 80f;
+	public float SimpleHouseCount = 1f;
+	public float DuplexCount = 1;
+	public float VillaCount = 1;
+	public float TotalBuildingsAtBase = 10;
+	public float NumberOfDamangedBuildings = 2;
+	public float NumberOfAffinityDamagedBuildings = 1;
+	public float CurrentPrestige = 45;
 
     public Text FrootHappinessUI;
 
@@ -34,7 +47,7 @@ public class HappinessIndex : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        TotalFollowers = 15;
+        
 		FrootPrestigeUpdated = GameObject.Find("QuestsDiplomacyManager");
 
 		StartCoroutine (IdleFollower());
@@ -51,8 +64,8 @@ public class HappinessIndex : MonoBehaviour
     
     void SetFoodFactor()
     {
-        float ConsumptionRate = 10;
-        float TotalFoodStock = 100;
+		//float ConsumptionRate = 10f;
+        //float TotalFoodStock = 100f;
 		
         float StarvingFollowers = (TotalFollowers - (TotalFoodStock / ConsumptionRate));
         float StarvingPercentage = (StarvingFollowers / TotalFollowers);
@@ -73,15 +86,15 @@ public class HappinessIndex : MonoBehaviour
         float A = 20; //This is the total BASE happiness that can be achieved via Follower assignments.
         float MaxBaseAb = A / 2;
         float MaxQuestAq = A / 2;
-        float FrootFollowersAssignedAtBase = 6;
-        float FrootFollowersAssignedToAffinityBaseAssignments = 2;
+        //float FrootFollowersAssignedAtBase = 6;
+        //float FrootFollowersAssignedToAffinityBaseAssignments = 2;
         float PercentOfFrootAffinityAssignments = (FrootFollowersAssignedToAffinityBaseAssignments / FrootFollowersAssignedAtBase);
         //BaseAssignmentAffinityBoost = MaxBaseAb * 0.0125f;
         
         float Ab = MaxBaseAb + ((PercentOfFrootAffinityAssignments) * MaxBaseAb) * BaseAssignmentAffinityBoost;
 
-        float FrootFollowersAssignedToQuests = 5;
-        float FrootFollowersAssignedToAffinityQuests = 5;
+        //float FrootFollowersAssignedToQuests = 5;
+        //float FrootFollowersAssignedToAffinityQuests = 5;
         float PercentOfFrootAffinityQuests = (FrootFollowersAssignedToAffinityQuests / FrootFollowersAssignedToQuests);
         
 
@@ -95,9 +108,9 @@ public class HappinessIndex : MonoBehaviour
 	void SetBaseHealth()
 	{
 		float TotalBH = 10;
-		float TotalBaseHealth = 100;
-		float CurrentBaseHealth = 80;
-		float PercentReductionInBaseHealth = (CurrentBaseHealth / TotalBaseHealth);
+		float MaxBaseHealth = 100;
+		//float CurrentBaseHealth = 80;
+		float PercentReductionInBaseHealth = (CurrentBaseHealth / MaxBaseHealth);
 
 		
 		BaseHealth = (TotalBH - ((PercentReductionInBaseHealth) * TotalBH)) / 10;
@@ -108,20 +121,19 @@ public class HappinessIndex : MonoBehaviour
 	{
 		float TotalBC = 10f;
 		float BCCap = 0.7f * TotalBC;
-		float TotalFollowers = 15f;
-        //Debug.Log("BCCap " + BCCap);
+		//Debug.Log("BCCap " + BCCap);
 
-		float SimpleHouseCount = 1;
+		//float SimpleHouseCount = 1;
 		float FollowersInSimpleHouse = SimpleHouseCount * 2;
 		float PercentofFollowersInSH = ((FollowersInSimpleHouse / TotalFollowers));
 		//Debug.Log("%inSH " + PercentofFollowersInSH);
 
-		float DuplexCount = 1;
+		//float DuplexCount = 1;
 		float FollowersInDuplex = DuplexCount * 5;
 		float PercentofFollowersInDup = ((FollowersInDuplex / TotalFollowers));
 		//Debug.Log("%inD " + PercentofFollowersInDup);
 
-		float VillaCount = 1;
+		//float VillaCount = 1;
 		float FollowersInVillas = VillaCount * 7;
 		float PercentofFollowersInVC = ((FollowersInVillas / TotalFollowers));
 		//Debug.Log("%inVC " + PercentofFollowersInVC);
@@ -130,9 +142,9 @@ public class HappinessIndex : MonoBehaviour
 		float x = BCCap + ((PercentofFollowersInDup * BCCap) * DuplexBoost) + ((PercentofFollowersInVC * BCCap) * VillaBoost);
 		//Debug.Log("X = " + x);
 
-		float TotalBuildingsAtBase = 10;
-		float NumberOfDamangedBuildings = 2;
-		float NumberOfAffinityDamagedBuildings = 1;
+		//float TotalBuildingsAtBase = 10;
+		//float NumberOfDamangedBuildings = 2;
+		//float NumberOfAffinityDamagedBuildings = 1;
 		float PercentOfDamagedBuildings = ((Mathf.Abs(NumberOfDamangedBuildings - NumberOfAffinityDamagedBuildings)/TotalBuildingsAtBase));
 		float PercentOfDamagedAffinityBuildings = (NumberOfAffinityDamagedBuildings / TotalBuildingsAtBase);
 
@@ -148,7 +160,7 @@ public class HappinessIndex : MonoBehaviour
 		float TotalP = 5;
 		float TotalPrestige = 100;
 		//float CurrentPrestige = FrootPrestigeUpdated.GetComponent<QuestsDiplomacyManager>().Prestige_Froots;
-		float CurrentPrestige = 45;
+		//float CurrentPrestige = 45;
 
 		float PrestigeReduction = (TotalPrestige - CurrentPrestige) / TotalPrestige;
 
@@ -178,10 +190,9 @@ public class HappinessIndex : MonoBehaviour
 	{
 		while(TotalFrootFollowersAssigned < TotalFrootFollowers)
 		{
-			//IdlePenalty();
 			//Debug.Log("REcalculating every 1s");
 			RecalculateHappinessIndex();
-			IdleIsBad = IdleIsBad + 0.05f;
+			IdleIsBad = IdleIsBad + IdlePenalty;
 			yield return new WaitForSeconds(3f);
 		}
 		while(TotalFrootFollowersAssigned == TotalFrootFollowers)
