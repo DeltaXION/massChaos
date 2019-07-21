@@ -87,7 +87,7 @@ public class HappinessIndex : MonoBehaviour
 
         float Aq = MaxQuestAq + ((PercentOfFrootAffinityQuests) * MaxQuestAq *  QuestAffinityBoost);
 
-		Debug.Log("happiness is reducing");
+		//Debug.Log("happiness is reducing");
 		FrootAssignments = (Ab/10) + (Aq/10) - IdleIsBad ;
 		
     }
@@ -156,19 +156,7 @@ public class HappinessIndex : MonoBehaviour
 
 	}
 
-	/*void IdlePenalty()
-	{
-		float PercentFrootFollowersIdle = ((TotalFrootFollowers - TotalFrootFollowersAssigned) / TotalFollowers);
-
-		IdleIsWrong = (PercentFrootFollowersIdle * IdleIsBad);
-		Debug.Log("IdleFroots%" + PercentFrootFollowersIdle);
-		Debug.Log("Idle is bad" + IdleIsBad);
-		Debug.Log("Idle Is Wrong" + IdleIsWrong);
-
-	}*/
-
-
-    void RecalculateHappinessIndex()
+	void RecalculateHappinessIndex()
     {
         SetFoodFactor();
         SetAssignmentFactor();
@@ -188,11 +176,17 @@ public class HappinessIndex : MonoBehaviour
 
 	IEnumerator IdleFollower()
 	{
-		if(TotalFrootFollowersAssigned < TotalFrootFollowers)
+		while(TotalFrootFollowersAssigned < TotalFrootFollowers)
 		{
 			//IdlePenalty();
-			Debug.Log("REcalculating every 1s");
+			//Debug.Log("REcalculating every 1s");
 			RecalculateHappinessIndex();
+			IdleIsBad = IdleIsBad + 0.05f;
+			yield return new WaitForSeconds(3f);
+		}
+		while(TotalFrootFollowersAssigned == TotalFrootFollowers)
+		{
+			IdleIsBad = 0f;
 			yield return new WaitForSeconds(1f);
 		}
 	}
@@ -201,16 +195,7 @@ public class HappinessIndex : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if ( TotalFrootFollowersAssigned < TotalFrootFollowers)
-		{
-			IdleIsBad = 0.05f;
-		}
-		else
-		{
-			IdleIsBad = 0f;
-		}
-
-		if(Input.GetKeyDown("spach"))
+        if(Input.GetKeyDown("space"))
 		{
 		RecalculateHappinessIndex();
 		
