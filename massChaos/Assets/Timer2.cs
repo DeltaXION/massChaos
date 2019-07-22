@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Timer2 : MonoBehaviour
 {
-    public GameObject art;
+   // public GameObject art;
     float button;
     public float calen;
     public float datees;
@@ -17,7 +17,7 @@ public class Timer2 : MonoBehaviour
     public GameObject DayText;
     public GameObject NightText;
     public GameObject date;
-    public GameObject tim;
+   // public GameObject tim;
    
     public float seasonDays;
     public float season;
@@ -46,6 +46,8 @@ public class Timer2 : MonoBehaviour
     float springTimer;
     public float timeOfDay;
 
+    public GameObject square;
+
 
     void Start()
     {
@@ -53,11 +55,11 @@ public class Timer2 : MonoBehaviour
         NightText.SetActive(false);
         timeBar = GetComponent<Image>();
         dayTime = Daymax;
-        tim = GameObject.Find("time");
+     //   tim = GameObject.Find("time");
         date = GameObject.Find("date");
         // calen = 1;
 
-        art = GameObject.Find("travel");
+      //  art = GameObject.Find("travel");
         Daymax = wholeDaySeconds / 2;
         Nightmax = wholeDaySeconds/2;
 
@@ -70,7 +72,7 @@ public class Timer2 : MonoBehaviour
     void Update()
     {
 
-        travel = art.GetComponent<travelToDungeon>().checkDungeonEntry;
+       // travel = art.GetComponent<travelToDungeon>().checkDungeonEntry;
         /* if (travel == 1)
          {
              timerActive = false;
@@ -121,15 +123,20 @@ public class Timer2 : MonoBehaviour
                     NightText.SetActive(false);
                     timeBar.fillAmount = timeOfDay/ Daymax;
                     timevalue.text = (timeBar.fillAmount * Daymax).ToString("F0");
+
+                    square.SetActive(false);
                 }
+
                 if (timeOfDay >= wholeDaySeconds / 2)
                 {
                     Debug.Log("its night");
                     NightText.SetActive(true);
                     DayText.SetActive(false);
-                float half = timeOfDay / 2;
+                    float half = timeOfDay / 2;
                     timeBar.fillAmount = half / Nightmax;
                     timevalue.text = (timeBar.fillAmount * Nightmax).ToString("F0");
+
+                    square.SetActive(true);
                 }
 
                 if (displayDate <= 25)

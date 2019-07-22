@@ -14,6 +14,8 @@ public class ItemDragHandler : MonoBehaviour, IDragHandler, IEndDragHandler {
     //float z;
     //public GameObject houseImg;
 
+    public bool displayNPCassignList;
+
     public void OnBeginDrag (PointerEventData eventData)
     {
     //    //startPosition =  GameObject.Find("house_img").transform.position;
@@ -45,6 +47,6 @@ public class ItemDragHandler : MonoBehaviour, IDragHandler, IEndDragHandler {
         linehandler.transform.SetAsLastSibling();
         linehandler.transform.position = mousepos;
 
-
+        displayNPCassignList = true;
     }
 }

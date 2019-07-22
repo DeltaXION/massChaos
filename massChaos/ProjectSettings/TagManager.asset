@@ -11,6 +11,12 @@ TagManager:
   - foodText
   - ironText
   - House
+  - NomadQuestNode
+  - dungeonIronText
+  - dungeonFoodText
+  - dungeonWoodText
+  - dungeonGoldText
+  - House_Button
   layers:
   - Default
   - TransparentFX
