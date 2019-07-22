@@ -8,16 +8,16 @@ public class RoomTemplates : MonoBehaviour
     public GameObject[] toprooms;
     public GameObject[] leftrooms;
     public GameObject[] rightrooms;
-    public GameObject closedRoom;
+   // public GameObject closedRoom;
 
     public List<GameObject> rooms;
     public float waitTime;
     private bool spawnedBoss;
-    public GameObject boss;
+   // public GameObject boss;
 
     private void Update()
     {
-        
+        /*
         if(waitTime<= 0 && spawnedBoss == false)
         {
             for (int i = 0; i < rooms.Count; i++)
@@ -32,7 +32,7 @@ public class RoomTemplates : MonoBehaviour
         else
         {
             waitTime -= Time.deltaTime;
-        }
+        }*/
     }
 
 }

@@ -20,7 +20,7 @@ public class RoomSpawner : MonoBehaviour
     void Start()
     {
         Destroy(gameObject, waiTime);
-       // templates = GameObject.FindGameObjectsWithTag("Rooms").GetComponent<RoomTemplates>();
+        templates = GameObject.FindGameObjectWithTag("Room").GetComponent<RoomTemplates>();
 
         Invoke("Spawn", 0.1f);
     }
@@ -29,7 +29,7 @@ public class RoomSpawner : MonoBehaviour
 
      void Spawn()
     {
-        if (spawned == false);
+        if (spawned == false)
         {
             if (openingDirection == 1)
             {
@@ -61,13 +61,13 @@ public class RoomSpawner : MonoBehaviour
         }
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("SpawnPoint"))
+        if (other.CompareTag("Spawnpoint"))
         {
-            if (other.GetComponent<RoomSpawner>().spawned == false && spawned == false)
+            /*if (other.GetComponent<RoomSpawner>().spawned == false && spawned == false)
             {
                 Instantiate(templates.closedRoom, transform.position, Quaternion.identity);
                 Destroy(gameObject);
-            }
+            }*/
             spawned = true;
         }
 
