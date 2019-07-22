@@ -10,7 +10,9 @@ public class attackPlayerAction : GOAPAction
 
     public attackPlayerAction()
     {
-        addPrecondition("playerNotInRange", false);
+        
+        addPrecondition("playerInCombatZone", true);
+        
         addEffect("damagePlayer", true);
         cost = 1f;
 

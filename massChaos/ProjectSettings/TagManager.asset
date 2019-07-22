@@ -11,6 +11,7 @@ TagManager:
   - foodText
   - ironText
   - House
+  - weapon_hitbox_SS
   layers:
   - Default
   - TransparentFX
