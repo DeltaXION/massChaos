@@ -178,7 +178,13 @@ public abstract class EnemyBaseClass : MonoBehaviour, IGOAP
         float angle = Vector2.SignedAngle(startingNormal, currentDirection);
         enemySight.transform.Rotate(Vector3.up, angle);
         */
-        
+        Quaternion sightRotation = Quaternion.LookRotation(player.transform.position - transform.position, Vector3.up);
+        sightRotation.x = 0;
+        sightRotation.y = 0;
+        //sightRotation.z = -sightRotation.z;
+        Debug.Log("angle change");
+        //enemySight.transform.rotation = sightRotation;
+        enemySight.transform.up = transform.position - player.transform.position ;
         
     }
     //gradually move the enemy towards the target location. (eg. for attack player, target will be player)
@@ -227,7 +233,7 @@ public abstract class EnemyBaseClass : MonoBehaviour, IGOAP
         
         if(playerInVision)
         {
-            //rotateVision();
+            rotateVision(player);
         }
         //playerSpotted true or false based on collision with trigger
         //playerSpotted can also be triggered when another enemy calls for help
