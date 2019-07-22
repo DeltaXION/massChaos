@@ -7,10 +7,11 @@ public class QuestNodes : MonoBehaviour
 {
     public int QuestNumber, IDofFollowerdoingQuest, NodeNumber; //NodeNumberisUniqueIdentifier
     public string QuestInformation;
-    public bool QuestisActive = false;
+    public bool QuestisActive = false, QuestisDone = false;
+    public float QuestTimeRequired, QuestTimeStart;
 
-    public GameObject QuestMenu, QuestRewardsInfo, SendFollowertoQuest, PopupNotification;
-    //public Text QuestRewardsInfo;
+    public GameObject QuestMenu, QuestRewardsInfo, SendFollowertoQuest, PopupNotification, TimerBaar;
+    
 
 
     private void Start()
@@ -20,11 +21,29 @@ public class QuestNodes : MonoBehaviour
         gameObject.GetComponent<Button>().onClick.AddListener(ShowQuest);
         PopupNotification.GetComponent<Button>().onClick.AddListener(KillPopup);
         SendFollowertoQuest.GetComponent<Button>().onClick.AddListener(SendFollower);
+
+        TimerBaar = GameObject.Find("TimerBaar");
        
     }
+    
+    private void FixedUpdate()
+    {
+        CheckifQuestTimeisUp();
+    }
 
+
+    void CheckifQuestTimeisUp()
+    {
+        if (QuestisActive == true)
+        {
+            if ((TimerBaar.GetComponent<Timer2>().calen - QuestTimeStart) >= QuestTimeRequired)
+                QuestisDone = true;
+        }
+    }
+    
     public void ShowQuest()
     {
+        Debug.Log(QuestTimeRequired);
         if (QuestisActive == false)
         {
 
@@ -37,7 +56,7 @@ public class QuestNodes : MonoBehaviour
         }
 
         if (QuestisActive == true)
-        PopUpQuestisCurrentlyBeingFulfilled();
+        PopUpActiveQuestStatus();
     }
 
     void SendFollower()
@@ -47,8 +66,9 @@ public class QuestNodes : MonoBehaviour
 
         else if (QuestisActive == false && QuestNumber == GameObject.Find("QuestList").GetComponent<QuestList>().Questnumber)
         {
-            //Debug.Log(GameObject.Find("TestNPCList").GetComponent<TestNPCList>().FollowerName + " is going to embark on QuestID " + GameObject.Find("QuestList").GetComponent<QuestList>().Questnumber);
-            IDofFollowerdoingQuest = GameObject.Find("TestNPCList").GetComponent<TestNPCList>().FollowerIDnumber;
+            IDofFollowerdoingQuest = GameObject.Find("TestNPCList").GetComponent<TestNPCList>().FollowerIDnumber; //To get the followerID of the follower on the quest.
+            QuestTimeRequired = GameObject.Find("QuestList").GetComponent<QuestList>().Quest_Time; //To get the time required to finish the quest
+            QuestTimeStart = TimerBaar.GetComponent<Timer2>().calen;
             QuestisActive = true;
             QuestMenu.SetActive(false);
         }
@@ -60,12 +80,30 @@ public class QuestNodes : MonoBehaviour
 
     //POPUPS...POPUPS...POPUPS...POPUPS...POPUPS...POPUPS...POPUPS...POPUPS...POPUPS...POPUPS...POPUPS...POPUPS...POPUPS...POPUPS...POPUPS...POPUPS...POPUPS...POPUPS...POPUPS
 
-    void PopUpQuestisCurrentlyBeingFulfilled()
+    void PopUpActiveQuestStatus()
     {
-        GameObject.Find("QuestList").GetComponent<QuestList>().FetchQuest(QuestNumber);
-        GameObject.Find("TestNPCList").GetComponent<TestNPCList>().FetchFollower(IDofFollowerdoingQuest);
-        PopupNotification.SetActive(true);
-        GameObject.Find("PopupText").GetComponent<Text>().text = "The Quest is currently being fulfilled by " + GameObject.Find("TestNPCList").GetComponent<TestNPCList>().Race + " " + GameObject.Find("TestNPCList").GetComponent<TestNPCList>().Class + " " + GameObject.Find("TestNPCList").GetComponent<TestNPCList>().FollowerName;
+        if (QuestisDone == true) //WHEN THE QUEST IS FINISHED
+        {
+            GameObject.Find("QuestList").GetComponent<QuestList>().FetchQuest(QuestNumber);
+            PopupNotification.SetActive(true);
+
+            GameObject.Find("PopupText").GetComponent<Text>().text = GameObject.Find("QuestList").GetComponent<QuestList>().ListofRewards;
+
+            QuestisActive = false;
+            QuestisDone = false;
+            gameObject.SetActive(false);
+        }
+
+        else
+        {
+            GameObject.Find("QuestList").GetComponent<QuestList>().FetchQuest(QuestNumber);
+            GameObject.Find("TestNPCList").GetComponent<TestNPCList>().FetchFollower(IDofFollowerdoingQuest);
+            PopupNotification.SetActive(true);
+            GameObject.Find("PopupText").GetComponent<Text>().text = "The Quest is currently being fulfilled by " + GameObject.Find("TestNPCList").GetComponent<TestNPCList>().Race
+                                                                     + " " + GameObject.Find("TestNPCList").GetComponent<TestNPCList>().Class + " "
+                                                                     + GameObject.Find("TestNPCList").GetComponent<TestNPCList>().FollowerName + "\nDays Left = "
+                                                                     + (QuestTimeRequired - (TimerBaar.GetComponent<Timer2>().calen - QuestTimeStart));
+        }
     }
 
     public void PopUpFollowerIsAlreadyonQuest()

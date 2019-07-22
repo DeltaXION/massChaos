@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class QuestsDiplomacyManager : MonoBehaviour
 {
@@ -10,38 +11,60 @@ public class QuestsDiplomacyManager : MonoBehaviour
                NomadsCurrentlyQuesting, FerrariumCurrentlyQuesting, FrootsCurrentlyQuesting, MimaxCurrentlyQuesting,
                NomadsQuestingatHome, FerrariumQuestingatHome, FrootsQuestingatHome, MimaxQuestingatHome;
 
-    public GameObject DiplomacyMap;
+    public GameObject DiplomacyMap, DiplomacyMapButton;
 
     // Start is called before the first frame update
     void Start()
     {
+        DiplomacyMapButton.GetComponent<Button>().onClick.AddListener(OpenDiplomacyMenu);
         
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-
-        if (Input.GetKeyDown("`"))
-        {
-            if (GameObject.Find("QuestMenu") == true)
-                GameObject.Find("QuestMenu").SetActive(false);
-
-                if (GameObject.Find("QuestsDiplomacyParent") == true)
-                DiplomacyMap.SetActive(false);
-            else if (GameObject.Find("QuestsDiplomacyParent") == false)
-                DiplomacyMap.SetActive(true);
-        }
-
         if (Input.GetKeyDown("w"))
         {
             GetDataonQuestingFollowers();
             
         }
-
     }
 
-    public void GetDataonQuestingFollowers()
+
+    void OpenDiplomacyMenu()
+    {
+        if (GameObject.Find("QuestMenu") == true)
+            GameObject.Find("QuestMenu").SetActive(false);
+
+        if (GameObject.Find("QuestsDiplomacyParent") == true)
+            DiplomacyMap.SetActive(false);
+        else if (GameObject.Find("QuestsDiplomacyParent") == false)
+            DiplomacyMap.SetActive(true);
+    }
+
+
+
+
+
+    //UPDATE REWARDS INTO POOL
+    public void UpdateRewardsintoPool
+    (int Prestige_Nomads_Earned, int Prestige_Ferrarium_Earned, int Prestige_Froots_Earned, int Prestige_Mimax_Earned, int LootReward_Iron, int LootReward_Wood, int LootReward_Food, int LootReward_Gold,
+     int ItemReward_Uncommon, int ItemReward_Common, int ItemReward_Rare, int ItemReward_Recipe, int ItemReward_Boss, int Reward_TimeChange)
+    {
+        Prestige_Nomads += Prestige_Nomads_Earned;
+        Prestige_Ferrarium += Prestige_Ferrarium_Earned;
+        Prestige_Froots += Prestige_Froots_Earned;
+        Prestige_Mimax += Prestige_Mimax_Earned;
+
+        ResourceManager.addFood(LootReward_Food);
+        ResourceManager.addFood(LootReward_Gold);
+        ResourceManager.addIron(LootReward_Iron);
+        ResourceManager.addWood(LootReward_Wood);
+    }
+
+
+    //GET DATA ON QUESTING FOLLOWERS
+    public void GetDataonQuestingFollowers() 
     {
         FollowersCurrentlyQuesting = NomadsCurrentlyQuesting = FerrariumCurrentlyQuesting = FrootsCurrentlyQuesting = MimaxCurrentlyQuesting =
                NomadsQuestingatHome = FerrariumQuestingatHome = FrootsQuestingatHome = MimaxQuestingatHome = 0;                                     //Reset all values because everything builds up here on ++

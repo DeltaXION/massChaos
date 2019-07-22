@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class QuestList : MonoBehaviour
 {
     public int Questnumber;
-    public string QuestText, AdditionalQuestText, QuestRewardsText;
+    public string QuestText, AdditionalQuestText, QuestRewardsText, ListofRewards;
 
     public GameObject NPCDataList;
 
@@ -14,7 +14,7 @@ public class QuestList : MonoBehaviour
     public int Prestige_Nomads, Prestige_Ferrarium, Prestige_Froots, Prestige_Mimax,
                 LootReward_Iron, LootReward_Wood, LootReward_Food, LootReward_Gold,
                 ItemReward_Uncommon, ItemReward_Common, ItemReward_Rare,
-                ItemReward_Recipe, ItemReward_Boss;
+                ItemReward_Recipe, ItemReward_Boss, Quest_Time, Reward_TimeChange;
 
     
     
@@ -30,27 +30,27 @@ public class QuestList : MonoBehaviour
     public string FetchQuest(int QuestID)
     {
         SelectQuest(QuestID);
-        QuestRewardsText = QuestText + "\n" + AdditionalQuestText + "\n\n";
+        QuestRewardsText = QuestText + "\n" + AdditionalQuestText + "\n\n" + "This quest will take " + Quest_Time + " days." + "\n\n";
+        ListofRewards = "QUEST COMPLETED \n";
 
         int[] RewardsArray = {Prestige_Nomads, Prestige_Ferrarium, Prestige_Froots, Prestige_Mimax,
                                 LootReward_Iron, LootReward_Wood, LootReward_Food, LootReward_Gold,
                                 ItemReward_Uncommon, ItemReward_Common, ItemReward_Rare,
-                                ItemReward_Recipe, ItemReward_Boss};
+                                ItemReward_Recipe, ItemReward_Boss, Reward_TimeChange};
 
         string[] RewardsName = {" prestige from Nomads", " prestige from Ferrarium", " prestige from Froots", " prestige from Mimax",
                                 " iron", " wood", " food", " gold",
                                 " uncommon item", " common item", " rare item",
-                                " recipe", " Boss Item"};
+                                " recipe", " Boss Item", "Change in time"};
         
         for(int count = 0; count < RewardsArray.Length; count++)
-        {            
-            if(RewardsArray[count] != 0) //To make sure that only the relevant information is shown.
-
-            QuestRewardsText = QuestRewardsText + RewardsArray[count].ToString() + " " + RewardsName[count].ToString() + "\n";            
+        {
+            if (RewardsArray[count] != 0) //To make sure that only the relevant information is shown.
+            {
+                ListofRewards = ListofRewards + RewardsArray[count].ToString() + " " + RewardsName[count].ToString() + "\n";
+                QuestRewardsText = QuestRewardsText + RewardsArray[count].ToString() + " " + RewardsName[count].ToString() + "\n";
+            }
         }
-
-        //Debug.Log(QuestText);
-        //Debug.Log(QuestRewardsText);
 
         return QuestRewardsText;
     }
@@ -61,6 +61,14 @@ public class QuestList : MonoBehaviour
 
         ListofRewards = "aa";
         return ListofRewards;
+    }
+
+    public void SubmitQuestRewards()
+    {
+        GameObject.Find("QuestsDiplomacyManager").GetComponent<QuestsDiplomacyManager>().UpdateRewardsintoPool(Prestige_Nomads, Prestige_Ferrarium, Prestige_Froots, Prestige_Mimax,
+                                                                                                                LootReward_Iron, LootReward_Wood, LootReward_Food, LootReward_Gold,
+                                                                                                                ItemReward_Uncommon, ItemReward_Common, ItemReward_Rare,
+                                                                                                                ItemReward_Recipe, ItemReward_Boss, Reward_TimeChange);
     }
 
 
@@ -76,7 +84,7 @@ public class QuestList : MonoBehaviour
         Questnumber = NodeQuestNumber;
 
         Prestige_Nomads = Prestige_Ferrarium = Prestige_Froots = Prestige_Mimax = LootReward_Iron = LootReward_Wood = LootReward_Food = LootReward_Gold =
-                ItemReward_Uncommon = ItemReward_Common = ItemReward_Rare = ItemReward_Recipe = ItemReward_Boss = 0; //Basically set everything to zero
+                ItemReward_Uncommon = ItemReward_Common = ItemReward_Rare = ItemReward_Recipe = ItemReward_Boss = Reward_TimeChange = Quest_Time = 0; //Basically set everything to zero
 
         AdditionalQuestText = " "; //To reset Additional Questtext
 
@@ -85,13 +93,17 @@ public class QuestList : MonoBehaviour
         if (Questnumber == 1)
         {
             QuestText = "The Nomads are looking for a fighter to help them with a dungeon.";
+
             Prestige_Nomads = 5;
+            Quest_Time = 8;
             
 
             if(NPCDataList.GetComponent<TestNPCList>().Race == "Nomad")
             {
                 AdditionalQuestText = "The Nomad valiantly springs forth from the crowd to answer the call of Cleansing.";
                 Prestige_Nomads = 15;
+                Quest_Time = 5;
+                LootReward_Wood = 10;
                 
 
             }
@@ -102,26 +114,46 @@ public class QuestList : MonoBehaviour
         if (Questnumber == 2)
         {
             QuestText = "Iron is scarce and the Nomads can't quell evil and death without weapons of destruction. They're asking for an Engineer";
+            Prestige_Nomads = 5;
+
+            Quest_Time = 8;
+            LootReward_Gold = 10;
         }
 
         if (Questnumber == 3)
         {
             QuestText = "Deep in the mountainside are great deposits of iron. Help the Nomads claim this bounty.";
+            Prestige_Nomads = 5;
+
+            Quest_Time = 8;
+            LootReward_Wood = 10;
         }
 
         if (Questnumber == 4)
         {
             QuestText = "A curse has befallen a Nomad hut. They begrudgingly request assistance from a mage.";
+            Prestige_Nomads = 5;
+
+            Quest_Time = 8;
+            LootReward_Gold = 10;
         }
 
         if (Questnumber == 5)
         {
             QuestText = "Iron mining has reduced an entire forest to dirt. The Nomads are looking for help on the matter.";
+            Prestige_Nomads = 5;
+
+            Quest_Time = 8;
+            LootReward_Food = 10;
         }
 
         if (Questnumber == 6)
         {
             QuestText = "This is the Quest you must read.";
+            Prestige_Nomads = 5;
+
+            Quest_Time = 8;
+            LootReward_Iron = 10;
         }
 
 
@@ -131,26 +163,50 @@ public class QuestList : MonoBehaviour
         if (Questnumber == 16)
         {
             QuestText = "This is the Quest you must read.";
+            Prestige_Ferrarium = 5;
+
+            Quest_Time = 8;
+            LootReward_Wood = 10;
         }
         if (Questnumber == 17)
         {
             QuestText = "This is the Quest you must read.";
+            Prestige_Ferrarium = 5;
+
+            Quest_Time = 8;
+            LootReward_Food = 10;
         }
         if (Questnumber == 18)
         {
             QuestText = "This is the Quest you must read.";
+            Prestige_Ferrarium = 5;
+
+            Quest_Time = 8;
+            LootReward_Iron = 10;
         }
         if (Questnumber == 19)
         {
             QuestText = "This is the Quest you must read.";
+            Prestige_Ferrarium = 5;
+
+            Quest_Time = 8;
+            LootReward_Food = 10;
         }
         if (Questnumber == 20)
         {
             QuestText = "This is the Quest you must read.";
+            Prestige_Ferrarium = 5;
+
+            Quest_Time = 8;
+            LootReward_Wood = 10;
         }
         if (Questnumber == 21)
         {
             QuestText = "This is the Quest you must read.";
+            Prestige_Ferrarium = 5;
+
+            Quest_Time = 8;
+            LootReward_Gold = 10;
         }
     }
 

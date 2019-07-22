@@ -12,8 +12,9 @@ public class FollowerSlotInformation : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    
+    void FillFollowerSlots()
     {
-        
+
     }
 }
