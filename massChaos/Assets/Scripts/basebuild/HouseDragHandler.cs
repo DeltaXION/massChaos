@@ -43,13 +43,14 @@ public class HouseDragHandler : MonoBehaviour, IDragHandler, IEndDragHandler {
  
     public void OnEndDrag(PointerEventData eventData)
     {
-        woodCountAvl = woodCountAvl - 5;
+
         if (woodCountAvl >= 5)
         {
             //transform.position = Vector3.zero;
             //Destroy (clone, 0.1f);
+            woodCountAvl = woodCountAvl - 5;
+            houseBuilt++;
 
-            transform.localPosition = startPosition;
             //Debug.Log("Ennnnd" + transform.position.x);
             //Debug.Log("Ennnnnd" + transform.position.y);
 
@@ -58,9 +59,10 @@ public class HouseDragHandler : MonoBehaviour, IDragHandler, IEndDragHandler {
             linehandler.transform.SetAsLastSibling();
             linehandler.transform.position = mousepos;
             linehandler.SetActive(true);
-            houseBuilt++;
+
             Debug.Log(houseBuilt);
         }
+        transform.localPosition = startPosition;
 
 
 
