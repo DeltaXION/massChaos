@@ -80,17 +80,17 @@ PrefabInstance:
     - target: {fileID: 3206169451110975151, guid: 4be251a229951634d9a91bd7d55e0d44,
         type: 3}
       propertyPath: lootDropTable.lootDropItems.Array.data[0].probabilityPercent
-      value: 18.75
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 3206169451110975151, guid: 4be251a229951634d9a91bd7d55e0d44,
         type: 3}
       propertyPath: lootDropTable.lootDropItems.Array.data[1].probabilityPercent
-      value: 18.75
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 3206169451110975151, guid: 4be251a229951634d9a91bd7d55e0d44,
         type: 3}
       propertyPath: lootDropTable.lootDropItems.Array.data[2].probabilityPercent
-      value: 25
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 3206169451110975151, guid: 4be251a229951634d9a91bd7d55e0d44,
         type: 3}
@@ -101,22 +101,22 @@ PrefabInstance:
     - target: {fileID: 3206169451110975151, guid: 4be251a229951634d9a91bd7d55e0d44,
         type: 3}
       propertyPath: lootDropTable.lootDropItems.Array.data[3].probabilityWeight
-      value: 60
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 3206169451110975151, guid: 4be251a229951634d9a91bd7d55e0d44,
         type: 3}
       propertyPath: lootDropTable.lootDropItems.Array.data[3].probabilityPercent
-      value: 37.5
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 3206169451110975151, guid: 4be251a229951634d9a91bd7d55e0d44,
         type: 3}
       propertyPath: lootDropTable.lootDropItems.Array.data[3].probabilityRangeFrom
-      value: 100
+      value: 80
       objectReference: {fileID: 0}
     - target: {fileID: 3206169451110975151, guid: 4be251a229951634d9a91bd7d55e0d44,
         type: 3}
       propertyPath: lootDropTable.lootDropItems.Array.data[3].probabilityRangeTo
-      value: 160
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 3206169451110975151, guid: 4be251a229951634d9a91bd7d55e0d44,
         type: 3}
@@ -139,42 +139,42 @@ PrefabInstance:
     - target: {fileID: 3206169451110975151, guid: 4be251a229951634d9a91bd7d55e0d44,
         type: 3}
       propertyPath: lootDropTable.lootDropItems.Array.data[0].probabilityWeight
-      value: 30
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 3206169451110975151, guid: 4be251a229951634d9a91bd7d55e0d44,
         type: 3}
       propertyPath: lootDropTable.lootDropItems.Array.data[0].probabilityRangeTo
-      value: 30
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 3206169451110975151, guid: 4be251a229951634d9a91bd7d55e0d44,
         type: 3}
       propertyPath: lootDropTable.lootDropItems.Array.data[1].probabilityRangeFrom
-      value: 30
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 3206169451110975151, guid: 4be251a229951634d9a91bd7d55e0d44,
         type: 3}
       propertyPath: lootDropTable.lootDropItems.Array.data[1].probabilityRangeTo
-      value: 60
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 3206169451110975151, guid: 4be251a229951634d9a91bd7d55e0d44,
         type: 3}
       propertyPath: lootDropTable.lootDropItems.Array.data[2].probabilityRangeFrom
-      value: 60
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 3206169451110975151, guid: 4be251a229951634d9a91bd7d55e0d44,
         type: 3}
       propertyPath: lootDropTable.lootDropItems.Array.data[2].probabilityRangeTo
-      value: 100
+      value: 80
       objectReference: {fileID: 0}
     - target: {fileID: 3206169451110975151, guid: 4be251a229951634d9a91bd7d55e0d44,
         type: 3}
       propertyPath: lootDropTable.lootDropItems.Array.data[1].probabilityWeight
-      value: 30
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 3206169451110975151, guid: 4be251a229951634d9a91bd7d55e0d44,
         type: 3}
       propertyPath: lootDropTable.lootDropItems.Array.data[2].probabilityWeight
-      value: 40
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 3206169451110975151, guid: 4be251a229951634d9a91bd7d55e0d44,
         type: 3}

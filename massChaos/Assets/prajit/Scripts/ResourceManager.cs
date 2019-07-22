@@ -29,12 +29,13 @@ public class ResourceManager : MonoBehaviour
         subGold(1);
         subIron(1);
         subWood(2);
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public static void addGold(int n)                      //increment gold
@@ -103,21 +104,21 @@ public class ResourceManager : MonoBehaviour
 
     public static void setGoldText()                                           //display gold value
     {
-        goldText.text = "Gold : " + gold.ToString();
+        goldText.text = gold.ToString();
     }
 
     public static void setWoodText()                                           //display wood value
     {
-        woodText.text = "Wood : " + wood.ToString();
+        woodText.text = wood.ToString();
     }
 
     public static void setFoodText()                                           //display food value
     {
-        foodText.text = "Food : " + food.ToString();
+        foodText.text = food.ToString();
     }
 
     public static void setIronText()                                           //display iron value
     {
-        ironText.text = "Iron : " + iron.ToString();
+        ironText.text = iron.ToString();
     }
 }
