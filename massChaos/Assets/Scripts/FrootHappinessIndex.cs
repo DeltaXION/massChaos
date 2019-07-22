@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
 
-public class HappinessIndex : MonoBehaviour
+public class FrootHappinessIndex : MonoBehaviour
 {
-    private float FrootHappiness;
+    public float FrootHappiness;
     private float Foodfactor;
     private float FrootBaseComfort;
     private float FrootAssignments;
@@ -54,7 +54,7 @@ public class HappinessIndex : MonoBehaviour
 		StartCoroutine (IdleFollower());
     }
 
-    void SetFrootHappiness()
+    public void SetFrootHappiness()
     {
         
 		FrootHappiness = (Foodfactor + FrootAssignments + BaseHealth + FrootBaseComfort + FrootPrestige);
@@ -174,7 +174,7 @@ public class HappinessIndex : MonoBehaviour
 
 	}
 
-	void RecalculateHappinessIndex()
+	public void RecalculateHappinessIndex()
     {
         SetFoodFactor();
         SetAssignmentFactor();
