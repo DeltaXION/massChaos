@@ -50,7 +50,8 @@ public class BarrackDragHandler : MonoBehaviour, IDragHandler, IEndDragHandler
     {
         transform.localPosition = startPosition;
         //int wShop;
-        wShop = GameObject.Find("WorkshopImg").GetComponent<WorkshopDragHandler>().wShopBuilt;
+        //wShop = GameObject.Find("WorkshopImg").GetComponent<WorkshopDragHandler>().wShopBuilt;
+        wShop = WorkshopDragHandler.wShopBuilt;
 
 
 

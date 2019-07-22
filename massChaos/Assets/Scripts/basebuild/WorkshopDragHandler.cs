@@ -15,7 +15,7 @@ public class WorkshopDragHandler : MonoBehaviour, IDragHandler, IEndDragHandler
     //float z;
     //public GameObject houseImg;
     public int woodCountAvl;
-    public int wShopBuilt;
+    public static int wShopBuilt;
     public int NPCCountAvl;
     public int ironCount;
     public void OnBeginDrag(PointerEventData eventData)
