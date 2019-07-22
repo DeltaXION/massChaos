@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class PlantList : MonoBehaviour
+public class PlantList 
 {
    public GameObject ShowButton;
 
@@ -51,7 +51,5 @@ public class PlantList : MonoBehaviour
         get { return foodReward; }
         set { foodReward = value; }
     }
- 
-        Debug.Log(PlantList);
     
 }

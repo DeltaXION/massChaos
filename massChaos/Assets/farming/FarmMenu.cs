@@ -35,6 +35,7 @@ public class FarmMenu : MonoBehaviour
     void SeedPlant()
     {
         Debug.Log("SeedPlanted");
+        Debug.Log(list1);
     }
 
     void FarmMenuExit()
