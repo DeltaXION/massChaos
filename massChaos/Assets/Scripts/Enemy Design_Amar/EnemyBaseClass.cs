@@ -182,9 +182,36 @@ public abstract class EnemyBaseClass : MonoBehaviour, IGOAP
         sightRotation.x = 0;
         sightRotation.y = 0;
         //sightRotation.z = -sightRotation.z;
-        Debug.Log("angle change");
+        
         //enemySight.transform.rotation = sightRotation;
         enemySight.transform.up = transform.position - player.transform.position ;
+        
+    }
+
+
+
+    public void animateAccordingToAngle()
+    {
+
+        float lookingAngle = enemySight.transform.eulerAngles.z;
+       
+       
+        if(lookingAngle >45 && lookingAngle <135 )
+        {
+           // Debug.Log("Facing Right");
+        }
+        else if(lookingAngle >135 && lookingAngle <225 )
+        {
+            // Debug.Log("Facing Up");
+            
+        }
+        else if(lookingAngle >225 && lookingAngle <315)
+        {
+           // Debug.Log("Facing Left");
+        } else
+        {
+            //Debug.Log("Facing down");
+        }
         
     }
     //gradually move the enemy towards the target location. (eg. for attack player, target will be player)
@@ -261,6 +288,12 @@ public abstract class EnemyBaseClass : MonoBehaviour, IGOAP
 
     }
 
+    public void takeDamage()
+    {
+
+        health -= 1;
+        Debug.Log("Got Hit");
+    }
     public void attackPlayer()
     {
         Debug.Log("attackPlayer:");
@@ -283,15 +316,24 @@ public abstract class EnemyBaseClass : MonoBehaviour, IGOAP
 
 
     }
-    
-   
-    
-   
-    
+
+    //player COllisions
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        /*
+        if(collision.gameObject.CompareTag("hitbox_player_ss"))
+        {
+            takeDamage();
+        }
+        */
+    }
+
     //read values from sensors and update flags
     public void readSensorStatusAndUpdateFlags()
     {
-        
+        //Updated animator
+        animateAccordingToAngle();
+
         GameObject topCollidedBody = topSensor.returnCollidedObject();
         GameObject bottomCollidedBody = bottomSensor.returnCollidedObject();
         GameObject rightCollidedBody = rightSensor.returnCollidedObject();

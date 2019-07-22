@@ -192,7 +192,7 @@ GameObject:
   - component: {fileID: 6135805606361791354}
   - component: {fileID: 1931225519263505457}
   m_Layer: 0
-  m_Name: enemy_warrior 1
+  m_Name: enemy_warrior
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -498,8 +498,8 @@ PolygonCollider2D:
     m_Paths:
     - - {x: 0.019372236, y: 0.4286651}
       - {x: -1.7214754, y: -0.27044946}
-      - {x: -1.7392437, y: -4.125933}
-      - {x: 1.6716907, y: -4.132007}
+      - {x: -4.612406, y: -5.070952}
+      - {x: 4.0131764, y: -5.101703}
       - {x: 1.7087322, y: -0.13178562}
 --- !u!114 &7053884824853332467
 MonoBehaviour:
