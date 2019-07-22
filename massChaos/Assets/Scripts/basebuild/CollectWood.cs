@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class collect_wood : MonoBehaviour
+public class CollectWood : MonoBehaviour
 {
     public Text woods;
 

@@ -3,7 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class HouseDragHandler : MonoBehaviour, IDragHandler, IEndDragHandler {
+public class FarmDargHandler : MonoBehaviour, IDragHandler, IEndDragHandler
+{
+
+
+
 
     Vector3 startPosition;
     public GameObject building;
@@ -14,17 +18,18 @@ public class HouseDragHandler : MonoBehaviour, IDragHandler, IEndDragHandler {
     //float z;
     //public GameObject houseImg;
     public int woodCountAvl;
-    public int houseBuilt;
+    public int NPCCountAvl;
+    public int FarmBuilt;
     public void OnBeginDrag(PointerEventData eventData)
     {
         //    //startPosition =  GameObject.Find("house_img").transform.position;
         startPosition = transform.parent.position;
 
-            //    x = GameObject.Find("house_img").transform.position.x;
-            //    y =  GameObject.Find("house_img").transform.position.y;
-            //    Debug.Log("Staaart" + x);
-            //    Debug.Log("Staaart" + y);
-            //    //clone = (GameObject)Instantiate(houseImg, startPosition, Quaternion.identity);
+        //    x = GameObject.Find("house_img").transform.position.x;
+        //    y =  GameObject.Find("house_img").transform.position.y;
+        //    Debug.Log("Staaart" + x);
+        //    Debug.Log("Staaart" + y);
+        //    //clone = (GameObject)Instantiate(houseImg, startPosition, Quaternion.identity);
 
 
     }
@@ -32,24 +37,25 @@ public class HouseDragHandler : MonoBehaviour, IDragHandler, IEndDragHandler {
     {
 
 
-            //clone.GameObject.transform.position = Input.mousePosition;
-            transform.position = Input.mousePosition;
-      
+        //clone.GameObject.transform.position = Input.mousePosition;
+        transform.position = Input.mousePosition;
 
 
-        
+
+
 
     }
- 
+
     public void OnEndDrag(PointerEventData eventData)
     {
 
-        if (woodCountAvl >= 5)
+        if (woodCountAvl >= 5 && NPCCountAvl >=1)
         {
             //transform.position = Vector3.zero;
             //Destroy (clone, 0.1f);
             woodCountAvl = woodCountAvl - 5;
-            houseBuilt++;
+            FarmBuilt++;
+            NPCCountAvl--;
 
             //Debug.Log("Ennnnd" + transform.position.x);
             //Debug.Log("Ennnnnd" + transform.position.y);
@@ -60,7 +66,7 @@ public class HouseDragHandler : MonoBehaviour, IDragHandler, IEndDragHandler {
             linehandler.transform.position = mousepos;
             linehandler.SetActive(true);
 
-            Debug.Log(houseBuilt);
+            Debug.Log(FarmBuilt);
         }
         transform.localPosition = startPosition;
 
@@ -70,3 +76,4 @@ public class HouseDragHandler : MonoBehaviour, IDragHandler, IEndDragHandler {
 
     }
 }
+
