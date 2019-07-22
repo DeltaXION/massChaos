@@ -3,11 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class FarmDargHandler : MonoBehaviour, IDragHandler, IEndDragHandler
+public class FountDragHandler : MonoBehaviour, IDragHandler, IEndDragHandler
 {
-
-
-
 
     Vector3 startPosition;
     public GameObject building;
@@ -17,9 +14,8 @@ public class FarmDargHandler : MonoBehaviour, IDragHandler, IEndDragHandler
     //float y;
     //float z;
     //public GameObject houseImg;
-    public int woodCountAvl;
-    public int NPCCountAvl;
-    public int FarmBuilt;
+    public int stoneCountAvl;
+    public int FountBuilt;
     public void OnBeginDrag(PointerEventData eventData)
     {
         //    //startPosition =  GameObject.Find("house_img").transform.position;
@@ -49,13 +45,12 @@ public class FarmDargHandler : MonoBehaviour, IDragHandler, IEndDragHandler
     public void OnEndDrag(PointerEventData eventData)
     {
 
-        if (woodCountAvl >= 5 && NPCCountAvl >=1)
+        if (stoneCountAvl >= 5)
         {
             //transform.position = Vector3.zero;
             //Destroy (clone, 0.1f);
-            woodCountAvl = woodCountAvl - 5;
-            FarmBuilt++;
-            NPCCountAvl--;
+            stoneCountAvl = stoneCountAvl - 5;
+            FountBuilt++;
 
             //Debug.Log("Ennnnd" + transform.position.x);
             //Debug.Log("Ennnnnd" + transform.position.y);
@@ -66,7 +61,7 @@ public class FarmDargHandler : MonoBehaviour, IDragHandler, IEndDragHandler
             linehandler.transform.position = mousepos;
             linehandler.SetActive(true);
 
-           // Debug.Log(FarmBuilt);
+
         }
         transform.localPosition = startPosition;
 
@@ -76,4 +71,9 @@ public class FarmDargHandler : MonoBehaviour, IDragHandler, IEndDragHandler
 
     }
 }
+
+
+
+
+
 

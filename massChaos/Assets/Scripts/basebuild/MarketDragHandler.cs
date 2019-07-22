@@ -3,11 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class FarmDargHandler : MonoBehaviour, IDragHandler, IEndDragHandler
+public class MarketDragHandler : MonoBehaviour, IDragHandler, IEndDragHandler
 {
-
-
-
 
     Vector3 startPosition;
     public GameObject building;
@@ -18,8 +15,9 @@ public class FarmDargHandler : MonoBehaviour, IDragHandler, IEndDragHandler
     //float z;
     //public GameObject houseImg;
     public int woodCountAvl;
+    public int goldCount;
+    public int marketBuilt;
     public int NPCCountAvl;
-    public int FarmBuilt;
     public void OnBeginDrag(PointerEventData eventData)
     {
         //    //startPosition =  GameObject.Find("house_img").transform.position;
@@ -49,13 +47,13 @@ public class FarmDargHandler : MonoBehaviour, IDragHandler, IEndDragHandler
     public void OnEndDrag(PointerEventData eventData)
     {
 
-        if (woodCountAvl >= 5 && NPCCountAvl >=1)
+        if (woodCountAvl >= 10 && NPCCountAvl >= 1 && goldCount >=1)
         {
             //transform.position = Vector3.zero;
             //Destroy (clone, 0.1f);
-            woodCountAvl = woodCountAvl - 5;
-            FarmBuilt++;
-            NPCCountAvl--;
+            woodCountAvl = woodCountAvl - 10;
+            goldCount--;
+            marketBuilt++;
 
             //Debug.Log("Ennnnd" + transform.position.x);
             //Debug.Log("Ennnnnd" + transform.position.y);
@@ -66,7 +64,7 @@ public class FarmDargHandler : MonoBehaviour, IDragHandler, IEndDragHandler
             linehandler.transform.position = mousepos;
             linehandler.SetActive(true);
 
-           // Debug.Log(FarmBuilt);
+            //Debug.Log(marketBuilt);
         }
         transform.localPosition = startPosition;
 
@@ -76,4 +74,6 @@ public class FarmDargHandler : MonoBehaviour, IDragHandler, IEndDragHandler
 
     }
 }
+
+
 

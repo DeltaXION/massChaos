@@ -3,11 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class FarmDargHandler : MonoBehaviour, IDragHandler, IEndDragHandler
+public class BarrackDragHandler : MonoBehaviour, IDragHandler, IEndDragHandler
 {
-
-
-
 
     Vector3 startPosition;
     public GameObject building;
@@ -18,8 +15,10 @@ public class FarmDargHandler : MonoBehaviour, IDragHandler, IEndDragHandler
     //float z;
     //public GameObject houseImg;
     public int woodCountAvl;
+    public int BarrackBuilt;
     public int NPCCountAvl;
-    public int FarmBuilt;
+    public int stoneCount;
+    public int ironCount;
     public void OnBeginDrag(PointerEventData eventData)
     {
         //    //startPosition =  GameObject.Find("house_img").transform.position;
@@ -49,13 +48,20 @@ public class FarmDargHandler : MonoBehaviour, IDragHandler, IEndDragHandler
     public void OnEndDrag(PointerEventData eventData)
     {
 
-        if (woodCountAvl >= 5 && NPCCountAvl >=1)
+        int wShop;
+        wShop = GameObject.Find("WorkshopImg").GetComponent<WorkshopDragHandler>().wShopBuilt;
+
+
+
+
+        if (woodCountAvl >= 10 && NPCCountAvl >= 1 && ironCount >= 1 && stoneCount >= 1 && wShop > 1)
         {
             //transform.position = Vector3.zero;
             //Destroy (clone, 0.1f);
-            woodCountAvl = woodCountAvl - 5;
-            FarmBuilt++;
-            NPCCountAvl--;
+            woodCountAvl = woodCountAvl - 10;
+            ironCount--;
+            stoneCount--;
+            BarrackBuilt++;
 
             //Debug.Log("Ennnnd" + transform.position.x);
             //Debug.Log("Ennnnnd" + transform.position.y);
@@ -66,7 +72,7 @@ public class FarmDargHandler : MonoBehaviour, IDragHandler, IEndDragHandler
             linehandler.transform.position = mousepos;
             linehandler.SetActive(true);
 
-           // Debug.Log(FarmBuilt);
+            //Debug.Log(BarrackBuilt);
         }
         transform.localPosition = startPosition;
 
@@ -76,4 +82,5 @@ public class FarmDargHandler : MonoBehaviour, IDragHandler, IEndDragHandler
 
     }
 }
+
 
