@@ -19,6 +19,7 @@ public class BarrackDragHandler : MonoBehaviour, IDragHandler, IEndDragHandler
     public int NPCCountAvl;
     public int stoneCount;
     public int ironCount;
+    public int wShop;
     public void OnBeginDrag(PointerEventData eventData)
     {
         //    //startPosition =  GameObject.Find("house_img").transform.position;
@@ -47,8 +48,8 @@ public class BarrackDragHandler : MonoBehaviour, IDragHandler, IEndDragHandler
 
     public void OnEndDrag(PointerEventData eventData)
     {
-
-        int wShop;
+        transform.localPosition = startPosition;
+        //int wShop;
         wShop = GameObject.Find("WorkshopImg").GetComponent<WorkshopDragHandler>().wShopBuilt;
 
 
@@ -74,7 +75,7 @@ public class BarrackDragHandler : MonoBehaviour, IDragHandler, IEndDragHandler
 
             //Debug.Log(BarrackBuilt);
         }
-        transform.localPosition = startPosition;
+       
 
 
 
