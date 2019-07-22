@@ -60,6 +60,8 @@ GameObject:
   - component: {fileID: 4015095061712222119}
   - component: {fileID: 4015095061712222113}
   - component: {fileID: 4015095061712222112}
+  - component: {fileID: 6440589586781080970}
+  - component: {fileID: 6963876853892268514}
   m_Layer: 0
   m_Name: enemy_warrior
   m_TagString: Untagged
@@ -271,6 +273,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cost: 1
   target: {fileID: 0}
+  staminaCost: 3
 --- !u!114 &4015095061712222112
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -283,6 +286,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0036afe306f23ed448bf5cdb60e154db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6440589586781080970
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4015095061712222143}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fddd70540aa2fb44824a344c6bbe50d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cost: 2
+  target: {fileID: 0}
+  dashMultiplier: 100
+  staminaCost: 3
+--- !u!114 &6963876853892268514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4015095061712222143}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c7a177ececcb7446bcb0f0ceb296102, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cost: 1
+  target: {fileID: 0}
+  dashMultiplier: 100
+  staminaCost: 2
 --- !u!1 &4015095062136168236
 GameObject:
   m_ObjectHideFlags: 0

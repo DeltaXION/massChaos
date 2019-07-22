@@ -21,6 +21,8 @@ public class QuestsDiplomacyParent : MonoBehaviour
 
         //Select which Quest to select from a pool
         SetQuest();
+
+        
     }
 
     // Update is called once per frame
@@ -41,7 +43,7 @@ public class QuestsDiplomacyParent : MonoBehaviour
     void SetQuest()
     {
 
-        QuestNodes = GameObject.FindGameObjectsWithTag("QuestNode");
+        QuestNodes = GameObject.FindGameObjectsWithTag("NomadQuestNode");
         //NumberofQuestNodes = QuestNodes.Length;
 
         foreach (GameObject item in QuestNodes)
