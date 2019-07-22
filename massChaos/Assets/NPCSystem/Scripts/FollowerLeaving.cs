@@ -16,7 +16,7 @@ public class FollowerLeaving : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-		FrtHappinessIndex = GameObject.Find("HI");
+		FrtHappinessIndex = GameObject.Find("FrootHI");
 		
 	 
 		
@@ -25,10 +25,9 @@ public class FollowerLeaving : MonoBehaviour
 
 	IEnumerator FollowersWillNowLeave()
 	{
+		
 		FollowerID = Random.Range(1,2);	
 		
-		NPCSystem.GetFollowerByID(FollowerID);
-
 		NPCSystem.removeFollower();
 
 	}
