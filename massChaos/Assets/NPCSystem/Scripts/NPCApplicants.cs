@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 using UnityEngine.UI;
 
 public class NPCApplicants : MonoBehaviour
@@ -13,8 +14,8 @@ public class NPCApplicants : MonoBehaviour
 
     void Start()
     {
-        addFollower("Broom", "N", 'w', "gun");
-        addFollower("Groom", "Fr", 'm', "sword");
+        addFollower("Broom", "N", '-', "-", "-", "-");
+        addFollower("Groom", "Fr", '-', "-", "-", "-"); 
 
         foreach (var o in applicants)
         {
@@ -46,11 +47,15 @@ public class NPCApplicants : MonoBehaviour
                     break;
             }
 
-
-
              go.transform.Find("type").GetComponent<Text>().text = type;
             //go.transform.Find("foodIntake").GetComponent<Text>().text = o.FoodIntake.ToString();
         }
+    }
+
+
+    public void onMenuItemClicked() {
+        Debug.Log("Clicked");
+
     }
 
     // Update is called once per frame
@@ -59,9 +64,9 @@ public class NPCApplicants : MonoBehaviour
         
     }
 
-    public void addFollower(string name, string type, char classType, string secItem)
+    public void addFollower(string name, string type, char classType, string secItem, string priItem, string status)
     {
         id++;
-        applicants.Add(new BaseCharachteristics(id, name, type, classType, secItem));
+        applicants.Add(new BaseCharachteristics(id, name, type, classType, secItem, priItem, status));
     }
 }

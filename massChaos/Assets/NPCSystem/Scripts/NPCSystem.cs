@@ -20,13 +20,13 @@ public class NPCSystem : MonoBehaviour
     public int baseCapacity;
     public int numberOfNpcs;
     // Start is called before the first frame update
-
+        
 
     void Start()
     {
         setHappinessIndex();
-        addFollower("Broom",  "N", 'w', "gun");
-        addFollower("Groom", "Fr", 'm', "sword");
+        addFollower("Broom",  "N", 'w', "gun", "sword", "idle");
+        addFollower("Groom", "Fr", 'm', "sword", "bazooka", "idle");
         setPrestige();
         can.SetActive(false);
         AppplicantsCalculation();
@@ -38,7 +38,7 @@ public class NPCSystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+      
     }
 
     void Applications() {
@@ -68,9 +68,9 @@ public class NPCSystem : MonoBehaviour
         Mimax.happinessIndex = 17;
     }
 
-    public void addFollower( string name, string type, char classType, string secItem) {
+    public void addFollower( string name, string type, char classType, string secItem, string priItem, string status) {
         id++;
-        followers.Add(new BaseCharachteristics(id, name, type, classType, secItem));
+        followers.Add(new BaseCharachteristics(id, name, type, classType, secItem, priItem, status));
     }
 
     public void updateFollower()
@@ -144,6 +144,11 @@ public class NPCSystem : MonoBehaviour
         totalMimax = Math.Round(mimaxCountDec);
 
         Debug.Log("totalMimax = " + totalMimax);
+    }
+
+    public void ApplicantSelect() {
+        Debug.Log("Cliccked");
+
     }
 
 }
