@@ -16,6 +16,7 @@ public class HappinessIndex : MonoBehaviour
 
 	public float TotalFrootFollowers = 15;
 	public float TotalFrootFollowersAssigned = 10;
+	private float TotalFrootFollowersIdle;
 
     public float BaseAssignmentAffinityBoost = 0.025f;
 	public float QuestAffinityBoost = 0.025f;
@@ -24,7 +25,7 @@ public class HappinessIndex : MonoBehaviour
 	public float DamagedBuildingReduction = 0.15f;
 	public float DamagedAffinityBuildingReduction = 0.25f;
 	private float IdleIsBad;
-	public float IdlePenalty = 0.05f;
+	public float IdlePenalty;
 	public float ConsumptionRate = 10f;
     public float TotalFoodStock = 100f;
 	public float FrootFollowersAssignedAtBase = 6f;
@@ -62,6 +63,7 @@ public class HappinessIndex : MonoBehaviour
 		
     }
     
+	
     void SetFoodFactor()
     {
 		//float ConsumptionRate = 10f;
@@ -111,10 +113,14 @@ public class HappinessIndex : MonoBehaviour
 		float MaxBaseHealth = 100;
 		//float CurrentBaseHealth = 80;
 		float PercentReductionInBaseHealth = (CurrentBaseHealth / MaxBaseHealth);
-
-		
-		BaseHealth = (TotalBH - ((PercentReductionInBaseHealth) * TotalBH)) / 10;
-
+		if(CurrentBaseHealth == MaxBaseHealth)
+		{
+			BaseHealth = 1;
+		}
+		else
+		{
+			BaseHealth = (TotalBH - ((PercentReductionInBaseHealth) * TotalBH)) / 10;
+		}
 	}
 
 	void SetBaseComfort()
@@ -192,6 +198,8 @@ public class HappinessIndex : MonoBehaviour
 		{
 			//Debug.Log("REcalculating every 1s");
 			RecalculateHappinessIndex();
+			TotalFrootFollowersIdle = TotalFrootFollowers - TotalFrootFollowersAssigned;
+			IdlePenalty = (TotalFrootFollowersIdle/TotalFrootFollowers) * 0.05f;
 			IdleIsBad = IdleIsBad + IdlePenalty;
 			yield return new WaitForSeconds(3f);
 		}
