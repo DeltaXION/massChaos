@@ -12,6 +12,12 @@ TagManager:
   - ironText
   - House
   - weapon_hitbox_SS
+  - NomadQuestNode
+  - dungeonIronText
+  - dungeonFoodText
+  - dungeonWoodText
+  - dungeonGoldText
+  - House_Button
   layers:
   - Default
   - TransparentFX
