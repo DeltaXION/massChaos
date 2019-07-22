@@ -9,14 +9,20 @@ public class BaseCharachteristics
     public int id;
     public string name;
     public string type;
-
-   
-    public BaseCharachteristics(int id, string  name, string type) {
+    public char classType;
+    public string secItem;
+    public string priItem;
+    public string status;
+     
+    public BaseCharachteristics(int id, string  name, string type, char classType, string secItem, string priItem, string status) {
       this.id = id;
       this.name = name;
       this.type = type;
+      this.classType = classType;
+      this.secItem = secItem;
+      this.priItem = priItem;
+      this.status = status;
     }
-
 
     public string Name
     {
@@ -34,6 +40,30 @@ public class BaseCharachteristics
     {
         get { return id; }
         set { id = value; }
+    }
+
+    public char ClassType
+    {
+        get { return classType; }
+        set { classType = value; }
+    }
+
+    public string SecItem
+    {
+        get { return secItem; }
+        set { secItem = value; }
+    }
+
+    public string PriItem
+    {
+        get { return priItem; }
+        set { priItem = value; }
+    }
+
+    public string Status
+    {
+        get { return status; }
+        set { status = value; }
     }
 
 
