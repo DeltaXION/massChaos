@@ -102,7 +102,9 @@ public class QuestsDiplomacyManager : MonoBehaviour
                 FollowersCurrentlyQuesting++;
 
                 int FollowerID = item.GetComponent<QuestNodes>().IDofFollowerdoingQuest;
-                GameObject.Find("TestNPCList").GetComponent<TestNPCList>().FetchFollower(FollowerID);
+
+                //COMEBACKHERE
+                //GameObject.Find("TestNPCList").GetComponent<TestNPCList>().FetchFollower(FollowerID);
 
                 if (GameObject.Find("TestNPCList").GetComponent<TestNPCList>().Race == "Nomad")
                     NomadsCurrentlyQuesting++;
@@ -127,7 +129,8 @@ public class QuestsDiplomacyManager : MonoBehaviour
                         MimaxQuestingatHome++;
                 }
 
-                GameObject.Find("TestNPCList").GetComponent<TestNPCList>().FetchFollower(0);
+                //COMEBACKHERE
+                //GameObject.Find("TestNPCList").GetComponent<TestNPCList>().FetchFollower(0);
             }
         }
     }

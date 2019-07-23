@@ -5,8 +5,9 @@ using UnityEngine.UI;
 
 public class FollowerSlot : MonoBehaviour
 {
-    public int FollowerSlotNumber;
-    public GameObject QuestRewardsInfo, FollowerSlotInfo, TestNPCList;
+    public int FollowerSlotNumber, FollowerQuestNumber;
+    public GameObject QuestInfo, FollowerSlotInfo, TestNPCList;
+    public string FollowerName, FollowerRace, FollowerClass, FollowerSecondaryWeapon, FollowerPrimaryWeapon, FollowerStatus;
 
     void Start()
     {
@@ -14,53 +15,36 @@ public class FollowerSlot : MonoBehaviour
         FillSlots();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     void SelectedSlot()
     {
 
-        foreach (GameObject item in GameObject.FindGameObjectsWithTag("NomadQuestNode"))
+        if(FollowerStatus == "Questing")
         {
-            if (item.GetComponent<QuestNodes>().QuestisActive == true && item.GetComponent<QuestNodes>().IDofFollowerdoingQuest == FollowerSlotNumber)
-            {
-                item.GetComponent<QuestNodes>().PopUpFollowerIsAlreadyonQuest();
-                return;
-            }
+            gameObject.GetComponent<QuestNodes>().PopUpFollowerIsAlreadyonQuest();
+            return;
         }
 
-        foreach (GameObject item in GameObject.FindGameObjectsWithTag("FerrariumQuestNode"))
-        {
-            if (item.GetComponent<QuestNodes>().QuestisActive == true && item.GetComponent<QuestNodes>().IDofFollowerdoingQuest == FollowerSlotNumber)
-            {
-                item.GetComponent<QuestNodes>().PopUpFollowerIsAlreadyonQuest();
-                return;
-            }
-        }
+        //COMEBACKHERE
+        // TestNPCList.GetComponent<TestNPCList>().FollowerSlotisSelected(FollowerSlotNumber); //Function sends FollowerSlotNumber variable to NPC List 
 
-
-        TestNPCList.GetComponent<TestNPCList>().FollowerSlotisSelected(FollowerSlotNumber); //Function sends FollowerSlotNumber variable to NPC List 
+        GameObject.Find("QuestList").GetComponent<QuestList>().PickFollower(gameObject);
         ShowQuest();
         
         
     }
 
+
+    //INSERTS TEXT INTO THE QUEST INFORMATION TEXTBOX. THIS MAY OR MAY NOT BE WITH THE FOLLOWER MODIFIERS THUS IT IS CALLED WHENEVER A FOLLOWER SLOT IS SELECTED/CLICKED AND THE MODIFIERS CHANGE
     public void ShowQuest()
     {   
-        QuestRewardsInfo.GetComponent<Text>().text = GameObject.Find("QuestList").GetComponent<QuestList>().FetchQuest(GameObject.Find("QuestList").GetComponent<QuestList>().Questnumber);
+
+        QuestInfo.GetComponent<Text>().text = GameObject.Find("QuestList").GetComponent<QuestList>().FetchQuest(GameObject.Find("QuestList").GetComponent<QuestList>().Questnumber);
     }
 
-    void FillSlots()
+
+    //MOSTLY CALLED BY FOLLOWERSLOTMANAGER. FUNCTION TO FILL THE INFORMATION TEXTBOX OF THE FOLLOWER SLOT BY FILLING IT WITH THE VARIABLES HERE CHANGED BY THE FOLLOWERSLOTMANAGER WHEN IT CALLS IT
+    public void FillSlots() 
     {
-        
-        TestNPCList.GetComponent<TestNPCList>().FetchFollower(FollowerSlotNumber);
-
-        FollowerSlotInfo.GetComponent<Text>().text = TestNPCList.GetComponent<TestNPCList>().FollowerName +"\n"+ TestNPCList.GetComponent<TestNPCList>().Race + " " + TestNPCList.GetComponent<TestNPCList>().Class + "\n" + TestNPCList.GetComponent<TestNPCList>().SecondaryItem;
-
-        TestNPCList.GetComponent<TestNPCList>().FollowerIDnumber = 0; //To check if this is the one turning the ID to 3 everytime the QuestDetails Load.
-
+        FollowerSlotInfo.GetComponent<Text>().text = FollowerName + "\n" + FollowerRace + "\n" + FollowerClass + "\n" + FollowerPrimaryWeapon + "\n" + FollowerSecondaryWeapon +"\n" + FollowerStatus;        
     }
 }

@@ -8,7 +8,7 @@ public class QuestList : MonoBehaviour
     public int Questnumber;
     public string QuestText, AdditionalQuestText, QuestRewardsText, ListofRewards;
 
-    public GameObject NPCDataList;
+    public GameObject FollowerSlotActive;
 
 
     public int Prestige_Nomads, Prestige_Ferrarium, Prestige_Froots, Prestige_Mimax,
@@ -22,8 +22,19 @@ public class QuestList : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
-        
+        FollowerSlotActive = GameObject.Find("DummyFollowerSlot");
+        Debug.Log("DummyFollower name is" + FollowerSlotActive.GetComponent<DummyFollowerSlot>().FollowerName);
+    }
+
+    private void Update()
+    {
+        Debug.Log("DummyFollower race is" + FollowerSlotActive.GetComponent<DummyFollowerSlot>().FollowerRace);
+    }
+
+    //TO SELECT FOLLOWER TO CHECK QUEST ON. ACTIVATES WHENEVER THE FOLLOWER SLOT WITH AN IDLE FOLLOWER IS SELECTED. THIS IS THEN USED TO SET AND COMPARE THE CONDITIONS OF THE QUEST
+    public void PickFollower(GameObject Follower)
+    {
+        FollowerSlotActive = Follower;
     }
 
     //Function to Provide Quest Description to Menu
@@ -92,23 +103,20 @@ public class QuestList : MonoBehaviour
         //NOMAD...NOMAD...NOMAD...NOMAD...NOMAD...NOMAD...NOMAD...NOMAD...NOMAD...NOMAD...NOMAD...NOMAD...NOMAD...NOMAD...NOMAD...NOMAD...NOMAD...NOMAD...NOMAD...
         if (Questnumber == 1)
         {
+            Debug.Log("The HAAAARTTT of the storm?");
             QuestText = "The Nomads are looking for a fighter to help them with a dungeon.";
 
             Prestige_Nomads = 5;
             Quest_Time = 4;
             
-
-            if(NPCDataList.GetComponent<TestNPCList>().Race == "Nomad")
+            if(FollowerSlotActive.GetComponent<FollowerSlot>().FollowerRace == "Nomad")
             {
+                Debug.Log("The eye of the storm?");
                 AdditionalQuestText = "The Nomad valiantly springs forth from the crowd to answer the call of Cleansing.";
                 Prestige_Nomads = 15;
                 Quest_Time = 2;
                 LootReward_Wood = 10;
-                
-
             }
-            
-            
         }
 
         if (Questnumber == 2)
