@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4571697941780701136}
   - component: {fileID: 674388714256337577}
+  - component: {fileID: -2472680956474552494}
   m_Layer: 0
   m_Name: CommonW
   m_TagString: Untagged
@@ -68,7 +69,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 0.9137255, g: 0.35330462, b: 0.2823529, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -76,6 +77,26 @@ SpriteRenderer:
   m_Size: {x: 0.2, y: 0.2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &-2472680956474552494
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7891678595418654626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3f14b909fafe074e921b2ad46dff9c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lootDropTable:
+    lootDropItems:
+    - item: {fileID: 325666164079710484, guid: edd909f4f7a06d5498020dd1ed6f487b, type: 3}
+      probabilityWeight: 100
+      probabilityPercent: 100
+      probabilityRangeFrom: 0
+      probabilityRangeTo: 100
+  numItemsToDrop: 1
