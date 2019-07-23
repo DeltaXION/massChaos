@@ -66,9 +66,9 @@ public abstract class EnemyBaseClass : MonoBehaviour, IGOAP
     }
 
 
-    public void takeDamage(float damage)
+    public void damageEnemy(float damage)
     {
-        health -= damage;
+        health -= damage;   
         Debug.Log("enemy hurt by " + damage + " points");
     }
 
@@ -288,12 +288,7 @@ public abstract class EnemyBaseClass : MonoBehaviour, IGOAP
 
     }
 
-    public void takeDamage()
-    {
-
-        health -= 1;
-        Debug.Log("Got Hit");
-    }
+   
     public void attackPlayer()
     {
         Debug.Log("attackPlayer:");
