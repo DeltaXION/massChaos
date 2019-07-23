@@ -9,12 +9,12 @@ public class BaseCharachteristics
     public int id;
     public string name;
     public string type; //faction
-    public char classType; //class
+    public string classType; //class
     public string secItem;
     public string priItem;
     public string status;
      
-    public BaseCharachteristics(int id, string  name, string type, char classType, string secItem, string priItem, string status) {
+    public BaseCharachteristics(int id, string  name, string type, string classType, string secItem, string priItem, string status) {
       this.id = id;
       this.name = name;
       this.type = type;
@@ -42,7 +42,7 @@ public class BaseCharachteristics
         set { id = value; }
     }
 
-    public char ClassType
+    public string ClassType
     {
         get { return classType; }
         set { classType = value; }

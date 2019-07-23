@@ -18,6 +18,8 @@ TagManager:
   - dungeonWoodText
   - dungeonGoldText
   - House_Button
+  - FerrariumQuestNode
+  - NPCEntry
   layers:
   - Default
   - TransparentFX

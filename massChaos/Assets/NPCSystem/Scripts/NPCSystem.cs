@@ -7,12 +7,12 @@ public class NPCSystem : MonoBehaviour
 {
 
     public GameObject can;
+
     public static int id = 0;
     public static List<BaseCharachteristics> followers = new List<BaseCharachteristics>();
     BaseCharachteristics b;
 
-
-
+   
     public float totalHappiness;
     public double totalNomads;
     public double totalFerrarium;
@@ -20,14 +20,15 @@ public class NPCSystem : MonoBehaviour
     public double totalMimax;
     public int baseCapacity;
     public int numberOfNpcs;
+    NPCList n;
     // Start is called before the first frame update
-        
+
 
     void Start()
     {
         setHappinessIndex();
-        addFollower("Broom",  "N", 'w', "gun", "sword", "idle");
-        addFollower("Groom", "Fr", 'm', "sword", "bazooka", "idle");
+        addFollower("Broom",  "N", "warrior", "gun", "sword", "idle");
+        addFollower("Groom", "Fr", "maige", "sword", "bazooka", "idle");
 
         setPrestige();
         can.SetActive(false);
@@ -46,6 +47,8 @@ public class NPCSystem : MonoBehaviour
     void Applications() {
 
     }
+
+    
 
     void setPrestige() {
         Nomad.prestige = 32;
@@ -70,7 +73,7 @@ public class NPCSystem : MonoBehaviour
         Mimax.happinessIndex = 17;
     }
 
-    public void addFollower( string name, string type, char classType, string secItem, string priItem, string status) {
+    public static void addFollower( string name, string type, string classType, string secItem, string priItem, string status) {
         id++;
         followers.Add(new BaseCharachteristics(id, name, type, classType, secItem, priItem, status));
 
@@ -98,17 +101,32 @@ public class NPCSystem : MonoBehaviour
     }
 
 
-    public void removeFollower()
+    public void removeFollower(int id)
     {
+        int index = id - 1;
+        followers.RemoveAt(index);
     }
 
     public void OnMouseDown()
     {
-        Debug.Log("mouse");
         can.SetActive(true);
+        Debug.Log("mouse");
+        
+        n = new NPCList();
+        n.UpdateNPCList();
+        // GameObject go = (GameObject)Instantiate(can);
+       
     }
 
-    public void exit() {
+    public void onExitClick() {
+       
+       
+        Debug.Log("mouse2");
+        GameObject[] entries= GameObject.FindGameObjectsWithTag("NPCEntry");
+        foreach (GameObject go in entries)
+        {
+            Destroy(go);
+        }
         can.SetActive(false);
     }
 
@@ -152,8 +170,5 @@ public class NPCSystem : MonoBehaviour
 
     public void ApplicantSelect() {
         Debug.Log("Cliccked");
-
     }
-
-
 }
