@@ -9,7 +9,11 @@ public class QuestsDiplomacyParent : MonoBehaviour
     private GameObject QuestsDiplomacyManager;
     private GameObject[] QuestNodes;
 
+    public GameObject Node1, Node2, Node3, Node4, Node5, Node6, Node7, Node8;
+
     private int RandomNumberPulled;
+
+    private float TimeCheckpoint = 0;
     
 
     void Start()
@@ -19,47 +23,88 @@ public class QuestsDiplomacyParent : MonoBehaviour
         //Update data from the QuestDiplomacyManager(Prestige, Quests, WorldState) to the DiplomacyMap
         UpdateDiplomacyMap();
 
-        //Select which Quest to select from a pool
+        //Select which Quest to select from a pool. Also resets the existing Quests.
         SetQuest();
 
         
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-       
+        CheckNodeResetTimer();
+        UpdateDiplomacyMap();
+    }
 
+    void CheckNodeResetTimer() //To check each time the timer crosses a certain threshold at which the map will change what quests are online except for the ones already active.
+    {
+        if(GameObject.Find("TimerBaar").GetComponent<Timer2>().calen - TimeCheckpoint >= 10)
+        {
+            SetQuest();
+            TimeCheckpoint = GameObject.Find("TimerBaar").GetComponent<Timer2>().calen;
+        }
     }
 
     void UpdateDiplomacyMap()
     {
         PrestigeNomads.text = ("Nomads Prestige : " + QuestsDiplomacyManager.GetComponent<QuestsDiplomacyManager>().Prestige_Nomads.ToString());
-        /*PrestigeFerrarium.text = ("Ferrarium Prestige : " + QuestsDiplomacyManager.GetComponent<QuestsDiplomacyManager>().Prestige_Ferrarium.ToString());
+        PrestigeFerrarium.text = ("Ferrarium Prestige : " + QuestsDiplomacyManager.GetComponent<QuestsDiplomacyManager>().Prestige_Ferrarium.ToString());
+        /*
         PrestigeFroots.text = ("Froots Prestige : " + QuestsDiplomacyManager.GetComponent<QuestsDiplomacyManager>().Prestige_Froots.ToString());
         PrestigeMimax.text = ("Mimax Prestige : " + QuestsDiplomacyManager.GetComponent<QuestsDiplomacyManager>().Prestige_Mimax.ToString());*/
     }
 
-    void SetQuest()
+
+    void EnableorDisableQuests()
     {
-
-        QuestNodes = GameObject.FindGameObjectsWithTag("NomadQuestNode");
-        //NumberofQuestNodes = QuestNodes.Length;
-
-        foreach (GameObject item in QuestNodes)
+        GameObject[] Nodes = { Node1, Node2, Node3, Node4, Node5, Node6, Node7, Node8};
+        foreach(GameObject item in Nodes)
         {
-            Repeat:
-            RandomNumberPulled = Random.Range(1, 6);
-            foreach(GameObject node in QuestNodes)
+            int RandomNumber = Random.Range(0, 2);
+            if (RandomNumber == 0)
             {
-                if(GameObject.Find(node.name).GetComponent<QuestNodes>().QuestNumber == RandomNumberPulled)
-                    goto Repeat;
+                if(item.GetComponent<QuestNodes>().QuestisActive == false)
+                item.SetActive(false);
 
             }
-            GameObject.Find(item.name).GetComponent<QuestNodes>().QuestNumber = RandomNumberPulled;
-            //Debug.Log("Node name is " + item.name + "and QuestNumber is " + GameObject.Find(item.name).GetComponent<QuestNodes>().QuestNumber);
+            else
+                item.SetActive(true);
         }
+    }
 
 
+    void SetQuest()
+    {
+        EnableorDisableQuests();
+
+        //NOMAD_QUESTS (1-15) FERRARUIM_QUESTS (16-30) FROOTS_QUESTS (31-45) MIMAX_QUESTS (46-60)
+        SetQuestforRace("NomadQuestNode", 1, 6);
+        SetQuestforRace("FerrariumQuestNode", 16, 21);
+        /*
+        SetQuestforRace("FrootsQuestNode", 31, 36);
+        SetQuestforRace("MimaxQuestNode", 46, 51);
+        */
+    }
+
+    void SetQuestforRace(string RaceName, int min, int max)
+    {
+        QuestNodes = GameObject.FindGameObjectsWithTag(RaceName);
+        
+        foreach (GameObject item in QuestNodes)
+        {
+        Repeat:
+            RandomNumberPulled = Random.Range(min, max);
+
+            foreach (GameObject node in QuestNodes)
+            {
+                if (node.GetComponent<QuestNodes>().QuestNumber == RandomNumberPulled)
+
+                    goto Repeat;
+
+
+            }
+            item.GetComponent<QuestNodes>().QuestNumber = RandomNumberPulled;
+
+        }
     }
 }
