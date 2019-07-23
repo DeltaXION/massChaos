@@ -95,14 +95,14 @@ public class QuestList : MonoBehaviour
             QuestText = "The Nomads are looking for a fighter to help them with a dungeon.";
 
             Prestige_Nomads = 5;
-            Quest_Time = 8;
+            Quest_Time = 4;
             
 
             if(NPCDataList.GetComponent<TestNPCList>().Race == "Nomad")
             {
                 AdditionalQuestText = "The Nomad valiantly springs forth from the crowd to answer the call of Cleansing.";
                 Prestige_Nomads = 15;
-                Quest_Time = 5;
+                Quest_Time = 2;
                 LootReward_Wood = 10;
                 
 
@@ -116,7 +116,7 @@ public class QuestList : MonoBehaviour
             QuestText = "Iron is scarce and the Nomads can't quell evil and death without weapons of destruction. They're asking for an Engineer";
             Prestige_Nomads = 5;
 
-            Quest_Time = 8;
+            Quest_Time = 4;
             LootReward_Gold = 10;
         }
 
@@ -125,8 +125,8 @@ public class QuestList : MonoBehaviour
             QuestText = "Deep in the mountainside are great deposits of iron. Help the Nomads claim this bounty.";
             Prestige_Nomads = 5;
 
-            Quest_Time = 8;
-            LootReward_Wood = 10;
+            Quest_Time = 4;
+            LootReward_Gold = 10;
         }
 
         if (Questnumber == 4)
@@ -134,7 +134,7 @@ public class QuestList : MonoBehaviour
             QuestText = "A curse has befallen a Nomad hut. They begrudgingly request assistance from a mage.";
             Prestige_Nomads = 5;
 
-            Quest_Time = 8;
+            Quest_Time = 4;
             LootReward_Gold = 10;
         }
 
@@ -143,8 +143,8 @@ public class QuestList : MonoBehaviour
             QuestText = "Iron mining has reduced an entire forest to dirt. The Nomads are looking for help on the matter.";
             Prestige_Nomads = 5;
 
-            Quest_Time = 8;
-            LootReward_Food = 10;
+            Quest_Time = 4;
+            LootReward_Gold = 10;
         }
 
         if (Questnumber == 6)
@@ -152,7 +152,7 @@ public class QuestList : MonoBehaviour
             QuestText = "This is the Quest you must read.";
             Prestige_Nomads = 5;
 
-            Quest_Time = 8;
+            Quest_Time = 4;
             LootReward_Iron = 10;
         }
 
@@ -165,7 +165,7 @@ public class QuestList : MonoBehaviour
             QuestText = "This is the Quest you must read.";
             Prestige_Ferrarium = 5;
 
-            Quest_Time = 8;
+            Quest_Time = 4;
             LootReward_Wood = 10;
         }
         if (Questnumber == 17)
@@ -173,31 +173,31 @@ public class QuestList : MonoBehaviour
             QuestText = "This is the Quest you must read.";
             Prestige_Ferrarium = 5;
 
-            Quest_Time = 8;
-            LootReward_Food = 10;
+            Quest_Time = 4;
+            LootReward_Gold = 10;
         }
         if (Questnumber == 18)
         {
             QuestText = "This is the Quest you must read.";
             Prestige_Ferrarium = 5;
 
-            Quest_Time = 8;
-            LootReward_Iron = 10;
+            Quest_Time = 4;
+            LootReward_Gold = 10;
         }
         if (Questnumber == 19)
         {
             QuestText = "This is the Quest you must read.";
             Prestige_Ferrarium = 5;
 
-            Quest_Time = 8;
-            LootReward_Food = 10;
+            Quest_Time = 4;
+            LootReward_Gold = 10;
         }
         if (Questnumber == 20)
         {
             QuestText = "This is the Quest you must read.";
             Prestige_Ferrarium = 5;
 
-            Quest_Time = 8;
+            Quest_Time = 4;
             LootReward_Wood = 10;
         }
         if (Questnumber == 21)
@@ -205,7 +205,7 @@ public class QuestList : MonoBehaviour
             QuestText = "This is the Quest you must read.";
             Prestige_Ferrarium = 5;
 
-            Quest_Time = 8;
+            Quest_Time = 4;
             LootReward_Gold = 10;
         }
     }

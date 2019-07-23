@@ -88,9 +88,12 @@ public class QuestNodes : MonoBehaviour
             PopupNotification.SetActive(true);
 
             GameObject.Find("PopupText").GetComponent<Text>().text = GameObject.Find("QuestList").GetComponent<QuestList>().ListofRewards;
+            GameObject.Find("QuestList").GetComponent<QuestList>().SubmitQuestRewards();
 
             QuestisActive = false;
             QuestisDone = false;
+
+            Debug.Log("Gold amount for the quest is " + GameObject.Find("QuestList").GetComponent<QuestList>().LootReward_Gold);
             gameObject.SetActive(false);
         }
 
