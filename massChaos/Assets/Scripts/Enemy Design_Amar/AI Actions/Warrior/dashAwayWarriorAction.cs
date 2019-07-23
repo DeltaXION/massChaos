@@ -2,18 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class dashAwayAction : GOAPAction
+public class dashAwayWarriorAction : GOAPAction
 {
     private bool dashedAway = false;
     public int dashMultiplier = 100;
+    bool dashSuccessful;
+    bool dashPossible;
+
     public int staminaCost = 2;
     bool wayPointCreated = false;
     GameObject dashAwayPoint;
 
 
-    public dashAwayAction()
+    public dashAwayWarriorAction()
     {
-        
+
         addPrecondition("playerInVision", true);
         addPrecondition("playerInCombatZone", true);
         //Dash away when you're low on stamina
@@ -21,10 +24,10 @@ public class dashAwayAction : GOAPAction
         //Ive set effect of damagePlayer to true to show its beneficial to the goal
         addEffect("damagePlayer", true);
         //TODO- change cost based on health of enemy
-        cost = 1f;      
+        cost = 1f;
 
-        
-        
+
+
     }
     public override void reset()
     {
@@ -50,25 +53,39 @@ public class dashAwayAction : GOAPAction
         //Create a hidden target behind the enemy in the direction of the player and have him move to that.
 
         GameObject player = GameObject.FindGameObjectWithTag("Player");
-        
 
+        //Creating a raycast to track colliders, opposite to direction of player
+        //THIS NEEDS A LAYER CALLED ENEMIES TO PUT THE ENEMIES ON.
+        int layerMask = ~(1 << LayerMask.NameToLayer("enemy"));
         Vector3 directionVector = Vector3.Normalize(player.transform.position - transform.position);
+        RaycastHit2D rayCastToPlayer = Physics2D.Raycast(transform.position, directionVector * -1, currentEnemy.dashDistance, layerMask);
+        //check if raycast touched any colliders in dash away range,it wont be possible if there are obstructions
+        if (rayCastToPlayer.collider == null)
+        {
+            dashPossible = true;
+        }
+        else
+        {
+            dashPossible = false;
+
+        }
+
         if (!wayPointCreated)
         {
-            
+
             dashAwayPoint = new GameObject();
             dashAwayPoint.name = "Dash Away";
             wayPointCreated = true;
         }
         //1 is dash time, we can change this
-       
-        dashAwayPoint.transform.position = transform.position + directionVector * - currentEnemy.dashDistance ;
+
+        dashAwayPoint.transform.position = transform.position + directionVector * -currentEnemy.dashDistance;
         target = dashAwayPoint;
-       
-        
-        
+
+
+
         //Will dash  only if stamina
-        if(currentEnemy.stamina >= staminaCost)
+        if (currentEnemy.stamina >= staminaCost && dashPossible)
         {
             return true;
         }
@@ -77,24 +94,30 @@ public class dashAwayAction : GOAPAction
             return false;
 
         }
-      
+
     }
 
     //run code that corresponds to performing the action. Returns true if performed successfully
     public override bool perform(GameObject agent)
-    
+
     {
         Destroy(dashAwayPoint);
         wayPointCreated = false;
         Warrior currentEnemy = agent.GetComponent<Warrior>();
-        //currentEnemy.GetComponent<Rigidbody2D>().MovePosition(transform.position + Vector3.Normalize(target.transform.position - transform.position) * 2 * currentEnemy.movementSpeed * Time.deltaTime*-1);
-        //currentEnemy.GetComponent<Rigidbody2D>().AddForce(Vector3.Normalize(target.transform.position - transform.position) * currentEnemy.movementSpeed * dashMultiplier *-1 );
 
-        currentEnemy.stamina -=  staminaCost;
+        currentEnemy.stamina -= staminaCost;
         Debug.Log("dashed away");
         //Play dash animation;
         dashedAway = true;
-        return dashedAway;
+        if (currentEnemy.bottomIsEmpty == false || currentEnemy.topIsEmpty == false || currentEnemy.rightIsEmpty == false || currentEnemy.leftIsEmpty == false)
+        {
+            dashSuccessful = false;
+        }
+        else
+        {
+            dashSuccessful = true;
+        }
+        return dashSuccessful;
     }
 
 }

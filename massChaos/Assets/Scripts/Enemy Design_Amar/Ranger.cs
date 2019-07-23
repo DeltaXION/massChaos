@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class Warrior : EnemyBaseClass
+public class Ranger : EnemyBaseClass
 {
+    public GameObject rangeWeapon;
+    public int arrowForce = 20;
+    public float arrowRange = 5;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,10 +25,15 @@ public class Warrior : EnemyBaseClass
        
     }
 
-
+    
     public override void attackPlayer()
     {
-        Debug.Log("sword attack player");
+        
+        player = GameObject.FindGameObjectWithTag("Player");
+        
+        GameObject arrow = Instantiate(rangeWeapon, transform.position, Quaternion.identity);
+        rangedWeaponBehavior currentArrow = arrow.GetComponent<rangedWeaponBehavior>();
+        currentArrow.setTarget(arrowForce, player.transform.position, arrowRange);
     }
     public override void staminaRegen()
     {
