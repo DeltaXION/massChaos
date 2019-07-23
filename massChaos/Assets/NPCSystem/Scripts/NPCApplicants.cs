@@ -1,10 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-<<<<<<< HEAD
-=======
+
 using System;
->>>>>>> 1dc80758be172dd3efeb56761c7acdb97f37a723
+
 using UnityEngine.UI;
 
 public class NPCApplicants : MonoBehaviour
@@ -17,13 +16,10 @@ public class NPCApplicants : MonoBehaviour
 
     void Start()
     {
-<<<<<<< HEAD
-        addFollower("Broom", "N", 'w', "gun");
-        addFollower("Groom", "Fr", 'm', "sword");
-=======
+
         addFollower("Broom", "N", '-', "-", "-", "-");
         addFollower("Groom", "Fr", '-', "-", "-", "-"); 
->>>>>>> 1dc80758be172dd3efeb56761c7acdb97f37a723
+
 
         foreach (var o in applicants)
         {
@@ -55,13 +51,6 @@ public class NPCApplicants : MonoBehaviour
                     break;
             }
 
-<<<<<<< HEAD
-
-
-             go.transform.Find("type").GetComponent<Text>().text = type;
-            //go.transform.Find("foodIntake").GetComponent<Text>().text = o.FoodIntake.ToString();
-        }
-=======
              go.transform.Find("type").GetComponent<Text>().text = type;
             //go.transform.Find("foodIntake").GetComponent<Text>().text = o.FoodIntake.ToString();
         }
@@ -71,7 +60,7 @@ public class NPCApplicants : MonoBehaviour
     public void onMenuItemClicked() {
         Debug.Log("Clicked");
 
->>>>>>> 1dc80758be172dd3efeb56761c7acdb97f37a723
+
     }
 
     // Update is called once per frame
@@ -80,16 +69,11 @@ public class NPCApplicants : MonoBehaviour
         
     }
 
-<<<<<<< HEAD
-    public void addFollower(string name, string type, char classType, string secItem)
-    {
-        id++;
-        applicants.Add(new BaseCharachteristics(id, name, type, classType, secItem));
-=======
+
     public void addFollower(string name, string type, char classType, string secItem, string priItem, string status)
     {
         id++;
         applicants.Add(new BaseCharachteristics(id, name, type, classType, secItem, priItem, status));
->>>>>>> 1dc80758be172dd3efeb56761c7acdb97f37a723
+
     }
 }

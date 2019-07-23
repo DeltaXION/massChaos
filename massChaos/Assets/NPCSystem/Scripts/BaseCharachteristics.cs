@@ -8,20 +8,8 @@ public class BaseCharachteristics
     //public List<FerrariumData> Ferrarium;
     public int id;
     public string name;
-    public string type;
-<<<<<<< HEAD
-    public char classType; //dummy for quest team
-    public string secItem; //dummy for quest team
-
-
-    public BaseCharachteristics(int id, string  name, string type, char classType, string secItem) {
-      this.id = id;
-      this.name = name;
-      this.type = type;
-       this.classType = classType;
-        this.secItem = secItem;
-=======
-    public char classType;
+    public string type; //faction
+    public char classType; //class
     public string secItem;
     public string priItem;
     public string status;
@@ -34,7 +22,6 @@ public class BaseCharachteristics
       this.secItem = secItem;
       this.priItem = priItem;
       this.status = status;
->>>>>>> 1dc80758be172dd3efeb56761c7acdb97f37a723
     }
 
     public string Name
@@ -67,8 +54,6 @@ public class BaseCharachteristics
         set { secItem = value; }
     }
 
-<<<<<<< HEAD
-=======
     public string PriItem
     {
         get { return priItem; }
@@ -81,7 +66,6 @@ public class BaseCharachteristics
         set { status = value; }
     }
 
->>>>>>> 1dc80758be172dd3efeb56761c7acdb97f37a723
 
 }   
 
