@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1206270187808451048}
   - component: {fileID: 1206270187808451055}
   - component: {fileID: 1206270187808451054}
+  - component: {fileID: 8191442394763665739}
   m_Layer: 0
   m_Name: dungeon_gold_drop
   m_TagString: DungeonGold
@@ -96,3 +97,15 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.34375
+--- !u!114 &8191442394763665739
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1206270187808451052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cf0c7e5d90af4b41a5354480ae67b2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

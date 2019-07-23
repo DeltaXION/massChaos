@@ -9,6 +9,8 @@ public class BB_BasicControls : MonoBehaviour
     private Rigidbody2D myRigidbody;
     private Animator animator;
 
+    bool stopMovement;
+
     public Vector2 MaxPlayerBoundary, MinPlayerBoundary;
     private Vector2 TargetPosition, TargetPositionClick, temp;
 
@@ -30,11 +32,20 @@ public class BB_BasicControls : MonoBehaviour
 
     private void MoveTowardsCursorClickPosition()
     {
+        
         // Get Cursor Position
        if (Input.GetMouseButtonDown(0))
        {
-           TargetPositionClick = Camera.main.ScreenToWorldPoint(Input.mousePosition); 
+           TargetPositionClick = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+           stopMovement = false;
        }
+
+       // Stop Movement Bug (HUMPING)
+       if (stopMovement == true)
+       {
+           return;
+       }
+
 
        // Move towards Cursor
         myRigidbody.transform.position = Vector2.MoveTowards(transform.position, TargetPositionClick, speed * Time.deltaTime);
@@ -47,9 +58,12 @@ public class BB_BasicControls : MonoBehaviour
         
     }
 
- 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        stopMovement = true;
+    }
 
-    
+
 
 
 }
