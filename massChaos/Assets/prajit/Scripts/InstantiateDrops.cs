@@ -28,7 +28,7 @@
 
         public void dropGold(int enemyType, int enemyLevel,float enemyLocationX,float enemyLocationY)                               //drops gold based on enemy type and its level(basically dungeon runs). you need to pass
         {                                                                                                                           //enemy type, enemy level amd player location(x,y)
-            float n = 0;
+            float n = 1;
             for (int i = 0; i < enemyType; i++)
             {
                 for (int j = 0; j < enemyLevel; j++)
