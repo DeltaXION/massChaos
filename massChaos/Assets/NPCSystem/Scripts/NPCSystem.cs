@@ -10,6 +10,7 @@ public class NPCSystem : MonoBehaviour
     public static int id = 0;
     public static List<BaseCharachteristics> followers = new List<BaseCharachteristics>();
     BaseCharachteristics b;
+<<<<<<< HEAD
 
 
     public float totalHappiness;
@@ -27,6 +28,25 @@ public class NPCSystem : MonoBehaviour
         setHappinessIndex();
         addFollower("Broom",  "N", 'w', "gun");
         addFollower("Groom", "Fr", 'm', "sword");
+=======
+
+
+    public float totalHappiness;
+    public double totalNomads;
+    public double totalFerrarium;
+    public double totalFroots;
+    public double totalMimax;
+    public int baseCapacity;
+    public int numberOfNpcs;
+    // Start is called before the first frame update
+        
+
+    void Start()
+    {
+        setHappinessIndex();
+        addFollower("Broom",  "N", 'w', "gun", "sword", "idle");
+        addFollower("Groom", "Fr", 'm', "sword", "bazooka", "idle");
+>>>>>>> 1dc80758be172dd3efeb56761c7acdb97f37a723
         setPrestige();
         can.SetActive(false);
         AppplicantsCalculation();
@@ -38,7 +58,7 @@ public class NPCSystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+      
     }
 
     void Applications() {
@@ -68,9 +88,15 @@ public class NPCSystem : MonoBehaviour
         Mimax.happinessIndex = 17;
     }
 
+<<<<<<< HEAD
     public void addFollower( string name, string type, char classType, string secItem) {
         id++;
         followers.Add(new BaseCharachteristics(id, name, type, classType, secItem));
+=======
+    public void addFollower( string name, string type, char classType, string secItem, string priItem, string status) {
+        id++;
+        followers.Add(new BaseCharachteristics(id, name, type, classType, secItem, priItem, status));
+>>>>>>> 1dc80758be172dd3efeb56761c7acdb97f37a723
     }
 
     public void updateFollower()
@@ -146,4 +172,12 @@ public class NPCSystem : MonoBehaviour
         Debug.Log("totalMimax = " + totalMimax);
     }
 
+<<<<<<< HEAD
+=======
+    public void ApplicantSelect() {
+        Debug.Log("Cliccked");
+
+    }
+
+>>>>>>> 1dc80758be172dd3efeb56761c7acdb97f37a723
 }

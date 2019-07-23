@@ -6,11 +6,16 @@ public class dashAwayAction : GOAPAction
 {
     private bool dashedAway = false;
     public int dashMultiplier = 100;
-    public int staminaCost = 3;
-    
+    public int staminaCost = 2;
+    bool wayPointCreated = false;
+    GameObject dashAwayPoint;
+
+
     public dashAwayAction()
     {
-        addPrecondition("playerNotInRange", false);
+        
+        addPrecondition("playerInVision", true);
+        addPrecondition("playerInCombatZone", true);
         //Dash away when you're low on stamina
         addPrecondition("lowStamina", true);
         //Ive set effect of damagePlayer to true to show its beneficial to the goal
@@ -35,25 +40,42 @@ public class dashAwayAction : GOAPAction
 
     public override bool requiresInRange()
     {
-        return false;
+        return true;
     }
 
     public override bool checkProceduralPrecondition(GameObject agent)
     {
-        // Currently target is automatically set to Player, this will be made dynamic later, with "Player" set first and then it changes to whoever has caused it most damage.
-
-        target = GameObject.FindGameObjectWithTag("Player");
-       
         Warrior currentEnemy = agent.GetComponent<Warrior>();
+        // Currently target is automatically set to Player, this will be made dynamic later, with "Player" set first and then it changes to whoever has caused it most damage.
+        //Create a hidden target behind the enemy in the direction of the player and have him move to that.
 
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        
+
+        Vector3 directionVector = Vector3.Normalize(player.transform.position - transform.position);
+        if (!wayPointCreated)
+        {
+            
+            dashAwayPoint = new GameObject();
+            dashAwayPoint.name = "Dash Away";
+            wayPointCreated = true;
+        }
+        //1 is dash time, we can change this
+       
+        dashAwayPoint.transform.position = transform.position + directionVector * - currentEnemy.dashDistance ;
+        target = dashAwayPoint;
+       
+        
+        
         //Will dash  only if stamina
-        if(currentEnemy.stamina >staminaCost)
+        if(currentEnemy.stamina >= staminaCost)
         {
             return true;
         }
         else
         {
             return false;
+
         }
       
     }
@@ -62,8 +84,10 @@ public class dashAwayAction : GOAPAction
     public override bool perform(GameObject agent)
     
     {
+        Destroy(dashAwayPoint);
+        wayPointCreated = false;
         Warrior currentEnemy = agent.GetComponent<Warrior>();
-        currentEnemy.GetComponent<Rigidbody2D>().MovePosition(transform.position + Vector3.Normalize(target.transform.position - transform.position) * 2 * currentEnemy.movementSpeed * Time.deltaTime*-1);
+        //currentEnemy.GetComponent<Rigidbody2D>().MovePosition(transform.position + Vector3.Normalize(target.transform.position - transform.position) * 2 * currentEnemy.movementSpeed * Time.deltaTime*-1);
         //currentEnemy.GetComponent<Rigidbody2D>().AddForce(Vector3.Normalize(target.transform.position - transform.position) * currentEnemy.movementSpeed * dashMultiplier *-1 );
 
         currentEnemy.stamina -=  staminaCost;

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class trees : MonoBehaviour
+public class Trees : MonoBehaviour
 {
     public float fadeTIme;
     public bool displayInfo;

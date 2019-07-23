@@ -1,0 +1,605 @@
+fileFormatVersion: 2
+guid: 08dbfcd051c0841ae8b99f3486a36193
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -1505043286319350
+    second: OverworldForSlice copy_0
+  - first:
+      213: -5817991374929349815
+    second: OverworldForSlice copy_1
+  - first:
+      213: 193860841035914221
+    second: OverworldForSlice copy_2
+  - first:
+      213: 7551486397374442476
+    second: OverworldForSlice copy_3
+  - first:
+      213: 7173295738597056041
+    second: OverworldForSlice copy_4
+  - first:
+      213: -5438602601173846192
+    second: OverworldForSlice copy_5
+  - first:
+      213: -3604612443809775678
+    second: OverworldForSlice copy_6
+  - first:
+      213: -247308201024641069
+    second: OverworldForSlice copy_7
+  - first:
+      213: 6411769827722632890
+    second: OverworldForSlice copy_8
+  - first:
+      213: 2057613855512289957
+    second: OverworldForSlice copy_9
+  - first:
+      213: -4936264748297786040
+    second: OverworldForSlice copy_10
+  - first:
+      213: -4103646729676993194
+    second: OverworldForSlice copy_11
+  - first:
+      213: -1493810159239341671
+    second: OverworldForSlice copy_12
+  - first:
+      213: 8352360305639005527
+    second: OverworldForSlice copy_13
+  - first:
+      213: 1636682365695698633
+    second: OverworldForSlice copy_14
+  - first:
+      213: 3231206538597522453
+    second: OverworldForSlice copy_15
+  - first:
+      213: 5244292464835470093
+    second: OverworldForSlice copy_16
+  - first:
+      213: 7870256689487559958
+    second: OverworldForSlice copy_17
+  - first:
+      213: 4777134664179351476
+    second: OverworldForSlice copy_18
+  - first:
+      213: -6054484062913886386
+    second: OverworldForSlice copy_19
+  - first:
+      213: -6474173421989708601
+    second: OverworldForSlice copy_20
+  externalObjects: {}
+  serializedVersion: 10
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 2
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: OverworldForSlice copy_0
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 490
+        width: 74
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 36ff7479887644b9d9e8f2ddd3eedc73
+      internalID: -1505043286319350
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OverworldForSlice copy_1
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 490
+        width: 74
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c31a04aaa4e694e049b7d5f7b4c61921
+      internalID: -5817991374929349815
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OverworldForSlice copy_2
+      rect:
+        serializedVersion: 2
+        x: 202
+        y: 490
+        width: 74
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cdd4412e3660b400b93d3e076b1249ea
+      internalID: 193860841035914221
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OverworldForSlice copy_3
+      rect:
+        serializedVersion: 2
+        x: 293
+        y: 490
+        width: 74
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0a5211cc9790d4f8c9c5e8a42f80678a
+      internalID: 7551486397374442476
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OverworldForSlice copy_4
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 490
+        width: 74
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c1d6a6b85c14046cabc0455e9f4e8ebb
+      internalID: 7173295738597056041
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OverworldForSlice copy_5
+      rect:
+        serializedVersion: 2
+        x: 479
+        y: 489
+        width: 74
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 50f294cb97add4157a93829d16be7c94
+      internalID: -5438602601173846192
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OverworldForSlice copy_6
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 339
+        width: 74
+        height: 115
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 42af954ca69094df7827ea894fa7b33d
+      internalID: -3604612443809775678
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OverworldForSlice copy_7
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 339
+        width: 74
+        height: 115
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: abcf437358ce649d8b656a462b2fdaec
+      internalID: -247308201024641069
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OverworldForSlice copy_8
+      rect:
+        serializedVersion: 2
+        x: 202
+        y: 339
+        width: 74
+        height: 115
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8024d1c71bf314aa3b2b37aee3d5a010
+      internalID: 6411769827722632890
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OverworldForSlice copy_9
+      rect:
+        serializedVersion: 2
+        x: 293
+        y: 339
+        width: 74
+        height: 115
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aec091fd2e9d6470eac52f258cf18ca2
+      internalID: 2057613855512289957
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OverworldForSlice copy_10
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 339
+        width: 74
+        height: 115
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2ab2d51d40065427f92eba86af512f03
+      internalID: -4936264748297786040
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OverworldForSlice copy_11
+      rect:
+        serializedVersion: 2
+        x: 483
+        y: 334
+        width: 49
+        height: 118
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 793a6f6abcfeb45e4a624f05994bfafa
+      internalID: -4103646729676993194
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OverworldForSlice copy_12
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 154
+        width: 74
+        height: 158
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4398d095118fc4503ac96c561c1ef778
+      internalID: -1493810159239341671
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OverworldForSlice copy_13
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 154
+        width: 74
+        height: 158
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2eb592c867bbe495aa6c911fab9e4050
+      internalID: 8352360305639005527
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OverworldForSlice copy_14
+      rect:
+        serializedVersion: 2
+        x: 202
+        y: 154
+        width: 74
+        height: 158
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5bb37cc49f4cd4c6a9def2e5ef1f7366
+      internalID: 1636682365695698633
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OverworldForSlice copy_15
+      rect:
+        serializedVersion: 2
+        x: 293
+        y: 154
+        width: 74
+        height: 158
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bd9150274f3f946f4b7992e8d30873bf
+      internalID: 3231206538597522453
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OverworldForSlice copy_16
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 154
+        width: 74
+        height: 158
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c35d9e9ffd4c5448f810d14f0103b393
+      internalID: 5244292464835470093
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OverworldForSlice copy_17
+      rect:
+        serializedVersion: 2
+        x: 23
+        y: 21
+        width: 68
+        height: 97
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7f4cd35480dfc4df3b32a597d7a3ae90
+      internalID: 7870256689487559958
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OverworldForSlice copy_18
+      rect:
+        serializedVersion: 2
+        x: 141
+        y: 35
+        width: 48
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 401947e2399344ea3929c91d64ffb798
+      internalID: 4777134664179351476
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OverworldForSlice copy_19
+      rect:
+        serializedVersion: 2
+        x: 227
+        y: 35
+        width: 48
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b1b6435a807ed40259afcf55b0443222
+      internalID: -6054484062913886386
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OverworldForSlice copy_20
+      rect:
+        serializedVersion: 2
+        x: 312
+        y: 32
+        width: 48
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 573c742e8129e44b084f8892731ed45b
+      internalID: -6474173421989708601
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: d036907ba5669431f8e7ce9a9cc37ef9
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

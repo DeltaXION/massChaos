@@ -9,6 +9,7 @@ public class BaseCharachteristics
     public int id;
     public string name;
     public string type;
+<<<<<<< HEAD
     public char classType; //dummy for quest team
     public string secItem; //dummy for quest team
 
@@ -19,8 +20,22 @@ public class BaseCharachteristics
       this.type = type;
        this.classType = classType;
         this.secItem = secItem;
+=======
+    public char classType;
+    public string secItem;
+    public string priItem;
+    public string status;
+     
+    public BaseCharachteristics(int id, string  name, string type, char classType, string secItem, string priItem, string status) {
+      this.id = id;
+      this.name = name;
+      this.type = type;
+      this.classType = classType;
+      this.secItem = secItem;
+      this.priItem = priItem;
+      this.status = status;
+>>>>>>> 1dc80758be172dd3efeb56761c7acdb97f37a723
     }
-
 
     public string Name
     {
@@ -52,6 +67,21 @@ public class BaseCharachteristics
         set { secItem = value; }
     }
 
+<<<<<<< HEAD
+=======
+    public string PriItem
+    {
+        get { return priItem; }
+        set { priItem = value; }
+    }
+
+    public string Status
+    {
+        get { return status; }
+        set { status = value; }
+    }
+
+>>>>>>> 1dc80758be172dd3efeb56761c7acdb97f37a723
 
 }   
 

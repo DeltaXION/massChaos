@@ -10,11 +10,13 @@ public abstract class EnemyBaseClass : MonoBehaviour, IGOAP
     //declaring variables common to all enemies;
     //minimum distance between enemy and other things
     public float minimumDistanceToInteract;
+    //defining an combat radius
+    CircleCollider2D combatRadiusCollider;
     public float health;
     public float maxStamina = 5;
-    float rangeOfVisibility;
     float attackSpeed;
     float attackDamage;
+    public float dashDistance = 2;
     public float movementSpeed;
     public float poise;
     float poiseRegenRate;
@@ -30,8 +32,9 @@ public abstract class EnemyBaseClass : MonoBehaviour, IGOAP
     //Booleans for procedural preconditons (AI)
     public bool hitStunned = false;
     //Booleans for worldstate
-    bool playerNotInRange = true;
-    bool playerSpotted = false;
+    bool playerInVision = true;
+    bool playerInCombatZone = false;
+    bool lowStamina = false;
     //Colliders and booleans for feeling walls
     public enemySurroundingSensor topSensor;
     public bool topIsEmpty;
@@ -41,7 +44,12 @@ public abstract class EnemyBaseClass : MonoBehaviour, IGOAP
     public bool bottomIsEmpty;
     public enemySurroundingSensor leftSensor;
     public bool leftIsEmpty;
+    bool inCombat = false;
     bool playerDeath = false;
+    bool patrol;
+    bool regeneratingStamina = false;
+    public coneOfVision enemySight;
+    public combatZone combatZone;
 
     void Start()
     {
@@ -56,13 +64,32 @@ public abstract class EnemyBaseClass : MonoBehaviour, IGOAP
     {
 
     }
-   
-    public void createWallCollisionTriggers()
+
+
+    public void takeDamage(float damage)
+    {
+        health -= damage;
+        Debug.Log("enemy hurt by " + damage + " points");
+    }
+
+    public void enemyDeath()
+    {
+        if(health <=0)
+        {
+            //call drop loot function
+            Destroy(gameObject);
+        }
+    }
+
+    public void createCollisionTriggers()
     {
         //Create collision boxes proportional to enemy size
         
         Vector3 enemySize = GetComponent<Renderer>().bounds.size ;
-        
+        //Create an attack radius around enemy, value being hardcoded for the timebeing.
+        combatRadiusCollider =  combatZone.gameObject.AddComponent<CircleCollider2D>();
+        combatRadiusCollider.radius = 1.5f;
+        combatRadiusCollider.isTrigger = true;
         //Create colliders on all four sides to surround enemy
         
         BoxCollider2D rightCollider = rightSensor.gameObject.AddComponent<BoxCollider2D>();
@@ -93,14 +120,21 @@ public abstract class EnemyBaseClass : MonoBehaviour, IGOAP
         //replace getPlayerHealth with value from combat system player controller
         
         HashSet<KeyValuePair<string, object>> worldData = new HashSet<KeyValuePair<string, object>>();
-        worldData.Add(new KeyValuePair<string, object>("playerNotInRange", playerNotInRange));
-        worldData.Add(new KeyValuePair<string, object>("playerSpotted", playerSpotted));
+        //sensing Combat
+        worldData.Add(new KeyValuePair<string, object>("playerInVision", playerInVision));
+        worldData.Add(new KeyValuePair<string, object>("playerInCombatZone", playerInCombatZone));
+        worldData.Add(new KeyValuePair<string, object>("lowStamina", lowStamina));
+        //sensing world
         worldData.Add(new KeyValuePair<string, object>("leftEmpty", leftIsEmpty));
         worldData.Add(new KeyValuePair<string, object>("rightEmpty", rightIsEmpty));
         worldData.Add(new KeyValuePair<string, object>("topEmpty", topIsEmpty));
         worldData.Add(new KeyValuePair<string, object>("bottomEmpty", bottomIsEmpty));
-        worldData.Add(new KeyValuePair<string, object>("lowStamina", stamina < 3));
-        worldData.Add(new KeyValuePair<string, object>("damagePlayer", playerDeath )); //TODO change false to a boolean based on playerHealth
+        //sensing goals
+        worldData.Add(new KeyValuePair<string, object>("damagePlayer", playerDeath));
+        worldData.Add(new KeyValuePair<string, object>("patrol", patrol));
+        //Goal switch variables, turning this to false makes that goal impossible
+        worldData.Add(new KeyValuePair<string, object>("inCombat", inCombat));
+
 
         return worldData;
     }
@@ -121,6 +155,7 @@ public abstract class EnemyBaseClass : MonoBehaviour, IGOAP
     }
 
 
+
     public abstract void staminaRegen();
     
     public void actionsFinished()
@@ -134,9 +169,55 @@ public abstract class EnemyBaseClass : MonoBehaviour, IGOAP
 
     }
 
+    void rotateVision(GameObject player)
+    {
+        /*
+        Vector2 startingNormal = new Vector2(0, -1);
+        Vector2 currentDirection = GetComponent<Rigidbody2D>().velocity.normalized;
+        Debug.Log(GetComponent<Rigidbody2D>().velocity);
+        float angle = Vector2.SignedAngle(startingNormal, currentDirection);
+        enemySight.transform.Rotate(Vector3.up, angle);
+        */
+        Quaternion sightRotation = Quaternion.LookRotation(player.transform.position - transform.position, Vector3.up);
+        sightRotation.x = 0;
+        sightRotation.y = 0;
+        //sightRotation.z = -sightRotation.z;
+        
+        //enemySight.transform.rotation = sightRotation;
+        enemySight.transform.up = transform.position - player.transform.position ;
+        
+    }
+
+
+
+    public void animateAccordingToAngle()
+    {
+
+        float lookingAngle = enemySight.transform.eulerAngles.z;
+       
+       
+        if(lookingAngle >45 && lookingAngle <135 )
+        {
+           // Debug.Log("Facing Right");
+        }
+        else if(lookingAngle >135 && lookingAngle <225 )
+        {
+            // Debug.Log("Facing Up");
+            
+        }
+        else if(lookingAngle >225 && lookingAngle <315)
+        {
+           // Debug.Log("Facing Left");
+        } else
+        {
+            //Debug.Log("Facing down");
+        }
+        
+    }
     //gradually move the enemy towards the target location. (eg. for attack player, target will be player)
     public  bool moveAgent(GOAPAction nextAction)
     {
+
         
         
         float step = movementSpeed * Time.deltaTime;
@@ -160,6 +241,7 @@ public abstract class EnemyBaseClass : MonoBehaviour, IGOAP
     //updates variables that are required for AI to take a call on action
     public void updateTheWorldStateForAI()
     {
+        
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         getPlayerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<playerTest>();
         
@@ -172,20 +254,46 @@ public abstract class EnemyBaseClass : MonoBehaviour, IGOAP
             playerDeath = false;
         }
 
-        //set playerInRange 
-        if(Vector3.Distance(transform.position,player.transform.position) <= minimumDistanceToInteract*2)
+        //set player in vision and playerin combatzone
+        playerInVision = enemySight.returnPlayerSpotted();
+        playerInCombatZone = combatZone.returnCombatZone();
+        
+        if(playerInVision)
         {
-            playerNotInRange = false;
-        } else
-        {
-            playerNotInRange = true;
+            rotateVision(player);
         }
         //playerSpotted true or false based on collision with trigger
         //playerSpotted can also be triggered when another enemy calls for help
 
+        //adding stamina Regen Code
+        float staminaRegenTime = 1f;
+        if(stamina < maxStamina)
+        {
+            if(!regeneratingStamina)
+            {
+                StartCoroutine(StaminaCountDown(0.1f));
+                regeneratingStamina = true;
+            }
+        }
+
+        //low stamina is set to true when it falls below attack staminas
+        if(stamina < 3)
+        {
+            lowStamina = true;
+        } else
+        {
+            lowStamina = false;
+        }
+
 
     }
 
+    public void takeDamage()
+    {
+
+        health -= 1;
+        Debug.Log("Got Hit");
+    }
     public void attackPlayer()
     {
         Debug.Log("attackPlayer:");
@@ -194,34 +302,38 @@ public abstract class EnemyBaseClass : MonoBehaviour, IGOAP
     //Sets playerSpotted to true if this enemy is in range of another enemy's cry for help
     public void enemyCallForHelp()
     {
-        playerSpotted = true;
+        
     }
-    //Checking colliders to update player spotted
-    public void OnTriggerEnter2D(Collider2D collision)
+
+    //Adding a patrolling code separately, not as a goal.
+    public void patrolArea()
     {
-        if(collision.gameObject.CompareTag("Player"))
-        {
-            
-            playerSpotted = true;
-            
-        }
-            
+        Vector2 leftInput = new Vector2 (-1, 0);
+        Vector2 rightInput = new Vector2(1, 0);
+        Vector3 topInput = new Vector2(0, 1);
+        Vector4 downInput = new Vector2(0, -1);
+        string[] patrolInstructions = { "left", "right" };
+
+
     }
 
-    public void OnTriggerExit2D(Collider2D collision)
+    //player COllisions
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        //Check if player ran from field of vision, if player is in field of vision, the enemy will be following them
-        if (collision.gameObject.CompareTag("Player"))
+        /*
+        if(collision.gameObject.CompareTag("hitbox_player_ss"))
         {
-            
-            playerSpotted = false;
+            takeDamage();
         }
-
-
+        */
     }
+
     //read values from sensors and update flags
     public void readSensorStatusAndUpdateFlags()
     {
+        //Updated animator
+        animateAccordingToAngle();
+
         GameObject topCollidedBody = topSensor.returnCollidedObject();
         GameObject bottomCollidedBody = bottomSensor.returnCollidedObject();
         GameObject rightCollidedBody = rightSensor.returnCollidedObject();
@@ -270,20 +382,28 @@ public abstract class EnemyBaseClass : MonoBehaviour, IGOAP
 
 
     // Update is called once per frame
-    void Update()
+    public virtual void Update()
     {
         
     }
 
     public void updateStamina()
     {
+        
         if (stamina <= maxStamina)
         {
-            Invoke("staminaRegen", 1f);
+            Invoke("staminaRegen",1f);
         }
         else
         {
             stamina = maxStamina;
         }
+    }
+    //A timer to trigger stamina Regen
+    private IEnumerator StaminaCountDown(float duration)
+    {   
+        yield return new WaitForSeconds(duration);
+        regeneratingStamina = false;
+        updateStamina();
     }
 }
