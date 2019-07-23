@@ -5,6 +5,8 @@ using UnityEngine.EventSystems;
 
 public class HouseDragHandler : MonoBehaviour, IDragHandler, IEndDragHandler {
 
+    public bool displayNPCassignList;
+
     Vector3 startPosition;
     public GameObject building;
     private GameObject linehandler;
@@ -60,11 +62,12 @@ public class HouseDragHandler : MonoBehaviour, IDragHandler, IEndDragHandler {
             linehandler.transform.position = mousepos;
             linehandler.SetActive(true);
 
+
             Debug.Log(houseBuilt);
         }
         transform.localPosition = startPosition;
 
-
+        displayNPCassignList = true;
 
 
 

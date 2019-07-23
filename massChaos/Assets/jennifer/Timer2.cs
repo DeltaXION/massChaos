@@ -7,8 +7,8 @@ public class Timer2 : MonoBehaviour
 {
     //public GameObject art;
     float button;
-    float calen;
-    float datees;
+    public float calen;
+    public float datees;
     
     public float Daymax ;
     public float Nightmax;
@@ -17,17 +17,17 @@ public class Timer2 : MonoBehaviour
     public GameObject DayText;
     public GameObject NightText;
     public GameObject date;
-   // public GameObject tim;
+  
    
-    public float seasonDays;
-    public float season;
+  //  public float seasonDays;
+  //  public float season;
     public GameObject seasonName;
     public float startDay;
-    public float travel;
+  //  public float travel;
     public float year;
     public float time;
     public bool inDungeon = false;
-    public float travelSkip;
+  //  public float travelSkip;
     public bool timerActive = false;
     public bool skipActive = false;
     public float displayDate;
@@ -53,11 +53,10 @@ public class Timer2 : MonoBehaviour
         NightText.SetActive(false);
         timeBar = GetComponent<Image>();
         dayTime = Daymax;
-     //   tim = GameObject.Find("time");
+    
         date = GameObject.Find("date");
-        // calen = 1;
-
-       // art = GameObject.Find("travel");
+       
+      
         Daymax = wholeDaySeconds / 2;
         Nightmax = wholeDaySeconds/2;
 
@@ -72,24 +71,7 @@ public class Timer2 : MonoBehaviour
     void Update()
     {
 
-      //  travel = art.GetComponent<travelToDungeon>().checkDungeonEntry;
-        /* if (travel == 1)
-         {
-             timerActive = false;
-             playButtonTxt.text = "Play";
-             Debug.Log("dungeon entered, time paused");
-             button = 1;
-             time += travelSkip;
-             date.GetComponent<Text>().text = "Day" + calen.ToString("F0");
-             playerSpeed = 0;
-
-         }
-         if (travel == 2)
-         {
-             timerActive = true;
-             playButtonTxt.text = "Pause";
-             button = 0;
-         }*/
+     
 
 
         if (timerActive)

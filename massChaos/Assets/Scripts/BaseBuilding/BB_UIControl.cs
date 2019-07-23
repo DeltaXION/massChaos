@@ -10,7 +10,7 @@ public class BB_UIControl : MonoBehaviour
     [SerializeField] GameObject Statbar;
     [SerializeField] GameObject AssignList;
 
-    ItemDragHandler itemDragHandler;
+    HouseDragHandler itemDragHandler;
 
     // Start is called before the first frame update
     void Start()
@@ -27,7 +27,7 @@ public class BB_UIControl : MonoBehaviour
 
     private void NPCAssignListEnable()
     {
-        itemDragHandler = FindObjectOfType<ItemDragHandler>();
+        itemDragHandler = FindObjectOfType<HouseDragHandler>();
 
         if (itemDragHandler.displayNPCassignList)
         {
