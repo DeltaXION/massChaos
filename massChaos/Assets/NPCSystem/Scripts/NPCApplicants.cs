@@ -1,7 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 using System;
+
 using UnityEngine.UI;
 
 public class NPCApplicants : MonoBehaviour
@@ -10,12 +12,15 @@ public class NPCApplicants : MonoBehaviour
     public GameObject ApplicantItems;
     static int id = 0;
     string type;
+    public GameObject can;
     public static List<BaseCharachteristics> applicants = new List<BaseCharachteristics>();
 
     void Start()
     {
-        addFollower("Broom", "N", '-', "-", "-", "-");
-        addFollower("Groom", "Fr", '-', "-", "-", "-"); 
+
+        addFollower("Kroos", "M", "", "", "", "");
+        addFollower("Froos", "Fo", "", "", "", ""); 
+
 
         foreach (var o in applicants)
         {
@@ -23,7 +28,8 @@ public class NPCApplicants : MonoBehaviour
             GameObject go = (GameObject)Instantiate(ApplicantItems);
             go.transform.SetParent(this.transform);
             go.transform.Find("name").GetComponent<Text>().text = o.Name;
-           
+            go.transform.Find("id").GetComponent<Text>().text = o.Id.ToString();
+
             switch (o.Type)
             {
                 case "N":                   
@@ -52,10 +58,43 @@ public class NPCApplicants : MonoBehaviour
         }
     }
 
+    public static BaseCharachteristics GetFollowerByID(int id)
+    {
+
+        BaseCharachteristics b = null;
+        foreach (var o in applicants)
+        {
+            if (o.id == id)
+            {
+                b = o;
+            }
+        }
+        return b;
+    }
+
 
     public void onMenuItemClicked() {
         Debug.Log("Clicked");
+        
+    }
 
+
+    public void onExitClick()
+    {
+        Debug.Log("mouse2");
+        GameObject[] entries = GameObject.FindGameObjectsWithTag("NPCEntry");
+        foreach (GameObject go in entries)
+        {
+            Destroy(go);
+        }
+        can.SetActive(false);
+    }
+
+
+    public static void removeFollower(int id)
+    {
+        int index = id - 1;
+        applicants.RemoveAt(index);
     }
 
     // Update is called once per frame
@@ -64,9 +103,11 @@ public class NPCApplicants : MonoBehaviour
         
     }
 
-    public void addFollower(string name, string type, char classType, string secItem, string priItem, string status)
+
+    public void addFollower(string name, string type, string classType, string secItem, string priItem, string status)
     {
         id++;
         applicants.Add(new BaseCharachteristics(id, name, type, classType, secItem, priItem, status));
+
     }
 }
