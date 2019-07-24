@@ -114,7 +114,7 @@ public class NPCSystem : MonoBehaviour
     public void OnMouseDown()
     {
         can.SetActive(true);
-        Debug.Log("mouse");
+       // Debug.Log("mouse");
         
         n = new NPCList();
         n.UpdateNPCList();
@@ -123,15 +123,18 @@ public class NPCSystem : MonoBehaviour
     }
 
     public void onExitClick() {
+
        
-       
-        Debug.Log("mouse2");
+        
+       // Debug.Log("mouse2");
         GameObject[] entries= GameObject.FindGameObjectsWithTag("NPCEntry");
         foreach (GameObject go in entries)
         {
             Destroy(go);
         }
+        can = GameObject.Find("NPCCanvas");
         can.SetActive(false);
+
     }
 
     public void classAssign() {
