@@ -73,8 +73,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 47421343
-  m_SortingLayer: 4
+  m_SortingLayerID: 384962111
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 7152930139536384079, guid: dfb76f98fe948a844ade923bfa118a30,
     type: 3}
@@ -180,7 +180,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3317225932930217105}
   - component: {fileID: 3317225932930217104}
-  - component: {fileID: 3317225932930217107}
+  - component: {fileID: 422677509431490843}
   m_Layer: 10
   m_Name: LeftHitBox
   m_TagString: Untagged
@@ -233,7 +233,7 @@ PolygonCollider2D:
       - {x: -0.9189064, y: -0.6055792}
       - {x: -0.42163378, y: -0.8699764}
       - {x: -0.0327788, y: -0.2902687}
---- !u!114 &3317225932930217107
+--- !u!114 &422677509431490843
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -242,7 +242,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3317225932930217118}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2fce2385625c9fb46ac075bfea660812, type: 3}
+  m_Script: {fileID: 11500000, guid: 44fd37bda226e8649a93abb75f71db46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &3317225933428949362
@@ -255,7 +255,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3317225933428949365}
   - component: {fileID: 3317225933428949364}
-  - component: {fileID: 3317225933428949367}
+  - component: {fileID: 6337208813639979463}
   m_Layer: 10
   m_Name: RightHitBox
   m_TagString: Untagged
@@ -307,7 +307,7 @@ PolygonCollider2D:
       - {x: 0.041344345, y: -0.32412636}
       - {x: 0.6545096, y: -0.89756995}
       - {x: 1.0378458, y: -0.19093233}
---- !u!114 &3317225933428949367
+--- !u!114 &6337208813639979463
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -316,7 +316,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3317225933428949362}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2fce2385625c9fb46ac075bfea660812, type: 3}
+  m_Script: {fileID: 11500000, guid: 44fd37bda226e8649a93abb75f71db46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &3317225933539196954
@@ -329,7 +329,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3317225933539196957}
   - component: {fileID: 3317225933539196956}
-  - component: {fileID: 3317225933539196959}
+  - component: {fileID: 6715930187322396457}
   m_Layer: 10
   m_Name: DownHitBox
   m_TagString: Untagged
@@ -381,7 +381,7 @@ PolygonCollider2D:
       - {x: -0.5877852, y: -0.9035882}
       - {x: 0.38409385, y: -1.1072799}
       - {x: 0.44182795, y: -0.36753026}
---- !u!114 &3317225933539196959
+--- !u!114 &6715930187322396457
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -390,7 +390,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3317225933539196954}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2fce2385625c9fb46ac075bfea660812, type: 3}
+  m_Script: {fileID: 11500000, guid: 44fd37bda226e8649a93abb75f71db46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &3317225934130567732
@@ -403,7 +403,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3317225934130567735}
   - component: {fileID: 3317225934130567734}
-  - component: {fileID: 3317225934130567753}
+  - component: {fileID: 7277461556524772383}
   m_Layer: 10
   m_Name: UpHitBox
   m_TagString: Untagged
@@ -455,7 +455,7 @@ PolygonCollider2D:
       - {x: 0.041344345, y: -0.32412636}
       - {x: 0.74280846, y: -0.2849961}
       - {x: 0.70228785, y: 0.6289698}
---- !u!114 &3317225934130567753
+--- !u!114 &7277461556524772383
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -464,6 +464,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 3317225934130567732}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2fce2385625c9fb46ac075bfea660812, type: 3}
+  m_Script: {fileID: 11500000, guid: 44fd37bda226e8649a93abb75f71db46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

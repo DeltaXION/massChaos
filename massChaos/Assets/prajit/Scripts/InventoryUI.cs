@@ -5,18 +5,29 @@ using UnityEngine;
 public class InventoryUI : MonoBehaviour {
 
 	public Transform itemsParent;	// The parent object of all the items
+
+    public Transform weaponsParent; //The parent object of all weapons
+
 	public GameObject inventoryUI;	// The entire UI
 
 	Inventory inventory;	// Our current inventory
 
+    WeaponInventory weaponInventory; // our weapon inventory
+
 	InventorySlot[] slots;	// List of all the slots
+
+    InventorySlot[] weaponSlots;  //list of weapon slotsa
 
 	void Start () {
 		inventory = Inventory.instance;
-		inventory.onItemChangedCallback += UpdateUI;	// Subscribe to the onItemChanged callback
+        weaponInventory = WeaponInventory.instance1;
+		inventory.onItemChangedCallback += UpdateUI;    // Subscribe to the onItemChanged callback
+        weaponInventory.onItemChangedCallback += updateWeaponsUI;	// Subscribe to the onItemChanged callback
 
 		// Populate our slots array
 		slots = itemsParent.GetComponentsInChildren<InventorySlot>();
+		weaponSlots = weaponsParent.GetComponentsInChildren<InventorySlot>();
+  
 	}
 	
 	void Update () {
@@ -46,4 +57,21 @@ public class InventoryUI : MonoBehaviour {
 			}
 		}
 	}
+
+    void updateWeaponsUI()
+    {
+        // Loop through all the slots
+        for (int i = 0; i < weaponSlots.Length; i++)
+        {
+            if (i < weaponInventory.items.Count)  // If there is an item to add
+            {
+                weaponSlots[i].AddItem(weaponInventory.items[i]);   // Add it
+            }
+            else
+            {
+                // Otherwise clear the slot
+                weaponSlots[i].ClearSlot();
+            }
+        }
+    }
 }

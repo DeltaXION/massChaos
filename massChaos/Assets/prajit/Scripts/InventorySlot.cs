@@ -33,7 +33,9 @@ public class InventorySlot : MonoBehaviour {
 	// Called when the remove button is pressed
 	public void OnRemoveButton ()
 	{
+        Debug.Log("i m here!");
 		Inventory.instance.Remove(item);
+        WeaponInventory.instance1.Remove(item);
 	}
 
 	// Called when the item is pressed

@@ -7,10 +7,10 @@ public class QuestNodes : MonoBehaviour
 {
     public int QuestNumber, IDofFollowerdoingQuest, NodeNumber; //NodeNumberisUniqueIdentifier
     public string QuestInformation;
-    public bool QuestisActive = false, QuestisDone = false;
+    public bool QuestisActive = false, QuestisDone = false, NodeisActive = false;
     public float QuestTimeRequired, QuestTimeStart;
 
-    public GameObject QuestMenu, QuestRewardsInfo, SendFollowertoQuest, PopupNotification, TimerBaar;
+    public GameObject QuestMenu, QuestRewardsInfo, SendFollowertoQuest, PopupNotification, TimerBaar, QuestDiplomacyMenuButton, QuestMenuExitButton;
     
 
 
@@ -21,16 +21,19 @@ public class QuestNodes : MonoBehaviour
         gameObject.GetComponent<Button>().onClick.AddListener(ShowQuest);
         PopupNotification.GetComponent<Button>().onClick.AddListener(KillPopup);
         SendFollowertoQuest.GetComponent<Button>().onClick.AddListener(SendFollower);
+        QuestDiplomacyMenuButton.GetComponent<Button>().onClick.AddListener(TurnoffNode);
+        QuestMenuExitButton.GetComponent<Button>().onClick.AddListener(TurnoffQuestMenu);
 
         TimerBaar = GameObject.Find("TimerBaar");
        
     }
+              
     
     private void FixedUpdate()
     {
         CheckifQuestTimeisUp();
     }
-
+        
 
     void CheckifQuestTimeisUp()
     {
@@ -40,17 +43,33 @@ public class QuestNodes : MonoBehaviour
                 QuestisDone = true;
         }
     }
-    
+
+
+    //TURN OFF QUESTMENU AND MAKE NODE INACTIVE
+    void TurnoffQuestMenu()
+    {
+        QuestMenu.SetActive(false);
+        TurnoffNode();
+    }
+
+
+    //TO SWITCH NODE ACTIVE OR NOT TO MAKE IT EASIER TO SEE WHICH QUESTS ARE RELEVANT SINCE ALL NODES HAVE ONE QUEST EACH
+    void TurnoffNode()
+    {
+        NodeisActive = false;
+    }
+
+
+
     public void ShowQuest()
     {
-        Debug.Log(QuestTimeRequired);
         if (QuestisActive == false)
         {
+            NodeisActive = true;
 
-
-            GameObject.Find("TestNPCList").GetComponent<TestNPCList>().FetchFollower(0); //To reset the NPC List
             if (GameObject.Find("QuestMenu") == false)
                 QuestMenu.SetActive(true);
+
             
             QuestRewardsInfo.GetComponent<Text>().text = GameObject.Find("QuestList").GetComponent<QuestList>().FetchQuest(QuestNumber);
         }
@@ -59,6 +78,8 @@ public class QuestNodes : MonoBehaviour
         PopUpActiveQuestStatus();
     }
 
+
+    //WHAT HAPPENS WHEN SEND FOLLOWER BUTTON IS CLICKED
     void SendFollower()
     {
         if(GameObject.Find("TestNPCList").GetComponent<TestNPCList>().FollowerIDnumber == 0)
@@ -88,16 +109,20 @@ public class QuestNodes : MonoBehaviour
             PopupNotification.SetActive(true);
 
             GameObject.Find("PopupText").GetComponent<Text>().text = GameObject.Find("QuestList").GetComponent<QuestList>().ListofRewards;
+            GameObject.Find("QuestList").GetComponent<QuestList>().SubmitQuestRewards();
 
             QuestisActive = false;
             QuestisDone = false;
+
             gameObject.SetActive(false);
         }
 
         else
         {
             GameObject.Find("QuestList").GetComponent<QuestList>().FetchQuest(QuestNumber);
-            GameObject.Find("TestNPCList").GetComponent<TestNPCList>().FetchFollower(IDofFollowerdoingQuest);
+
+            //COMEBACKHERE
+            //GameObject.Find("TestNPCList").GetComponent<TestNPCList>().FetchFollower(IDofFollowerdoingQuest);
             PopupNotification.SetActive(true);
             GameObject.Find("PopupText").GetComponent<Text>().text = "The Quest is currently being fulfilled by " + GameObject.Find("TestNPCList").GetComponent<TestNPCList>().Race
                                                                      + " " + GameObject.Find("TestNPCList").GetComponent<TestNPCList>().Class + " "

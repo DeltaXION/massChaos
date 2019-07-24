@@ -16,8 +16,9 @@ public class MarketDragHandler : MonoBehaviour, IDragHandler, IEndDragHandler
     //public GameObject houseImg;
     public int woodCountAvl;
     public int goldCount;
-    public int marketBuilt;
+    public static int marketBuilt;
     public int NPCCountAvl;
+    Timer2 timer;
     public void OnBeginDrag(PointerEventData eventData)
     {
         //    //startPosition =  GameObject.Find("house_img").transform.position;
@@ -46,14 +47,18 @@ public class MarketDragHandler : MonoBehaviour, IDragHandler, IEndDragHandler
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        transform.localPosition = startPosition;
+        timer = FindObjectOfType<Timer2>();
+        if (timer.timeOfDay < 150 && !Timer2.harshWeather)
 
-        if (woodCountAvl >= 10 && NPCCountAvl >= 1 && goldCount >=1)
+            if (ResourceManager.wood >= 10 && NPCCountAvl >= 1 && ResourceManager.gold >=1 && ResourceManager.iron >=1)
         {
-            //transform.position = Vector3.zero;
-            //Destroy (clone, 0.1f);
-            woodCountAvl = woodCountAvl - 10;
-            goldCount--;
-            marketBuilt++;
+                //transform.position = Vector3.zero;
+                //Destroy (clone, 0.1f);
+                ResourceManager.subWood(10);
+                ResourceManager.subGold(1);
+                ResourceManager.subIron(1);
+                marketBuilt++;
 
             //Debug.Log("Ennnnd" + transform.position.x);
             //Debug.Log("Ennnnnd" + transform.position.y);
@@ -66,7 +71,7 @@ public class MarketDragHandler : MonoBehaviour, IDragHandler, IEndDragHandler
 
             //Debug.Log(marketBuilt);
         }
-        transform.localPosition = startPosition;
+
 
 
 
