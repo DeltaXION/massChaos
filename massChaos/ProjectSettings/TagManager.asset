@@ -26,7 +26,8 @@ TagManager:
   - Item
   - enemy
   - NPCEntry
-
+  - Weapon
+  - instantiateDrops
   layers:
   - Default
   - TransparentFX

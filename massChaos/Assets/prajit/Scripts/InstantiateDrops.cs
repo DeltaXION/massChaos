@@ -16,8 +16,7 @@
         {
 
 
-            dropGold(1, 1, 0, 0);
-            dropGold(1, 1, 0, 0);
+          
         }
 
         // Update is called once per frame
@@ -28,13 +27,15 @@
 
         public void dropGold(int enemyType, int enemyLevel,float enemyLocationX,float enemyLocationY)                               //drops gold based on enemy type and its level(basically dungeon runs). you need to pass
         {                                                                                                                           //enemy type, enemy level amd player location(x,y)
-            float n = 1;
+       
+        float n = 1;
             for (int i = 0; i < enemyType; i++)
             {
                 for (int j = 0; j < enemyLevel; j++)
                 {
-
-                    Instantiate(dungeonGold, new Vector2(enemyLocationX + n, enemyLocationY + n), Quaternion.identity);
+                Debug.Log("dropped gold");
+                Instantiate(dungeonGold, new Vector2(enemyLocationX + n, enemyLocationY + n), Quaternion.identity);
+                
                     n += 0.3f;
                 }
             }

@@ -5,16 +5,19 @@ using UnityEngine;
 
 public class Ranger : EnemyBaseClass
 {
+    
     public GameObject rangeWeapon;
     public int arrowForce = 20;
     public float arrowRange = 5;
+    Animator myAnimator;
     // Start is called before the first frame update
     void Start()
     {
         base.createCollisionTriggers();
-        
+        myAnimator = GetComponent<Animator>();
     }
 
+    
     // Update is called once per frame
     void Update()
     {
@@ -25,7 +28,12 @@ public class Ranger : EnemyBaseClass
        
     }
 
-    
+    //animate Damage using particle system
+    public override void animateDamage()
+    {
+        damageParticles.Play();
+    }
+
     public override void attackPlayer()
     {
         
@@ -35,9 +43,33 @@ public class Ranger : EnemyBaseClass
         rangedWeaponBehavior currentArrow = arrow.GetComponent<rangedWeaponBehavior>();
         currentArrow.setTarget(arrowForce, player.transform.position, arrowRange);
     }
+
+    public override void animateFacingDirection(string direction)
+    {
+        switch (direction)
+        {
+            case "left":
+                myAnimator.SetFloat("moveX", -1);
+                myAnimator.SetFloat("moveY", 0);
+                break;
+            case "right":
+                myAnimator.SetFloat("moveX", 1);
+                myAnimator.SetFloat("moveY", 0);
+                break;
+            case "up":
+                myAnimator.SetFloat("moveX", 0);
+                myAnimator.SetFloat("moveY", 1);
+                break;
+            case "down":
+                myAnimator.SetFloat("moveX", 0);
+                myAnimator.SetFloat("moveY", -1);
+                break;
+
+        }
+    }
     public override void staminaRegen()
     {
-        Debug.Log("Stamina update" + stamina);
+       
         if (stamina < maxStamina)
         {
             stamina += staminaRegenRate;

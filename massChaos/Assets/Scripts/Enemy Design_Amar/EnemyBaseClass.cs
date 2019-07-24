@@ -10,6 +10,9 @@ public abstract class EnemyBaseClass : MonoBehaviour, IGOAP
     //declaring variables common to all enemies;
     //minimum distance between enemy and other things
     public GameObject player;
+    public bool moving = false;
+    public int enemyType = 1;
+    public int enemyLevel = 1;
     public float minimumDistanceToInteract;
     public float combatRadius;
     //defining an combat radius
@@ -52,6 +55,7 @@ public abstract class EnemyBaseClass : MonoBehaviour, IGOAP
     bool regeneratingStamina = false;
     public coneOfVision enemySight;
     public combatZone combatZone;
+    public ParticleSystem damageParticles;
 
     void Start()
     {
@@ -67,17 +71,23 @@ public abstract class EnemyBaseClass : MonoBehaviour, IGOAP
 
     }
 
+    public abstract void animateDamage();
 
     public void damageEnemy(float damage)
     {
+        animateDamage();
         health -= damage;   
         Debug.Log("enemy hurt by " + damage + " points");
+        enemyDeath();
     }
 
     public void enemyDeath()
     {
         if(health <=0)
         {
+            InstantiateDrops dropHandler = GameObject.FindGameObjectWithTag("instantiateDrops").GetComponent<InstantiateDrops>();
+            Debug.Log(transform.position);
+            dropHandler.dropGold(enemyType, enemyLevel, transform.position.x, transform.position.y);
             //call drop loot function
             Destroy(gameObject);
         }
@@ -190,7 +200,8 @@ public abstract class EnemyBaseClass : MonoBehaviour, IGOAP
         
     }
 
-
+    public abstract void animateFacingDirection(string direction);
+   
 
     public void animateAccordingToAngle()
     {
@@ -200,26 +211,26 @@ public abstract class EnemyBaseClass : MonoBehaviour, IGOAP
        
         if(lookingAngle >45 && lookingAngle <135 )
         {
-           // Debug.Log("Facing Right");
+            animateFacingDirection("right");
         }
         else if(lookingAngle >135 && lookingAngle <225 )
         {
-            // Debug.Log("Facing Up");
+            animateFacingDirection("up");
             
         }
         else if(lookingAngle >225 && lookingAngle <315)
         {
-           // Debug.Log("Facing Left");
+            animateFacingDirection("left");
         } else
         {
-            //Debug.Log("Facing down");
+            animateFacingDirection("down");
         }
         
     }
     //gradually move the enemy towards the target location. (eg. for attack player, target will be player)
     public  bool moveAgent(GOAPAction nextAction)
     {
-
+        moving = true;
         
         
         float step = movementSpeed * Time.deltaTime;
@@ -233,6 +244,7 @@ public abstract class EnemyBaseClass : MonoBehaviour, IGOAP
         if(distanceToTarget <= minimumDistanceToInteract)
         {
             nextAction.setInRange(true);
+            moving = false;
             return true;
         } else
         {
@@ -317,13 +329,14 @@ public abstract class EnemyBaseClass : MonoBehaviour, IGOAP
     //player COllisions
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        /*
-        if(collision.gameObject.CompareTag("hitbox_player_ss"))
+        
+        if(collision.gameObject.CompareTag("weapon_hitbox_SS"))
         {
-            takeDamage();
+            damageEnemy(1);
         }
-        */
+        
     }
+
 
     //read values from sensors and update flags
     public void readSensorStatusAndUpdateFlags()
@@ -403,4 +416,6 @@ public abstract class EnemyBaseClass : MonoBehaviour, IGOAP
         regeneratingStamina = false;
         updateStamina();
     }
+
+
 }
