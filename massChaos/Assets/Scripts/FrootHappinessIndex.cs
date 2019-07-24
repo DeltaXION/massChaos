@@ -184,12 +184,12 @@ public class FrootHappinessIndex : MonoBehaviour
 		
 		SetFrootHappiness();
 
-		Debug.Log("Froot Happiness" + FrootHappiness);
-		Debug.Log("Foof factor" + Foodfactor);
-		Debug.Log("Froot Assignments" + FrootAssignments);
-		Debug.Log("Base Health" + BaseHealth);
-		Debug.Log("Froot Base Comfort" + FrootBaseComfort);
-		Debug.Log("Froot Prestige" + FrootPrestige);
+		//Debug.Log("Froot Happiness" + FrootHappiness);
+		//Debug.Log("Foof factor" + Foodfactor);
+		//Debug.Log("Froot Assignments" + FrootAssignments);
+		//Debug.Log("Base Health" + BaseHealth);
+		//Debug.Log("Froot Base Comfort" + FrootBaseComfort);
+		//Debug.Log("Froot Prestige" + FrootPrestige);
     }
 
 	IEnumerator IdleFollower()
