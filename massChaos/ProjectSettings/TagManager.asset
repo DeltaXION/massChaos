@@ -19,7 +19,14 @@ TagManager:
   - dungeonGoldText
   - House_Button
   - FerrariumQuestNode
+
+  - Rooms
+  - Spawnpoint
+  - breakable
+  - Item
+  - enemy
   - NPCEntry
+
   layers:
   - Default
   - TransparentFX
@@ -29,7 +36,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - enemy
   - 
   - 
   - 
