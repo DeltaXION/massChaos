@@ -1,0 +1,7 @@
+Quest id,Quest type,Quest name,Quest discription,Prestige_Nomads,Prestige_Ferrarium,Prestige_Froots,Prestige_Mimax,Common item,Uncommon item,Rare item,Wood,Iron,Gold,Food,Boss item ID,Recipe item ID,Quest time,Reward timequest
+1,Ferrarium,Raid Froots,Ferrarium wants to Raid froots,0,20,-10,0,0,0,0,50,45,0,0,0,0,8,0
+2,Froots,Farmers needed,Build a farm and collect 25 food,10,0,20,0,8,0,0,10,0,0,50,0,0,16,0
+3,Nomads,Killing spree,Kill 20 creeps in the dungeons,30,10,10,0,0,6,0,0,20,50,0,0,0,4,0
+4,Mimax,Bookworm,Collect 7 green scrolls,10,0,0,30,0,2,0,0,30,0,50,0,12,3,0
+5,Froots,Homedefence,Defend your home from the nomads raid,-10,10,30,0,0,0,10,0,20,50,30,0,4,7,4
+6,Nomads,fuck books,destroy 3 mimax shrines,30,0,0,-20,1,0,0,0,0,50,0,0,0,4,0
