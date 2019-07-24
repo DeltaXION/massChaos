@@ -19,7 +19,8 @@ public class FarmDargHandler : MonoBehaviour, IDragHandler, IEndDragHandler
     //public GameObject houseImg;
     public int woodCountAvl;
     public int NPCCountAvl;
-    public int FarmBuilt;
+    public static int FarmBuilt;
+    Timer2 timer;
     public void OnBeginDrag(PointerEventData eventData)
     {
         //    //startPosition =  GameObject.Find("house_img").transform.position;
@@ -48,29 +49,33 @@ public class FarmDargHandler : MonoBehaviour, IDragHandler, IEndDragHandler
 
     public void OnEndDrag(PointerEventData eventData)
     {
-
-        if (woodCountAvl >= 5 && NPCCountAvl >=1)
-        {
-            //transform.position = Vector3.zero;
-            //Destroy (clone, 0.1f);
-            woodCountAvl = woodCountAvl - 5;
-            FarmBuilt++;
-            NPCCountAvl--;
-
-            //Debug.Log("Ennnnd" + transform.position.x);
-            //Debug.Log("Ennnnnd" + transform.position.y);
-
-            mousepos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            linehandler = Instantiate(building, Camera.main.ScreenToWorldPoint(Input.mousePosition), Quaternion.identity) as GameObject;
-            linehandler.transform.SetAsLastSibling();
-            linehandler.transform.position = mousepos;
-            linehandler.SetActive(true);
-
-           // Debug.Log(FarmBuilt);
-        }
         transform.localPosition = startPosition;
+        timer = FindObjectOfType<Timer2>();
+        if (timer.timeOfDay < 150 && !Timer2.harshWeather)
+        {
+
+            if (ResourceManager.wood >= 5 && NPCCountAvl >= 1)
+            {
+                //transform.position = Vector3.zero;
+                //Destroy (clone, 0.1f);
+                ResourceManager.subWood(5);
+                FarmBuilt++;
 
 
+                //Debug.Log("Ennnnd" + transform.position.x);
+                //Debug.Log("Ennnnnd" + transform.position.y);
+
+                mousepos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                linehandler = Instantiate(building, Camera.main.ScreenToWorldPoint(Input.mousePosition), Quaternion.identity) as GameObject;
+                linehandler.transform.SetAsLastSibling();
+                linehandler.transform.position = mousepos;
+                linehandler.SetActive(true);
+
+                // Debug.Log(FarmBuilt);
+            }
+ 
+
+        }
 
 
 

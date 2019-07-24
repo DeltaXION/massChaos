@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: CommonR1
   m_EditorClassIdentifier: 
   name: CommonR1
-  icon: {fileID: 21300000, guid: 2da0889a5261ffa4a96d3195eb22bff8, type: 3}
+  icon: {fileID: -4156976322373235980, guid: f8fe24636fd73d04087a7c1859dd906e, type: 3}
   isDefaultItem: 0
   prefab: {fileID: 325666164079710484, guid: b53cfe9fa877a5b4da4d4ebf65a02dbb, type: 3}
