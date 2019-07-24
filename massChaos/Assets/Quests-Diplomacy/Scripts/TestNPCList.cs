@@ -9,7 +9,7 @@ public class TestNPCList : MonoBehaviour
     //public string[] FollowerData;
     // Start is called before the first frame update
 
-
+        /*
     public void FollowerSlotisSelected(int SlotNumber)
     {
         FollowerSlotNo = SlotNumber;
@@ -85,4 +85,5 @@ public class TestNPCList : MonoBehaviour
             SecondaryItem = "None";
         }
     }
+    */
 }

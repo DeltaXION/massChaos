@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d19e3f2df7d4694599e2eea160365e0, type: 3}
+  m_Name: CommonG1
+  m_EditorClassIdentifier: 
+  name: CommonG1
+  icon: {fileID: 6047889703141904680, guid: f8fe24636fd73d04087a7c1859dd906e, type: 3}
+  isDefaultItem: 0
+  prefab: {fileID: 325666164079710484, guid: 33569d1f2c3fc6b4c9ba76c0f5caef18, type: 3}

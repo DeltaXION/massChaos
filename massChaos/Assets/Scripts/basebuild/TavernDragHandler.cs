@@ -15,8 +15,9 @@ public class TavernDragHandler : MonoBehaviour, IDragHandler, IEndDragHandler
     //float z;
     //public GameObject houseImg;
     public int woodCountAvl;
-    public int tavernBuilt;
+    public static int tavernBuilt;
     public int NPCCountAvl;
+    Timer2 timer;
     public void OnBeginDrag(PointerEventData eventData)
     {
         //    //startPosition =  GameObject.Find("house_img").transform.position;
@@ -45,12 +46,15 @@ public class TavernDragHandler : MonoBehaviour, IDragHandler, IEndDragHandler
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        transform.localPosition = startPosition;
+        timer = FindObjectOfType<Timer2>();
+        if (timer.timeOfDay < 150 && !Timer2.harshWeather)
 
-        if (woodCountAvl >= 5 && NPCCountAvl >= 1)
+            if (ResourceManager.wood >= 5 && NPCCountAvl >= 1)
         {
-            //transform.position = Vector3.zero;
-            //Destroy (clone, 0.1f);
-            woodCountAvl = woodCountAvl - 5;
+                //transform.position = Vector3.zero;
+                //Destroy (clone, 0.1f);
+                ResourceManager.subWood(5);
             tavernBuilt++;
 
             //Debug.Log("Ennnnd" + transform.position.x);
@@ -64,7 +68,7 @@ public class TavernDragHandler : MonoBehaviour, IDragHandler, IEndDragHandler
 
             Debug.Log(tavernBuilt);
         }
-        transform.localPosition = startPosition;
+
 
 
 

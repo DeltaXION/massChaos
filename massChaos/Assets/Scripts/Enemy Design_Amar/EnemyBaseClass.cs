@@ -9,7 +9,9 @@ public abstract class EnemyBaseClass : MonoBehaviour, IGOAP
 
     //declaring variables common to all enemies;
     //minimum distance between enemy and other things
+    public GameObject player;
     public float minimumDistanceToInteract;
+    public float combatRadius;
     //defining an combat radius
     CircleCollider2D combatRadiusCollider;
     public float health;
@@ -66,9 +68,9 @@ public abstract class EnemyBaseClass : MonoBehaviour, IGOAP
     }
 
 
-    public void takeDamage(float damage)
+    public void damageEnemy(float damage)
     {
-        health -= damage;
+        health -= damage;   
         Debug.Log("enemy hurt by " + damage + " points");
     }
 
@@ -88,7 +90,7 @@ public abstract class EnemyBaseClass : MonoBehaviour, IGOAP
         Vector3 enemySize = GetComponent<Renderer>().bounds.size ;
         //Create an attack radius around enemy, value being hardcoded for the timebeing.
         combatRadiusCollider =  combatZone.gameObject.AddComponent<CircleCollider2D>();
-        combatRadiusCollider.radius = 1.5f;
+        combatRadiusCollider.radius = combatRadius;
         combatRadiusCollider.isTrigger = true;
         //Create colliders on all four sides to surround enemy
         
@@ -288,13 +290,8 @@ public abstract class EnemyBaseClass : MonoBehaviour, IGOAP
 
     }
 
-    public void takeDamage()
-    {
-
-        health -= 1;
-        Debug.Log("Got Hit");
-    }
-    public void attackPlayer()
+   
+    public virtual void attackPlayer()
     {
         Debug.Log("attackPlayer:");
     }

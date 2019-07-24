@@ -16,7 +16,8 @@ public class HouseDragHandler : MonoBehaviour, IDragHandler, IEndDragHandler {
     //float z;
     //public GameObject houseImg;
     public int woodCountAvl;
-    public int houseBuilt;
+    public static int houseBuilt;
+    Timer2 timer;
     public void OnBeginDrag(PointerEventData eventData)
     {
         //    //startPosition =  GameObject.Find("house_img").transform.position;
@@ -44,32 +45,37 @@ public class HouseDragHandler : MonoBehaviour, IDragHandler, IEndDragHandler {
     }
  
     public void OnEndDrag(PointerEventData eventData)
-    {
-
-        if (woodCountAvl >= 5)
+    {   transform.localPosition = startPosition;
+        timer = FindObjectOfType<Timer2>();
+        if (timer.timeOfDay < 150 && !Timer2.harshWeather)
         {
-            //transform.position = Vector3.zero;
-            //Destroy (clone, 0.1f);
-            woodCountAvl = woodCountAvl - 5;
-            houseBuilt++;
-
-            //Debug.Log("Ennnnd" + transform.position.x);
-            //Debug.Log("Ennnnnd" + transform.position.y);
-
-            mousepos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            linehandler = Instantiate(building, Camera.main.ScreenToWorldPoint(Input.mousePosition), Quaternion.identity) as GameObject;
-            linehandler.transform.SetAsLastSibling();
-            linehandler.transform.position = mousepos;
-            linehandler.SetActive(true);
 
 
-            Debug.Log(houseBuilt);
+            if (ResourceManager.wood >= 5)
+            {
+                //transform.position = Vector3.zero;
+                //Destroy (clone, 0.1f);
+                ResourceManager.subWood(5);
+                houseBuilt++;
+
+                //Debug.Log("Ennnnd" + transform.position.x);
+                //Debug.Log("Ennnnnd" + transform.position.y);
+
+                mousepos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                linehandler = Instantiate(building, Camera.main.ScreenToWorldPoint(Input.mousePosition), Quaternion.identity) as GameObject;
+                linehandler.transform.SetAsLastSibling();
+                linehandler.transform.position = mousepos;
+                linehandler.SetActive(true);
+
+
+                Debug.Log(houseBuilt);
+                displayNPCassignList = true;
+            }
+
+
+
+
         }
-        transform.localPosition = startPosition;
-
-        displayNPCassignList = true;
-
-
 
     }
 }

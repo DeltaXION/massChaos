@@ -8,19 +8,18 @@ public class FrtHIUIscript : MonoBehaviour
 
 	private float CurrentFrtHappiness;
     public Image FrtHappiness;
-	private GameObject FrtHI;
+	
 
     // Start is called before the first frame update
     void Start()
     {
 		FrtHappiness = GetComponent<Image>();
-		FrtHI = GameObject.Find("FrootHI");
-    }
+	}
 
 
 	void ReadjustFrtHappiness()
 	{
-		CurrentFrtHappiness = FrtHI.GetComponent<FrootHappinessIndex>().FrootHappiness;
+		CurrentFrtHappiness = FrootHappinessIndex.FrootHappiness;
 		FrtHappiness.fillAmount = CurrentFrtHappiness/10 ;
 	}
 

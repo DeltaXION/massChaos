@@ -51,15 +51,18 @@ public class QuestsDiplomacyManager : MonoBehaviour
     (int Prestige_Nomads_Earned, int Prestige_Ferrarium_Earned, int Prestige_Froots_Earned, int Prestige_Mimax_Earned, int LootReward_Iron, int LootReward_Wood, int LootReward_Food, int LootReward_Gold,
      int ItemReward_Uncommon, int ItemReward_Common, int ItemReward_Rare, int ItemReward_Recipe, int ItemReward_Boss, int Reward_TimeChange)
     {
+        
         Prestige_Nomads += Prestige_Nomads_Earned;
         Prestige_Ferrarium += Prestige_Ferrarium_Earned;
         Prestige_Froots += Prestige_Froots_Earned;
         Prestige_Mimax += Prestige_Mimax_Earned;
 
         ResourceManager.addFood(LootReward_Food);
-        ResourceManager.addFood(LootReward_Gold);
+        ResourceManager.addGold(LootReward_Gold);
         ResourceManager.addIron(LootReward_Iron);
         ResourceManager.addWood(LootReward_Wood);
+
+  
     }
 
 
@@ -99,7 +102,9 @@ public class QuestsDiplomacyManager : MonoBehaviour
                 FollowersCurrentlyQuesting++;
 
                 int FollowerID = item.GetComponent<QuestNodes>().IDofFollowerdoingQuest;
-                GameObject.Find("TestNPCList").GetComponent<TestNPCList>().FetchFollower(FollowerID);
+
+                //COMEBACKHERE
+                //GameObject.Find("TestNPCList").GetComponent<TestNPCList>().FetchFollower(FollowerID);
 
                 if (GameObject.Find("TestNPCList").GetComponent<TestNPCList>().Race == "Nomad")
                     NomadsCurrentlyQuesting++;
@@ -124,7 +129,8 @@ public class QuestsDiplomacyManager : MonoBehaviour
                         MimaxQuestingatHome++;
                 }
 
-                GameObject.Find("TestNPCList").GetComponent<TestNPCList>().FetchFollower(0);
+                //COMEBACKHERE
+                //GameObject.Find("TestNPCList").GetComponent<TestNPCList>().FetchFollower(0);
             }
         }
     }

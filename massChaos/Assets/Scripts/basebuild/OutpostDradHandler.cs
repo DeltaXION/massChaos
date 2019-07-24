@@ -15,8 +15,9 @@ public class OutpostDradHandler : MonoBehaviour, IDragHandler, IEndDragHandler
     //float z;
     //public GameObject houseImg;
     public int woodCountAvl;
-    public int OutpBuilt;
+    public static int OutpBuilt;
     public int NPCCountAvl;
+    Timer2 timer;
     public void OnBeginDrag(PointerEventData eventData)
     {
         //    //startPosition =  GameObject.Find("house_img").transform.position;
@@ -45,12 +46,17 @@ public class OutpostDradHandler : MonoBehaviour, IDragHandler, IEndDragHandler
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        transform.localPosition = startPosition;
+        timer = FindObjectOfType<Timer2>();
+        if (timer.timeOfDay < 150 && !Timer2.harshWeather)
 
-        if (woodCountAvl >= 15 && NPCCountAvl >= 1)
+            if (ResourceManager.stone >= 5 && ResourceManager.iron >= 3 && NPCCountAvl >= 1)
         {
-            //transform.position = Vector3.zero;
-            //Destroy (clone, 0.1f);
-            woodCountAvl = woodCountAvl - 15;
+                //transform.position = Vector3.zero;
+                //Destroy (clone, 0.1f);
+                ResourceManager.subStone(5);
+                ResourceManager.subIron(3);
+
             OutpBuilt++;
 
             //Debug.Log("Ennnnd" + transform.position.x);
@@ -64,7 +70,7 @@ public class OutpostDradHandler : MonoBehaviour, IDragHandler, IEndDragHandler
 
 
         }
-        transform.localPosition = startPosition;
+
 
 
 

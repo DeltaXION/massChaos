@@ -15,7 +15,8 @@ public class FountDragHandler : MonoBehaviour, IDragHandler, IEndDragHandler
     //float z;
     //public GameObject houseImg;
     public int stoneCountAvl;
-    public int FountBuilt;
+    public static int FountBuilt;
+    Timer2 timer;
     public void OnBeginDrag(PointerEventData eventData)
     {
         //    //startPosition =  GameObject.Find("house_img").transform.position;
@@ -43,27 +44,32 @@ public class FountDragHandler : MonoBehaviour, IDragHandler, IEndDragHandler
     }
 
     public void OnEndDrag(PointerEventData eventData)
-    {
-
-        if (stoneCountAvl >= 5)
+    {   transform.localPosition = startPosition;
+        timer = FindObjectOfType<Timer2>();
+        if (timer.timeOfDay < 150 && !Timer2.harshWeather)
         {
-            //transform.position = Vector3.zero;
-            //Destroy (clone, 0.1f);
-            stoneCountAvl = stoneCountAvl - 5;
-            FountBuilt++;
 
-            //Debug.Log("Ennnnd" + transform.position.x);
-            //Debug.Log("Ennnnnd" + transform.position.y);
 
-            mousepos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            linehandler = Instantiate(building, Camera.main.ScreenToWorldPoint(Input.mousePosition), Quaternion.identity) as GameObject;
-            linehandler.transform.SetAsLastSibling();
-            linehandler.transform.position = mousepos;
-            linehandler.SetActive(true);
+            if (ResourceManager.stone >= 5)
+            {
+                //transform.position = Vector3.zero;
+                //Destroy (clone, 0.1f);
+                ResourceManager.subStone(5);
+                FountBuilt++;
 
+                //Debug.Log("Ennnnd" + transform.position.x);
+                //Debug.Log("Ennnnnd" + transform.position.y);
+
+                mousepos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                linehandler = Instantiate(building, Camera.main.ScreenToWorldPoint(Input.mousePosition), Quaternion.identity) as GameObject;
+                linehandler.transform.SetAsLastSibling();
+                linehandler.transform.position = mousepos;
+                linehandler.SetActive(true);
+
+
+            }
 
         }
-        transform.localPosition = startPosition;
 
 
 
