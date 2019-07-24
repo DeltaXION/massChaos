@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class QuestNodes : MonoBehaviour
 {
-    public int QuestNumber, IDofFollowerdoingQuest, NodeNumber; //NodeNumberisUniqueIdentifier
+    public int QuestNumber, IDofFollowerdoingQuest, NodeNumber; //NodeNumberisUniqueIdentifier, IDofFollowerdoingQuest also stores ID of selected Follower
     public string QuestInformation;
     public bool QuestisActive = false, QuestisDone = false, NodeisActive = false;
     public float QuestTimeRequired, QuestTimeStart;
@@ -17,7 +17,8 @@ public class QuestNodes : MonoBehaviour
     private void Start()
     {
         
-        GameObject.Find("TestNPCList").GetComponent<TestNPCList>().FollowerIDnumber = 0;
+        //GameObject.Find("TestNPCList").GetComponent<TestNPCList>().FollowerIDnumber = 0;
+
         gameObject.GetComponent<Button>().onClick.AddListener(ShowQuest);
         PopupNotification.GetComponent<Button>().onClick.AddListener(KillPopup);
         SendFollowertoQuest.GetComponent<Button>().onClick.AddListener(SendFollower);
@@ -33,7 +34,7 @@ public class QuestNodes : MonoBehaviour
     {
         CheckifQuestTimeisUp();
     }
-        
+
 
     void CheckifQuestTimeisUp()
     {
@@ -48,6 +49,13 @@ public class QuestNodes : MonoBehaviour
     //TURN OFF QUESTMENU AND MAKE NODE INACTIVE
     void TurnoffQuestMenu()
     {
+        GameObject.Find("FollowerSlots").GetComponent<FollowerSlotsManager>().ActiveFollowerSlotID = 0;
+
+        ResetQuestActiveFollower();
+
+        if (QuestisActive == false)
+            IDofFollowerdoingQuest = 0;
+
         QuestMenu.SetActive(false);
         TurnoffNode();
     }
@@ -59,40 +67,79 @@ public class QuestNodes : MonoBehaviour
         NodeisActive = false;
     }
 
-
+    private void ResetQuestActiveFollower()
+    {
+        GameObject.Find("QuestList").GetComponent<QuestList>().FollowerSlotActive = GameObject.Find("DummyFollowerSlot");
+    }
 
     public void ShowQuest()
     {
-        if (QuestisActive == false)
+
+        if (QuestisActive == true)
+            PopUpActiveQuestStatus();
+        //GameObject ActiveFollowerReference = GameObject.Find("FollowerSlots").GetComponent<FollowerSlotsManager>().SendActiveNode();
+        else if (QuestisActive == false)
         {
             NodeisActive = true;
-
             if (GameObject.Find("QuestMenu") == false)
                 QuestMenu.SetActive(true);
 
-            
+
+            //IDofFollowerdoingQuest = GameObject.Find("FollowerSlots").GetComponent<FollowerSlotsManager>().ActiveFollowerSlotID;
+            GameObject.Find("FollowerSlots").GetComponent<FollowerSlotsManager>().SendActiveNode(gameObject);
+
             QuestRewardsInfo.GetComponent<Text>().text = GameObject.Find("QuestList").GetComponent<QuestList>().FetchQuest(QuestNumber);
         }
 
-        if (QuestisActive == true)
-        PopUpActiveQuestStatus();
     }
 
 
     //WHAT HAPPENS WHEN SEND FOLLOWER BUTTON IS CLICKED
     void SendFollower()
     {
-        if(GameObject.Find("TestNPCList").GetComponent<TestNPCList>().FollowerIDnumber == 0)
-        PopUpNoFollowerSelected();
+
+
+        if (IDofFollowerdoingQuest == 0 && NodeisActive == true) //CONSIDERED TO BE CHANGEED WITH VALUE IN FOLLOWERSLOT            
+        {
+            Debug.Log("NoFollowerSelected");
+            PopUpNoFollowerSelected();
+        }
 
         else if (QuestisActive == false && QuestNumber == GameObject.Find("QuestList").GetComponent<QuestList>().Questnumber)
         {
-            IDofFollowerdoingQuest = GameObject.Find("TestNPCList").GetComponent<TestNPCList>().FollowerIDnumber; //To get the followerID of the follower on the quest.
+            //IDofFollowerdoingQuest = GameObject.Find("FollowerSlots").GetComponent<FollowerSlotsManager>().ActiveFollowerSlotID;
+
             QuestTimeRequired = GameObject.Find("QuestList").GetComponent<QuestList>().Quest_Time; //To get the time required to finish the quest
             QuestTimeStart = TimerBaar.GetComponent<Timer2>().calen;
+
+            GameObject.Find("FollowerSlots").GetComponent<FollowerSlotsManager>().ChangeFollowerStatebetweenBusyandIdle(IDofFollowerdoingQuest);
+
             QuestisActive = true;
+            NodeisActive = false;
+            ResetQuestActiveFollower();
+
             QuestMenu.SetActive(false);
         }
+    }
+
+
+    //REAP THE REWARDS OF THE QUEST. CALLS SUBMIT QUESTREWARDS IN QUESTLISTS WHICH THEN CALLS UPDATEREWARDSINTOPOOL IN QUESTDIPLOMACYMANAGER
+    void ReapRewards()
+    {
+        GameObject.Find("FollowerSlots").GetComponent<FollowerSlotsManager>().ChangeFollowerStatebetweenBusyandIdle(IDofFollowerdoingQuest);
+
+        GameObject.Find("QuestList").GetComponent<QuestList>().FetchQuest(QuestNumber);
+        PopupNotification.SetActive(true);
+
+
+
+        GameObject.Find("PopupText").GetComponent<Text>().text = GameObject.Find("QuestList").GetComponent<QuestList>().ListofRewards;
+        GameObject.Find("QuestList").GetComponent<QuestList>().SubmitQuestRewards();
+
+        QuestisActive = false;
+        QuestisDone = false;
+
+        gameObject.SetActive(false);
     }
 
 
@@ -104,29 +151,18 @@ public class QuestNodes : MonoBehaviour
     void PopUpActiveQuestStatus()
     {
         if (QuestisDone == true) //WHEN THE QUEST IS FINISHED
-        {
-            GameObject.Find("QuestList").GetComponent<QuestList>().FetchQuest(QuestNumber);
-            PopupNotification.SetActive(true);
+        ReapRewards();
 
-            GameObject.Find("PopupText").GetComponent<Text>().text = GameObject.Find("QuestList").GetComponent<QuestList>().ListofRewards;
-            GameObject.Find("QuestList").GetComponent<QuestList>().SubmitQuestRewards();
-
-            QuestisActive = false;
-            QuestisDone = false;
-
-            gameObject.SetActive(false);
-        }
-
+        
         else
         {
             GameObject.Find("QuestList").GetComponent<QuestList>().FetchQuest(QuestNumber);
-
-            //COMEBACKHERE
-            //GameObject.Find("TestNPCList").GetComponent<TestNPCList>().FetchFollower(IDofFollowerdoingQuest);
+            GameObject Follower = GameObject.Find("FollowerSlots").GetComponent<FollowerSlotsManager>().FetchFollowerSlotDetails(IDofFollowerdoingQuest); //MINUS 1 BECAUSE ALL ARRAYS START FROM ZERO
+            
             PopupNotification.SetActive(true);
-            GameObject.Find("PopupText").GetComponent<Text>().text = "The Quest is currently being fulfilled by " + GameObject.Find("TestNPCList").GetComponent<TestNPCList>().Race
-                                                                     + " " + GameObject.Find("TestNPCList").GetComponent<TestNPCList>().Class + " "
-                                                                     + GameObject.Find("TestNPCList").GetComponent<TestNPCList>().FollowerName + "\nDays Left = "
+            GameObject.Find("PopupText").GetComponent<Text>().text = "The Quest is currently being fulfilled by " + Follower.GetComponent<FollowerSlot>().FollowerRace
+                                                                     + " " + Follower.GetComponent<FollowerSlot>().FollowerClass + " "
+                                                                     + Follower.GetComponent<FollowerSlot>().FollowerName + "\nDays Left = "
                                                                      + (QuestTimeRequired - (TimerBaar.GetComponent<Timer2>().calen - QuestTimeStart));
         }
     }
@@ -134,14 +170,17 @@ public class QuestNodes : MonoBehaviour
     public void PopUpFollowerIsAlreadyonQuest()
     {
         PopupNotification.SetActive(true);
-        GameObject.Find("PopupText").GetComponent<Text>().text = "FollowerIsAlreadyDoingQuest";
-        GameObject.Find("TestNPCList").GetComponent<TestNPCList>().FollowerIDnumber = 0;
+        
+        GameObject.Find("PopupText").GetComponent<Text>().text = "Follower is already on a Quest.";
+        GameObject.Find("FollowerSlots").GetComponent<FollowerSlotsManager>().ActiveFollowerSlotID = 0;
+        IDofFollowerdoingQuest = 0;
+
     }
 
     void PopUpNoFollowerSelected()
     {
         PopupNotification.SetActive(true);
-        GameObject.Find("PopupText").GetComponent<Text>().text = "No follower selected";
+        GameObject.Find("PopupText").GetComponent<Text>().text = "No follower selected.";
     }
 
     void KillPopup()
