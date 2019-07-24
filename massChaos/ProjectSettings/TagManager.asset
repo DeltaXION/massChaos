@@ -19,7 +19,7 @@ TagManager:
   - dungeonGoldText
   - House_Button
   - FerrariumQuestNode
-
+  - stoneText
   - Rooms
   - Spawnpoint
   - breakable

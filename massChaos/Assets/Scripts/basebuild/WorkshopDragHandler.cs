@@ -18,6 +18,7 @@ public class WorkshopDragHandler : MonoBehaviour, IDragHandler, IEndDragHandler
     public static int wShopBuilt;
     public int NPCCountAvl;
     public int ironCount;
+    Timer2 timer;
     public void OnBeginDrag(PointerEventData eventData)
     {
         //    //startPosition =  GameObject.Find("house_img").transform.position;
@@ -46,13 +47,16 @@ public class WorkshopDragHandler : MonoBehaviour, IDragHandler, IEndDragHandler
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        transform.localPosition = startPosition;
+        timer = FindObjectOfType<Timer2>();
+        if (timer.timeOfDay < 150 && !Timer2.harshWeather)
 
-        if (woodCountAvl >= 10 && NPCCountAvl >= 1 && ironCount >= 1)
+            if (ResourceManager.wood >= 10 && NPCCountAvl >= 1 && ResourceManager.iron >= 1)
         {
-            //transform.position = Vector3.zero;
-            //Destroy (clone, 0.1f);
-            woodCountAvl = woodCountAvl - 10;
-            ironCount--;
+                //transform.position = Vector3.zero;
+                //Destroy (clone, 0.1f);
+                ResourceManager.subWood(10);
+                ResourceManager.subIron(1);
             wShopBuilt++;
 
             //Debug.Log("Ennnnd" + transform.position.x);
@@ -66,7 +70,7 @@ public class WorkshopDragHandler : MonoBehaviour, IDragHandler, IEndDragHandler
 
             Debug.Log(wShopBuilt);
         }
-        transform.localPosition = startPosition;
+
 
 
 

@@ -8,11 +8,13 @@ public class ResourceManager : MonoBehaviour
     public static int gold = 0;
     public static float food = 0;
     public static int wood = 0;
+    public static int stone = 0;
     public static int iron = 0;
     public static Text goldText;
     public static Text woodText;
     public static Text foodText;
     public static Text ironText;
+    public static Text stoneText;
 
     // Start is called before the first frame update
     void Start()
@@ -21,15 +23,18 @@ public class ResourceManager : MonoBehaviour
         woodText = GameObject.FindGameObjectWithTag("woodText").GetComponent<Text>();
         foodText = GameObject.FindGameObjectWithTag("foodText").GetComponent<Text>();
         ironText = GameObject.FindGameObjectWithTag("ironText").GetComponent<Text>();
+        stoneText = GameObject.FindGameObjectWithTag("stoneText").GetComponent<Text>();
         addGold(4);
         addFood(65);
         addIron(1);
         addWood(25);
+        addStone(10);
         subFood(2);
         subGold(1);
         subIron(1);
         subWood(2);
-        
+        subStone(2);
+
     }
 
     // Update is called once per frame
@@ -61,6 +66,12 @@ public class ResourceManager : MonoBehaviour
         iron += n;
         setIronText();
     }
+    public static void addStone(int n)                       //increment food
+    {
+        stone += n;
+        setStoneText();
+    }
+
 
     public static void subGold(int n)                       //decrement gold
     {
@@ -101,6 +112,15 @@ public class ResourceManager : MonoBehaviour
         }
         setIronText();
     }
+    public static void subStone(int n)                      //decrement iron
+    {
+        stone -= n;
+        if (stone <= 0)
+        {
+            stone = 0;
+        }
+        setStoneText();
+    }
 
     public static void setGoldText()                                           //display gold value
     {
@@ -120,5 +140,9 @@ public class ResourceManager : MonoBehaviour
     public static void setIronText()                                           //display iron value
     {
         ironText.text = iron.ToString();
+    }
+    public static void setStoneText()                                           //display iron value
+    {
+        stoneText.text = stone.ToString();
     }
 }
