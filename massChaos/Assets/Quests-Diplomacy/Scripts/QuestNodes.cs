@@ -92,6 +92,7 @@ public class QuestNodes : MonoBehaviour
             QuestTimeStart = TimerBaar.GetComponent<Timer2>().calen;
             QuestisActive = true;
             QuestMenu.SetActive(false);
+           
         }
     }
 
