@@ -18,6 +18,11 @@ TagManager:
   - dungeonWoodText
   - dungeonGoldText
   - House_Button
+  - FerrariumQuestNode
+  - Spawnpoint
+  - Item
+  - breakable
+  - stoneText
   layers:
   - Default
   - TransparentFX
