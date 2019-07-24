@@ -474,6 +474,7 @@ GameObject:
   - component: {fileID: 363860022196173446}
   - component: {fileID: 363860022196173444}
   - component: {fileID: 363860022196173445}
+  - component: {fileID: 1561209577}
   m_Layer: 5
   m_Name: HUI
   m_TagString: Untagged
@@ -539,6 +540,21 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+--- !u!114 &1561209577
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 363860022196173447}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd27e684dd60a41baadb9f74d819e024, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  displayNPCassignList: 0
+  building: {fileID: 0}
+  woodCountAvl: 0
 --- !u!1 &363860022225908687
 GameObject:
   m_ObjectHideFlags: 0
@@ -550,6 +566,7 @@ GameObject:
   - component: {fileID: 363860022225908686}
   - component: {fileID: 363860022225908684}
   - component: {fileID: 363860022225908685}
+  - component: {fileID: 292706153}
   m_Layer: 5
   m_Name: FUI
   m_TagString: Untagged
@@ -615,6 +632,22 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+--- !u!114 &292706153
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 363860022225908687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66c29faf3e99c4de7b6d7a29ab2a3457, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  building: {fileID: 5737124999124709450, guid: a633a8cce8633ff44b28c8bb16210b57,
+    type: 3}
+  woodCountAvl: 0
+  NPCCountAvl: 0
 --- !u!1 &363860022473998157
 GameObject:
   m_ObjectHideFlags: 0
