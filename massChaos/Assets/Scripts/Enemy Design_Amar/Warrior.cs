@@ -22,8 +22,11 @@ public class Warrior : EnemyBaseClass
        
     }
 
-    
 
+    public override void attackPlayer()
+    {
+        Debug.Log("sword attack player");
+    }
     public override void staminaRegen()
     {
         Debug.Log("Stamina update" + stamina);

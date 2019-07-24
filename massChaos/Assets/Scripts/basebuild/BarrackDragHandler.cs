@@ -15,11 +15,12 @@ public class BarrackDragHandler : MonoBehaviour, IDragHandler, IEndDragHandler
     //float z;
     //public GameObject houseImg;
     public int woodCountAvl;
-    public int BarrackBuilt;
+    public static int BarrackBuilt;
     public int NPCCountAvl;
     public int stoneCount;
     public int ironCount;
     public int wShop;
+    Timer2 timer;
     public void OnBeginDrag(PointerEventData eventData)
     {
         //    //startPosition =  GameObject.Find("house_img").transform.position;
@@ -52,31 +53,35 @@ public class BarrackDragHandler : MonoBehaviour, IDragHandler, IEndDragHandler
         //int wShop;
         //wShop = GameObject.Find("WorkshopImg").GetComponent<WorkshopDragHandler>().wShopBuilt;
         wShop = WorkshopDragHandler.wShopBuilt;
+        timer = FindObjectOfType<Timer2>();
 
 
-
-
-        if (woodCountAvl >= 10 && NPCCountAvl >= 1 && ironCount >= 1 && stoneCount >= 1 && wShop > 1)
+        if (timer.timeOfDay < 150 && !Timer2.harshWeather)
         {
-            //transform.position = Vector3.zero;
-            //Destroy (clone, 0.1f);
-            woodCountAvl = woodCountAvl - 10;
-            ironCount--;
-            stoneCount--;
-            BarrackBuilt++;
 
-            //Debug.Log("Ennnnd" + transform.position.x);
-            //Debug.Log("Ennnnnd" + transform.position.y);
 
-            mousepos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            linehandler = Instantiate(building, Camera.main.ScreenToWorldPoint(Input.mousePosition), Quaternion.identity) as GameObject;
-            linehandler.transform.SetAsLastSibling();
-            linehandler.transform.position = mousepos;
-            linehandler.SetActive(true);
+            if (ResourceManager.wood >= 10 && NPCCountAvl >= 1 && ResourceManager.iron >= 1 && ResourceManager.stone >= 1 && wShop > 1)
+            {
+                //transform.position = Vector3.zero;
+                //Destroy (clone, 0.1f);
 
-            //Debug.Log(BarrackBuilt);
+                ResourceManager.subWood(10);
+                ResourceManager.subIron(1);
+                ResourceManager.subStone(1);
+                BarrackBuilt++;
+
+                //Debug.Log("Ennnnd" + transform.position.x);
+                //Debug.Log("Ennnnnd" + transform.position.y);
+
+                mousepos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                linehandler = Instantiate(building, Camera.main.ScreenToWorldPoint(Input.mousePosition), Quaternion.identity) as GameObject;
+                linehandler.transform.SetAsLastSibling();
+                linehandler.transform.position = mousepos;
+                linehandler.SetActive(true);
+
+                //Debug.Log(BarrackBuilt);
+            }
         }
-       
 
 
 

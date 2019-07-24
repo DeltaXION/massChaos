@@ -17,7 +17,8 @@ public class IronMDragHandler : MonoBehaviour, IDragHandler, IEndDragHandler
     public int woodCountAvl;
     public int stoneCount;
     public int ironMBuilt;
-    public int NPCCountAvl;
+    public static int NPCCountAvl;
+    Timer2 timer;
     public void OnBeginDrag(PointerEventData eventData)
     {
         //    //startPosition =  GameObject.Find("house_img").transform.position;
@@ -46,14 +47,18 @@ public class IronMDragHandler : MonoBehaviour, IDragHandler, IEndDragHandler
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        transform.localPosition = startPosition;
+        timer = FindObjectOfType<Timer2>();
+        if (timer.timeOfDay < 150 && !Timer2.harshWeather)
 
-        if (woodCountAvl >= 5 && NPCCountAvl >= 1 && stoneCount >= 1)
+
+            if (ResourceManager.wood >= 10 && NPCCountAvl >= 1 && ResourceManager.stone >= 1)
         {
-            //transform.position = Vector3.zero;
-            //Destroy (clone, 0.1f);
-            woodCountAvl = woodCountAvl - 5;
-            stoneCount--;
-            ironMBuilt++;
+                //transform.position = Vector3.zero;
+                //Destroy (clone, 0.1f);
+                ResourceManager.subWood(10);
+                ResourceManager.subStone(1);
+                ironMBuilt++;
 
             //Debug.Log("Ennnnd" + transform.position.x);
             //Debug.Log("Ennnnnd" + transform.position.y);
@@ -66,7 +71,7 @@ public class IronMDragHandler : MonoBehaviour, IDragHandler, IEndDragHandler
 
             //Debug.Log(ironMBuilt);
         }
-        transform.localPosition = startPosition;
+
 
 
 

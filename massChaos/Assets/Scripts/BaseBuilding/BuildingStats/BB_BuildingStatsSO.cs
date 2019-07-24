@@ -9,6 +9,12 @@ public class BB_BuildingStatsSO : ScriptableObject
     [SerializeField] int capacity;
     [SerializeField] string currentLevel, NPC_LivingName, RepairNeeded, Message;
 
+    [Header("Resources Required")]
+    [SerializeField] int wood;
+    [SerializeField] int food;
+    [SerializeField] int iron;
+    [SerializeField] int gold;
+
     public Sprite GetBuildingSprite()
     {
         return BuildingSprite;
