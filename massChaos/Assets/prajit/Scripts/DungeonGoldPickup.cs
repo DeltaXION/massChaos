@@ -8,6 +8,7 @@ public class DungeonGoldPickup : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
+            DungeonResourceController1.addDungeonGold(5);
             //collision.gameObject.SetActive(false);
             Destroy(gameObject);
 

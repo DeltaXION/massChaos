@@ -94,7 +94,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lootDropTable:
     lootDropItems:
-    - item: {fileID: 325666164079710484, guid: edd909f4f7a06d5498020dd1ed6f487b, type: 3}
+    - item: {fileID: 325666164079710484, guid: ee22a65021a4a7747a0bda2097e75a64, type: 3}
       probabilityWeight: 100
       probabilityPercent: 100
       probabilityRangeFrom: 0
