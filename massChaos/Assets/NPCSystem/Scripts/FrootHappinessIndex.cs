@@ -5,69 +5,75 @@ using UnityEngine;
 
 public class FrootHappinessIndex : MonoBehaviour
 {
-    public float FrootHappiness;
-    private float Foodfactor;
-    private float FrootBaseComfort;
-    private float FrootAssignments;
-    private float BaseHealth;
-    private float FrootPrestige;
-	public float TotalFollowers = 20f;
-	private float IdleIsWrong;
+    public static float FrootHappiness;
+    private static float Foodfactor;
+    private static float FrootBaseComfort;
+    private static float FrootAssignments;
+    private static float BaseHealth;
+    private static float FrootPrestige;
+	public static float TotalFollowers = 20f;
+	private static float IdleIsWrong;
 
-	public float TotalFrootFollowers = 15;
-	public float TotalFrootFollowersAssigned = 10;
-	private float TotalFrootFollowersIdle;
+	public static float TotalFrootFollowers = 15;
+	public static float TotalFrootFollowersAssigned = 10;
+	private static float TotalFrootFollowersIdle;
 
-    public float BaseAssignmentAffinityBoost = 0.025f;
-	public float QuestAffinityBoost = 0.025f;
-	public float DuplexBoost = 0.0125f;
-	public float VillaBoost = 0.025f;
-	public float DamagedBuildingReduction = 0.15f;
-	public float DamagedAffinityBuildingReduction = 0.25f;
-	private float IdleIsBad;
-	public float IdlePenalty;
-	public float ConsumptionRate = 10f;
-    public float TotalFoodStock = 100f;
-	public float FrootFollowersAssignedAtBase = 6f;
-    public float FrootFollowersAssignedToAffinityBaseAssignments = 2f;
-	public float FrootFollowersAssignedToQuests = 5f;
-    public float FrootFollowersAssignedToAffinityQuests = 5f;
-	public float CurrentBaseHealth = 80f;
-	public float SimpleHouseCount = 1f;
-	public float DuplexCount = 1;
-	public float VillaCount = 1;
-	public float TotalBuildingsAtBase = 10;
-	public float NumberOfDamangedBuildings = 2;
-	public float NumberOfAffinityDamagedBuildings = 1;
-	public float CurrentPrestige = 45;
+    public static float BaseAssignmentAffinityBoost = 0.025f;
+	public static float QuestAffinityBoost = 0.025f;
+	public static float DuplexBoost = 0.0125f;
+	public static float VillaBoost = 0.025f;
+	public static float DamagedBuildingReduction = 0.15f;
+	public static float DamagedAffinityBuildingReduction = 0.25f;
+	private static float IdleIsBad;
+	public static float IdlePenalty;
+	public static float ConsumptionRate = 10f;
+    public static float TotalFoodStock;
+	public static float FrootFollowersAssignedAtBase = 6f;
+    public static float FrootFollowersAssignedToAffinityBaseAssignments = 2f;
+	public static float FrootFollowersAssignedToQuests;
+    public static float FrootFollowersAssignedToAffinityQuests = 5f;
+	public static float CurrentBaseHealth = 80f;
+	public static float SimpleHouseCount = 1f;
+	public static float DuplexCount = 1;
+	public static float VillaCount = 1;
+	public static float TotalBuildingsAtBase = 10;
+	public static float NumberOfDamangedBuildings = 2;
+	public static float NumberOfAffinityDamagedBuildings = 1;
+	public static float CurrentPrestige;
 
-    public Text FrootHappinessUI;
+    
+	public static bool PlayerHasAFollowing;
 
-	private GameObject FrootPrestigeUpdated;
+	private static  GameObject FrootPrestigeUpdated;
+	private GameObject Froot_HappinessUI;
+	public GameObject ActiveHIUI;
+	public GameObject InactiveHIUI;
 
     // Start is called before the first frame update
     void Start()
     {
         
 		FrootPrestigeUpdated = GameObject.Find("QuestsDiplomacyManager");
+		FrootHappiness = 0f;
 
 		StartCoroutine (IdleFollower());
     }
 
-    public void SetFrootHappiness()
+    public static void SetFrootHappiness()
     {
         
 		FrootHappiness = (Foodfactor + FrootAssignments + BaseHealth + FrootBaseComfort + FrootPrestige);
         
-		FrootHappinessUI.text = "Froot Happiness:" + FrootHappiness;
+		//FrootHappinessUI.text = "Froot Happiness:" + FrootHappiness;
 		
     }
     
 	
-    void SetFoodFactor()
+    static void SetFoodFactor()
     {
 		//float ConsumptionRate = 10f;
-        //float TotalFoodStock = 100f;
+        float TotalFoodStock = (float) ResourceManager.food;
+		
 		
         float StarvingFollowers = (TotalFollowers - (TotalFoodStock / ConsumptionRate));
         float StarvingPercentage = (StarvingFollowers / TotalFollowers);
@@ -83,7 +89,7 @@ public class FrootHappinessIndex : MonoBehaviour
         }
     }
 
-    void SetAssignmentFactor()
+    static void SetAssignmentFactor()
     {
         float A = 20; //This is the total BASE happiness that can be achieved via Follower assignments.
         float MaxBaseAb = A / 2;
@@ -95,8 +101,10 @@ public class FrootHappinessIndex : MonoBehaviour
         
         float Ab = MaxBaseAb + ((PercentOfFrootAffinityAssignments) * MaxBaseAb) * BaseAssignmentAffinityBoost;
 
-        //float FrootFollowersAssignedToQuests = 5;
+        float FrootFollowersAssignedToQuests = FrootPrestigeUpdated.GetComponent<QuestsDiplomacyManager>().FrootsCurrentlyQuesting;;
         //float FrootFollowersAssignedToAffinityQuests = 5;
+
+		
         float PercentOfFrootAffinityQuests = (FrootFollowersAssignedToAffinityQuests / FrootFollowersAssignedToQuests);
         
 
@@ -107,7 +115,7 @@ public class FrootHappinessIndex : MonoBehaviour
 		
     }
 
-	void SetBaseHealth()
+	static void SetBaseHealth()
 	{
 		float TotalBH = 10;
 		float MaxBaseHealth = 100;
@@ -123,7 +131,7 @@ public class FrootHappinessIndex : MonoBehaviour
 		}
 	}
 
-	void SetBaseComfort()
+	static void SetBaseComfort()
 	{
 		float TotalBC = 10f;
 		float BCCap = 0.7f * TotalBC;
@@ -161,11 +169,11 @@ public class FrootHappinessIndex : MonoBehaviour
 		FrootBaseComfort = (x - y) / 10;
 	}
 	
-	void SetFrootPrestige()
+	static void SetFrootPrestige()
 	{
 		float TotalP = 5;
 		float TotalPrestige = 100;
-		//float CurrentPrestige = FrootPrestigeUpdated.GetComponent<QuestsDiplomacyManager>().Prestige_Froots;
+		float CurrentPrestige = FrootPrestigeUpdated.GetComponent<QuestsDiplomacyManager>().Prestige_Froots;
 		//float CurrentPrestige = 45;
 
 		float PrestigeReduction = (TotalPrestige - CurrentPrestige) / TotalPrestige;
@@ -174,8 +182,11 @@ public class FrootHappinessIndex : MonoBehaviour
 
 	}
 
-	public void RecalculateHappinessIndex()
+	public static void RecalculateHappinessIndex()
     {
+		
+		if(PlayerHasAFollowing == true)
+		{
         SetFoodFactor();
         SetAssignmentFactor();
 		SetBaseHealth();
@@ -184,13 +195,15 @@ public class FrootHappinessIndex : MonoBehaviour
 		
 		SetFrootHappiness();
 
-		//Debug.Log("Froot Happiness" + FrootHappiness);
-		//Debug.Log("Foof factor" + Foodfactor);
-		//Debug.Log("Froot Assignments" + FrootAssignments);
-		//Debug.Log("Base Health" + BaseHealth);
-		//Debug.Log("Froot Base Comfort" + FrootBaseComfort);
-		//Debug.Log("Froot Prestige" + FrootPrestige);
-    }
+		Debug.Log("Froot Happiness" + FrootHappiness);
+		Debug.Log("Foof factor" + Foodfactor);
+		Debug.Log("Froot Assignments" + FrootAssignments);
+		Debug.Log("Base Health" + BaseHealth);
+		Debug.Log("Froot Base Comfort" + FrootBaseComfort);
+		Debug.Log("Froot Prestige" + FrootPrestige);
+		}
+	
+	}
 
 	IEnumerator IdleFollower()
 	{
@@ -214,11 +227,18 @@ public class FrootHappinessIndex : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown("space"))
+        if(TotalFollowers > 0)
 		{
-		RecalculateHappinessIndex();
-		
+			PlayerHasAFollowing = true;
+			ActiveHIUI.SetActive(true);
+			InactiveHIUI.SetActive(false);
+		}
+		else if(TotalFollowers == 0)
+		{
+			PlayerHasAFollowing = false;
+			ActiveHIUI.SetActive(false);
+			InactiveHIUI.SetActive(true);
 		}
 
-    }
+	}
 }

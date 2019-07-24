@@ -114,13 +114,13 @@ public class Timer2 : MonoBehaviour
             {
                 timeOfDay -= wholeDaySeconds;
                 
-              //  Debug.Log("day restart");
+                //Debug.Log("day restart");
             }
       
 
         if (timeOfDay <= wholeDaySeconds / 2)
                 {
-                   // Debug.Log("its day");
+                    //Debug.Log("its day");
                     DayText.SetActive(true);
                     NightText.SetActive(false);
                     timeBar.fillAmount = timeOfDay/ Daymax;
@@ -130,7 +130,7 @@ public class Timer2 : MonoBehaviour
                 }
                 if (timeOfDay >= wholeDaySeconds / 2)
                 {
-                   // Debug.Log("its night");
+                    //Debug.Log("its night");
                     NightText.SetActive(true);
                     DayText.SetActive(false);
                 float half = timeOfDay / 2;
