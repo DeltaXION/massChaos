@@ -11,22 +11,38 @@ public class NPCList : MonoBehaviour
     public string type;
     public string affinity;
     // public BaseCharachteristics b;
+    public GameObject can;
 
 
     // Start is called before the first frame update
     void Start()
     {
-       // string name = b.Name; 
+        // string name = b.Name; 
+       //can = GameObject.Find("NPCCanvas");
+      // UpdateNPCList();
+      // can.SetActive(false);
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        //
+    }
+
+
+    public void UpdateNPCList() {
 
         foreach (var o in NPCSystem.followers)
         {
+
+            GameObject go = (GameObject)Instantiate(Resources.Load("NPCEntry"));
             
-            GameObject go = (GameObject)Instantiate(NPCEntry);
-            go.transform.SetParent(this.transform);
+          //  Debug.Log(transform);
+           // go.transform.SetParent(gameObject.transform);
             go.transform.Find("id").GetComponent<Text>().text = o.Id.ToString();
             go.transform.Find("name").GetComponent<Text>().text = o.Name;
-            Debug.Log("Happpy" +Nomad.HappinessIndex);
-          
+            
+
             switch (o.Type)
             {
                 case "N":
@@ -52,7 +68,7 @@ public class NPCList : MonoBehaviour
             }
             go.transform.Find("prestige").GetComponent<Text>().text = prestige;
             go.transform.Find("type").GetComponent<Text>().text = type;
-
+           
 
             // go.transform.Find("affinity").GetComponent<Text>().text = o.Affinity.ToString();
             //go.transform.Find("foodIntake").GetComponent<Text>().text = o.FoodIntake.ToString();
@@ -60,9 +76,6 @@ public class NPCList : MonoBehaviour
 
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    
+
 }

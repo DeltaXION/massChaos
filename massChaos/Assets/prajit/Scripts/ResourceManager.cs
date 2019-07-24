@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class ResourceManager : MonoBehaviour
 {
     public static int gold = 0;
-    public static int food = 0;
+    public static float food = 0;
     public static int wood = 0;
     public static int stone = 0;
     public static int iron = 0;
