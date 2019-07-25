@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -21,7 +22,7 @@ public class BB_BuildingUpgrades : MonoBehaviour
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         changeSpirte();
-        
+ 
     }
 
    
@@ -29,24 +30,33 @@ public class BB_BuildingUpgrades : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (gameObject.transform.Find("StatsUI/Canvas/UpgradeButton") == null)
-        {
-            Debug.Log("Object Not Found %%%%%%");
-        }
+       
     }
 
     public void changeSpirte()
     {
+
         if (this.currentUpgradeLevel >= buildings.Length)
         {
             return;
         }
 
+        
         spriteRenderer.sprite = buildings[currentUpgradeLevel].GetBuildingSprite();
         capcityText.text = "Capacity: " + "0/" + buildings[currentUpgradeLevel].getCapacity().ToString();
         npcLiving.text = "NPC living here: " + buildings[currentUpgradeLevel].npc_LivingName();
         currentLevel.text = "Current Level: " + buildings[currentUpgradeLevel].CurrentLevel();
 
+        if (buildings.Length > 0)
+        {
+            FindObjectOfType<BB_GlobalStats>().addToPopulationCapacity(currentUpgradeLevel);
+        }
+
+        else
+        {
+           // FindObjectOfType<BB_GlobalStats>().addToPopulationCapacity(currentUpgradeLevel + 2);
+        }
+        
         if (this.currentUpgradeLevel < buildings.Length-1)
         {
             resourceRequired.text = "Resource Required: " + buildings[currentUpgradeLevel + 1].resourcesRequired();
@@ -61,8 +71,10 @@ public class BB_BuildingUpgrades : MonoBehaviour
 
         }
 
+        
 
     }
+
 
     public int GetCurrentUpgradeLevel()
     {
