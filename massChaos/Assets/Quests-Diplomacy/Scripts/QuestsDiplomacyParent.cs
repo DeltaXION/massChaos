@@ -80,10 +80,8 @@ public class QuestsDiplomacyParent : MonoBehaviour
         //NOMAD_QUESTS (1-15) FERRARUIM_QUESTS (16-30) FROOTS_QUESTS (31-45) MIMAX_QUESTS (46-60)
         SetQuestforRace("NomadQuestNode", 1, 6);
         SetQuestforRace("FerrariumQuestNode", 16, 21);
-        /*
         SetQuestforRace("FrootsQuestNode", 31, 36);
         SetQuestforRace("MimaxQuestNode", 46, 51);
-        */
     }
 
     void SetQuestforRace(string RaceName, int min, int max)

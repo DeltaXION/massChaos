@@ -255,6 +255,108 @@ public class QuestList : MonoBehaviour
             Quest_Time = 4;
             LootReward_Gold = 10;
         }
+
+
+        //FROOTS...FROOTS...FROOTS...FROOTS...FROOTS...FROOTS...FROOTS...FROOTS...FROOTS...FROOTS...FROOTS...FROOTS...FROOTS...FROOTS...
+        if (Questnumber == 31)
+        {
+            QuestText = "This is the FROOTS Quest you must read.";
+            Prestige_Froots = 5;
+
+            Quest_Time = 4;
+            LootReward_Wood = 10;
+        }
+        if (Questnumber == 32)
+        {
+            QuestText = "This is the FROOTS Quest you must read.";
+            Prestige_Froots = 5;
+
+            Quest_Time = 4;
+            LootReward_Gold = 10;
+        }
+        if (Questnumber == 33)
+        {
+            QuestText = "This is the FROOTS Quest you must read.";
+            Prestige_Froots = 5;
+
+            Quest_Time = 4;
+            LootReward_Gold = 10;
+        }
+        if (Questnumber == 34)
+        {
+            QuestText = "This is the FROOTS Quest you must read.";
+            Prestige_Froots = 5;
+
+            Quest_Time = 4;
+            LootReward_Gold = 10;
+        }
+        if (Questnumber == 35)
+        {
+            QuestText = "This is the FROOTS Quest you must read.";
+            Prestige_Froots = 5;
+
+            Quest_Time = 4;
+            LootReward_Wood = 10;
+        }
+        if (Questnumber == 36)
+        {
+            QuestText = "This is the FROOTS Quest you must read.";
+            Prestige_Froots = 5;
+
+            Quest_Time = 4;
+            LootReward_Gold = 10;
+        }
+
+
+        //MIMAX...MIMAX...MIMAX...MIMAX...MIMAX...MIMAX...MIMAX...MIMAX...MIMAX...MIMAX...MIMAX...MIMAX...MIMAX...MIMAX...
+        if (Questnumber == 46)
+        {
+            QuestText = "This is the FROOTS Quest you must read.";
+            Prestige_Mimax = 5;
+
+            Quest_Time = 4;
+            LootReward_Wood = 10;
+        }
+        if (Questnumber == 47)
+        {
+            QuestText = "This is the FROOTS Quest you must read.";
+            Prestige_Mimax = 5;
+
+            Quest_Time = 4;
+            LootReward_Gold = 10;
+        }
+        if (Questnumber == 48)
+        {
+            QuestText = "This is the FROOTS Quest you must read.";
+            Prestige_Mimax = 5;
+
+            Quest_Time = 4;
+            LootReward_Gold = 10;
+        }
+        if (Questnumber == 49)
+        {
+            QuestText = "This is the FROOTS Quest you must read.";
+            Prestige_Mimax = 5;
+
+            Quest_Time = 4;
+            LootReward_Gold = 10;
+        }
+        if (Questnumber == 50)
+        {
+            QuestText = "This is the FROOTS Quest you must read.";
+            Prestige_Mimax = 5;
+
+            Quest_Time = 4;
+            LootReward_Wood = 10;
+        }
+        if (Questnumber == 51)
+        {
+            QuestText = "This is the FROOTS Quest you must read.";
+            Prestige_Mimax = 5;
+
+            Quest_Time = 4;
+            LootReward_Gold = 10;
+        }
     }
 
     
