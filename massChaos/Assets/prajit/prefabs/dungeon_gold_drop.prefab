@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1206270187808451048}
   - component: {fileID: 1206270187808451055}
   - component: {fileID: 1206270187808451054}
+  - component: {fileID: 8191442394763665739}
   m_Layer: 0
   m_Name: dungeon_gold_drop
   m_TagString: DungeonGold
@@ -68,10 +69,9 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: -8001008529612634699, guid: 4f0ed72053f20214680d7e5362d88c57,
-    type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_SortingOrder: 2
+  m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  m_Color: {r: 0.8773585, g: 0.75106996, b: 0.037246335, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -97,3 +97,15 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.34375
+--- !u!114 &8191442394763665739
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1206270187808451052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cf0c7e5d90af4b41a5354480ae67b2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

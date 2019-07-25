@@ -12,6 +12,7 @@ public class playershotgun : MonoBehaviour
     public GameObject bullet4;
     public GameObject bullet5;
     public float TimeToLive = 5f;
+    float timer = 0.0f;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,9 +25,13 @@ public class playershotgun : MonoBehaviour
         if (Input.GetButtonDown("attack") /*&& currentState != PlayerState.attack*/)
         {
             //currentState =
-            StartCoroutine(Attackshotgun());
+            timer += Time.deltaTime;
+
+
+           StartCoroutine(Attackshotgun());
 
         }
+        if(Input.GetButtonUp(""))
     }
     private IEnumerator Attackshotgun()
     {
