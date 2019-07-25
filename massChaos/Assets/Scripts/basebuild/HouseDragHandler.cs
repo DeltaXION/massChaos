@@ -7,6 +7,8 @@ public class HouseDragHandler : MonoBehaviour, IDragHandler, IEndDragHandler {
 
     public bool displayNPCassignList;
 
+    NPCApplicants npc;
+
     Vector3 startPosition;
     public GameObject building;
     private GameObject linehandler;
@@ -67,6 +69,8 @@ public class HouseDragHandler : MonoBehaviour, IDragHandler, IEndDragHandler {
                 linehandler.transform.position = mousepos;
                 linehandler.SetActive(true);
 
+                //npc = new NPCApplicants();
+              //  npc.PopulateList();
 
                 Debug.Log(houseBuilt);
                 displayNPCassignList = true;
