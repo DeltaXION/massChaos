@@ -6,142 +6,185 @@ using UnityEngine.SceneManagement;
 
 public class Timer2 : MonoBehaviour
 {
-    float button;
-    public Image SeasonMeter;
-    public float calen;
-    public float datees;
+   
+    public Image SeasonMeter; // the season meter bar 
+    public float calen;     
+    public float datees;        // calculated date in float.
     public GameObject SpringUI;
     public GameObject SummerUI;
     public GameObject AutumnUI;
     public GameObject WinterUI;
-    public float Daymax ;
-    public float Nightmax;
-    public  float dayTime;
-    public  float nightTime;
+    public float Daymax = 150;
+    public float Nightmax = 150;
+    public float dayTime;
+    public float nightTime;
     public GameObject DayText;
     public GameObject NightText;
     public GameObject date;
     public float seasonDays = 25;
     public GameObject seasonName;
-    public float startDay;
+    public float startDay = 1;
     public float year;
     public float time;
     public bool inDungeon = false;
     public bool timerActive = false;
     public bool skipActive = false;
+    public bool skipX2Active = false;
     public float displayDate;
-    public float skipTime ;
-    public float travelTimeSeconds;
-    public Text timevalue;
+    public float skipTime;  // how many seconds will be skipped ;
+
+    public float travelTimeSeconds = 450;
+    public Text timevalue; // day/night time bar:
     public Text playButtonTxt;
     public Text skipButtonTxt;
-    public float wholeDaySeconds;
+    public Text skipX2ButtonTxt;
+    public Text DungeonButtonTxt ;
+    public float wholeDaySeconds = 300;
     static public bool harshWeather = false;
+    public bool harshWeathers = false;  // only for refering to the Day/Night color script.
     Image timeBar;
     public float season = 1;
     public float timeOfSeason;
     public float SeasonSeconds;
     public GameObject player;
-    float playerSpeed;
+    public float playerSpeed = 8;
     float springTimer;
     public float timeOfDay;
     static public bool itsDay;
-
-   
+    public GameObject exitDuBut;
 
     void Start()
     {
-       GameObject. DontDestroyOnLoad(this.gameObject);
+        
+        playerSpeed = 8;
+
+        GameObject.DontDestroyOnLoad(this.gameObject);
         DayText.SetActive(true);
         NightText.SetActive(false);
         timeBar = GetComponent<Image>();
-      //  dayTime = Daymax;
-    
+        //  dayTime = Daymax;
+
         date = GameObject.Find("date");
-    
-      
+
+
         Daymax = wholeDaySeconds / 2;
-        Nightmax = wholeDaySeconds/2;
-       SeasonSeconds = wholeDaySeconds * seasonDays;
+        Nightmax = wholeDaySeconds / 2;
+        SeasonSeconds = wholeDaySeconds * seasonDays;
         SeasonSeconds = 7500;
 
         WinterUI.SetActive(false);
         SummerUI.SetActive(false);
         AutumnUI.SetActive(false);
         SpringUI.SetActive(false);
+        exitDuBut.SetActive(false);
     }
 
     void Update()
     {
-        GameObject go = GameObject.Find("Time_Canvas"); 
+        
+        playerSpeed = player.GetComponent<BB_BasicControls>().speed;
+       
+        GameObject go = GameObject.Find("Time_Canvas");
 
+        // ONGOING TIME - TIMER : DAY : SEASON :-
         if (timerActive)
-        { 
-            //Debug.Log("timer is active");
+        {
+            playButtonTxt.text = "Pause";
             time += Time.deltaTime;
             timeOfDay += Time.deltaTime;
             timeOfSeason += Time.deltaTime;
 
         }
-            if (skipActive)
-            {
-                time = time + skipTime;
-                timeOfDay = timeOfDay + skipTime;
-                 timeOfSeason = timeOfSeason + skipTime;
-            }
-            calen = time / wholeDaySeconds;
-            datees = Mathf.FloorToInt(calen + startDay);
-            displayDate = Mathf.FloorToInt(datees);
-            date.GetComponent<Text>().text = "Day " +displayDate.ToString();
 
-        if( displayDate > 100)
+        //  DISPLAY DATE - CALCULATING: DAYS
+
+        calen = time / wholeDaySeconds;
+        datees = Mathf.FloorToInt(calen + startDay);
+        displayDate = Mathf.FloorToInt(datees);
+        date.GetComponent<Text>().text = "Day " + displayDate.ToString();
+
+        // SKIP X1
+        if (skipActive)
         {
-            year = Mathf.FloorToInt(displayDate / 100);
+            time = time + skipTime;
+            timeOfDay = timeOfDay + skipTime;
+            timeOfSeason = timeOfSeason + skipTime;
+            skipX2Active = false;
+            playerSpeed = 50;
+            if (!skipX2Active)
+            { skipX2ButtonTxt.text = "FFX2"; }
 
-            displayDate = displayDate - 100;
-          
-            date.GetComponent<Text>().text = "Year "+ year + "  Day " + displayDate.ToString();
+        }
+        
+        // SKIP X2
+        if (skipX2Active)
+        {
+            time = time + skipTime * 2;
+            timeOfDay = timeOfDay + skipTime * 2;
+            timeOfSeason = timeOfSeason + skipTime * 2;
+            skipActive = false;
+            playerSpeed = 250;
+            if (!skipActive)
+            { skipButtonTxt.text = "FF"; }
+
+
+        }
+        
+        if(!skipX2Active && !skipActive)
+        {
+            playerSpeed = 8;
         }
 
+
+        // SPLITTING DAYS INTO :: YEARS AND DAYS :-
+        if (displayDate > 100)
+        {
+            year = Mathf.FloorToInt(displayDate / 100);
+            displayDate = displayDate - 100;
+            date.GetComponent<Text>().text = "Year " + year + "  Day " + displayDate.ToString();
+        }
+
+        // SEASON - NO OF SEASONS PASSED :
         if (timeOfSeason >= SeasonSeconds)
         {
             season += 1;
             timeOfSeason -= SeasonSeconds;
         }
-       
 
+        // DAYS RESET TO 1 IF YEAR > 0
         if (timeOfDay >= wholeDaySeconds)
-            {
-                timeOfDay -= wholeDaySeconds;
-                
-                //Debug.Log("day restart");
-            }
-      
+        {
+            timeOfDay -= wholeDaySeconds;
 
+        }
+
+        // DAY :-
         if (timeOfDay <= wholeDaySeconds / 2)
-                {
-                    //Debug.Log("its day");
-                    DayText.SetActive(true);
-                    NightText.SetActive(false);
-                    timeBar.fillAmount = timeOfDay/ Daymax;
-                    timevalue.text = (timeBar.fillAmount * Daymax).ToString("F0");
-            itsDay = true;
+        {
             
-                }
-                if (timeOfDay >= wholeDaySeconds / 2)
-                {
-                    //Debug.Log("its night");
-                    NightText.SetActive(true);
-                    DayText.SetActive(false);
-                float half = timeOfDay / 2;
-                    timeBar.fillAmount = half / Nightmax;
-                    timevalue.text = (timeBar.fillAmount * Nightmax).ToString("F0");
-            itsDay = false;
-                }
+            DayText.SetActive(true);
+            NightText.SetActive(false);
+            timeBar.fillAmount = timeOfDay / Daymax;
+            timevalue.text = (timeBar.fillAmount * Daymax).ToString("F0");
+            itsDay = true;
 
+        }
+        // NIGHT :- 
+        if (timeOfDay >= wholeDaySeconds / 2)
+        { // activate the code below once merged - Niyati.
+           // CommonHappinessIndex.RecacluclateHappinessIndex();
+           
+            NightText.SetActive(true);
+            DayText.SetActive(false);
+            float half = timeOfDay / 2;
+            timeBar.fillAmount = half / Nightmax;
+            timevalue.text = (timeBar.fillAmount * Nightmax).ToString("F0");
+            itsDay = false;
+        }
+        // SPRING :-
         if (displayDate <= 25)
         {
-            SeasonMeter.fillAmount = timeOfSeason / SeasonSeconds;
+            SeasonMeter.fillAmount = timeOfSeason / SeasonSeconds; // SEASON METER.
 
             seasonName.GetComponent<Text>().text = "Spring";
             Spring();
@@ -152,71 +195,84 @@ public class Timer2 : MonoBehaviour
         }
         else SpringUI.SetActive(false);
 
-                if (displayDate > 25)
-                {
-                    SeasonMeter.fillAmount = timeOfSeason / SeasonSeconds;
-                    seasonName.GetComponent<Text>().text = "Summer";
-                    Summer();
-                    if (harshWeather)
-                    {
-                        seasonName.GetComponent<Text>().text = "Summer - harsh";
-                    }
+        // SUMMER :-
+        if (displayDate > 25)
+        {
+            SeasonMeter.fillAmount = timeOfSeason / SeasonSeconds;// SEASON METER.
+            seasonName.GetComponent<Text>().text = "Summer";
+            Summer();
+            if (harshWeather)
+            {
+                seasonName.GetComponent<Text>().text = "Summer - harsh";
+            }
         }
         else SummerUI.SetActive(false);
-        if (displayDate > 50)
-                {
 
-                     SeasonMeter.fillAmount = timeOfSeason / SeasonSeconds;
-                    seasonName.GetComponent<Text>().text = "Autumn";
-                    Autumn();
-                    if (harshWeather)
-                    {
-                        seasonName.GetComponent<Text>().text = "Autumn- harsh";
-                    }
+        // AUTUMN :-
+        if (displayDate > 50)
+        {
+
+            SeasonMeter.fillAmount = timeOfSeason / SeasonSeconds;// SEASON METER.
+            seasonName.GetComponent<Text>().text = "Autumn";
+            Autumn();
+            if (harshWeather)
+            {
+                seasonName.GetComponent<Text>().text = "Autumn- harsh";
+            }
         }
         else AutumnUI.SetActive(false);
 
-        if (displayDate >75)
+        // WINTER:-
+        if (displayDate > 75)
         {
-                     SeasonMeter.fillAmount = timeOfSeason / SeasonSeconds;
-                     seasonName.GetComponent<Text>().text = "Winter";
-                   Winter();
-                    if (harshWeather)
-                    {
-                        seasonName.GetComponent<Text>().text = "Winter- harsh";
-                    }
+            SeasonMeter.fillAmount = timeOfSeason / SeasonSeconds;// SEASON METER.
+            seasonName.GetComponent<Text>().text = "Winter";
+            Winter();
+            if (harshWeather)
+            {
+                seasonName.GetComponent<Text>().text = "Winter- harsh";
+            }
         }
         else WinterUI.SetActive(false);
 
     }
-    
+
+    // SPRING FUNCTOIN :
     public void Spring()
     {
-            springTimer += displayDate;
+        springTimer += displayDate;
         SpringUI.SetActive(true);
-        if  (displayDate >= 10 )
+        if (displayDate >= 10)
         {// add 1 damage function;
             harshWeather = true;
-            if(displayDate >=15)
+            harshWeathers = true;
+            if (displayDate >= 15)
             {
                 harshWeather = false;
+                harshWeathers = false;
             }
         }
-          
+
     }
+
+    // SUMMER FUNCTION :
     public void Summer()
     {
         SummerUI.SetActive(true);
         if (displayDate >= 37)
         { // add 1 damage function;
             harshWeather = true;
+            harshWeathers = true;
             if (displayDate >= 42)
             {
                 harshWeather = false;
+                harshWeathers = false;
             }
         }
 
     }
+
+    // AUTUMNFUNCTION :
     public void Autumn()
     {
 
@@ -224,13 +280,16 @@ public class Timer2 : MonoBehaviour
         if (displayDate >= 62)
         {// add 1 damage function;
             harshWeather = true;
+            harshWeathers = true;
             if (displayDate >= 70)
             {
                 harshWeather = false;
+                harshWeathers = false;
             }
         }
 
     }
+    // WINTER FUNCTION:
     public void Winter()
 
     {
@@ -238,48 +297,107 @@ public class Timer2 : MonoBehaviour
         if (displayDate >= 85)
         {// add 1 damage function;
             harshWeather = true;
+            harshWeathers = true;
             if (displayDate >= 92)
             {
                 harshWeather = false;
+                harshWeathers = false;
             }
         }
 
     }
-
+    // PLAY/PAUSE BUTTON :-
     public void playButton()
     {
-        
         timerActive = !timerActive;
-        playButtonTxt.text = timerActive ? "Pause" : "Play";
 
+        if (timerActive)
+        { playButtonTxt.text =  "Pause" ; }
+        if (!timerActive)
+        { playButtonTxt.text =  "Play"; }
+    }
 
-    } 
+    // SKIP BUTTON :-
+
     public void skipButton()
     {
-        
+
         skipActive = !skipActive;
-        skipButtonTxt.text = skipActive ? "Stop Skip" : "Skip";
-       
+       // skipButtonTxt.text = skipActive ? "Stop FF" : "FF";
+        if (skipActive)
+        {
+            skipX2Active = false;
+            skipButtonTxt.text = "Stop";
+
+        }
+        if (!skipActive)
+        {
+            skipButtonTxt.text = "FF";
+
+        }
+
     }
+
+    // SKIP X 2 BUTTON :-
+
+    public void skipX2Button()
+    {
+
+        skipX2Active = !skipX2Active;
+      //  skipX2ButtonTxt.text = skipX2Active ? "Stop" : "FFX2";
+        if (skipX2Active)
+        {
+            skipActive = false;
+            skipX2ButtonTxt.text = "Stop";
+
+        }
+        if (!skipX2Active)
+        {
+            skipX2ButtonTxt.text = "FFX2";
+
+        }
+
+
+    }
+
+    // ENTER DUNGEON - NEXT FLOOR BUTTON :-
+
     public void goToDungeonButton()
 
-   {if (!skipActive)
+    {
+        if (!skipActive)
         {
             timerActive = false;
-            inDungeon = true;
+        inDungeon = true;
+            if(inDungeon)
+            {
+                exitDuBut.SetActive(true);
+            }
+           
+        DungeonButtonTxt.text = "Next Floor";
+        time = time + travelTimeSeconds;
+        timeOfDay = timeOfDay + travelTimeSeconds;
+        timeOfSeason = timeOfSeason + travelTimeSeconds;
+        }
+
+    }
+ 
+    // EXIT DUNGEON BUTTON :-
+    public void exitDungeon()
+    {
+        if (inDungeon)
+        {
+            DungeonButtonTxt.text = "Dungeon";
+            timerActive = true;
+            inDungeon = false;
             time = time + travelTimeSeconds;
             timeOfDay = timeOfDay + travelTimeSeconds;
+            timeOfSeason = timeOfSeason + travelTimeSeconds;
+            exitDuBut.SetActive(false);
+
+
         }
-               
-     }
-     
-    public void exitDungeon()
-    {if (inDungeon)
-        {
-           // timerActive = true;
-            playButton();
-        }
-   
+
 
 
     }
