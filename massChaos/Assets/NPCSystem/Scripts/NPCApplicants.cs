@@ -10,6 +10,7 @@ public class NPCApplicants : MonoBehaviour
 {
     // Start is called before the first frame update
     public GameObject ApplicantItems;
+    public int houseID = 1;
     static int id = 0;
     string type;
     public GameObject can;
@@ -18,44 +19,60 @@ public class NPCApplicants : MonoBehaviour
     void Start()
     {
 
-        addFollower("Arjun", "M", "sss", "sss", "sss", "sss");
-        addFollower("Froos", "Fo", "sss", "sss", "sss", "sss"); 
 
 
-        foreach (var o in applicants)
-        {
+        addFollower("Kroos", "M", "", "", "", "");
+        addFollower("Froos", "Fo", "", "", "", "");
 
-            GameObject go = (GameObject)Instantiate(ApplicantItems);
-            go.transform.SetParent(this.transform);
-            go.transform.Find("name").GetComponent<Text>().text = o.Name;
-            go.transform.Find("id").GetComponent<Text>().text = o.Id.ToString();
 
-            switch (o.Type)
+        PopulateList();
+
+
+
+    }
+
+    public void PopulateList() {
+
+   
+            foreach (var o in applicants)
             {
-                case "N":                   
-                    type = "Nomad";
-                    go.transform.Find("affinity").GetComponent<Text>().text = "Combat";
-                    break; 
-                case "Fr":
-                   
-                    type = "Ferrarium";
-                    go.transform.Find("affinity").GetComponent<Text>().text = "Trade";
-                    break;
-                case "Fo":
-                  
-                    type = "Froot";
-                    go.transform.Find("affinity").GetComponent<Text>().text = "Farming";
-                    break;
-                case "M":
-                    
-                    type = "Mimax";
-                    go.transform.Find("affinity").GetComponent<Text>().text = "Defence";
-                    break;
-            }
 
-             go.transform.Find("type").GetComponent<Text>().text = type;
-            //go.transform.Find("foodIntake").GetComponent<Text>().text = o.FoodIntake.ToString();
-        }
+                GameObject go = (GameObject)Instantiate(Resources.Load("ApplicantItems"));
+                gameObject.SetActive(true);
+                go.transform.SetParent(this.transform);
+                go.transform.Find("name").GetComponent<Text>().text = o.Name;
+                go.transform.Find("id").GetComponent<Text>().text = o.Id.ToString();
+
+                switch (o.Type)
+                {
+                    case "N":
+                        type = "Nomad";
+                        go.transform.Find("affinity").GetComponent<Text>().text = "Combat";
+                        break;
+                    case "Fr":
+
+                        type = "Ferrarium";
+                        go.transform.Find("affinity").GetComponent<Text>().text = "Trade";
+                        break;
+                    case "Fo":
+
+                        type = "Froot";
+                        go.transform.Find("affinity").GetComponent<Text>().text = "Farming";
+                        break;
+                    case "M":
+
+                        type = "Mimax";
+                        go.transform.Find("affinity").GetComponent<Text>().text = "Defence";
+                        break;
+                }
+
+
+                go.transform.Find("type").GetComponent<Text>().text = type;
+                //go.transform.Find("foodIntake").GetComponent<Text>().text = o.FoodIntake.ToString();
+            }
+      
+      
+        
     }
 
     public static BaseCharachteristics GetFollowerByID(int id)
@@ -79,6 +96,7 @@ public class NPCApplicants : MonoBehaviour
     }
 
 
+
     public void onExitClick()
     {
         Debug.Log("mouse2");
@@ -87,6 +105,7 @@ public class NPCApplicants : MonoBehaviour
         {
             Destroy(go);
         }
+        can = GameObject.Find("AssignList");
         can.SetActive(false);
     }
 
@@ -95,6 +114,7 @@ public class NPCApplicants : MonoBehaviour
     {
         int index = id - 1;
         applicants.RemoveAt(index);
+
     }
 
     // Update is called once per frame
@@ -104,11 +124,13 @@ public class NPCApplicants : MonoBehaviour
     }
 
 
+
     public void addFollower(string name, string type, string classType, string secItem, string priItem, string status)
     {
         id++;
         Debug.Log(id);
         applicants.Add(new BaseCharachteristics(id, name, type, classType, secItem, priItem, status));
+
 
     }
 }

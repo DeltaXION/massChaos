@@ -654,6 +654,8 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+<<<<<<< HEAD
+=======
 --- !u!114 &4579425669923026016
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -666,6 +668,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d15d71dfa3501749ab5f197a826dd48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+>>>>>>> 1dc80758be172dd3efeb56761c7acdb97f37a723
 --- !u!1 &2146545319951700797
 GameObject:
   m_ObjectHideFlags: 0
