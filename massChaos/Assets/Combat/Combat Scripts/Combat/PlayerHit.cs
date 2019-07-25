@@ -21,5 +21,9 @@ public class PlayerHit : MonoBehaviour
         {
             other.GetComponent<BreakObjects>().Smash();
         }
+        if(other.CompareTag("Player"))
+        {
+            Debug.Log("hit player");
+        }
     }
 }

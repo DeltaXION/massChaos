@@ -183,7 +183,7 @@ GameObject:
   - component: {fileID: 422677509431490843}
   m_Layer: 10
   m_Name: LeftHitBox
-  m_TagString: Untagged
+  m_TagString: weapon_hitbox_SS
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -258,7 +258,7 @@ GameObject:
   - component: {fileID: 6337208813639979463}
   m_Layer: 10
   m_Name: RightHitBox
-  m_TagString: Untagged
+  m_TagString: weapon_hitbox_SS
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -332,7 +332,7 @@ GameObject:
   - component: {fileID: 6715930187322396457}
   m_Layer: 10
   m_Name: DownHitBox
-  m_TagString: Untagged
+  m_TagString: weapon_hitbox_SS
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -406,7 +406,7 @@ GameObject:
   - component: {fileID: 7277461556524772383}
   m_Layer: 10
   m_Name: UpHitBox
-  m_TagString: Untagged
+  m_TagString: weapon_hitbox_SS
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -109,15 +109,8 @@ public class dashAwayWarriorAction : GOAPAction
         Debug.Log("dashed away");
         //Play dash animation;
         dashedAway = true;
-        if (currentEnemy.bottomIsEmpty == false || currentEnemy.topIsEmpty == false || currentEnemy.rightIsEmpty == false || currentEnemy.leftIsEmpty == false)
-        {
-            dashSuccessful = false;
-        }
-        else
-        {
-            dashSuccessful = true;
-        }
-        return dashSuccessful;
+        
+        return dashedAway;
     }
 
 }
