@@ -7,6 +7,7 @@ public class Ranger : EnemyBaseClass
 {
     
     public GameObject rangeWeapon;
+
     public int arrowForce = 20;
     public float arrowRange = 5;
     Animator myAnimator;
@@ -23,7 +24,7 @@ public class Ranger : EnemyBaseClass
     {
         base.readSensorStatusAndUpdateFlags();
         base.updateTheWorldStateForAI();
-        
+        setWalkingAnimation();
        
        
     }
@@ -32,6 +33,11 @@ public class Ranger : EnemyBaseClass
     public override void animateDamage()
     {
         damageParticles.Play();
+    }
+
+    void setWalkingAnimation()
+    {
+        myAnimator.SetBool("moving", moving);
     }
 
     public override void attackPlayer()

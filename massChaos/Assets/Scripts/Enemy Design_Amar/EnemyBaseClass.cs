@@ -75,6 +75,9 @@ public abstract class EnemyBaseClass : MonoBehaviour, IGOAP
 
     public void damageEnemy(float damage)
     {
+        //look at player
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        rotateVision(player);
         animateDamage();
         health -= damage;   
         Debug.Log("enemy hurt by " + damage + " points");
@@ -86,7 +89,7 @@ public abstract class EnemyBaseClass : MonoBehaviour, IGOAP
         if(health <=0)
         {
             InstantiateDrops dropHandler = GameObject.FindGameObjectWithTag("instantiateDrops").GetComponent<InstantiateDrops>();
-            Debug.Log(transform.position);
+            
             dropHandler.dropGold(enemyType, enemyLevel, transform.position.x, transform.position.y);
             //call drop loot function
             Destroy(gameObject);

@@ -6,11 +6,13 @@ using UnityEngine;
 public class Warrior : EnemyBaseClass
 {
     Animator myAnimator;
+    Vector3 startingPosition;
     // Start is called before the first frame update
     void Start()
     {
         base.createCollisionTriggers();
         myAnimator = GetComponent<Animator>();
+        startingPosition = transform.position;
     }
 
     // Update is called once per frame
