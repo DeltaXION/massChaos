@@ -19,3 +19,7 @@ MonoBehaviour:
   NPC_LivingName: Froot A, Froot B, Froot C, Froot D, Froot E
   RepairNeeded: building3
   Message: building3
+  wood: 100
+  food: 0
+  iron: 75
+  gold: 10

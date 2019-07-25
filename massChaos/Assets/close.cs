@@ -21,6 +21,11 @@ public class close : MonoBehaviour, ISelectHandler
 
     public void OnSelect(BaseEventData eventData)
     {
+        GameObject[] entries = GameObject.FindGameObjectsWithTag("applicantItem");
+        foreach (GameObject go in entries)
+        {
+            Destroy(go);
+        }
         can.SetActive(false);
     }
 }

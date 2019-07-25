@@ -1,12 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Trees : MonoBehaviour
 {
+    public Text woods;
     public float fadeTIme;
     public bool displayInfo;
-    public GameObject forestUI;    
+    public GameObject forestUI;
+ 
     // Start is called before the first frame update
     void Start()
     {
@@ -25,6 +28,8 @@ public class Trees : MonoBehaviour
         displayInfo = true;
         //Debug.Log("Mouse");
         FadeInfo();
+        woods = GameObject.Find("woodnum").GetComponent<Text>();
+        woods.text = LinTimer.woodCnt.ToString();
     }
     private void OnMouseExit()
     {
