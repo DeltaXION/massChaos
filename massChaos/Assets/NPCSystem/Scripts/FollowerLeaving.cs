@@ -50,7 +50,7 @@ public class FollowerLeaving : MonoBehaviour
         int FrootIDIndexToLeave = Random.Range(0, FrootIDs.Length - 1);
         int FrootIDToLeave = FrootIDs[FrootIDIndexToLeave];
 
-        NPCSystem.removeFollower(FrootIDToLeave);
+        //NPCSystem.removeFollower(FrootIDToLeave);
 
         yield return new WaitForSeconds(5f);
 

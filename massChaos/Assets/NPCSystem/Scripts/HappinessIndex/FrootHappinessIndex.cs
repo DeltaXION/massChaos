@@ -77,7 +77,7 @@ public class FrootHappinessIndex : MonoBehaviour
         //using the NPC List to count idle fruit followers
         foreach(var o in NPCSystem.followers)
         {
-            if(o.type == "Fo" || o.status == "idle")
+            if(o.type == "Fo" && o.status == "idle")
             {
                 TotalIdleFrootFollowers++;
             }
@@ -91,7 +91,7 @@ public class FrootHappinessIndex : MonoBehaviour
         //using NPC List to count the number of NPCs engaged in farming at base
         foreach(var o in NPCSystem.followers)
         {
-            if(o.type == "Fo" || o.status == "farming")
+            if(o.type == "Fo" && o.status == "farming")
             {
                 FrootFollowersAssignedToAffinityBaseAssignments++;
             }
@@ -101,10 +101,18 @@ public class FrootHappinessIndex : MonoBehaviour
         float PercentOfFrootAffinityAssignments = (FrootFollowersAssignedToAffinityBaseAssignments / FrootFollowersAssignedAtBase);
         //Multiplier 
         BaseAssignmentAffinityBoost = MaxBaseAb * 0.0125f;
-        
-        //Total Happiness achieved via base assignments
-        float Ab = MaxBaseAb + ((PercentOfFrootAffinityAssignments) * MaxBaseAb) * BaseAssignmentAffinityBoost;
 
+        float Ab = 0;
+
+        //Total Happiness achieved via base assignments
+        if (FrootFollowersAssignedAtBase == 0)
+        {
+            Ab = 0;
+        }
+        else if (FrootFollowersAssignedAtBase > 0)
+        {
+            Ab = MaxBaseAb + ((PercentOfFrootAffinityAssignments) * MaxBaseAb) * BaseAssignmentAffinityBoost;
+        }
         //Total froot followers assigned to quests
         float FrootFollowersAssignedToQuests = QuestManager.GetComponent<QuestsDiplomacyManager>().FrootsCurrentlyQuesting;;
         //Total froot followers assigned to affinity quests
@@ -129,10 +137,15 @@ public class FrootHappinessIndex : MonoBehaviour
 		float CurrentPrestige = QuestManager.GetComponent<QuestsDiplomacyManager>().Prestige_Froots;
 		
 		float PrestigeReduction = (TotalPrestige - CurrentPrestige) / TotalPrestige;
-
-		FrootPrestige = (TotalP - ((PrestigeReduction) * TotalP)) / 10;
-
-	}
+        if (CurrentPrestige == 0)
+        {
+            FrootPrestige = 0;
+        }
+        else if (CurrentPrestige > 0)
+        {
+            FrootPrestige = (TotalP - ((PrestigeReduction) * TotalP)) / 10;
+        }
+    }
 
 	public static void RecalculateFrootHappinessIndex()
     {
@@ -208,13 +221,13 @@ public class FrootHappinessIndex : MonoBehaviour
             }
         }
 
-        if(TotalFollowers > 0 || TotalFrootFollowers > 0)
+        if(TotalFollowers > 0 && TotalFrootFollowers > 0)
 		{
 			PlayerHasAFollowing = true;
 			ActiveHIUI.SetActive(true);
 			InactiveHIUI.SetActive(false);
 		}
-		else if(TotalFollowers == 0 || TotalFrootFollowers == 0)
+		else if(TotalFollowers == 0 && TotalFrootFollowers == 0)
 		{
 			PlayerHasAFollowing = false;
 			ActiveHIUI.SetActive(false);

@@ -100,11 +100,18 @@ public class FerroHappinessIndex : MonoBehaviour
         //PErcentage of Ferros given affinity assignments at base
         float PercentOfFerroAffinityAssignments = (FerroFollowersAssignedToAffinityBaseAssignments / FerroFollowersAssignedAtBase);
         //Multiplier 
-        BaseAssignmentAffinityBoost = MaxBaseAb * 0.0125f;
+
+        float Ab = 0;
 
         //Total Happiness achieved via base assignments
-        float Ab = MaxBaseAb + ((PercentOfFerroAffinityAssignments) * MaxBaseAb) * BaseAssignmentAffinityBoost;
-
+        if (FerroFollowersAssignedAtBase == 0)
+        {
+            Ab = 0;
+        }
+        else if (FerroFollowersAssignedAtBase > 0)
+        {
+            Ab = MaxBaseAb + ((PercentOfFerroAffinityAssignments) * MaxBaseAb) * BaseAssignmentAffinityBoost;
+        }
         //Total Ferro followers assigned to quests
         float FerroFollowersAssignedToQuests = QuestManager.GetComponent<QuestsDiplomacyManager>().FerrariumCurrentlyQuesting;
         //Total Ferro followers assigned to affinity quests
@@ -112,10 +119,16 @@ public class FerroHappinessIndex : MonoBehaviour
 
         //percentage of Ferro followers assigned to affinity quests
         float PercentOfFerroAffinityQuests = (FerroFollowersAssignedToAffinityQuests / FerroFollowersAssignedToQuests);
-
+        float Aq = 0;
         //Total happiness achieved via quest assignements
-        float Aq = MaxQuestAq + ((PercentOfFerroAffinityQuests) * MaxQuestAq * QuestAffinityBoost);
-
+        if (FerroFollowersAssignedToQuests == 0)
+        {
+            Aq = 0;
+        }
+        else if (FerroFollowersAssignedToQuests > 0)
+        {
+            Aq = MaxQuestAq + ((PercentOfFerroAffinityQuests) * MaxQuestAq * QuestAffinityBoost);
+        }
         FerroAssignments = (Ab / 10) + (Aq / 10) - IdleIsBad; //IdleIsBad is the reduction in Ferro assignment part of HI due to idle followers
 
     }
@@ -130,8 +143,14 @@ public class FerroHappinessIndex : MonoBehaviour
 
         float PrestigeReduction = (TotalPrestige - CurrentPrestige) / TotalPrestige;
 
-        FerroPrestige = (TotalP - ((PrestigeReduction) * TotalP)) / 10;
-
+        if (CurrentPrestige == 0)
+        {
+            FerroPrestige = 0;
+        }
+        else if (CurrentPrestige > 0)
+        {
+            FerroPrestige = (TotalP - ((PrestigeReduction) * TotalP)) / 10;
+        }
     }
 
     public static void RecalculateFerroHappinessIndex()

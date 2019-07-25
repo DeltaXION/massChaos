@@ -77,7 +77,7 @@ public class MimaxHappniessIndex : MonoBehaviour
         //using the NPC List to count idle fruit followers
         foreach (var o in NPCSystem.followers)
         {
-            if (o.Type == "M" || o.Status == "idle")
+            if (o.Type == "M" && o.Status == "idle")
             {
                 TotalIdleMimaxFollowers++;
             }
@@ -91,7 +91,7 @@ public class MimaxHappniessIndex : MonoBehaviour
         //using NPC List to count the number of NPCs engaged in farming at base
         foreach (var o in NPCSystem.followers)
         {
-            if (o.Type == "M" || o.Status == "Market")
+            if (o.Type == "M" && o.Status == "Market")
             {
                 MimaxFollowersAssignedToAffinityBaseAssignments++;
             }
@@ -100,11 +100,19 @@ public class MimaxHappniessIndex : MonoBehaviour
         //PErcentage of Mimaxs given affinity assignments at base
         float PercentOfMimaxAffinityAssignments = (MimaxFollowersAssignedToAffinityBaseAssignments / MimaxFollowersAssignedAtBase);
         //Multiplier 
-        BaseAssignmentAffinityBoost = MaxBaseAb * 0.0125f;
+        
+
+        float Ab = 0;
 
         //Total Happiness achieved via base assignments
-        float Ab = MaxBaseAb + ((PercentOfMimaxAffinityAssignments) * MaxBaseAb) * BaseAssignmentAffinityBoost;
-
+        if (MimaxFollowersAssignedAtBase == 0)
+        {
+            Ab = 0;
+        }
+        else if (MimaxFollowersAssignedAtBase > 0)
+        {
+            Ab = MaxBaseAb + ((PercentOfMimaxAffinityAssignments) * MaxBaseAb) * BaseAssignmentAffinityBoost;
+        }
         //Total Mimax followers assigned to quests
         float MimaxFollowersAssignedToQuests = QuestManager.GetComponent<QuestsDiplomacyManager>().MimaxCurrentlyQuesting;
         //Total Mimax followers assigned to affinity quests
@@ -113,9 +121,16 @@ public class MimaxHappniessIndex : MonoBehaviour
         //percentage of Mimax followers assigned to affinity quests
         float PercentOfMimaxAffinityQuests = (MimaxFollowersAssignedToAffinityQuests / MimaxFollowersAssignedToQuests);
 
+        float Aq = 0;
         //Total happiness achieved via quest assignements
-        float Aq = MaxQuestAq + ((PercentOfMimaxAffinityQuests) * MaxQuestAq * QuestAffinityBoost);
-
+        if (MimaxFollowersAssignedToQuests == 0)
+        {
+            Aq = 0;
+        }
+        else if (MimaxFollowersAssignedToQuests > 0)
+        {
+            Aq = MaxQuestAq + ((PercentOfMimaxAffinityQuests) * MaxQuestAq * QuestAffinityBoost);
+        }
         MimaxAssignments = (Ab / 10) + (Aq / 10) - IdleIsBad; //IdleIsBad is the reduction in Mimax assignment part of HI due to idle followers
 
     }
@@ -130,7 +145,14 @@ public class MimaxHappniessIndex : MonoBehaviour
 
         float PrestigeReduction = (TotalPrestige - CurrentPrestige) / TotalPrestige;
 
-        MimaxPrestige = (TotalP - ((PrestigeReduction) * TotalP)) / 10;
+        if (CurrentPrestige == 0)
+        {
+            MimaxPrestige = 0;
+        }
+        else if (CurrentPrestige > 0)
+        {
+            MimaxPrestige = (TotalP - ((PrestigeReduction) * TotalP)) / 10;
+        }
 
     }
 
@@ -199,13 +221,13 @@ public class MimaxHappniessIndex : MonoBehaviour
             }
         }
 
-        if (TotalFollowers > 0 || TotalMimaxFollowers > 0)
+        if (TotalFollowers > 0 && TotalMimaxFollowers > 0)
         {
             PlayerHasAFollowing = true;
             ActiveHIUI.SetActive(true);
             InactiveHIUI.SetActive(false);
         }
-        else if (TotalFollowers == 0 || TotalMimaxFollowers == 0)
+        else if (TotalFollowers == 0 && TotalMimaxFollowers == 0)
         {
             PlayerHasAFollowing = false;
             ActiveHIUI.SetActive(false);

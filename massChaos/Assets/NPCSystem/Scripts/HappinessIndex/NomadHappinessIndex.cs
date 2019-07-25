@@ -62,6 +62,7 @@ public class NomadHappinessIndex : MonoBehaviour
         float MaxBaseAb = A / 2; //Total base happiness that can be achieved via basic base assignments
         float MaxQuestAq = A / 2; //Total base happiness that can be achieved via basic quest assignments
         float TotalNomadFollowers = 0f; //Total base population
+        
 
         //using the NPCList to count Nomad followers
         foreach (var o in NPCSystem.followers)
@@ -100,10 +101,17 @@ public class NomadHappinessIndex : MonoBehaviour
         //PErcentage of Nomads given affinity assignments at base
         float PercentOfNomadAffinityAssignments = (NomadFollowersAssignedToAffinityBaseAssignments / NomadFollowersAssignedAtBase);
         //Multiplier 
-        BaseAssignmentAffinityBoost = MaxBaseAb * 0.0125f;
+        float Ab = 0;
 
         //Total Happiness achieved via base assignments
-        float Ab = MaxBaseAb + ((PercentOfNomadAffinityAssignments) * MaxBaseAb) * BaseAssignmentAffinityBoost;
+        if (NomadFollowersAssignedAtBase == 0)
+        {
+            Ab = 0;
+        }
+        else if (NomadFollowersAssignedAtBase > 0)
+        { 
+            Ab = MaxBaseAb + ((PercentOfNomadAffinityAssignments) * MaxBaseAb) * BaseAssignmentAffinityBoost;
+        }
 
         //Total Nomad followers assigned to quests
         float NomadFollowersAssignedToQuests = QuestManager.GetComponent<QuestsDiplomacyManager>().NomadsCurrentlyQuesting;
@@ -112,11 +120,18 @@ public class NomadHappinessIndex : MonoBehaviour
 
         //percentage of Nomad followers assigned to affinity quests
         float PercentOfNomadAffinityQuests = (NomadFollowersAssignedToAffinityQuests / NomadFollowersAssignedToQuests);
-
+        float Aq = 0;
         //Total happiness achieved via quest assignements
-        float Aq = MaxQuestAq + ((PercentOfNomadAffinityQuests) * MaxQuestAq * QuestAffinityBoost);
+        if (NomadFollowersAssignedToQuests == 0)
+        {
+            Aq = 0;
+        }
+        else if(NomadFollowersAssignedToQuests > 0)
+        { 
+        Aq = MaxQuestAq + ((PercentOfNomadAffinityQuests) * MaxQuestAq * QuestAffinityBoost);
+        }
 
-        NomadAssignments = (Ab / 10) + (Aq / 10) - IdleIsBad; //IdleIsBad is the reduction in Nomad assignment part of HI due to idle followers
+        NomadAssignments = ((Ab + Aq)/10) - IdleIsBad; //IdleIsBad is the reduction in Nomad assignment part of HI due to idle followers
 
     }
 
@@ -130,8 +145,14 @@ public class NomadHappinessIndex : MonoBehaviour
 
         float PrestigeReduction = (TotalPrestige - CurrentPrestige) / TotalPrestige;
 
+        if(CurrentPrestige == 0)
+        {
+            NomadPrestige = 0;
+        }
+        else if(CurrentPrestige >0)
+        { 
         NomadPrestige = (TotalP - ((PrestigeReduction) * TotalP)) / 10;
-
+        }
     }
 
     public static void RecalculateNomadHappinessIndex()

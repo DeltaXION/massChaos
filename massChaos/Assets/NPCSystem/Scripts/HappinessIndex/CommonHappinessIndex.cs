@@ -10,19 +10,16 @@ public class CommonHappinessIndex : MonoBehaviour
     public static float CommonHappiness;
 
     //Multipliers for Base shelter and upgrades
-    public static float DuplexBoost = 0.0125f;
-    public static float VillaBoost = 0.025f;
+    //public static float DuplexBoost = 0.0125f;
+    //public static float VillaBoost = 0.025f;
 
     //Multipliers for damage to base buildings
-    public static float DamagedBuildingReduction = 0.15f;
-    public static float DamagedAffinityBuildingReduction = 0.25f;
+    public static float DamagedBuildingReduction = 0.3f;
+    //public static float DamagedAffinityBuildingReduction = 0.25f;
 
     //Variables to calculate Base shelter dependency
     public static float TotalBuildingsAtBase; //Total Number of buildigns on the base
-    public static float SimpleHouseCount = 1f; //Number of Simple houses in the base
-    public static float DuplexCount = 1; //Number of Duplexs in the base
-    public static float VillaCount = 1; //Number of Villas in the base
-    public static float NumberOfDamangedBuildings = 2; //Number of buildings damaged
+    public static float HouseUpgradeBoost = 0.3f; //Multiplier for house upgrades
     //public static float NumberOfAffinityDamagedBuildings = 1; 
 
     //Variables for Food consumption 
@@ -36,7 +33,7 @@ public class CommonHappinessIndex : MonoBehaviour
 
     static void SetCommonHappiness()
     {
-        CommonHappiness = Foodfactor + BaseHealth;
+        CommonHappiness = Foodfactor /*+ BaseHealth + BaseComfort*/;
     }
 
     public static void RecaclculateHappinessIndex()
@@ -51,10 +48,9 @@ public class CommonHappinessIndex : MonoBehaviour
     {
         //Total Amount of food stock
         float TotalFoodStock = (float)ResourceManager.food;
-        float TotalFollowers = (float)BB_GlobalStats.BasePopulation;
+        float TotalFollowers = (float)NPCSystem.followers.Count;
 
         int n = (int)TotalFollowers * (int)ConsumptionRate;
-
 
         float StarvingFollowers = (TotalFollowers - (TotalFoodStock / ConsumptionRate));//Number of followers not getting food in a day
         float StarvingPercentage = (StarvingFollowers / TotalFollowers); //percentage of followers not getting food today
@@ -89,43 +85,28 @@ public class CommonHappinessIndex : MonoBehaviour
 		}
 	}*/
 
-    static void SetBaseComfort()
+    /*static void SetBaseComfort()
     {
         float TotalBC = 10f;
         float BCCap = 1f * TotalBC;
-        //Debug.Log("BCCap " + BCCap);
         float TotalFollowers = NPCSystem.followers.Count;
-        //float SimpleHouseCount = 1;
 
-        float FollowersInSimpleHouse = SimpleHouseCount * 1;
-        float PercentofFollowersInSH = ((FollowersInSimpleHouse / TotalFollowers));
-        //Debug.Log("%inSH " + PercentofFollowersInSH);
+        float TotalNumberOfHouses = BB_BasicControls.houseBuilt;
+        float TotalNumberOfUpgradedHouses = BB_GlobalStats.UpgradedHouses;
+        float PercentOfUpgradedHouses = TotalNumberOfUpgradedHouses / TotalNumberOfHouses;
 
-        //float DuplexCount = 1;
-        float FollowersInDuplex = DuplexCount * 3;
-        float PercentofFollowersInDup = ((FollowersInDuplex / TotalFollowers));
-        //Debug.Log("%inD " + PercentofFollowersInDup);
+        float x = BCCap + ((PercentOfUpgradedHouses * BCCap) * HouseUpgradeBoost);
 
-        //float VillaCount = 1;
-        float FollowersInVillas = VillaCount * 5;
-        float PercentofFollowersInVC = ((FollowersInVillas / TotalFollowers));
-        //Debug.Log("%inVC " + PercentofFollowersInVC);
+        float TotalBuildingsAtBase = BB_BasicControls.buildBuilt;
+        float NumberOfDamangedBuildings = BaseDamage.destroyedbuilds;
+        
+        float PercentOfDamagedBuildings = ((Mathf.Abs(NumberOfDamangedBuildings  / TotalBuildingsAtBase)));
 
 
-        float x = BCCap + ((PercentofFollowersInDup * BCCap) * DuplexBoost) + ((PercentofFollowersInVC * BCCap) * VillaBoost);
-        //Debug.Log("X = " + x);
-
-        //TotalBuildingsAtBase = BB_BasicControls.buildBuilt;
-        //float NumberOfDamangedBuildings = 2;
-        //float NumberOfAffinityDamagedBuildings = 1;
-        float PercentOfDamagedBuildings = ((Mathf.Abs(NumberOfDamangedBuildings /*- NumberOfAffinityDamagedBuildings*/) / TotalBuildingsAtBase));
-        //float PercentOfDamagedAffinityBuildings = (NumberOfAffinityDamagedBuildings / TotalBuildingsAtBase);
-
-
-        float y = ((PercentOfDamagedBuildings * BCCap) * DamagedBuildingReduction) /*+ ((PercentOfDamagedAffinityBuildings * BCCap) * DamagedAffinityBuildingReduction)*/;
+        float y = ((PercentOfDamagedBuildings * BCCap) * DamagedBuildingReduction); 
 
         BaseComfort = (x - y) / 10;
-    }
+    }*/
 
     // Update is called once per frame
     void Update()
