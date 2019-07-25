@@ -41,7 +41,7 @@ public class NPCSystem : MonoBehaviour
         addFollower("Groom", "Fr", "maige", "sword", "bazooka", "idle");
 
         setPrestige();
-        can.SetActive(false);
+        //can.SetActive(false);
         AppplicantsCalculation();
         g = GameObject.Find("ClassSelect");
         //g.SetActive(false);
@@ -148,8 +148,10 @@ public class NPCSystem : MonoBehaviour
 
     public void OnMouseDown()
     {
+
         can.SetActive(true);
        // Debug.Log("mouse");
+
         
         n = new NPCList();
         n.UpdateNPCList();

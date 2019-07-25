@@ -20,8 +20,10 @@ public class NPCApplicants : MonoBehaviour
     {
 
 
+
         addFollower("Kroos", "M", "", "", "", "");
         addFollower("Froos", "Fo", "", "", "", "");
+
 
         PopulateList();
 
@@ -126,6 +128,7 @@ public class NPCApplicants : MonoBehaviour
     public void addFollower(string name, string type, string classType, string secItem, string priItem, string status)
     {
         id++;
+        Debug.Log(id);
         applicants.Add(new BaseCharachteristics(id, name, type, classType, secItem, priItem, status));
 
 

@@ -37,6 +37,7 @@ public class ApplicantAccept : MonoBehaviour, ISelectHandler
     public void OnSelect(BaseEventData eventData)
     {
         string id = transform.parent.gameObject.transform.GetChild(0).gameObject.GetComponent<Text>().text.ToString();
+        Debug.Log("!!!!!!!!!!!!!" +id);
         BaseCharachteristics b;
         if (this.gameObject.name == "accept") {
             g.SetActive(true);
