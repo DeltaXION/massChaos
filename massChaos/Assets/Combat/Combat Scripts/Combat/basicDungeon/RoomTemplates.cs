@@ -4,20 +4,20 @@ using UnityEngine;
 
 public class RoomTemplates : MonoBehaviour
 {
-    public GameObject[] bottomrooms;
-    public GameObject[] toprooms;
-    public GameObject[] leftrooms;
-    public GameObject[] rightrooms;
-   // public GameObject closedRoom;
+    public GameObject[] bottomRooms;
+    public GameObject[] topRooms;
+    public GameObject[] leftRooms;
+    public GameObject[] rightRooms;
+    public GameObject closedRoom;
 
     public List<GameObject> rooms;
     public float waitTime;
     private bool spawnedBoss;
-   // public GameObject boss;
+    public GameObject boss;
 
     private void Update()
     {
-        /*
+        
         if(waitTime<= 0 && spawnedBoss == false)
         {
             for (int i = 0; i < rooms.Count; i++)
@@ -32,7 +32,7 @@ public class RoomTemplates : MonoBehaviour
         else
         {
             waitTime -= Time.deltaTime;
-        }*/
+        }
     }
 
 }
