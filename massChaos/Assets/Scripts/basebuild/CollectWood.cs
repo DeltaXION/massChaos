@@ -7,9 +7,7 @@ public class CollectWood : MonoBehaviour
 {
     public Text woods;
 
-    public int woodCount;
 
-    // Start is called before the first frame update
 
 
     public void OnItemClicked()
@@ -18,10 +16,12 @@ public class CollectWood : MonoBehaviour
         //{  
             //  woodCount = woodCount + 5;
             //     Debug.Log(woodCount);
-            //     woods = GameObject.Find("woodCount").GetComponent<Text>();
-             //    woods.text = woodCount.ToString();
-            ResourceManager.addWood(5);
+
+            ResourceManager.addWood(LinTimer.woodCnt);
             Debug.Log(ResourceManager.wood);
+            LinTimer.woodCnt = 0;
+        woods = GameObject.Find("woodnum").GetComponent<Text>();
+        woods.text = LinTimer.woodCnt.ToString();
 
 
         //}
