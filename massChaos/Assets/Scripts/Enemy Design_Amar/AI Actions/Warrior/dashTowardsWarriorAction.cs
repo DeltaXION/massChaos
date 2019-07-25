@@ -123,15 +123,8 @@ public class dashTowardsWarriorAction : GOAPAction
         Debug.Log("dashed toward");
         //Play dash animation;
         dashedForward = true;
-        if (currentEnemy.bottomIsEmpty == false || currentEnemy.topIsEmpty == false || currentEnemy.rightIsEmpty == false || currentEnemy.leftIsEmpty == false)
-        {
-            dashSuccessful = false;
-        }
-        else
-        {
-            dashSuccessful = true;
-        }
-        return dashSuccessful;
+       
+        return dashedForward;
     }
 
 }
