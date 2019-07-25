@@ -17,7 +17,7 @@ public class IronMDragHandler : MonoBehaviour, IDragHandler, IEndDragHandler
     public int woodCountAvl;
     public int stoneCount;
     public int ironMBuilt;
-    public static int NPCCountAvl;
+    public int NPCCountAvl;
     Timer2 timer;
     public void OnBeginDrag(PointerEventData eventData)
     {

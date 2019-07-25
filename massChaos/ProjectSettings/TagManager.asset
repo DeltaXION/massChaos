@@ -26,6 +26,11 @@ TagManager:
   - Item
   - enemy
   - NPCEntry
+  - instantiateDrops
+  - Time
+  - Weapon
+  - Farm
+  - applicantItem
 
   layers:
   - Default

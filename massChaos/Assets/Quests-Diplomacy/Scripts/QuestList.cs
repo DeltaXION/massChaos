@@ -22,24 +22,20 @@ public class QuestList : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        FollowerSlotActive = GameObject.Find("DummyFollowerSlot");
-        Debug.Log("DummyFollower name is" + FollowerSlotActive.GetComponent<DummyFollowerSlot>().FollowerName);
+        FollowerSlotActive = GameObject.Find("DummyFollowerSlot");        
     }
 
     private void Update()
     {
-        Debug.Log("DummyFollower race is" + FollowerSlotActive.GetComponent<DummyFollowerSlot>().FollowerRace);
+        
     }
 
-    //TO SELECT FOLLOWER TO CHECK QUEST ON. ACTIVATES WHENEVER THE FOLLOWER SLOT WITH AN IDLE FOLLOWER IS SELECTED. THIS IS THEN USED TO SET AND COMPARE THE CONDITIONS OF THE QUEST
-    public void PickFollower(GameObject Follower)
-    {
-        FollowerSlotActive = Follower;
-    }
+   
 
     //Function to Provide Quest Description to Menu
     public string FetchQuest(int QuestID)
     {
+         
         SelectQuest(QuestID);
         QuestRewardsText = QuestText + "\n" + AdditionalQuestText + "\n\n" + "This quest will take " + Quest_Time + " days." + "\n\n";
         ListofRewards = "QUEST COMPLETED \n";
@@ -74,6 +70,7 @@ public class QuestList : MonoBehaviour
         return ListofRewards;
     }
 
+    //CALCULATE AND ADD OR SUBTRACT THE REWARDS. CALLED BY QUESTNODES
     public void SubmitQuestRewards()
     {
         GameObject.Find("QuestsDiplomacyManager").GetComponent<QuestsDiplomacyManager>().UpdateRewardsintoPool(Prestige_Nomads, Prestige_Ferrarium, Prestige_Froots, Prestige_Mimax,
@@ -82,12 +79,11 @@ public class QuestList : MonoBehaviour
                                                                                                                 ItemReward_Recipe, ItemReward_Boss, Reward_TimeChange);
     }
 
-
-
-    
-
-
-
+    public void SetFollowerDetails()
+    {
+        int FollowerAddress = GameObject.Find("FollowerSlots").GetComponent<FollowerSlotsManager>().ActiveFollowerSlotID;
+        FollowerSlotActive = GameObject.Find("FollowerSlots").GetComponent<FollowerSlotsManager>().FetchFollowerSlotDetails(FollowerAddress);
+    }
 
     //NOMAD_QUESTS (1-15) FERRARUIM_QUESTS (16-30) FROOTS_QUESTS (31-45) MIMAX_QUESTS (46-60)
     public void SelectQuest(int NodeQuestNumber)
@@ -103,20 +99,22 @@ public class QuestList : MonoBehaviour
         //NOMAD...NOMAD...NOMAD...NOMAD...NOMAD...NOMAD...NOMAD...NOMAD...NOMAD...NOMAD...NOMAD...NOMAD...NOMAD...NOMAD...NOMAD...NOMAD...NOMAD...NOMAD...NOMAD...
         if (Questnumber == 1)
         {
-            Debug.Log("The HAAAARTTT of the storm?");
+
             QuestText = "The Nomads are looking for a fighter to help them with a dungeon.";
 
             Prestige_Nomads = 5;
             Quest_Time = 4;
             
-            if(FollowerSlotActive.GetComponent<FollowerSlot>().FollowerRace == "Nomad")
+            
+            if(FollowerSlotActive.name != "DummyFollowerSlot" && FollowerSlotActive.GetComponent<FollowerSlot>().FollowerRace == "Nomad")
             {
-                Debug.Log("The eye of the storm?");
+                
                 AdditionalQuestText = "The Nomad valiantly springs forth from the crowd to answer the call of Cleansing.";
                 Prestige_Nomads = 15;
                 Quest_Time = 2;
                 LootReward_Wood = 10;
             }
+            
         }
 
         if (Questnumber == 2)
@@ -126,6 +124,14 @@ public class QuestList : MonoBehaviour
 
             Quest_Time = 4;
             LootReward_Gold = 10;
+
+            if (FollowerSlotActive.name != "DummyFollowerSlot" && FollowerSlotActive.GetComponent<FollowerSlot>().FollowerRace == "Nomad")
+            {
+                AdditionalQuestText = "The Nomad valiantly springs forth from the crowd to answer the call of Cleansing.";
+                Prestige_Nomads = 15;
+                Quest_Time = 2;
+                LootReward_Wood = 10;
+            }
         }
 
         if (Questnumber == 3)
@@ -135,6 +141,15 @@ public class QuestList : MonoBehaviour
 
             Quest_Time = 4;
             LootReward_Gold = 10;
+
+            if (FollowerSlotActive.name != "DummyFollowerSlot" && FollowerSlotActive.GetComponent<FollowerSlot>().FollowerRace == "Nomad")
+            {
+
+                AdditionalQuestText = "The Nomad valiantly springs forth from the crowd to answer the call of Cleansing.";
+                Prestige_Nomads = 15;
+                Quest_Time = 2;
+                LootReward_Wood = 10;
+            }
         }
 
         if (Questnumber == 4)
@@ -144,6 +159,14 @@ public class QuestList : MonoBehaviour
 
             Quest_Time = 4;
             LootReward_Gold = 10;
+
+            if (FollowerSlotActive.name != "DummyFollowerSlot" && FollowerSlotActive.GetComponent<FollowerSlot>().FollowerRace == "Nomad")
+            {
+                AdditionalQuestText = "The Nomad valiantly springs forth from the crowd to answer the call of Cleansing.";
+                Prestige_Nomads = 15;
+                Quest_Time = 2;
+                LootReward_Wood = 10;
+            }
         }
 
         if (Questnumber == 5)
@@ -153,6 +176,14 @@ public class QuestList : MonoBehaviour
 
             Quest_Time = 4;
             LootReward_Gold = 10;
+
+            if (FollowerSlotActive.name != "DummyFollowerSlot" && FollowerSlotActive.GetComponent<FollowerSlot>().FollowerRace == "Nomad")
+            {
+                AdditionalQuestText = "The Nomad valiantly springs forth from the crowd to answer the call of Cleansing.";
+                Prestige_Nomads = 15;
+                Quest_Time = 2;
+                LootReward_Wood = 10;
+            }
         }
 
         if (Questnumber == 6)
@@ -162,6 +193,14 @@ public class QuestList : MonoBehaviour
 
             Quest_Time = 4;
             LootReward_Iron = 10;
+
+            if (FollowerSlotActive.name != "DummyFollowerSlot" && FollowerSlotActive.GetComponent<FollowerSlot>().FollowerRace == "Nomad")
+            {
+                AdditionalQuestText = "The Nomad valiantly springs forth from the crowd to answer the call of Cleansing.";
+                Prestige_Nomads = 15;
+                Quest_Time = 2;
+                LootReward_Wood = 10;
+            }
         }
 
 
@@ -212,6 +251,108 @@ public class QuestList : MonoBehaviour
         {
             QuestText = "This is the Quest you must read.";
             Prestige_Ferrarium = 5;
+
+            Quest_Time = 4;
+            LootReward_Gold = 10;
+        }
+
+
+        //FROOTS...FROOTS...FROOTS...FROOTS...FROOTS...FROOTS...FROOTS...FROOTS...FROOTS...FROOTS...FROOTS...FROOTS...FROOTS...FROOTS...
+        if (Questnumber == 31)
+        {
+            QuestText = "This is the FROOTS Quest you must read.";
+            Prestige_Froots = 5;
+
+            Quest_Time = 4;
+            LootReward_Wood = 10;
+        }
+        if (Questnumber == 32)
+        {
+            QuestText = "This is the FROOTS Quest you must read.";
+            Prestige_Froots = 5;
+
+            Quest_Time = 4;
+            LootReward_Gold = 10;
+        }
+        if (Questnumber == 33)
+        {
+            QuestText = "This is the FROOTS Quest you must read.";
+            Prestige_Froots = 5;
+
+            Quest_Time = 4;
+            LootReward_Gold = 10;
+        }
+        if (Questnumber == 34)
+        {
+            QuestText = "This is the FROOTS Quest you must read.";
+            Prestige_Froots = 5;
+
+            Quest_Time = 4;
+            LootReward_Gold = 10;
+        }
+        if (Questnumber == 35)
+        {
+            QuestText = "This is the FROOTS Quest you must read.";
+            Prestige_Froots = 5;
+
+            Quest_Time = 4;
+            LootReward_Wood = 10;
+        }
+        if (Questnumber == 36)
+        {
+            QuestText = "This is the FROOTS Quest you must read.";
+            Prestige_Froots = 5;
+
+            Quest_Time = 4;
+            LootReward_Gold = 10;
+        }
+
+
+        //MIMAX...MIMAX...MIMAX...MIMAX...MIMAX...MIMAX...MIMAX...MIMAX...MIMAX...MIMAX...MIMAX...MIMAX...MIMAX...MIMAX...
+        if (Questnumber == 46)
+        {
+            QuestText = "This is the FROOTS Quest you must read.";
+            Prestige_Mimax = 5;
+
+            Quest_Time = 4;
+            LootReward_Wood = 10;
+        }
+        if (Questnumber == 47)
+        {
+            QuestText = "This is the FROOTS Quest you must read.";
+            Prestige_Mimax = 5;
+
+            Quest_Time = 4;
+            LootReward_Gold = 10;
+        }
+        if (Questnumber == 48)
+        {
+            QuestText = "This is the FROOTS Quest you must read.";
+            Prestige_Mimax = 5;
+
+            Quest_Time = 4;
+            LootReward_Gold = 10;
+        }
+        if (Questnumber == 49)
+        {
+            QuestText = "This is the FROOTS Quest you must read.";
+            Prestige_Mimax = 5;
+
+            Quest_Time = 4;
+            LootReward_Gold = 10;
+        }
+        if (Questnumber == 50)
+        {
+            QuestText = "This is the FROOTS Quest you must read.";
+            Prestige_Mimax = 5;
+
+            Quest_Time = 4;
+            LootReward_Wood = 10;
+        }
+        if (Questnumber == 51)
+        {
+            QuestText = "This is the FROOTS Quest you must read.";
+            Prestige_Mimax = 5;
 
             Quest_Time = 4;
             LootReward_Gold = 10;
