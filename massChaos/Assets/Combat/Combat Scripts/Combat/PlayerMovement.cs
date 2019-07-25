@@ -6,13 +6,15 @@ public enum PlayerState
 {
     walk,
     attack,
-    dash
+    dash,
+    walkslow
 }
 
 public class PlayerMovement : MonoBehaviour
 {
     public PlayerState currentState;
     public float speed;
+    public float slowspeed;
 
     public float dashSpeedMultiplier;
     //public float dashDistance;
@@ -25,6 +27,7 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D myRigidbody;
     private Vector3 change;
     private Animator animator;
+    public int pweapon;
 
     // Start is called before the first frame update
     void Start()
@@ -42,7 +45,9 @@ public class PlayerMovement : MonoBehaviour
         GetInput();
         CheckAttackOrWalk();
         hitInfo = Physics2D.Raycast(transform.position, transform.right, rayDistance);
-        if(hitInfo.collider != null)
+        if (pweapon == 4) { currentState = gameObject.GetComponent<playershoot>().st; }
+        if (pweapon == 5) { currentState = gameObject.GetComponent<playershotgun>().st; }
+        if (hitInfo.collider != null)
         {
             Debug.DrawLine(transform.position, hitInfo.point, Color.red);
         }
@@ -72,11 +77,15 @@ public class PlayerMovement : MonoBehaviour
         {
             StartCoroutine(DashCo());
             //HandleDash();
-           // Dash(dashDistance, dashSpeed, change);
+            // Dash(dashDistance, dashSpeed, change);
         }
         else if (currentState == PlayerState.walk)
         {
             UpdateAnimationAndMove();
+        }
+        else if (currentState == PlayerState.walkslow)
+        {
+            SlowMove();
         }
     }
 
@@ -123,6 +132,30 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    void SlowMove()
+       // private void OnApplicationPause(bool pause)
+    {
+        if (change != Vector3.zero)
+        {
+            SlowMoveCharacter();
+            animator.SetFloat("moveX", change.x);
+            animator.SetFloat("moveY", change.y);
+            animator.SetBool("moving", true);
+        }
+        else
+        {
+            myRigidbody.velocity = Vector3.zero;
+            animator.SetBool("moving", false);
+        }
+    }
+
+    void SlowMoveCharacter()
+    {
+
+        change.Normalize();
+        myRigidbody.MovePosition(transform.position + change * slowspeed * Time.deltaTime);
+
+    }
     void MoveCharacter()
     {
         
