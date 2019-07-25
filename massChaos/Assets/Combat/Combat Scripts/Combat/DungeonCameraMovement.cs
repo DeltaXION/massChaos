@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraMovement : MonoBehaviour
+public class DungeonCameraMovement : MonoBehaviour
 {
     public Transform target;
     public float smoothing;
@@ -12,22 +12,26 @@ public class CameraMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        target = GameObject.FindGameObjectWithTag("Player").transform;
+       
     }
 
+    public void setTarget(GameObject newPlayer)
+    {
+        target = GameObject.FindGameObjectWithTag("dungeonPlayer").transform;
+    }
     // Update is called once per frame
     void LateUpdate()
     {
-        SmoothCameraPan();
+        SmoothDungeonCameraPan();
     }
 
-    void SmoothCameraPan()
+    void SmoothDungeonCameraPan()
     {
         if (target!=null && transform.position != target.position)
         {
             Vector3 targetPosition = new Vector3(target.position.x, target.position.y, transform.position.z);
-            targetPosition.x = Mathf.Clamp(targetPosition.x, minCameraPosition.x, maxCameraPosition.x); //clamp camera on x axis
-            targetPosition.y = Mathf.Clamp(targetPosition.y, minCameraPosition.y, maxCameraPosition.y); //clamp camera on y axis
+           // targetPosition.x = Mathf.Clamp(targetPosition.x, minCameraPosition.x, maxCameraPosition.x); //clamp camera on x axis
+           // targetPosition.y = Mathf.Clamp(targetPosition.y, minCameraPosition.y, maxCameraPosition.y); //clamp camera on y axis
             transform.position = Vector3.Lerp(transform.position, targetPosition, smoothing);
         }
     }

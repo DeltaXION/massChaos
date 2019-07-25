@@ -31,7 +31,11 @@ TagManager:
   - Weapon
   - Farm
   - applicantItem
-
+  - RoomSpawnPoint
+  - FrootsQuestNode
+  - MimaxQuestNode
+  - dungeonPlayer
+  - dungeonMap
   layers:
   - Default
   - TransparentFX
@@ -42,7 +46,7 @@ TagManager:
   - 
   - 
   - enemy
-  - 
+  - Player
   - 
   - 
   - 

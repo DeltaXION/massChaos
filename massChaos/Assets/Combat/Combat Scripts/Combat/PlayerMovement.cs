@@ -59,7 +59,26 @@ public class PlayerMovement : MonoBehaviour
         change.x = Input.GetAxisRaw("Horizontal");
         change.y = Input.GetAxisRaw("Vertical");
         
+        //send player back to base on "R"
+        if(Input.GetKeyDown(KeyCode.R))
+        {
+            goBackToBase();
+
+        }
         
+    }
+
+    public void goBackToBase()
+    {
+        Camera baseCamera = GameObject.Find("BB_Main Camera").GetComponent<Camera>();
+        baseCamera.enabled = true;
+        Camera dungeonCamera = GameObject.Find("DungeonCamera").GetComponent<Camera>();
+        dungeonCamera.enabled = false;
+        GameObject[] dungeonRooms = GameObject.FindGameObjectsWithTag("dungeonMap");
+        foreach(GameObject obj in dungeonRooms)
+        {
+            Destroy(obj);
+        }
     }
 
     void CheckAttackOrWalk()
@@ -152,5 +171,10 @@ public class PlayerMovement : MonoBehaviour
        // StartCoroutine(DashCo());
     }
 
-   
+    private void OnDestroy()
+    {
+        Debug.Log("hero destroyed");
+    }
+
+
 }
