@@ -22,8 +22,10 @@ public class FollowerSlotsManager : MonoBehaviour
         int count = 1;
         foreach(var person in FollowerList)
         {
-            if(count == QuestingFollowerID)
+            Debug.Log("Outside. Count is " + count + " FollowerID is " + QuestingFollowerID);
+            if (count == QuestingFollowerID)
             {
+                Debug.Log("Inside. Count is " + count + " FollowerID is " + QuestingFollowerID);
                 if (person.status == "Questing")
                     person.status = "idle";
                 else if (person.status != "Questing")
@@ -84,7 +86,7 @@ public class FollowerSlotsManager : MonoBehaviour
 
             //Change the variables of each Slot in the array.
             Slots[count].GetComponent<FollowerSlot>().FollowerName = item.name;
-            Slots[count].GetComponent<FollowerSlot>().FollowerRace = item.type;
+            Slots[count].GetComponent<FollowerSlot>().FollowerRace = RaceTypeDeCompiler(item.type);
             Slots[count].GetComponent<FollowerSlot>().FollowerClass = item.classType;
             Slots[count].GetComponent<FollowerSlot>().FollowerPrimaryWeapon = item.priItem;
             Slots[count].GetComponent<FollowerSlot>().FollowerSecondaryWeapon = item.secItem;
@@ -93,5 +95,30 @@ public class FollowerSlotsManager : MonoBehaviour
             Slots[count].GetComponent<FollowerSlot>().InfoSlotsFill();
             count++;
         }
+    }
+    string RaceTypeDeCompiler(string ClassCode)
+    {
+        string ReturnString = ClassCode;
+
+        if(ClassCode == "N")
+        {
+            ReturnString = "Nomad";
+            Debug.Log("N is for Nomad");
+        }
+        if (ClassCode == "Fr")
+        {
+            ReturnString = "Ferrarium";
+        }
+        if (ClassCode == "Fo")
+        {
+            ReturnString = "Froots";
+        }
+        if (ClassCode == "M")
+        {
+            ReturnString = "Mimax";
+        }
+        
+        return ReturnString;
+
     }
 }

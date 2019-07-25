@@ -126,12 +126,13 @@ public class QuestNodes : MonoBehaviour
     //REAP THE REWARDS OF THE QUEST. CALLS SUBMIT QUESTREWARDS IN QUESTLISTS WHICH THEN CALLS UPDATEREWARDSINTOPOOL IN QUESTDIPLOMACYMANAGER
     void ReapRewards()
     {
-        GameObject.Find("FollowerSlots").GetComponent<FollowerSlotsManager>().ChangeFollowerStatebetweenBusyandIdle(IDofFollowerdoingQuest);
+        //SETTING UP THE RELEVANT FOLLOWER FOR THE QUESTLIST REWARD
+        GameObject.Find("FollowerSlots").GetComponent<FollowerSlotsManager>().ActiveFollowerSlotID = IDofFollowerdoingQuest;
+        GameObject.Find("QuestList").GetComponent<QuestList>().SetFollowerDetails();
 
+        GameObject.Find("FollowerSlots").GetComponent<FollowerSlotsManager>().ChangeFollowerStatebetweenBusyandIdle(IDofFollowerdoingQuest);
         GameObject.Find("QuestList").GetComponent<QuestList>().FetchQuest(QuestNumber);
         PopupNotification.SetActive(true);
-
-
 
         GameObject.Find("PopupText").GetComponent<Text>().text = GameObject.Find("QuestList").GetComponent<QuestList>().ListofRewards;
         GameObject.Find("QuestList").GetComponent<QuestList>().SubmitQuestRewards();
@@ -173,6 +174,7 @@ public class QuestNodes : MonoBehaviour
         
         GameObject.Find("PopupText").GetComponent<Text>().text = "Follower is already on a Quest.";
         GameObject.Find("FollowerSlots").GetComponent<FollowerSlotsManager>().ActiveFollowerSlotID = 0;
+        if(NodeisActive == true)
         IDofFollowerdoingQuest = 0;
 
     }
