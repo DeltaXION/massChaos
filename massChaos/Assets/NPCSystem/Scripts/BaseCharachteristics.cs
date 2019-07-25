@@ -8,8 +8,11 @@ public class BaseCharachteristics
     //public List<FerrariumData> Ferrarium;
     public int id;
     public string name;
+
+
     public string type; //faction
     public string classType; //class
+
     public string secItem;
     public string priItem;
     public string status;
@@ -22,6 +25,7 @@ public class BaseCharachteristics
       this.secItem = secItem;
       this.priItem = priItem;
       this.status = status;
+
     }
 
     public string Name
@@ -54,6 +58,7 @@ public class BaseCharachteristics
         set { secItem = value; }
     }
 
+
     public string PriItem
     {
         get { return priItem; }
@@ -65,6 +70,7 @@ public class BaseCharachteristics
         get { return status; }
         set { status = value; }
     }
+
 
 
 }   

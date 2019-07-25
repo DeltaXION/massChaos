@@ -16,3 +16,4 @@ MonoBehaviour:
   icon: {fileID: 6047889703141904680, guid: f8fe24636fd73d04087a7c1859dd906e, type: 3}
   isDefaultItem: 0
   prefab: {fileID: 325666164079710484, guid: 33569d1f2c3fc6b4c9ba76c0f5caef18, type: 3}
+  itemtype: 1
