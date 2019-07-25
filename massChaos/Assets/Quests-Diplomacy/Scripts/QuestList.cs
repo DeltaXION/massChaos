@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class QuestList : MonoBehaviour
 {
     public int Questnumber;
-    public string QuestText, AdditionalQuestText, QuestRewardsText, ListofRewards;
+    public string QuestText, AdditionalQuestText, QuestRewardsText, ListofRewards, AddText;
 
     public GameObject FollowerSlotActive;
 
@@ -59,7 +59,9 @@ public class QuestList : MonoBehaviour
             }
         }
 
+        Debug.Log("Questrewards");
         return QuestRewardsText;
+        
     }
 
     public string RewardsList()
@@ -93,7 +95,8 @@ public class QuestList : MonoBehaviour
         Prestige_Nomads = Prestige_Ferrarium = Prestige_Froots = Prestige_Mimax = LootReward_Iron = LootReward_Wood = LootReward_Food = LootReward_Gold =
                 ItemReward_Uncommon = ItemReward_Common = ItemReward_Rare = ItemReward_Recipe = ItemReward_Boss = Reward_TimeChange = Quest_Time = 0; //Basically set everything to zero
 
-        AdditionalQuestText = " "; //To reset Additional Questtext
+        AdditionalQuestText = ""; //To reset Additional Questtext
+        AddText = "";
 
 
         //NOMAD...NOMAD...NOMAD...NOMAD...NOMAD...NOMAD...NOMAD...NOMAD...NOMAD...NOMAD...NOMAD...NOMAD...NOMAD...NOMAD...NOMAD...NOMAD...NOMAD...NOMAD...NOMAD...
@@ -109,63 +112,99 @@ public class QuestList : MonoBehaviour
             if(FollowerSlotActive.name != "DummyFollowerSlot" && FollowerSlotActive.GetComponent<FollowerSlot>().FollowerRace == "Nomad")
             {
                 
-                AdditionalQuestText = "The Nomad valiantly springs forth from the crowd to answer the call of Cleansing.";
-                Prestige_Nomads = 15;
-                Quest_Time = 2;
-                LootReward_Wood = 10;
+                AddText = "The Nomad valiantly springs forth from the crowd to answer the call of Cleansing. \n";
+                Prestige_Nomads += 2;
+                Quest_Time -= 1;
+                LootReward_Wood += 10;
+
+                AdditionalQuestText += AddText;
             }
-            
+
+            if (FollowerSlotActive.name != "DummyFollowerSlot" && FollowerSlotActive.GetComponent<FollowerSlot>().FollowerClass == "warrior")
+            {
+
+                AddText = "A warrior honed in the way of the blade, the follower is sure to be well respected for the deed. \n";
+                Prestige_Nomads += 4;
+                Quest_Time -= 1;
+                LootReward_Gold += 20;
+
+                AdditionalQuestText += AddText;
+            }
+
+            if (FollowerSlotActive.name != "DummyFollowerSlot" && FollowerSlotActive.GetComponent<FollowerSlot>().FollowerClass == "maige")
+            {
+
+                AddText = "However, the Nomads' disdain for magic would hurt ties with them. Your follower however finds a stash sealed in magic. \n";
+                Prestige_Nomads -= 4;
+                LootReward_Gold += 50;
+
+                AdditionalQuestText += AddText;
+            }
+
         }
 
         if (Questnumber == 2)
         {
-            QuestText = "Iron is scarce and the Nomads can't quell evil and death without weapons of destruction. They're asking for an Engineer";
+            QuestText = "Iron is scarce and the Nomads can't quell evil and death without weapons of destruction. They're asking for assistance in mining.";
             Prestige_Nomads = 5;
-
             Quest_Time = 4;
-            LootReward_Gold = 10;
+            LootReward_Iron = 5;
 
-            if (FollowerSlotActive.name != "DummyFollowerSlot" && FollowerSlotActive.GetComponent<FollowerSlot>().FollowerRace == "Nomad")
+
+            if (FollowerSlotActive.name != "DummyFollowerSlot" && FollowerSlotActive.GetComponent<FollowerSlot>().FollowerRace == "Ferrarium")
             {
-                AdditionalQuestText = "The Nomad valiantly springs forth from the crowd to answer the call of Cleansing.";
-                Prestige_Nomads = 15;
-                Quest_Time = 2;
-                LootReward_Wood = 10;
+                AddText = "The skilled and crafty amalgamation of iron and flesh is well experienced on how to sap the earth of its riches. \n";
+                Prestige_Nomads += 2;
+                Quest_Time -= 2;
+                LootReward_Iron += 10;
+
+                AdditionalQuestText += AddText;
+            }
+
+            if (FollowerSlotActive.name != "DummyFollowerSlot" && FollowerSlotActive.GetComponent<FollowerSlot>().FollowerClass == "maige")
+            {
+                AddText = "Alchemy is frowned upon greatly by the Nomads but what can a mage do upon uncovering a hidden Alchemy Circle. \n";
+                Prestige_Nomads -= 3;
+                LootReward_Iron -= 5;
+                LootReward_Gold += 10;
+
+                AdditionalQuestText += AddText;
             }
         }
 
         if (Questnumber == 3)
         {
             QuestText = "Deep in the mountainside are great deposits of iron. Help the Nomads claim this bounty.";
-            Prestige_Nomads = 5;
+            Prestige_Nomads = 2;
 
             Quest_Time = 4;
-            LootReward_Gold = 10;
+            LootReward_Iron = 10;
 
-            if (FollowerSlotActive.name != "DummyFollowerSlot" && FollowerSlotActive.GetComponent<FollowerSlot>().FollowerRace == "Nomad")
+            if (FollowerSlotActive.name != "DummyFollowerSlot" && FollowerSlotActive.GetComponent<FollowerSlot>().FollowerRace == "Ferrarium")
             {
+                AddText = "The skilled and crafty amalgamation of iron and flesh is well experienced on how to sap the earth of its riches. \n";
+                Prestige_Nomads += 2;
+                Quest_Time -= 2;
+                LootReward_Iron += 10;
 
-                AdditionalQuestText = "The Nomad valiantly springs forth from the crowd to answer the call of Cleansing.";
-                Prestige_Nomads = 15;
-                Quest_Time = 2;
-                LootReward_Wood = 10;
+                AdditionalQuestText += AddText;
             }
         }
 
         if (Questnumber == 4)
         {
             QuestText = "A curse has befallen a Nomad hut. They begrudgingly request assistance from a mage.";
-            Prestige_Nomads = 5;
-
+            
             Quest_Time = 4;
-            LootReward_Gold = 10;
+            LootReward_Gold = 5;
 
-            if (FollowerSlotActive.name != "DummyFollowerSlot" && FollowerSlotActive.GetComponent<FollowerSlot>().FollowerRace == "Nomad")
+            if (FollowerSlotActive.name != "DummyFollowerSlot" && FollowerSlotActive.GetComponent<FollowerSlot>().FollowerClass == "maige")
             {
-                AdditionalQuestText = "The Nomad valiantly springs forth from the crowd to answer the call of Cleansing.";
-                Prestige_Nomads = 15;
-                Quest_Time = 2;
-                LootReward_Wood = 10;
+                AddText = "The incantations chanted aloud by your follower send children scurrying and peeking from meek corners out of fear; not of the unknown or harm but rather that invoked by indoctrination.";
+                Prestige_Nomads -= 2;
+                LootReward_Gold += 45;
+
+                AdditionalQuestText += AddText;
             }
         }
 
@@ -174,15 +213,17 @@ public class QuestList : MonoBehaviour
             QuestText = "Iron mining has reduced an entire forest to dirt. The Nomads are looking for help on the matter.";
             Prestige_Nomads = 5;
 
-            Quest_Time = 4;
+            Quest_Time = 15;
             LootReward_Gold = 10;
 
-            if (FollowerSlotActive.name != "DummyFollowerSlot" && FollowerSlotActive.GetComponent<FollowerSlot>().FollowerRace == "Nomad")
+            if (FollowerSlotActive.name != "DummyFollowerSlot" && FollowerSlotActive.GetComponent<FollowerSlot>().FollowerRace == "Froots")
             {
-                AdditionalQuestText = "The Nomad valiantly springs forth from the crowd to answer the call of Cleansing.";
-                Prestige_Nomads = 15;
-                Quest_Time = 2;
-                LootReward_Wood = 10;
+                AddText = "Healing takes time and more so when it is the earth in pain. But a Froot also knows how to soothe any ailing thing. \n";
+                Prestige_Nomads += 10;
+                Quest_Time -= 4;
+                LootReward_Gold += 50;
+
+                AdditionalQuestText += AddText;
             }
         }
 
@@ -193,14 +234,6 @@ public class QuestList : MonoBehaviour
 
             Quest_Time = 4;
             LootReward_Iron = 10;
-
-            if (FollowerSlotActive.name != "DummyFollowerSlot" && FollowerSlotActive.GetComponent<FollowerSlot>().FollowerRace == "Nomad")
-            {
-                AdditionalQuestText = "The Nomad valiantly springs forth from the crowd to answer the call of Cleansing.";
-                Prestige_Nomads = 15;
-                Quest_Time = 2;
-                LootReward_Wood = 10;
-            }
         }
 
 

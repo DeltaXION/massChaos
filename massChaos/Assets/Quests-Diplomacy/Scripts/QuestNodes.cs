@@ -54,7 +54,7 @@ public class QuestNodes : MonoBehaviour
         ResetQuestActiveFollower();
 
         if (QuestisActive == false)
-            IDofFollowerdoingQuest = 0;
+            ResetNodeIDofFollower();
 
         QuestMenu.SetActive(false);
         TurnoffNode();
@@ -80,6 +80,7 @@ public class QuestNodes : MonoBehaviour
         //GameObject ActiveFollowerReference = GameObject.Find("FollowerSlots").GetComponent<FollowerSlotsManager>().SendActiveNode();
         else if (QuestisActive == false)
         {
+            ResetQuestIDofFollower();
             NodeisActive = true;
             if (GameObject.Find("QuestMenu") == false)
                 QuestMenu.SetActive(true);
@@ -141,7 +142,18 @@ public class QuestNodes : MonoBehaviour
         QuestisActive = false;
         QuestisDone = false;
 
+        ResetNodeIDofFollower();
         gameObject.SetActive(false);
+    }
+
+    void ResetNodeIDofFollower()
+    {
+        IDofFollowerdoingQuest = 0;
+    }
+
+    void ResetQuestIDofFollower()
+    {
+        GameObject.Find("QuestList").GetComponent<QuestList>().FollowerSlotActive = GameObject.Find("DummyFollowerSlot");
     }
 
 
@@ -166,6 +178,7 @@ public class QuestNodes : MonoBehaviour
                                                                      + " " + Follower.GetComponent<FollowerSlot>().FollowerClass + " "
                                                                      + Follower.GetComponent<FollowerSlot>().FollowerName + "\nDays Left = "
                                                                      + (QuestTimeRequired - (TimerBaar.GetComponent<Timer2>().calen - QuestTimeStart));
+            ResetQuestIDofFollower();
         }
     }
 
@@ -175,8 +188,8 @@ public class QuestNodes : MonoBehaviour
         
         GameObject.Find("PopupText").GetComponent<Text>().text = "Follower is already on a Quest.";
         GameObject.Find("FollowerSlots").GetComponent<FollowerSlotsManager>().ActiveFollowerSlotID = 0;
-        if(NodeisActive == true)
-        IDofFollowerdoingQuest = 0;
+        if (NodeisActive == true)
+            ResetNodeIDofFollower();
 
     }
 
