@@ -38,7 +38,7 @@ public class TreasureChest : MonoBehaviour
     /// <param name="numItemsToDrop"></param>
 
 
-    public void DropLootNearChest(int numItemsToDrop)
+    public void DropLootNearChest(int numItemsToDrop, float enemyLocationX, float enemyLocationY)
     {
         for (int i = 0; i < numItemsToDrop; i++)
         {
@@ -46,7 +46,7 @@ public class TreasureChest : MonoBehaviour
             GameObject selectedItem1 = selectedItem.item;
             Debug.Log("selectedItem1" + selectedItem1);
             GameObject selectedItemGameObject = Instantiate(selectedItem.item);
-            selectedItemGameObject.transform.position = new Vector2(i / 2f, 0f);
+            selectedItemGameObject.transform.position = new Vector2(enemyLocationX, enemyLocationY);
         }
 
 

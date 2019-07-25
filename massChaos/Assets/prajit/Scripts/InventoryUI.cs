@@ -8,25 +8,35 @@ public class InventoryUI : MonoBehaviour {
 
     public Transform weaponsParent; //The parent object of all weapons
 
+    public Transform equipmentParent;
+
 	public GameObject inventoryUI;	// The entire UI
 
 	Inventory inventory;	// Our current inventory
 
     WeaponInventory weaponInventory; // our weapon inventory
 
+    ElementalInventory elementalInventory; // player equipment 
+
 	InventorySlot[] slots;	// List of all the slots
 
     InventorySlot[] weaponSlots;  //list of weapon slotsa
 
+    InventorySlot[] equipmentSlots;
+
 	void Start () {
 		inventory = Inventory.instance;
         weaponInventory = WeaponInventory.instance1;
+        elementalInventory = ElementalInventory.instance;
 		inventory.onItemChangedCallback += UpdateUI;    // Subscribe to the onItemChanged callback
         weaponInventory.onItemChangedCallback += updateWeaponsUI;	// Subscribe to the onItemChanged callback
+        elementalInventory.onItemChangedCallback += updateEquipmentUI;
 
 		// Populate our slots array
 		slots = itemsParent.GetComponentsInChildren<InventorySlot>();
 		weaponSlots = weaponsParent.GetComponentsInChildren<InventorySlot>();
+		equipmentSlots = equipmentParent.GetComponentsInChildren<InventorySlot>();
+       
   
 	}
 	
@@ -71,6 +81,23 @@ public class InventoryUI : MonoBehaviour {
             {
                 // Otherwise clear the slot
                 weaponSlots[i].ClearSlot();
+            }
+        }
+    }
+
+    void updateEquipmentUI()
+    {
+        // Loop through all the slots
+        for (int i = 0; i < equipmentSlots.Length; i++)
+        {
+            if (i < elementalInventory.items.Count)  // If there is an item to add
+            {
+                equipmentSlots[i].AddItem(elementalInventory.items[i]);   // Add it
+            }
+            else
+            {
+                // Otherwise clear the slot
+                equipmentSlots[i].ClearSlot();
             }
         }
     }
