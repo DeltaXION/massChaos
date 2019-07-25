@@ -5,7 +5,11 @@ using UnityEngine;
 public class BB_GlobalStats : MonoBehaviour
 {
     public static int BasePopulation, BaseAssignedNPCs, BaseAffinityAssignedNPCs, BaseTotalBuildings, BaseBuildingDamage;
-   
+
+    [SerializeField] int numberOfHouses = 0;
+    BB_BuildingUpgrades bB_BuildingUpgrades;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -16,5 +20,10 @@ public class BB_GlobalStats : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void CurrentNumberOfHouses()
+    {
+        numberOfHouses++;
     }
 }

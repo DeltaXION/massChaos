@@ -45,4 +45,10 @@ public class BB_BuildingStatsSO : ScriptableObject
         return Message;
     }
 
+    public string resourcesRequired()
+    {
+        string RR = "Wood " + wood.ToString() + "\n" + "Iron " + iron.ToString() + "\n" + "Gold " + gold.ToString();
+        return RR;
+    }
+
 }
