@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3317225932625462410}
   - component: {fileID: 3317225932625462411}
   - component: {fileID: 3317225932625462414}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -181,7 +181,7 @@ GameObject:
   - component: {fileID: 3317225932930217105}
   - component: {fileID: 3317225932930217104}
   - component: {fileID: 422677509431490843}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: LeftHitBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -256,7 +256,7 @@ GameObject:
   - component: {fileID: 3317225933428949365}
   - component: {fileID: 3317225933428949364}
   - component: {fileID: 6337208813639979463}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: RightHitBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -330,7 +330,7 @@ GameObject:
   - component: {fileID: 3317225933539196957}
   - component: {fileID: 3317225933539196956}
   - component: {fileID: 6715930187322396457}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: DownHitBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -404,7 +404,7 @@ GameObject:
   - component: {fileID: 3317225934130567735}
   - component: {fileID: 3317225934130567734}
   - component: {fileID: 7277461556524772383}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: UpHitBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}

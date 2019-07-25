@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3197547364971615467}
   - component: {fileID: 7073128321864398603}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: boss
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -65,8 +65,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -111630907
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 6438002924047965534, guid: 552e20a5055bc68498104358fdd632b1,
     type: 3}

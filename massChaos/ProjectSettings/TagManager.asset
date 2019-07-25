@@ -18,6 +18,11 @@ TagManager:
   - dungeonWoodText
   - dungeonGoldText
   - House_Button
+  - Rooms
+  - Spawnpoint
+  - breakable
+  - Item
+  - dungeonMap
   layers:
   - Default
   - TransparentFX
@@ -27,11 +32,11 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - ground
+  - object
+  - enemy
+  - player
+  - userInterface
   - 
   - 
   - 
@@ -55,11 +60,20 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Ground
+    uniqueID: 3144521089
+    locked: 0
+  - name: Building
+    uniqueID: 3516366185
+    locked: 0
+  - name: Objects
+    uniqueID: 1617594357
+    locked: 0
+  - name: Enemy
+    uniqueID: 4183336389
+    locked: 0
   - name: Player
     uniqueID: 384962111
-    locked: 0
-  - name: building
-    uniqueID: 3516366185
     locked: 0
   - name: UI
     uniqueID: 778077623
