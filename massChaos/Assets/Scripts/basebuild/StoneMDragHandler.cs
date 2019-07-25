@@ -15,7 +15,7 @@ public class StoneMDragHandler : MonoBehaviour, IDragHandler, IEndDragHandler
     //float z;
     //public GameObject houseImg;
     public int woodCountAvl;
-    public static int stoneMBuilt;
+
     public int NPCCountAvl;
     Timer2 timer;
     public void OnBeginDrag(PointerEventData eventData)
@@ -49,29 +49,32 @@ public class StoneMDragHandler : MonoBehaviour, IDragHandler, IEndDragHandler
         transform.localPosition = startPosition;
         timer = FindObjectOfType<Timer2>();
         if (timer.timeOfDay < 150 && !Timer2.harshWeather)
-
-            if (ResourceManager.wood >= 10 && NPCCountAvl >= 1)
         {
+
+            if (ResourceManager.wood >= 10 && BB_BasicControls.stoneMBuilt < 1)
+            {
                 //transform.position = Vector3.zero;
                 //Destroy (clone, 0.1f);
                 ResourceManager.subWood(10);
-                stoneMBuilt++;
+                BB_BasicControls.stoneMBuilt++;
+                BB_BasicControls.buildBuilt++;
 
-            //Debug.Log("Ennnnd" + transform.position.x);
-            //Debug.Log("Ennnnnd" + transform.position.y);
+                //Debug.Log("Ennnnd" + transform.position.x);
+                //Debug.Log("Ennnnnd" + transform.position.y);
 
-            mousepos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            linehandler = Instantiate(building, Camera.main.ScreenToWorldPoint(Input.mousePosition), Quaternion.identity) as GameObject;
-            linehandler.transform.SetAsLastSibling();
-            linehandler.transform.position = mousepos;
-            linehandler.SetActive(true);
+                mousepos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                linehandler = Instantiate(building, Camera.main.ScreenToWorldPoint(Input.mousePosition), Quaternion.identity) as GameObject;
+                linehandler.transform.SetAsLastSibling();
+                linehandler.transform.position = mousepos;
+                linehandler.SetActive(true);
+                //CommonHappinessIndex.RecaclculateHappinessIndex();
 
-       
+
+            }
+
+
+
         }
-   
-
-
-
 
 
     }
