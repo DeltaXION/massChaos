@@ -115,13 +115,27 @@ public class QuestNodes : MonoBehaviour
 
             GameObject.Find("FollowerSlots").GetComponent<FollowerSlotsManager>().ChangeFollowerStatebetweenBusyandIdle(IDofFollowerdoingQuest);
 
+            //NIYATI's HAPPINESS
+            //CommonHappinessIndex.RecaclculateHappinessIndex();
+
             QuestisActive = true;
             NodeisActive = false;
-            ResetQuestActiveFollower();
+            ChangeColourofNode();
 
+
+            ResetQuestActiveFollower();
             QuestMenu.SetActive(false);
            
         }
+    }
+
+    void ChangeColourofNode()
+    {
+        if(QuestisActive==true)
+        gameObject.GetComponent<Image>().color = new Color32(255,180,80,255);
+
+        if (QuestisActive == false)
+         gameObject.GetComponent<Image>().color = new Color32(255, 255, 255, 255);
     }
 
 
@@ -141,6 +155,8 @@ public class QuestNodes : MonoBehaviour
 
         QuestisActive = false;
         QuestisDone = false;
+        ChangeColourofNode();
+
 
         ResetNodeIDofFollower();
         gameObject.SetActive(false);

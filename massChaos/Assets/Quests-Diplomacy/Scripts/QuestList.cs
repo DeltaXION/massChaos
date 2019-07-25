@@ -229,11 +229,18 @@ public class QuestList : MonoBehaviour
 
         if (Questnumber == 6)
         {
-            QuestText = "This is the Quest you must read.";
-            Prestige_Nomads = 5;
-
+            QuestText = "A blooming of the IronPetals congregates the Nomads to the camp. You could send a follower to witness the event.";
             Quest_Time = 4;
-            LootReward_Iron = 10;
+
+            if (FollowerSlotActive.name != "DummyFollowerSlot" && FollowerSlotActive.GetComponent<FollowerSlot>().FollowerRace == "Nomad")
+            {
+                AddText = "Healing takes time and more so when it is the earth in pain. But a Froot also knows how to soothe any ailing thing. \n";
+                Prestige_Nomads += 10;
+                Quest_Time -= 4;
+                LootReward_Gold += 50;
+
+                AdditionalQuestText += AddText;
+            }
         }
 
 
