@@ -25,10 +25,12 @@ public class CommonHappinessIndex : MonoBehaviour
     //Variables for Food consumption 
     public static float ConsumptionRate = 10f; //Consumption rate /follower/day 
 
+    private GameObject BaseHealthObj;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        BaseHealthObj = GameObject.Find("BaseHealth");
     }
 
     static void SetCommonHappiness()
@@ -73,7 +75,7 @@ public class CommonHappinessIndex : MonoBehaviour
 	{
 		float TotalBH = 10;
 		float MaxBaseHealth = 100;
-		//float CurrentBaseHealth = 80;
+		float CurrentBaseHealth = BaseHealthObj.GetComponent<BaseHealth>().baseHealth;
 		float PercentReductionInBaseHealth = (CurrentBaseHealth / MaxBaseHealth);
 		if(CurrentBaseHealth == MaxBaseHealth)
 		{

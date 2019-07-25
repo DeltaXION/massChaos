@@ -10,15 +10,11 @@ public class FollowerLeaving : MonoBehaviour
     private float CurrentNomadHappiness;
     private float CurrentMimaxHappiness;
 
-	private int FrootFollowerID;
+    private GameObject BaseHealthObj;
 
-    
-
-	
-    // Start is called before the first frame update
     void Start()
     {
-		
+        BaseHealthObj = GameObject.Find("baseValue");
     }
 
 	private IEnumerator FrootFollowersWillNowLeave()
@@ -51,7 +47,7 @@ public class FollowerLeaving : MonoBehaviour
         int FrootIDToLeave = FrootIDs[FrootIDIndexToLeave];
 
         //NPCSystem.removeFollower(FrootIDToLeave);
-
+        //BaseHealthObj.GetComponent<BaseHealth>().BaseHealthCalc();
         yield return new WaitForSeconds(5f);
 
 	}
@@ -86,6 +82,7 @@ public class FollowerLeaving : MonoBehaviour
         int FerroIDToLeave = FerroIDs[FerroIDIndexToLeave];
 
         //NPCSystem.removeFollower(FerroIDToLeave);
+        //BaseHealthObj.GetComponent<BaseHealth>().BaseHealthCalc();
 
         yield return new WaitForSeconds(5f);
 
@@ -121,6 +118,7 @@ public class FollowerLeaving : MonoBehaviour
         int MimaxIDToLeave = MimaxIDs[MimaxIDIndexToLeave];
 
         //NPCSystem.removeFollower(MimaxIDToLeave);
+        //BaseHealthObj.GetComponent<BaseHealth>().BaseHealthCalc();
 
         yield return new WaitForSeconds(5f);
 
@@ -156,12 +154,13 @@ public class FollowerLeaving : MonoBehaviour
         int NomadIDToLeave = NomadIDs[NomadIDIndexToLeave];
 
         //NPCSystem.removeFollower(NomadIDToLeave);
+        //BaseHealthObj.GetComponent<BaseHealth>().BaseHealthCalc();
 
         yield return new WaitForSeconds(5f);
 
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
         CurrentFrootHappiness = FrootHappinessIndex.FrootHappiness;

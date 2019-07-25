@@ -91,7 +91,7 @@ public class MimaxHappniessIndex : MonoBehaviour
         //using NPC List to count the number of NPCs engaged in farming at base
         foreach (var o in NPCSystem.followers)
         {
-            if (o.Type == "M" && o.Status == "Market")
+            if (o.Type == "M" && (o.Status == "Barracks" || o.Status == "OutPost"))
             {
                 MimaxFollowersAssignedToAffinityBaseAssignments++;
             }
