@@ -1,6 +1,14 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
+<<<<<<< HEAD:massChaos/Assets/jennifer/prefab/BaseBuilding.unity.meta
+guid: 184897e38c88f83469fa224ca7991362
+=======
+guid: ec114306d6028e74c8d69ed4dc77f98a
+>>>>>>> 1dc80758be172dd3efeb56761c7acdb97f37a723:massChaos/Assets/DungeonDesign/Dungeon_2/BaseStationStartRoom.unity.meta
+=======
 
 guid: 4168d86c9afa72e488a0b44dd279c7a6
+>>>>>>> 2770bed2b529329389d07a12c9f9aa19d5eaa1af
 DefaultImporter:
   externalObjects: {}
   userData: 
