@@ -52,6 +52,8 @@ public class Timer2 : MonoBehaviour
     public float timeOfDay;
     static public bool itsDay;
     public GameObject exitDuBut;
+    float test = 0;
+    
 
     void Start()
     {
@@ -129,14 +131,34 @@ public class Timer2 : MonoBehaviour
 
 
         }
-        
+        // PLAYER SPEED
         if(!skipX2Active && !skipActive)
         {
             playerSpeed = 8;
         }
 
+        // SHREEYA Additions :SHREEYA :- MINI BOSS DAMAGE
+
+        if (displayDate == 100)
+        {
+            if (timeOfDay >= 20 && timeOfDay <=21)
+            {
+                Debug.Log("dstroy");
+                Damage();
+            }
+           
+           // test = test + 1;
+           // Debug.Log(test);
+        }
+
+        if (displayDate == 100)
+        {
+           // BaseDamage.MiniBDamage();
+        }
+
 
         // SPLITTING DAYS INTO :: YEARS AND DAYS :-
+
         if (displayDate > 100)
         {
             year = Mathf.FloorToInt(displayDate / 100);
@@ -171,9 +193,12 @@ public class Timer2 : MonoBehaviour
         }
         // NIGHT :- 
         if (timeOfDay >= wholeDaySeconds / 2)
-        { // activate the code below once merged - Niyati.
-           // CommonHappinessIndex.RecacluclateHappinessIndex();
-           
+        { // activate the code below once merged - NIYATI.
+
+            if (timeOfDay >= 20 && timeOfDay <= 21)
+            { // CommonHappinessIndex.RecacluclateHappinessIndex();
+            }
+
             NightText.SetActive(true);
             DayText.SetActive(false);
             float half = timeOfDay / 2;
@@ -237,22 +262,40 @@ public class Timer2 : MonoBehaviour
 
     }
 
+    public void Damage()
+    {
+        test = test + 1;
+        Debug.Log(test + "test");
+    }
+
     // SPRING FUNCTOIN :
     public void Spring()
     {
         springTimer += displayDate;
         SpringUI.SetActive(true);
         if (displayDate >= 10)
-        {// add 1 damage function;
-            harshWeather = true;
+        {
+            if (displayDate == 10)
+            {// SHREEYA :- HARSH DAMAGE - 1DAY
+                if (timeOfDay >= 20 && timeOfDay <= 21)
+                { 
+                    //  BaseDamage.WeatherDamage();
+                                    
+                }
+               
+
+            }
+
+
+                harshWeather = true;
             harshWeathers = true;
             if (displayDate >= 15)
             {
                 harshWeather = false;
                 harshWeathers = false;
             }
-        }
-
+            }
+        
     }
 
     // SUMMER FUNCTION :
@@ -260,7 +303,15 @@ public class Timer2 : MonoBehaviour
     {
         SummerUI.SetActive(true);
         if (displayDate >= 37)
-        { // add 1 damage function;
+        {
+            if (displayDate == 37)
+            {// SHREEYA :- HARSH DAMAGE - 1DAY
+                if (timeOfDay >= 20 && timeOfDay <= 21)
+                { //  BaseDamage.WeatherDamage();
+                  
+                }
+                  
+            }
             harshWeather = true;
             harshWeathers = true;
             if (displayDate >= 42)
@@ -278,7 +329,18 @@ public class Timer2 : MonoBehaviour
 
         AutumnUI.SetActive(true);
         if (displayDate >= 62)
-        {// add 1 damage function;
+        {
+            if(displayDate == 62)
+            {
+                // SHREEYA :- HARSH DAMAGE - 1DAY
+                if (timeOfDay >= 20 && timeOfDay <= 21)
+                { //  BaseDamage.WeatherDamage();
+                   
+                  
+                }
+
+            }
+
             harshWeather = true;
             harshWeathers = true;
             if (displayDate >= 70)
@@ -295,7 +357,18 @@ public class Timer2 : MonoBehaviour
     {
         WinterUI.SetActive(true);
         if (displayDate >= 85)
-        {// add 1 damage function;
+        {
+            if (displayDate == 85)
+            {
+                // SHREEYA :- HARSH DAMAGE - 1DAY
+                if (timeOfDay >= 20 && timeOfDay <= 21)
+                { //  BaseDamage.WeatherDamage();
+                    
+                   
+                }
+
+            }
+
             harshWeather = true;
             harshWeathers = true;
             if (displayDate >= 92)
@@ -365,7 +438,7 @@ public class Timer2 : MonoBehaviour
     public void goToDungeonButton()
 
     {
-        if (!skipActive)
+        if (!skipActive && !skipX2Active)
         {
             timerActive = false;
         inDungeon = true;
