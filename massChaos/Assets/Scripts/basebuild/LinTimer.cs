@@ -10,7 +10,8 @@ public class LinTimer : MonoBehaviour
     public static float maxTime = 20;
     public static bool done = false;
     public static float timeLeft;
-    public static int woodCnt = 5;  
+    public static int woodCnt = 5;
+    Timer2 timer2;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,6 +30,16 @@ public class LinTimer : MonoBehaviour
     //}
     public void Update()
     {
+        timer2 = FindObjectOfType<Timer2>();
+
+        if (timer2.timeOfDay < 150 && !Timer2.harshWeather)
+        {
+            maxTime = 20;
+        }
+        else
+        {
+            maxTime = 30;
+        }
         if (timeLeft > 0 && done == false)
         {
             timeLeft -= Time.deltaTime;

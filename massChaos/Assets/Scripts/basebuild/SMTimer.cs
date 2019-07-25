@@ -11,6 +11,7 @@ public class SMTimer : MonoBehaviour
     public static bool done = false;
     public static float timeLeft;
     public static int stoneCnt = 1;
+    Timer2 timer2;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,6 +30,16 @@ public class SMTimer : MonoBehaviour
     //}
     public void Update()
     {
+        timer2 = FindObjectOfType<Timer2>();
+
+        if (timer2.timeOfDay < 150 && !Timer2.harshWeather)
+        {
+            maxTime = 25;
+        }
+        else
+        {
+            maxTime = 35;
+        }
         if (timeLeft > 0 && done == false)
         {
             timeLeft -= Time.deltaTime;

@@ -11,6 +11,7 @@ public class IMTimer : MonoBehaviour
     public static bool done = false;
     public static float timeLeft;
     public static int ironCnt = 1;
+    Timer2 timer2;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,6 +30,17 @@ public class IMTimer : MonoBehaviour
     //}
     public void Update()
     {
+        timer2 = FindObjectOfType<Timer2>();
+
+        if (timer2.timeOfDay < 150 && !Timer2.harshWeather)
+        {
+            maxTime = 30;
+        }
+        else
+        {
+            maxTime = 45;
+        }
+
         if (timeLeft > 0 && done == false)
         {
             timeLeft -= Time.deltaTime;
