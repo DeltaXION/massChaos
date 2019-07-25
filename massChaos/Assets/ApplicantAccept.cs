@@ -11,15 +11,19 @@ public class ApplicantAccept : MonoBehaviour, ISelectHandler
     public static GameObject g;
     void Start()
     {
-        //g = GameObject.Find("Select");
+       // g = GameObject.Find("ClassSelect");
         //g.transform.GetChild(0);
-       // Resources.FindObjectsOfTypeAll(typeof(GameObject));
-        foreach (GameObject go in Resources.FindObjectsOfTypeAll(typeof(GameObject)) as GameObject[]) {
-            if (go.name == "ClassSelect") {
+        // Resources.FindObjectsOfTypeAll(typeof(GameObject));
+        foreach (GameObject go in Resources.FindObjectsOfTypeAll(typeof(GameObject)) as GameObject[])
+        {
+            if (go.name == "ClassSelect")
+            {
                 g = go;
             }
         }
-            g.SetActive(false);
+
+
+        g.SetActive(false);
     }
 
     // Update is called once per frame
@@ -36,13 +40,20 @@ public class ApplicantAccept : MonoBehaviour, ISelectHandler
 
     public void OnSelect(BaseEventData eventData)
     {
+        foreach (GameObject go in Resources.FindObjectsOfTypeAll(typeof(GameObject)) as GameObject[])
+        {
+            if (go.name == "ClassSelect")
+            {
+                g = go;
+            }
+        }
         string id = transform.parent.gameObject.transform.GetChild(0).gameObject.GetComponent<Text>().text.ToString();
-        //Debug.Log("!!!!!!!!!!!!!" +id);
+       // Debug.Log("!!!!!!!!!!!!!" +id);
         BaseCharachteristics b;
         if (this.gameObject.name == "accept") {
             g.SetActive(true);
-            b = NPCApplicants.GetFollowerByID(int.Parse((id)));
-            NPCSystem.followerToAdd = b;
+           // b = NPCApplicants.GetFollowerByID(int.Parse((id)));
+            NPCSystem.followerIdToUpdateClass = int.Parse((id));
             //NPCSystem.addFollower(b.Name, b.Type,"", "", "", "idle");
             
             Destroy(transform.parent.gameObject);
