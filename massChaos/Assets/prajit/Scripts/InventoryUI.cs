@@ -12,6 +12,8 @@ public class InventoryUI : MonoBehaviour {
 
     public Transform weaponBaseParent;
 
+    public Transform primaryWeaponParent;
+
 
 
 	public GameObject inventoryUI;	// The entire UI
@@ -24,6 +26,8 @@ public class InventoryUI : MonoBehaviour {
 
     WeaponBaseInventory weaponBaseInventory;
 
+    PrimaryWeaponInventory primaryWeaponInventory;
+
 	InventorySlot[] slots;	// List of all the slots
 
     InventorySlot[] weaponSlots;  //list of weapon slotsa
@@ -32,15 +36,23 @@ public class InventoryUI : MonoBehaviour {
 
     InventorySlot[] weaponBaseSlots;
 
+    InventorySlot[] primarySlots;
+
+
+
 	void Start () {
 		inventory = Inventory.instance;
         weaponInventory = WeaponInventory.instance1;
         elementalInventory = ElementalInventory.instance;
         weaponBaseInventory = WeaponBaseInventory.instance;
+        primaryWeaponInventory = PrimaryWeaponInventory.instance;
+
 		inventory.onItemChangedCallback += UpdateUI;    // Subscribe to the onItemChanged callback
         weaponInventory.onItemChangedCallback += updateWeaponsUI;	// Subscribe to the onItemChanged callback
         elementalInventory.onItemChangedCallback += updateEquipmentUI;
-       // weaponBaseInventory.onItemChangedCallback += updateBaseUI;
+        primaryWeaponInventory.onItemChangedCallback += updatePrimaryUI;
+        weaponBaseInventory.onItemChangedCallback += updateBaseUI;
+
 
       
 
@@ -49,6 +61,7 @@ public class InventoryUI : MonoBehaviour {
 		weaponSlots = weaponsParent.GetComponentsInChildren<InventorySlot>();
         equipmentSlots = equipmentParent.GetComponentsInChildren<InventorySlot>();
         weaponBaseSlots = weaponBaseParent.GetComponentsInChildren<InventorySlot>();
+        primarySlots = primaryWeaponParent.GetComponentsInChildren<InventorySlot>();
 
 
 
@@ -115,6 +128,7 @@ public class InventoryUI : MonoBehaviour {
                 equipmentSlots[i].ClearSlot();
             }
         }
+    }
 
         void updateBaseUI()
         {
@@ -130,6 +144,23 @@ public class InventoryUI : MonoBehaviour {
                     // Otherwise clear the slot
                     weaponBaseSlots[i].ClearSlot();
                 }
+            }
+        }
+
+
+    void updatePrimaryUI()
+    {
+        // Loop through all the slots
+        for (int i = 0; i < primarySlots.Length; i++)
+        {
+            if (i < primaryWeaponInventory.items.Count)  // If there is an item to add
+            {
+                primarySlots[i].AddItem(primaryWeaponInventory.items[i]);   // Add it
+            }
+            else
+            {
+                // Otherwise clear the slot
+                primarySlots[i].ClearSlot();
             }
         }
     }

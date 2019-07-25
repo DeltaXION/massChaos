@@ -11,6 +11,10 @@ GameObject:
   - component: {fileID: 572973594285385764}
   - component: {fileID: 572973594285385767}
   - component: {fileID: 1448092969}
+  - component: {fileID: 781842478}
+  - component: {fileID: 781842479}
+  - component: {fileID: 781842480}
+  - component: {fileID: 781842484}
   m_Layer: 0
   m_Name: GameManager_prajit
   m_TagString: Untagged
@@ -59,4 +63,58 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   space: 20
+  items: []
+--- !u!114 &781842478
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 572973594285385765}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95612276a67cfb14a8e609ed82f3fe1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  space: 20
+  items: []
+--- !u!114 &781842479
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 572973594285385765}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f51835af13c00f4799cb5b51a5ec18f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  space: 20
+  items: []
+--- !u!114 &781842480
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 572973594285385765}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62017999790407a42b668f0d4e260ea2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &781842484
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 572973594285385765}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e64ba26112c11d141820991c5e362aa4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  space: 1
   items: []

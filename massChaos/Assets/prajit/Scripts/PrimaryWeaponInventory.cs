@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WeaponBaseInventory : MonoBehaviour
+public class PrimaryWeaponInventory : MonoBehaviour
 {
     #region Singleton
 
-    public static WeaponBaseInventory instance;
+    public static PrimaryWeaponInventory instance;
 
 
     void Awake()
@@ -28,7 +28,7 @@ public class WeaponBaseInventory : MonoBehaviour
     public delegate void OnItemChanged();
     public OnItemChanged onItemChangedCallback;
 
-    public int space = 20;  // Amount of slots in inventory
+    public int space = 1;  // Amount of slots in inventory
 
     // Current list of items in inventory
     public List<Item> items = new List<Item>();
@@ -66,6 +66,5 @@ public class WeaponBaseInventory : MonoBehaviour
         if (onItemChangedCallback != null)
             onItemChangedCallback.Invoke();
     }
-
 
 }
