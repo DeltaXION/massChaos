@@ -16,9 +16,10 @@ public class EquipmentManager : MonoBehaviour
 
     Item[] currentEquipment;
 
+
     Item item;
 
-    ItemType itemType = ItemType.Elemental;
+  //  ItemType itemType = ItemType.Elemental;
 
 
    
@@ -30,14 +31,19 @@ public class EquipmentManager : MonoBehaviour
 
     ElementalInventory elementalInventory;
 
+    WeaponBaseInventory weaponBaseInventory;
+
     private void Start()
     {
         weaponInventory = WeaponInventory.instance1;
 
         elementalInventory = ElementalInventory.instance;
 
+        weaponBaseInventory = WeaponBaseInventory.instance;
+
         int numSlots = elementalInventory.space;
         currentEquipment = new Item[numSlots];
+
         Debug.Log("numslots" + numSlots);
     }
 
@@ -67,6 +73,32 @@ public class EquipmentManager : MonoBehaviour
         }        
     }
 
+    public void EquipWeapon(Item newItem)
+    {
+        {
+
+
+            int slotIndex = (int)newItem.itemtype;
+
+            Item oldItem = null;
+
+            //if (currentEquipment[slotIndex] != null)
+            //{
+            //    oldItem = currentEquipment[slotIndex];
+            //    weaponInventory.Add(oldItem);
+            //}
+
+            if (onEquipmentChanged != null)
+            {
+                onEquipmentChanged.Invoke(newItem, oldItem);
+            }
+
+            Debug.Log("slotIndex" + slotIndex);
+            currentEquipment[slotIndex] = newItem;
+            weaponBaseInventory.Add(newItem);
+        }
+    }
+
     public void Unequip(int slotIndex)
     {
         if(currentEquipment[slotIndex] != null)
@@ -83,26 +115,26 @@ public class EquipmentManager : MonoBehaviour
         }
     }
 
-    public void sortItems(int slotIndex)
-    {
-        Item oldItem = currentEquipment[slotIndex];
-        switch(itemType)
-        {
-            case ItemType.Elemental:
-                elementalInventory.Add(oldItem);
-                break;
+    //public void sortItems(int slotIndex)
+    //{
+    //    Item oldItem = currentEquipment[slotIndex];
+    //    switch(itemType)
+    //    {
+    //        case ItemType.Elemental:
+    //            elementalInventory.Add(oldItem);
+    //            break;
 
-            case ItemType.Mage:
-                break;
+    //        case ItemType.Mage:
+    //            break;
 
-            case ItemType.Combat:
-                break;
+    //        case ItemType.Combat:
+    //            break;
 
-            case ItemType.Recipe:
-                break;
+    //        case ItemType.Recipe:
+    //            break;
 
 
-        }
-    }
+    //    }
+    //}
 
 }
