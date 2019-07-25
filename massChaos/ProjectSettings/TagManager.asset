@@ -31,7 +31,8 @@ TagManager:
   - Weapon
   - Farm
   - applicantItem
-
+  - RoomSpawnPoint
+  - populationText
   layers:
   - Default
   - TransparentFX

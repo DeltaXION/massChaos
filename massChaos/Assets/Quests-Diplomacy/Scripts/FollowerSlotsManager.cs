@@ -22,10 +22,8 @@ public class FollowerSlotsManager : MonoBehaviour
         int count = 1;
         foreach(var person in FollowerList)
         {
-            Debug.Log("Outside. Count is " + count + " FollowerID is " + QuestingFollowerID);
             if (count == QuestingFollowerID)
             {
-                Debug.Log("Inside. Count is " + count + " FollowerID is " + QuestingFollowerID);
                 if (person.status == "Questing")
                     person.status = "idle";
                 else if (person.status != "Questing")
@@ -79,6 +77,8 @@ public class FollowerSlotsManager : MonoBehaviour
     //id, name, type, classType, secItem, priItem, status
     public void FillSlots()
     {
+        
+
         int count = 0;
         foreach (var item in FollowerList)
         {

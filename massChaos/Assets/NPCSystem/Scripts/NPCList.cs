@@ -41,6 +41,7 @@ public class NPCList : MonoBehaviour
            // go.transform.SetParent(gameObject.transform);
             go.transform.Find("id").GetComponent<Text>().text = o.Id.ToString();
             go.transform.Find("name").GetComponent<Text>().text = o.Name;
+
             
 
             switch (o.Type)

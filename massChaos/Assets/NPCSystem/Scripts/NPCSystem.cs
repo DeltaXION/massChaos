@@ -35,7 +35,7 @@ public class NPCSystem : MonoBehaviour
     {
         setHappinessIndex();
 
-        populateList();
+        //populateList();
 
         addFollower("Broom",  "N", "warrior", "gun", "sword", "idle");
         addFollower("Groom", "Fr", "maige", "sword", "bazooka", "idle");
