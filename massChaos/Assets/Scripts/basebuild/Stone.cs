@@ -3,18 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Trees : MonoBehaviour
+public class Stone : MonoBehaviour
 {
-    public Text woods;
+    public Text stone;
     public float fadeTIme;
     public bool displayInfo;
-    public GameObject forestUI;
- 
+    public GameObject stoneMUI;
+
     // Start is called before the first frame update
     void Start()
     {
         displayInfo = false;
-        forestUI.SetActive(displayInfo);
+        stoneMUI.SetActive(displayInfo);
     }
 
     // Update is called once per frame
@@ -28,8 +28,8 @@ public class Trees : MonoBehaviour
         displayInfo = true;
         //Debug.Log("Mouse");
         FadeInfo();
-        woods = GameObject.Find("woodnum").GetComponent<Text>();
-        woods.text = LinTimer.woodCnt.ToString();
+        stone = GameObject.Find("stnnum").GetComponent<Text>();
+        stone.text = SMTimer.stoneCnt.ToString();
     }
     private void OnMouseExit()
     {
@@ -38,7 +38,7 @@ public class Trees : MonoBehaviour
     }
     void FadeInfo()
     {
-            forestUI.SetActive (displayInfo);
+        stoneMUI.SetActive(displayInfo);
     }
 
 }
