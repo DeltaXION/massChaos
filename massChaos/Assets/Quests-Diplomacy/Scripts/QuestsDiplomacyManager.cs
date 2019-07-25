@@ -33,30 +33,20 @@ public class QuestsDiplomacyManager : MonoBehaviour
 
     void OpenDiplomacyMenu()
     {
-     
-
         if (GameObject.Find("QuestMenu") == true)
-        {
-            GameObject.Find("QuestList").GetComponent<QuestList>().FollowerSlotActive = GameObject.Find("DummyFollowerSlot");
-
-            GameObject.Find("FollowerSlots").GetComponent<FollowerSlotsManager>().ActiveFollowerSlotID = 0; //RESET FOLLOWER SELECTION TO 0
-            GameObject.Find("QuestMenu").SetActive(false);            
-        }
-
+            GameObject.Find("QuestMenu").SetActive(false);
 
         if (GameObject.Find("QuestsDiplomacyParent") == true)
             DiplomacyMap.SetActive(false);
         else if (GameObject.Find("QuestsDiplomacyParent") == false)
             DiplomacyMap.SetActive(true);
-
-
     }
 
 
 
 
 
-    //UPDATE REWARDS INTO POOL. CALLED IN QUESTLISTS
+    //UPDATE REWARDS INTO POOL
     public void UpdateRewardsintoPool
     (int Prestige_Nomads_Earned, int Prestige_Ferrarium_Earned, int Prestige_Froots_Earned, int Prestige_Mimax_Earned, int LootReward_Iron, int LootReward_Wood, int LootReward_Food, int LootReward_Gold,
      int ItemReward_Uncommon, int ItemReward_Common, int ItemReward_Rare, int ItemReward_Recipe, int ItemReward_Boss, int Reward_TimeChange)
@@ -72,7 +62,7 @@ public class QuestsDiplomacyManager : MonoBehaviour
         ResourceManager.addIron(LootReward_Iron);
         ResourceManager.addWood(LootReward_Wood);
 
-        //PLACEHOLDER FOR HAPPINESS MODIFIER FROM NPC DEPARTMENT
+  
     }
 
 

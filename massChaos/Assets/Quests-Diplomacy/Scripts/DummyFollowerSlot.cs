@@ -8,6 +8,8 @@ public class DummyFollowerSlot : MonoBehaviour
     
     void Start()
     {
-        
+        FollowerName = "Jarp;d";
+        FollowerRace = "NOMAD";
+            FollowerClass = FollowerSecondaryWeapon = FollowerPrimaryWeapon = FollowerStatus = " ";
     }
 }

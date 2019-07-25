@@ -48,9 +48,10 @@ public class QuestsDiplomacyParent : MonoBehaviour
     void UpdateDiplomacyMap()
     {
         PrestigeNomads.text = ("Nomads Prestige : " + QuestsDiplomacyManager.GetComponent<QuestsDiplomacyManager>().Prestige_Nomads.ToString());
-        PrestigeFerrarium.text = ("Ferrarium Prestige : " + QuestsDiplomacyManager.GetComponent<QuestsDiplomacyManager>().Prestige_Ferrarium.ToString());        
+        PrestigeFerrarium.text = ("Ferrarium Prestige : " + QuestsDiplomacyManager.GetComponent<QuestsDiplomacyManager>().Prestige_Ferrarium.ToString());
+        /*
         PrestigeFroots.text = ("Froots Prestige : " + QuestsDiplomacyManager.GetComponent<QuestsDiplomacyManager>().Prestige_Froots.ToString());
-        PrestigeMimax.text = ("Mimax Prestige : " + QuestsDiplomacyManager.GetComponent<QuestsDiplomacyManager>().Prestige_Mimax.ToString());
+        PrestigeMimax.text = ("Mimax Prestige : " + QuestsDiplomacyManager.GetComponent<QuestsDiplomacyManager>().Prestige_Mimax.ToString());*/
     }
 
 
@@ -79,8 +80,10 @@ public class QuestsDiplomacyParent : MonoBehaviour
         //NOMAD_QUESTS (1-15) FERRARUIM_QUESTS (16-30) FROOTS_QUESTS (31-45) MIMAX_QUESTS (46-60)
         SetQuestforRace("NomadQuestNode", 1, 6);
         SetQuestforRace("FerrariumQuestNode", 16, 21);
+        /*
         SetQuestforRace("FrootsQuestNode", 31, 36);
         SetQuestforRace("MimaxQuestNode", 46, 51);
+        */
     }
 
     void SetQuestforRace(string RaceName, int min, int max)

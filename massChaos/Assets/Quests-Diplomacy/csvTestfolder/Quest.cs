@@ -4,23 +4,24 @@ using UnityEngine;
 
 public class Quest
 {
-    public int Quest_id;
-    public string Quest_type;
-    public string Quest_name;
-    public string Quest_discription;
+    public int Questnumber;
+    public string QuestText;
+    public string AdditionalQuestText;
+    public string QuestRewardsText;
+    public string ListofRewards;
     public int Prestige_Nomads;
     public int Prestige_Ferrarium;
     public int Prestige_Froots;
     public int Prestige_Mimax;
-    public int Common_item;
-    public int Uncommon_item;
-    public int Rare_item;
-    public int Wood;
-    public int Iron;
-    public int Gold;
-    public int Food;
-    public int Boss_item_ID;
-    public int Recipe_item_ID;
-    public int Quest_time;
-    public int Reward_timequest;
+    public int LootReward_Iron;
+    public int LootReward_Wood;
+    public int LootReward_Food;
+    public int LootReward_Gold;
+    public int ItemReward_Uncommon;
+    public int ItemReward_Common;
+    public int ItemReward_Rare;
+    public int ItemReward_Recipe;
+    public int ItemReward_Boss;
+    public int Quest_Time;
+    public int Reward_TimeChange;
 }

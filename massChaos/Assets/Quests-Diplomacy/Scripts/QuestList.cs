@@ -5,11 +5,12 @@ using UnityEngine.UI;
 
 public class QuestList : MonoBehaviour
 {
+    
     public int Questnumber;
-    public string QuestText, AdditionalQuestText, QuestRewardsText, ListofRewards, AddText;
+    public string QuestText, AdditionalQuestText, QuestRewardsText, ListofRewards;
 
     public GameObject FollowerSlotActive;
-
+    public string NpcRace;
 
     public int Prestige_Nomads, Prestige_Ferrarium, Prestige_Froots, Prestige_Mimax,
                 LootReward_Iron, LootReward_Wood, LootReward_Food, LootReward_Gold,
@@ -22,7 +23,10 @@ public class QuestList : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        FollowerSlotActive = GameObject.Find("DummyFollowerSlot");        
+        
+
+        FollowerSlotActive = GameObject.Find("DummyFollowerSlot");
+
     }
 
     private void Update()
@@ -30,12 +34,15 @@ public class QuestList : MonoBehaviour
         
     }
 
-   
+    //TO SELECT FOLLOWER TO CHECK QUEST ON. ACTIVATES WHENEVER THE FOLLOWER SLOT WITH AN IDLE FOLLOWER IS SELECTED. THIS IS THEN USED TO SET AND COMPARE THE CONDITIONS OF THE QUEST
+    public void PickFollower(GameObject Follower)
+    {
+        FollowerSlotActive = Follower;
+    }
 
     //Function to Provide Quest Description to Menu
     public string FetchQuest(int QuestID)
     {
-         
         SelectQuest(QuestID);
         QuestRewardsText = QuestText + "\n" + AdditionalQuestText + "\n\n" + "This quest will take " + Quest_Time + " days." + "\n\n";
         ListofRewards = "QUEST COMPLETED \n";
@@ -59,9 +66,7 @@ public class QuestList : MonoBehaviour
             }
         }
 
-        Debug.Log("Questrewards");
         return QuestRewardsText;
-        
     }
 
     public string RewardsList()
@@ -72,7 +77,6 @@ public class QuestList : MonoBehaviour
         return ListofRewards;
     }
 
-    //CALCULATE AND ADD OR SUBTRACT THE REWARDS. CALLED BY QUESTNODES
     public void SubmitQuestRewards()
     {
         GameObject.Find("QuestsDiplomacyManager").GetComponent<QuestsDiplomacyManager>().UpdateRewardsintoPool(Prestige_Nomads, Prestige_Ferrarium, Prestige_Froots, Prestige_Mimax,
@@ -81,316 +85,76 @@ public class QuestList : MonoBehaviour
                                                                                                                 ItemReward_Recipe, ItemReward_Boss, Reward_TimeChange);
     }
 
-    public void SetFollowerDetails()
-    {
-        int FollowerAddress = GameObject.Find("FollowerSlots").GetComponent<FollowerSlotsManager>().ActiveFollowerSlotID;
-        FollowerSlotActive = GameObject.Find("FollowerSlots").GetComponent<FollowerSlotsManager>().FetchFollowerSlotDetails(FollowerAddress);
-    }
+
+
+  
+
+
+
 
     //NOMAD_QUESTS (1-15) FERRARUIM_QUESTS (16-30) FROOTS_QUESTS (31-45) MIMAX_QUESTS (46-60)
     public void SelectQuest(int NodeQuestNumber)
     {
+        
         Questnumber = NodeQuestNumber;
+        GameObject.Find("DBManager").GetComponent<dbManager>().GetQuest(NodeQuestNumber);
+        //Debug.Log("dog days are overrrrr");
 
-        Prestige_Nomads = Prestige_Ferrarium = Prestige_Froots = Prestige_Mimax = LootReward_Iron = LootReward_Wood = LootReward_Food = LootReward_Gold =
-                ItemReward_Uncommon = ItemReward_Common = ItemReward_Rare = ItemReward_Recipe = ItemReward_Boss = Reward_TimeChange = Quest_Time = 0; //Basically set everything to zero
+        AssignQuestValues();
+        //UpdateQuestValues(Questnumber);
+        dbManager.quests.Clear();
+    }
 
-        AdditionalQuestText = ""; //To reset Additional Questtext
-        AddText = "";
-
-
-        //NOMAD...NOMAD...NOMAD...NOMAD...NOMAD...NOMAD...NOMAD...NOMAD...NOMAD...NOMAD...NOMAD...NOMAD...NOMAD...NOMAD...NOMAD...NOMAD...NOMAD...NOMAD...NOMAD...
-        if (Questnumber == 1)
+    void AssignQuestValues()
+    {
+        List<Quest> dbQuests = dbManager.quests;
+        foreach (Quest quest in dbQuests)
         {
-
-            QuestText = "The Nomads are looking for a fighter to help them with a dungeon.";
-
-            Prestige_Nomads = 5;
-            Quest_Time = 4;
-            
-            
-            if(FollowerSlotActive.name != "DummyFollowerSlot" && FollowerSlotActive.GetComponent<FollowerSlot>().FollowerRace == "Nomad")
-            {
-                
-                AddText = "The Nomad valiantly springs forth from the crowd to answer the call of Cleansing. \n";
-                Prestige_Nomads += 2;
-                Quest_Time -= 1;
-                LootReward_Wood += 10;
-
-                AdditionalQuestText += AddText;
-            }
-
-            if (FollowerSlotActive.name != "DummyFollowerSlot" && FollowerSlotActive.GetComponent<FollowerSlot>().FollowerClass == "warrior")
-            {
-
-                AddText = "A warrior honed in the way of the blade, the follower is sure to be well respected for the deed. \n";
-                Prestige_Nomads += 4;
-                Quest_Time -= 1;
-                LootReward_Gold += 20;
-
-                AdditionalQuestText += AddText;
-            }
-
-            if (FollowerSlotActive.name != "DummyFollowerSlot" && FollowerSlotActive.GetComponent<FollowerSlot>().FollowerClass == "maige")
-            {
-
-                AddText = "However, the Nomads' disdain for magic would hurt ties with them. Your follower however finds a stash sealed in magic. \n";
-                Prestige_Nomads -= 4;
-                LootReward_Gold += 50;
-
-                AdditionalQuestText += AddText;
-            }
-
-        }
-
-        if (Questnumber == 2)
-        {
-            QuestText = "Iron is scarce and the Nomads can't quell evil and death without weapons of destruction. They're asking for assistance in mining.";
-            Prestige_Nomads = 5;
-            Quest_Time = 4;
-            LootReward_Iron = 5;
-
-
-            if (FollowerSlotActive.name != "DummyFollowerSlot" && FollowerSlotActive.GetComponent<FollowerSlot>().FollowerRace == "Ferrarium")
-            {
-                AddText = "The skilled and crafty amalgamation of iron and flesh is well experienced on how to sap the earth of its riches. \n";
-                Prestige_Nomads += 2;
-                Quest_Time -= 2;
-                LootReward_Iron += 10;
-
-                AdditionalQuestText += AddText;
-            }
-
-            if (FollowerSlotActive.name != "DummyFollowerSlot" && FollowerSlotActive.GetComponent<FollowerSlot>().FollowerClass == "maige")
-            {
-                AddText = "Alchemy is frowned upon greatly by the Nomads but what can a mage do upon uncovering a hidden Alchemy Circle. \n";
-                Prestige_Nomads -= 3;
-                LootReward_Iron -= 5;
-                LootReward_Gold += 10;
-
-                AdditionalQuestText += AddText;
-            }
-        }
-
-        if (Questnumber == 3)
-        {
-            QuestText = "Deep in the mountainside are great deposits of iron. Help the Nomads claim this bounty.";
-            Prestige_Nomads = 2;
-
-            Quest_Time = 4;
-            LootReward_Iron = 10;
-
-            if (FollowerSlotActive.name != "DummyFollowerSlot" && FollowerSlotActive.GetComponent<FollowerSlot>().FollowerRace == "Ferrarium")
-            {
-                AddText = "The skilled and crafty amalgamation of iron and flesh is well experienced on how to sap the earth of its riches. \n";
-                Prestige_Nomads += 2;
-                Quest_Time -= 2;
-                LootReward_Iron += 10;
-
-                AdditionalQuestText += AddText;
-            }
-        }
-
-        if (Questnumber == 4)
-        {
-            QuestText = "A curse has befallen a Nomad hut. They begrudgingly request assistance from a mage.";
-            
-            Quest_Time = 4;
-            LootReward_Gold = 5;
-
-            if (FollowerSlotActive.name != "DummyFollowerSlot" && FollowerSlotActive.GetComponent<FollowerSlot>().FollowerClass == "maige")
-            {
-                AddText = "The incantations chanted aloud by your follower send children scurrying and peeking from meek corners out of fear; not of the unknown or harm but rather that invoked by indoctrination.";
-                Prestige_Nomads -= 2;
-                LootReward_Gold += 45;
-
-                AdditionalQuestText += AddText;
-            }
-        }
-
-        if (Questnumber == 5)
-        {
-            QuestText = "Iron mining has reduced an entire forest to dirt. The Nomads are looking for help on the matter.";
-            Prestige_Nomads = 5;
-
-            Quest_Time = 15;
-            LootReward_Gold = 10;
-
-            if (FollowerSlotActive.name != "DummyFollowerSlot" && FollowerSlotActive.GetComponent<FollowerSlot>().FollowerRace == "Froots")
-            {
-                AddText = "Healing takes time and more so when it is the earth in pain. But a Froot also knows how to soothe any ailing thing. \n";
-                Prestige_Nomads += 10;
-                Quest_Time -= 4;
-                LootReward_Gold += 50;
-
-                AdditionalQuestText += AddText;
-            }
-        }
-
-        if (Questnumber == 6)
-        {
-            QuestText = "This is the Quest you must read.";
-            Prestige_Nomads = 5;
-
-            Quest_Time = 4;
-            LootReward_Iron = 10;
-        }
-
-
-
-
-        //FERRARIUM...FERRARIUM...FERRARIUM...FERRARIUM...FERRARIUM...FERRARIUM...FERRARIUM...FERRARIUM...FERRARIUM...FERRARIUM...FERRARIUM...FERRARIUM...FERRARIUM...FERRARIUM...
-        if (Questnumber == 16)
-        {
-            QuestText = "This is the Quest you must read.";
-            Prestige_Ferrarium = 5;
-
-            Quest_Time = 4;
-            LootReward_Wood = 10;
-        }
-        if (Questnumber == 17)
-        {
-            QuestText = "This is the Quest you must read.";
-            Prestige_Ferrarium = 5;
-
-            Quest_Time = 4;
-            LootReward_Gold = 10;
-        }
-        if (Questnumber == 18)
-        {
-            QuestText = "This is the Quest you must read.";
-            Prestige_Ferrarium = 5;
-
-            Quest_Time = 4;
-            LootReward_Gold = 10;
-        }
-        if (Questnumber == 19)
-        {
-            QuestText = "This is the Quest you must read.";
-            Prestige_Ferrarium = 5;
-
-            Quest_Time = 4;
-            LootReward_Gold = 10;
-        }
-        if (Questnumber == 20)
-        {
-            QuestText = "This is the Quest you must read.";
-            Prestige_Ferrarium = 5;
-
-            Quest_Time = 4;
-            LootReward_Wood = 10;
-        }
-        if (Questnumber == 21)
-        {
-            QuestText = "This is the Quest you must read.";
-            Prestige_Ferrarium = 5;
-
-            Quest_Time = 4;
-            LootReward_Gold = 10;
-        }
-
-
-        //FROOTS...FROOTS...FROOTS...FROOTS...FROOTS...FROOTS...FROOTS...FROOTS...FROOTS...FROOTS...FROOTS...FROOTS...FROOTS...FROOTS...
-        if (Questnumber == 31)
-        {
-            QuestText = "This is the FROOTS Quest you must read.";
-            Prestige_Froots = 5;
-
-            Quest_Time = 4;
-            LootReward_Wood = 10;
-        }
-        if (Questnumber == 32)
-        {
-            QuestText = "This is the FROOTS Quest you must read.";
-            Prestige_Froots = 5;
-
-            Quest_Time = 4;
-            LootReward_Gold = 10;
-        }
-        if (Questnumber == 33)
-        {
-            QuestText = "This is the FROOTS Quest you must read.";
-            Prestige_Froots = 5;
-
-            Quest_Time = 4;
-            LootReward_Gold = 10;
-        }
-        if (Questnumber == 34)
-        {
-            QuestText = "This is the FROOTS Quest you must read.";
-            Prestige_Froots = 5;
-
-            Quest_Time = 4;
-            LootReward_Gold = 10;
-        }
-        if (Questnumber == 35)
-        {
-            QuestText = "This is the FROOTS Quest you must read.";
-            Prestige_Froots = 5;
-
-            Quest_Time = 4;
-            LootReward_Wood = 10;
-        }
-        if (Questnumber == 36)
-        {
-            QuestText = "This is the FROOTS Quest you must read.";
-            Prestige_Froots = 5;
-
-            Quest_Time = 4;
-            LootReward_Gold = 10;
-        }
-
-
-        //MIMAX...MIMAX...MIMAX...MIMAX...MIMAX...MIMAX...MIMAX...MIMAX...MIMAX...MIMAX...MIMAX...MIMAX...MIMAX...MIMAX...
-        if (Questnumber == 46)
-        {
-            QuestText = "This is the FROOTS Quest you must read.";
-            Prestige_Mimax = 5;
-
-            Quest_Time = 4;
-            LootReward_Wood = 10;
-        }
-        if (Questnumber == 47)
-        {
-            QuestText = "This is the FROOTS Quest you must read.";
-            Prestige_Mimax = 5;
-
-            Quest_Time = 4;
-            LootReward_Gold = 10;
-        }
-        if (Questnumber == 48)
-        {
-            QuestText = "This is the FROOTS Quest you must read.";
-            Prestige_Mimax = 5;
-
-            Quest_Time = 4;
-            LootReward_Gold = 10;
-        }
-        if (Questnumber == 49)
-        {
-            QuestText = "This is the FROOTS Quest you must read.";
-            Prestige_Mimax = 5;
-
-            Quest_Time = 4;
-            LootReward_Gold = 10;
-        }
-        if (Questnumber == 50)
-        {
-            QuestText = "This is the FROOTS Quest you must read.";
-            Prestige_Mimax = 5;
-
-            Quest_Time = 4;
-            LootReward_Wood = 10;
-        }
-        if (Questnumber == 51)
-        {
-            QuestText = "This is the FROOTS Quest you must read.";
-            Prestige_Mimax = 5;
-
-            Quest_Time = 4;
-            LootReward_Gold = 10;
+            Questnumber = quest.Questnumber;
+            QuestText = quest.QuestText;
+            AdditionalQuestText = quest.AdditionalQuestText;
+            QuestRewardsText = quest.QuestRewardsText;
+            ListofRewards = quest.ListofRewards;
+            Prestige_Nomads = quest.Prestige_Nomads;
+            Prestige_Ferrarium = quest.Prestige_Ferrarium;
+            Prestige_Froots = quest.Prestige_Froots;
+            Prestige_Mimax = quest.Prestige_Mimax;
+            LootReward_Iron = quest.LootReward_Iron;
+            LootReward_Wood = quest.LootReward_Wood;
+            LootReward_Food = quest.LootReward_Food;
+            LootReward_Gold = quest.LootReward_Gold;
+            ItemReward_Uncommon = quest.LootReward_Gold;
+            ItemReward_Common = quest.ItemReward_Common;
+            ItemReward_Rare = quest.ItemReward_Rare;
+            ItemReward_Recipe = quest.ItemReward_Recipe;
+            ItemReward_Boss = quest.ItemReward_Boss;
+            Quest_Time = quest.Quest_Time;
+            Reward_TimeChange = quest.Reward_TimeChange;
         }
     }
 
-    
+    void UpdateQuestValues(int Quest_id)
+    {
+        NpcRace = FollowerSlotActive.GetComponent<FollowerSlot>().FollowerRace;
+        List<Quest> dbQuests = dbManager.quests;
+        foreach (Quest quest in dbQuests)
+        {
+            if (1 >= quest.Questnumber && quest.Questnumber <= 6 )
+            {
+                if (NpcRace == "Nomads")
+                {
+                    dbManager.quests.Clear();
+                    GameObject.Find("DBManager").GetComponent<dbManager>().UpdateQuest(Quest_id, NpcRace);
+                }
+            }
+            else if (16 >= quest.Questnumber && quest.Questnumber <= 21)
+            {
+                if (NpcRace == "Ferrarium")
+                {
+                    dbManager.quests.Clear();
+                    GameObject.Find("DBManager").GetComponent<dbManager>().UpdateQuest(Quest_id, NpcRace);
+                }
+            }
+        }
+    }
 }
