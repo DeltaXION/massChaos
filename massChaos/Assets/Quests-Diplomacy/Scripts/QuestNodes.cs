@@ -119,6 +119,7 @@ public class QuestNodes : MonoBehaviour
             ResetQuestActiveFollower();
 
             QuestMenu.SetActive(false);
+           
         }
     }
 
