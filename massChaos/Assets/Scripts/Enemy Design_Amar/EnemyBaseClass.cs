@@ -77,6 +77,8 @@ public abstract class EnemyBaseClass : MonoBehaviour, IGOAP
     {
         //look at player
         GameObject player = GameObject.FindGameObjectWithTag("Player");
+        Vector3 attackDirection = transform.position - player.transform.position;
+        GetComponent<Rigidbody2D>().MovePosition(transform.position + Vector3.Normalize(attackDirection) *0.2f);
         rotateVision(player);
         animateDamage();
         health -= damage;   
