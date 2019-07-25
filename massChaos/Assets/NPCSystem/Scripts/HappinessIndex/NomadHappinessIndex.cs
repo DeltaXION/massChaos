@@ -77,7 +77,7 @@ public class NomadHappinessIndex : MonoBehaviour
         //using the NPC List to count idle fruit followers
         foreach (var o in NPCSystem.followers)
         {
-            if (o.Type == "N" || o.Status == "idle")
+            if (o.Type == "N" && o.Status == "idle")
             {
                 TotalIdleNomadFollowers++;
             }
@@ -91,7 +91,7 @@ public class NomadHappinessIndex : MonoBehaviour
         //using NPC List to count the number of NPCs engaged in farming at base
         foreach (var o in NPCSystem.followers)
         {
-            if (o.Type == "N" || o.Status == "Barracks")
+            if (o.Type == "N" && o.Status == "Barracks")
             {
                 NomadFollowersAssignedToAffinityBaseAssignments++;
             }
@@ -199,13 +199,13 @@ public class NomadHappinessIndex : MonoBehaviour
             }
         }
 
-        if (TotalFollowers > 0 || TotalNomadFollowers > 0)
+        if (TotalFollowers > 0 && TotalNomadFollowers > 0)
         {
             PlayerHasAFollowing = true;
             ActiveHIUI.SetActive(true);
             InactiveHIUI.SetActive(false);
         }
-        else if (TotalFollowers == 0 || TotalNomadFollowers == 0)
+        else if (TotalFollowers == 0 && TotalNomadFollowers == 0)
         {
             PlayerHasAFollowing = false;
             ActiveHIUI.SetActive(false);

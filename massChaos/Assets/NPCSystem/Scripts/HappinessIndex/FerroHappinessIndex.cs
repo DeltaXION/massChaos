@@ -77,7 +77,7 @@ public class FerroHappinessIndex : MonoBehaviour
         //using the NPC List to count idle fruit followers
         foreach (var o in NPCSystem.followers)
         {
-            if (o.Type == "Fr" || o.Status == "idle")
+            if (o.Type == "Fr" && o.Status == "idle")
             {
                 TotalIdleFerroFollowers++;
             }
@@ -91,7 +91,7 @@ public class FerroHappinessIndex : MonoBehaviour
         //using NPC List to count the number of NPCs engaged in farming at base
         foreach (var o in NPCSystem.followers)
         {
-            if (o.Type == "Fr" || o.Status == "Workshop")
+            if (o.Type == "Fr" && o.Status == "Workshop")
             {
                 FerroFollowersAssignedToAffinityBaseAssignments++;
             }
@@ -199,13 +199,13 @@ public class FerroHappinessIndex : MonoBehaviour
             }
         }
 
-        if (TotalFollowers > 0 || TotalFerroFollowers >0)
+        if (TotalFollowers > 0 && TotalFerroFollowers >0)
         {
             PlayerHasAFollowing = true;
             ActiveHIUI.SetActive(true);
             InactiveHIUI.SetActive(false);
         }
-        else if (TotalFollowers == 0 || TotalFerroFollowers == 0)
+        else if (TotalFollowers == 0 && TotalFerroFollowers == 0)
         {
             PlayerHasAFollowing = false;
             ActiveHIUI.SetActive(false);
