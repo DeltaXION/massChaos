@@ -85,7 +85,7 @@ public class FollowerLeaving : MonoBehaviour
         int FerroIDIndexToLeave = Random.Range(0, FerroIDs.Length - 1);
         int FerroIDToLeave = FerroIDs[FerroIDIndexToLeave];
 
-        NPCSystem.removeFollower(FerroIDToLeave);
+        //NPCSystem.removeFollower(FerroIDToLeave);
 
         yield return new WaitForSeconds(5f);
 
@@ -120,7 +120,7 @@ public class FollowerLeaving : MonoBehaviour
         int MimaxIDIndexToLeave = Random.Range(0, MimaxIDs.Length - 1);
         int MimaxIDToLeave = MimaxIDs[MimaxIDIndexToLeave];
 
-        NPCSystem.removeFollower(MimaxIDToLeave);
+        //NPCSystem.removeFollower(MimaxIDToLeave);
 
         yield return new WaitForSeconds(5f);
 
@@ -155,7 +155,7 @@ public class FollowerLeaving : MonoBehaviour
         int NomadIDIndexToLeave = Random.Range(0, NomadIDs.Length - 1);
         int NomadIDToLeave = NomadIDs[NomadIDIndexToLeave];
 
-        NPCSystem.removeFollower(NomadIDToLeave);
+        //NPCSystem.removeFollower(NomadIDToLeave);
 
         yield return new WaitForSeconds(5f);
 
