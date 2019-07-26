@@ -52,7 +52,7 @@ public class dashAwayRangerAction : GOAPAction
         // Currently target is automatically set to Player, this will be made dynamic later, with "Player" set first and then it changes to whoever has caused it most damage.
         //Create a hidden target behind the enemy in the direction of the player and have him move to that.
 
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        GameObject player = GameObject.FindGameObjectWithTag("dungeonPlayer");
 
         //Creating a raycast to track colliders, opposite to direction of player
         int layerMask = ~(1 << LayerMask.NameToLayer("enemy"));
