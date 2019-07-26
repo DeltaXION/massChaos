@@ -80,6 +80,7 @@ public class FollowerSlotsManager : MonoBehaviour
         
 
         int count = 0;
+        Debug.Log("Follower List " + FollowerList[1]);
         foreach (var item in FollowerList)
         {
             
