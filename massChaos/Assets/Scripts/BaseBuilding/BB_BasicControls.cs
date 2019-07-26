@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class BB_BasicControls : MonoBehaviour
 {
+    Timer2 timer;
     public float speed;
     private Rigidbody2D myRigidbody;
     private Animator animator;
@@ -19,6 +20,8 @@ public class BB_BasicControls : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        timer = FindObjectOfType<Timer2>();
+
         myRigidbody = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         SetUpBoundaries();
@@ -28,7 +31,9 @@ public class BB_BasicControls : MonoBehaviour
     void Update()
     {
         MoveTowardsCursorClickPosition(); // Basic Movement towards cursor click
-          //Boundary Limit for the Player Movement 
+  
+        speed = timer.playerSpeed;
+
     }
 
     private void MoveTowardsCursorClickPosition()
