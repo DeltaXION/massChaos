@@ -8,8 +8,11 @@ public class Inventory : MonoBehaviour {
 
 	public static Inventory instance;
 
+    Item item;
 
-	void Awake ()
+    ItemType itemType = ItemType.item;
+
+    void Awake ()
 	{
 		if (instance != null )
 		{
