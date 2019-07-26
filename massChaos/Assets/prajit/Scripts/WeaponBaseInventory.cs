@@ -67,5 +67,4 @@ public class WeaponBaseInventory : MonoBehaviour
             onItemChangedCallback.Invoke();
     }
 
-
 }

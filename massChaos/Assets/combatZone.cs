@@ -25,7 +25,7 @@ public class combatZone : MonoBehaviour
     public void OnTriggerEnter2D(Collider2D collision)
     {
        
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("dungeonPlayer"))
         {
 
             playerInCombatZone = true;
@@ -37,7 +37,7 @@ public class combatZone : MonoBehaviour
     public void OnTriggerExit2D(Collider2D collision)
     {
         //Check if player ran from field of vision, if player is in field of vision, the enemy will be following them
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("dungeonPlayer"))
         {
 
             playerInCombatZone = false;

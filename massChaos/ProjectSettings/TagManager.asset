@@ -26,10 +26,18 @@ TagManager:
   - Item
   - enemy
   - NPCEntry
+  - instantiateDrops
   - Time
   - Weapon
   - Farm
   - applicantItem
+  - RoomSpawnPoint
+  - populationText
+  - FrootsQuestNode
+  - MimaxQuestNode
+  - dungeonPlayer
+  - dungeonMap
+
   layers:
   - Default
   - TransparentFX
@@ -40,10 +48,15 @@ TagManager:
   - 
   - 
   - enemy
+  - Player
   - 
   - 
   - 
-  - 
+  - ground
+  - object
+  - enemy
+  - player
+  - userInterface
   - 
   - 
   - 
@@ -67,11 +80,20 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Ground
+    uniqueID: 3144521089
+    locked: 0
+  - name: Building
+    uniqueID: 3516366185
+    locked: 0
+  - name: Objects
+    uniqueID: 1617594357
+    locked: 0
+  - name: Enemy
+    uniqueID: 4183336389
+    locked: 0
   - name: Player
     uniqueID: 384962111
-    locked: 0
-  - name: building
-    uniqueID: 3516366185
     locked: 0
   - name: UI
     uniqueID: 778077623

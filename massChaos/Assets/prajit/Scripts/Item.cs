@@ -62,5 +62,3 @@ public class Item : ScriptableObject
 
 
 public enum ItemType {Weapon, item }; 
-
-
