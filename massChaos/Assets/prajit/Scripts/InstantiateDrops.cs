@@ -5,7 +5,7 @@
     public class InstantiateDrops : MonoBehaviour
     {
         public GameObject dungeonGold;
-        public static int dungeonNumber = 0;
+        public  int dungeonNumber = 0;
         public GameObject dungeonAprefab;
         public GameObject dungeonBprefab;
         public GameObject dungeonCprefab;
@@ -17,25 +17,7 @@
 
 
 
-            dropGold(1, 1, 0, 0);
-            dropGold(1, 1, 0, 0);
-            dropGold(1, 1, 0, 0);
-            dropGold(1, 1, 0, 0);
-            dropGold(1, 1, 0, 0);
-            dropGold(1, 1, 0, 0);
-            dropGold(1, 1, 0, 0);
-            dropGold(1, 1, 0, 0);
-            dropGold(1, 1, 0, 0);
-            dropGold(1, 1, 0, 0);
-            dropGold(1, 1, 0, 0);
-            dropGold(1, 1, 0, 0);
-            dropGold(1, 1, 0, 0);
-            dropGold(1, 1, 0, 0);
-            dropGold(1, 1, 0, 0);
-            dropGold(1, 1, 0, 0);
-            dropGold(1, 1, 0, 0);
-            dropGold(1, 1, 0, 0);
-            dropGold(1, 1, 0, 0);
+           
 
         }
 

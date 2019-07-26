@@ -9,7 +9,7 @@ public class QuestsDiplomacyParent : MonoBehaviour
     private GameObject QuestsDiplomacyManager;
     private GameObject[] QuestNodes;
 
-    public GameObject Node1, Node2, Node3, Node4, Node5, Node6, Node7, Node8;
+    public GameObject Node1, Node2, Node3, Node4, Node5, Node6, Node7, Node8, Node9, Node10, Node11, Node12, Node13, Node14, Node15, Node16;
 
     private int RandomNumberPulled;
 
@@ -56,7 +56,7 @@ public class QuestsDiplomacyParent : MonoBehaviour
 
     void EnableorDisableQuests()
     {
-        GameObject[] Nodes = { Node1, Node2, Node3, Node4, Node5, Node6, Node7, Node8};
+        GameObject[] Nodes = { Node1, Node2, Node3, Node4, Node5, Node6, Node7, Node8, Node9, Node10, Node11, Node12, Node13, Node14, Node15, Node16 };
         foreach(GameObject item in Nodes)
         {
             int RandomNumber = Random.Range(0, 2);

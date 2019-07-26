@@ -9,6 +9,7 @@ public class NPCSystem : MonoBehaviour
 
     public GameObject can;
     public Dropdown classOptions;
+    public Dropdown weaponOptions;
 
     public static BaseCharachteristics followerToAdd;
 
@@ -16,35 +17,50 @@ public class NPCSystem : MonoBehaviour
     public static List<BaseCharachteristics> followers = new List<BaseCharachteristics>();
     BaseCharachteristics b;
 
+    public static GameObject weaponCanvas;
 
    
     public float totalHappiness;
-    public double totalNomads;
+    public double totalNomads;  
     public double totalFerrarium;
     public double totalFroots;
     public double totalMimax;
     public int baseCapacity;
     public int numberOfNpcs;
     public static string classFinal = "Warrior";
-    
+    public static string weaponFinal = "";
+    public static int followerIdToUpdate;
+    public static int followerIdToUpdateClass;
+    public GameObject classMenuList;
+    public GameObject WeaponMenuList;
+    public GameObject WeaponSelectOption;
+
     NPCList n;
     // Start is called before the first frame update
     public GameObject g;
 
     void Start()
     {
+        //addFollower("Broom", "N", "", "sword", "sword", "idle", 0);
+        //addFollower("Groom", "Fr", "", "", "", "idle", 0);
         setHappinessIndex();
 
-        populateList();
+        
 
-        addFollower("Broom",  "N", "warrior", "gun", "sword", "idle");
-        addFollower("Groom", "Fr", "maige", "sword", "bazooka", "idle");
+        populateList();
+        WeaponSelect();
+        weaponCanvas = GameObject.Find("WeaponOptions");
+        classMenuList = GameObject.Find("AssignListTavern");
+        WeaponMenuList = GameObject.Find("WeaponAssign");
+        WeaponMenuList.SetActive(false);
+        classMenuList.SetActive(false);
+       // weaponCanvas.SetActive(false);
 
         setPrestige();
         //can.SetActive(false);
         AppplicantsCalculation();
         g = GameObject.Find("ClassSelect");
-        //g.SetActive(false);
+        g.SetActive(false);
         //b = GetFollowerByID(2);
         //Debug.Log(b.Name);
         Debug.Log("Happpy = " + Nomad.HappinessIndex);
@@ -56,6 +72,84 @@ public class NPCSystem : MonoBehaviour
       
     }
 
+    public void classMenu() {
+        foreach (GameObject go in Resources.FindObjectsOfTypeAll(typeof(GameObject)) as GameObject[])
+        {
+            if (go.name == "AssignListTavern")
+            {
+                classMenuList = go;
+            }
+        }
+        classMenuList.SetActive(true);
+        NPCApplicants npc = new NPCApplicants();
+        npc.PopulateList();
+    }
+
+    public void classWeaponMenu()
+    {
+        foreach (GameObject go in Resources.FindObjectsOfTypeAll(typeof(GameObject)) as GameObject[])
+        {
+            if (go.name == "WeaponAssign")
+            {
+                WeaponMenuList = go;
+            }
+        }
+        WeaponMenuList.SetActive(true);
+        NPCApplicants npc = new NPCApplicants();
+        npc.PopulateListForWeapons();
+    }
+
+    public static void UpdateWeapon(int id) {
+        id-=1;
+        followers[id].PriItem = weaponFinal; 
+
+    }
+
+    public static void UpdateClass(int id)
+    {
+        id-=1;
+        followers[id].ClassType = classFinal;
+
+    }
+
+    public void weaponMenuPop() {
+       // weaponCanvas.SetActive(true);
+    }
+
+    public void weaponMenuClose()
+    {
+        weaponCanvas.SetActive(false);
+    }
+
+    List<string> weapons = new List<string>() {"Sword", "Stick" };
+
+    public void WeaponSelect() {
+       // WeaponBaseInventory inventory = new WeaponBaseInventory();
+        //foreach (var o in inventory.items) {
+         //   int i = 0;
+        //    weapons[i] = o.name;
+        //    i++;
+      //  }
+        weaponOptions.AddOptions(weapons);
+    }
+
+    public void Dropdown_IndexChangeWeapons(int index)
+    {
+        weaponFinal = weapons[index];
+    }
+
+    public void WeaponSelected() {
+        foreach (GameObject go in Resources.FindObjectsOfTypeAll(typeof(GameObject)) as GameObject[])
+        {
+            if (go.name == "WeaponSelect")
+            {
+                WeaponSelectOption = go;
+            }
+        }
+        WeaponSelectOption.SetActive(false);
+        UpdateWeapon(followerIdToUpdate);
+    }
+
 
     void populateList()
     {
@@ -65,7 +159,8 @@ public class NPCSystem : MonoBehaviour
 
     public void classSelected() {
         Debug.Log(classFinal);
-        addFollower(followerToAdd.Name, followerToAdd.Type, classFinal, "", "", "idle");
+        // addFollower(followerToAdd.Name, followerToAdd.Type, classFinal, "", "", "idle", 0);
+        UpdateClass(followerIdToUpdateClass);
         GameObject.Find("ClassSelect").SetActive(false);
     }
 
@@ -78,7 +173,7 @@ public class NPCSystem : MonoBehaviour
     {
        // Debug.Log(classes[index]);
         classFinal = classes[index];
-        Debug.Log(classes[index]);
+        Debug.Log(classFinal);
     }
 
     void Applications() {
@@ -111,9 +206,9 @@ public class NPCSystem : MonoBehaviour
     }
 
 
-    public static void addFollower( string name, string type, string classType, string secItem, string priItem, string status) {
+    public static void addFollower( string name, string type, string classType, string secItem, string priItem, string status, int houseId) {
         id++;
-        followers.Add(new BaseCharachteristics(id, name, type, classType, secItem, priItem, status));
+        followers.Add(new BaseCharachteristics(id, name, type, classType, secItem, priItem, status, houseId));
 
 
     }
@@ -122,7 +217,7 @@ public class NPCSystem : MonoBehaviour
     {
     }
 
-    public List<BaseCharachteristics> getFollower()
+    public static List<BaseCharachteristics> getFollower()
     {
         return followers;
     }
@@ -134,15 +229,21 @@ public class NPCSystem : MonoBehaviour
             if (o.id == id)
             {
                 b = o;
+
             }
         }
         return b; 
     }
 
 
-    public void removeFollower(int id)
+    public static void removeFollower(int id)
     {
         int index = id - 1;
+        if(index<0)
+        {
+            index = 0;
+        }
+        
         followers.RemoveAt(index);
     }
 

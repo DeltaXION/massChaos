@@ -19,3 +19,7 @@ MonoBehaviour:
   NPC_LivingName: Froot
   RepairNeeded: building1
   Message: building1
+  wood: 0
+  food: 0
+  iron: 0
+  gold: 0

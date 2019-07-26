@@ -15,8 +15,8 @@ public class OutpostDradHandler : MonoBehaviour, IDragHandler, IEndDragHandler
     //float z;
     //public GameObject houseImg;
     public int woodCountAvl;
-    public static int OutpBuilt;
-    public int NPCCountAvl;
+
+    public int NPCCountAvl = 0;
     Timer2 timer;
     public void OnBeginDrag(PointerEventData eventData)
     {
@@ -49,31 +49,42 @@ public class OutpostDradHandler : MonoBehaviour, IDragHandler, IEndDragHandler
         transform.localPosition = startPosition;
         timer = FindObjectOfType<Timer2>();
         if (timer.timeOfDay < 150 && !Timer2.harshWeather)
-
-            if (ResourceManager.stone >= 5 && ResourceManager.iron >= 3 && NPCCountAvl >= 1)
         {
+            foreach (var o in NPCSystem.followers)
+            {
+                if (o.Status == "idle")
+                {
+                    NPCCountAvl++;
+                }
+            }
+
+
+            if (ResourceManager.stone >= 5 && ResourceManager.iron >= 3 && NPCCountAvl >= 1 && BB_BasicControls.OutpBuilt < 10)
+            {
                 //transform.position = Vector3.zero;
                 //Destroy (clone, 0.1f);
                 ResourceManager.subStone(5);
                 ResourceManager.subIron(3);
 
-            OutpBuilt++;
+                BB_BasicControls.OutpBuilt++;
+                BB_BasicControls.buildBuilt++;
 
-            //Debug.Log("Ennnnd" + transform.position.x);
-            //Debug.Log("Ennnnnd" + transform.position.y);
+                //Debug.Log("Ennnnd" + transform.position.x);
+                //Debug.Log("Ennnnnd" + transform.position.y);
 
-            mousepos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            linehandler = Instantiate(building, Camera.main.ScreenToWorldPoint(Input.mousePosition), Quaternion.identity) as GameObject;
-            linehandler.transform.SetAsLastSibling();
-            linehandler.transform.position = mousepos;
-            linehandler.SetActive(true);
+                mousepos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                linehandler = Instantiate(building, Camera.main.ScreenToWorldPoint(Input.mousePosition), Quaternion.identity) as GameObject;
+                linehandler.transform.SetAsLastSibling();
+                linehandler.transform.position = mousepos;
+                linehandler.SetActive(true);
+                CommonHappinessIndex.RecaclculateHappinessIndex();
+
+
+            }
+
 
 
         }
-
-
-
-
 
 
     }

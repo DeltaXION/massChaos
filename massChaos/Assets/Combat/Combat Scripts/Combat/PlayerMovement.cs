@@ -6,13 +6,15 @@ public enum PlayerState
 {
     walk,
     attack,
-    dash
+    dash,
+    walkslow
 }
 
 public class PlayerMovement : MonoBehaviour
 {
     public PlayerState currentState;
     public float speed;
+    public float slowspeed;
 
     public float dashSpeedMultiplier;
     //public float dashDistance;
@@ -25,6 +27,7 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D myRigidbody;
     private Vector3 change;
     private Animator animator;
+    public int pweapon;
 
     // Start is called before the first frame update
     void Start()
@@ -42,7 +45,9 @@ public class PlayerMovement : MonoBehaviour
         GetInput();
         CheckAttackOrWalk();
         hitInfo = Physics2D.Raycast(transform.position, transform.right, rayDistance);
-        if(hitInfo.collider != null)
+        if (pweapon == 4) { currentState = gameObject.GetComponent<playershoot>().st; }
+        if (pweapon == 5) { currentState = gameObject.GetComponent<playershotgun>().st; }
+        if (hitInfo.collider != null)
         {
             Debug.DrawLine(transform.position, hitInfo.point, Color.red);
         }
@@ -50,7 +55,27 @@ public class PlayerMovement : MonoBehaviour
         {
             Debug.DrawLine(transform.position, hitInfo.point, Color.green);
         }
-       // Debug.Log(change);
+        // Debug.Log(change);
+    }
+
+
+    public void goBackToBase()
+    {
+        Canvas inventoryCanvas = GameObject.Find("Common Inventory Canvas").GetComponent<Canvas>();
+        
+        Camera baseCamera = GameObject.Find("BB_Main Camera").GetComponent<Camera>();
+        baseCamera.enabled = true;
+        inventoryCanvas.worldCamera = baseCamera;
+        Camera dungeonCamera = GameObject.Find("DungeonCamera").GetComponent<Camera>();
+        dungeonCamera.enabled = false;
+        GameObject[] dungeonRooms = GameObject.FindGameObjectsWithTag("dungeonMap");
+        foreach (GameObject obj in dungeonRooms)
+        {
+            Destroy(obj);
+        }
+        ResourceManager.addGold(DungeonResourceController1.dungeonGold);
+        DungeonResourceController1.dungeonGold = 0;
+        
     }
 
     void GetInput()
@@ -58,13 +83,18 @@ public class PlayerMovement : MonoBehaviour
         change = Vector3.zero;
         change.x = Input.GetAxisRaw("Horizontal");
         change.y = Input.GetAxisRaw("Vertical");
-        
-        
+
+        //send player back to base on "k"
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            goBackToBase();
+
+        }
     }
 
     void CheckAttackOrWalk()
     {
-        if (Input.GetButtonDown("attack") && currentState != PlayerState.attack)
+        if (Input.GetButtonDown("attack") && currentState != PlayerState.attack && pweapon == 1)
         {
             StartCoroutine(AttackCo());
         }
@@ -72,11 +102,15 @@ public class PlayerMovement : MonoBehaviour
         {
             StartCoroutine(DashCo());
             //HandleDash();
-           // Dash(dashDistance, dashSpeed, change);
+            // Dash(dashDistance, dashSpeed, change);
         }
         else if (currentState == PlayerState.walk)
         {
             UpdateAnimationAndMove();
+        }
+        else if (currentState == PlayerState.walkslow)
+        {
+            SlowMove();
         }
     }
 
@@ -123,16 +157,42 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    void SlowMove()
+    // private void OnApplicationPause(bool pause)
+    {
+        if (change != Vector3.zero)
+        {
+            SlowMoveCharacter();
+            animator.SetFloat("moveX", change.x);
+            animator.SetFloat("moveY", change.y);
+            animator.SetBool("moving", true);
+        }
+        else
+        {
+            myRigidbody.velocity = Vector3.zero;
+            animator.SetBool("moving", false);
+        }
+    }
+
+    void SlowMoveCharacter()
+    {
+
+        change.Normalize();
+        myRigidbody.MovePosition(transform.position + change * slowspeed * Time.deltaTime);
+
+    }
+
+    
     void MoveCharacter()
     {
-        
+
         change.Normalize();
         myRigidbody.MovePosition(transform.position + change * speed * Time.deltaTime);
-       // if (Input.GetButton("dash"))// && (dashTime != 0))
-       // {        
-      //      HandleDash();
-       // } 
-        
+        // if (Input.GetButton("dash"))// && (dashTime != 0))
+        // {        
+        //      HandleDash();
+        // } 
+
     }
 
     public void SetVelocityZero()
@@ -143,14 +203,14 @@ public class PlayerMovement : MonoBehaviour
 
     void HandleDash()
     {
-       // change.Normalize();
-       // myRigidbody.velocity = Vector3.zero;
-       // myRigidbody.velocity += new Vector2(x, y).normalized * dashDistance;
+        // change.Normalize();
+        // myRigidbody.velocity = Vector3.zero;
+        // myRigidbody.velocity += new Vector2(x, y).normalized * dashDistance;
         //currentState = PlayerState.dash;
         //myRigidbody.AddForce(change * dashDistance);
-       // myRigidbody.MovePosition(transform.position + (change * (dashSpeedMultiplier * speed)) * Time.deltaTime); 
-       // StartCoroutine(DashCo());
+        // myRigidbody.MovePosition(transform.position + (change * (dashSpeedMultiplier * speed)) * Time.deltaTime); 
+        // StartCoroutine(DashCo());
     }
 
-   
+
 }

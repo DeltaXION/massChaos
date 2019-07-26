@@ -43,7 +43,7 @@ public class Ranger : EnemyBaseClass
     public override void attackPlayer()
     {
         
-        player = GameObject.FindGameObjectWithTag("Player");
+        player = GameObject.FindGameObjectWithTag("dungeonPlayer");
         
         GameObject arrow = Instantiate(rangeWeapon, transform.position, Quaternion.identity);
         rangedWeaponBehavior currentArrow = arrow.GetComponent<rangedWeaponBehavior>();

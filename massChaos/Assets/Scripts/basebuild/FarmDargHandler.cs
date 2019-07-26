@@ -18,8 +18,8 @@ public class FarmDargHandler : MonoBehaviour, IDragHandler, IEndDragHandler
     //float z;
     //public GameObject houseImg;
     public int woodCountAvl;
-    public int NPCCountAvl;
-    public static int FarmBuilt;
+    public int NPCCountAvl = 0;
+
     Timer2 timer;
     public void OnBeginDrag(PointerEventData eventData)
     {
@@ -53,14 +53,21 @@ public class FarmDargHandler : MonoBehaviour, IDragHandler, IEndDragHandler
         timer = FindObjectOfType<Timer2>();
         if (timer.timeOfDay < 150 && !Timer2.harshWeather)
         {
+            foreach (var o in NPCSystem.followers)
+            {
+                if (o.Status == "idle")
+                {
+                    NPCCountAvl++;
+                }
+            }
 
-            if (ResourceManager.wood >= 5 && NPCCountAvl >= 1)
+            if (ResourceManager.wood >= 5 && NPCCountAvl >= 1 && BB_BasicControls.FarmBuilt < 1)
             {
                 //transform.position = Vector3.zero;
                 //Destroy (clone, 0.1f);
                 ResourceManager.subWood(5);
-                FarmBuilt++;
-
+                BB_BasicControls.FarmBuilt++;
+                BB_BasicControls.buildBuilt++;
 
                 //Debug.Log("Ennnnd" + transform.position.x);
                 //Debug.Log("Ennnnnd" + transform.position.y);
@@ -70,7 +77,7 @@ public class FarmDargHandler : MonoBehaviour, IDragHandler, IEndDragHandler
                 linehandler.transform.SetAsLastSibling();
                 linehandler.transform.position = mousepos;
                 linehandler.SetActive(true);
-
+                CommonHappinessIndex.RecaclculateHappinessIndex();
                 // Debug.Log(FarmBuilt);
             }
  

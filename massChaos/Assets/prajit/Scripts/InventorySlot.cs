@@ -8,7 +8,10 @@ public class InventorySlot : MonoBehaviour {
 	public Image icon;			// Reference to the Icon image
 	public Button removeButton;	// Reference to the remove button
 
-	Item item;  // Current item in the slot
+	 Item item;  // Current item in the slot
+
+    public static Item current;
+
 
 	// Add item to the slot
 	public void AddItem (Item newItem)
@@ -46,5 +49,10 @@ public class InventorySlot : MonoBehaviour {
 			item.Use();
 		}
 	}
+
+    public void Update()
+    {
+       // current = item;
+    }
 
 }

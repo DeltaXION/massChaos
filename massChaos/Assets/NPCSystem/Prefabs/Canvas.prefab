@@ -882,6 +882,7 @@ MonoBehaviour:
   prestige: 
   type: 
   affinity: 
+  can: {fileID: 0}
 --- !u!114 &5435400972445142163
 MonoBehaviour:
   m_ObjectHideFlags: 0

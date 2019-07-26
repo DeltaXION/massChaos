@@ -1,11 +1,14 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
+using UnityEngine.EventSystems;
 
 /* The base item class. All items should derive from this. */
 
 [CreateAssetMenu(fileName = "New Item", menuName = "Inventory/Item")]
-public class Item : ScriptableObject {
+public class Item : ScriptableObject
+{
+
 
     new public string name = "New Item";    // Name of the item
     public Sprite icon = null;              // Item icon
@@ -13,7 +16,6 @@ public class Item : ScriptableObject {
     public GameObject prefab = null;
 
     public ItemType itemtype;
-
 
 
     // Called when the item is pressed in the inventory
@@ -24,8 +26,18 @@ public class Item : ScriptableObject {
 
         Debug.Log("Using " + name);
 
-        EquipmentManager.instance.Equip(this);
-        RemoveFromWeaponInventory();
+        switch (itemtype)
+        {
+            case ItemType.item:
+                EquipmentManager.instance.Equip(this);
+                RemoveFromInventory();
+                break;
+            case ItemType.Weapon:
+                EquipmentManager.instance.EquipWeapon(this);
+                RemoveFromWeaponInventory();
+                break;
+
+        }
 
     }
 
@@ -39,8 +51,14 @@ public class Item : ScriptableObject {
         WeaponInventory.instance1.Remove(this);
     }
 
+    public virtual void UsePrimary()
+    {
+        Debug.Log("using primary");
+        EquipmentManager.instance.EquipPrimary(this);
+        RemoveFromWeaponInventory();
+    }
+
 }
 
-public enum ItemType {Elemental, Mage, Combat, Recipe } 
 
-
+public enum ItemType {Weapon, item }; 

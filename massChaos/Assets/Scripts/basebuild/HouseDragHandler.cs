@@ -18,16 +18,16 @@ public class HouseDragHandler : MonoBehaviour, IDragHandler, IEndDragHandler {
     //float z;
     //public GameObject houseImg;
     public int woodCountAvl;
-    public static int houseBuilt;
-    bool isCollided;
-    int i = 0;
+
+    //bool isCollided;
+    //int i = 0;
 
     Timer2 timer;
     public void OnBeginDrag(PointerEventData eventData)
     {
         //    //startPosition =  GameObject.Find("house_img").transform.position;
         startPosition = transform.parent.position;
-        isCollided = false;
+        //isCollided = false;
 
             //    x = GameObject.Find("house_img").transform.position.x;
             //    y =  GameObject.Find("house_img").transform.position.y;
@@ -60,7 +60,7 @@ public class HouseDragHandler : MonoBehaviour, IDragHandler, IEndDragHandler {
         {
 
 
-            if (ResourceManager.wood >= 5)
+            if (ResourceManager.wood >= 5 && BB_BasicControls.houseBuilt < 4)
             {
 
   
@@ -76,21 +76,22 @@ public class HouseDragHandler : MonoBehaviour, IDragHandler, IEndDragHandler {
                 linehandler.transform.SetAsLastSibling();
                 linehandler.transform.position = mousepos;
                 linehandler.SetActive(true);
-                Collider[] hitColliders = Physics.OverlapBox(linehandler.transform.position, linehandler.transform.localScale / 2, Quaternion.identity);
+               
+                //Collider[] hitColliders = Physics.OverlapBox(linehandler.transform.position, linehandler.transform.localScale / 2, Quaternion.identity);
 
                 //Check when there is a new collider coming into contact with the box
 
-                    ResourceManager.subWood(5);
-                    houseBuilt++;
-
-
+                ResourceManager.subWood(5);
+                BB_BasicControls.houseBuilt++;
+                BB_BasicControls.buildBuilt++;
+                CommonHappinessIndex.RecaclculateHappinessIndex();
 
 
 
                 //npc = new NPCApplicants();
-              //  npc.PopulateList();
+                //  npc.PopulateList();
 
-                Debug.Log(houseBuilt);
+                //Debug.Log(houseBuilt);
                 displayNPCassignList = true;
             }
 

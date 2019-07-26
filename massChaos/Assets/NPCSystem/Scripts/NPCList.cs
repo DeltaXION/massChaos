@@ -41,6 +41,7 @@ public class NPCList : MonoBehaviour
            // go.transform.SetParent(gameObject.transform);
             go.transform.Find("id").GetComponent<Text>().text = o.Id.ToString();
             go.transform.Find("name").GetComponent<Text>().text = o.Name;
+
             
 
             switch (o.Type)
@@ -66,9 +67,15 @@ public class NPCList : MonoBehaviour
                     go.transform.Find("affinity").GetComponent<Text>().text = "Defence";
                     break;
             }
-            go.transform.Find("prestige").GetComponent<Text>().text = prestige;
+            go.transform.Find("status").GetComponent<Text>().text = o.Status;
             go.transform.Find("type").GetComponent<Text>().text = type;
-           
+            go.transform.Find("class").GetComponent<Text>().text = o.ClassType;
+            
+
+          
+                go.transform.Find("weapons").GetComponent<Text>().text = o.PriItem;
+          
+
 
             // go.transform.Find("affinity").GetComponent<Text>().text = o.Affinity.ToString();
             //go.transform.Find("foodIntake").GetComponent<Text>().text = o.FoodIntake.ToString();

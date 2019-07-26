@@ -23,7 +23,7 @@ public class CameraMovement : MonoBehaviour
 
     void SmoothCameraPan()
     {
-        if (transform.position != target.position)
+        if (target!=null && transform.position != target.position)
         {
             Vector3 targetPosition = new Vector3(target.position.x, target.position.y, transform.position.z);
             targetPosition.x = Mathf.Clamp(targetPosition.x, minCameraPosition.x, maxCameraPosition.x); //clamp camera on x axis
