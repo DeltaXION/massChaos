@@ -16,8 +16,9 @@ public class BaseCharachteristics
     public string secItem;
     public string priItem;
     public string status;
+    public int houseId;
      
-    public BaseCharachteristics(int id, string  name, string type, string classType, string secItem, string priItem, string status) {
+    public BaseCharachteristics(int id, string  name, string type, string classType, string secItem, string priItem, string status, int houseId) {
       this.id = id;
       this.name = name;
       this.type = type;
@@ -25,6 +26,7 @@ public class BaseCharachteristics
       this.secItem = secItem;
       this.priItem = priItem;
       this.status = status;
+        this.houseId = houseId;
 
     }
 
@@ -69,6 +71,12 @@ public class BaseCharachteristics
     {
         get { return status; }
         set { status = value; }
+    }
+
+    public int HouseId
+    {
+        get { return houseId; }
+        set { houseId = value; }
     }
 
 
