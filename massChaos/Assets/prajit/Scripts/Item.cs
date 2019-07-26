@@ -24,8 +24,20 @@ public class Item : ScriptableObject {
 
         Debug.Log("Using " + name);
 
-        EquipmentManager.instance.Equip(this);
-        RemoveFromWeaponInventory();
+        switch(itemtype)
+        {
+            case ItemType.item:
+                EquipmentManager.instance.Equip(this);
+                RemoveFromInventory();
+                    break;
+            case ItemType.Weapon:
+                EquipmentManager.instance.EquipWeapon(this);
+                RemoveFromWeaponInventory();
+                break;
+                
+
+
+        }
 
     }
 
@@ -41,6 +53,6 @@ public class Item : ScriptableObject {
 
 }
 
-public enum ItemType {Elemental, Mage, Combat, Recipe } 
+public enum ItemType {Weapon, item }; 
 
 

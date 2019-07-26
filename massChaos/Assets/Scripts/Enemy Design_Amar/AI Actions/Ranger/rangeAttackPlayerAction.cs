@@ -41,7 +41,7 @@ public class rangeAttackPlayerAction : GOAPAction
 
         // Currently target is automatically set to Player, this will be made dynamic later, with "Player" set first and then it changes to whoever has caused it most damage.
 
-        target = GameObject.FindGameObjectWithTag("Player");
+        target = GameObject.FindGameObjectWithTag("dungeonPlayer");
 
         Ranger currentEnemy = agent.GetComponent<Ranger>();
 
