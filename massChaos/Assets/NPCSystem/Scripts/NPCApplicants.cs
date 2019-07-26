@@ -23,9 +23,13 @@ public class NPCApplicants : MonoBehaviour
 
         addFollower("Kroos", "M", "", "", "", "");
         addFollower("Froos", "Fo", "", "", "", "");
+        addFollower("Broos", "M", "", "", "", "");
+        addFollower("Aroos", "M", "", "", "", "");
+        addFollower("Qroos", "Fo", "", "", "", "");
 
 
-        PopulateList();
+
+        //PopulateList();
 
 
 

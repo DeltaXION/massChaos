@@ -32,10 +32,12 @@ TagManager:
   - Farm
   - applicantItem
   - RoomSpawnPoint
+  - populationText
   - FrootsQuestNode
   - MimaxQuestNode
   - dungeonPlayer
   - dungeonMap
+
   layers:
   - Default
   - TransparentFX
