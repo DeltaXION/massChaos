@@ -6,6 +6,7 @@ using UnityEngine;
 public class rangedWeaponBehavior : MonoBehaviour
 {
     Vector3 target;
+    public float bulletDamage = 20;
     int bulletForce;
     Rigidbody2D myBody;
     float maxLifeDistance;
@@ -50,8 +51,10 @@ public class rangedWeaponBehavior : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-       if(collision.gameObject.CompareTag("Player"))
+       if(collision.gameObject.CompareTag("dungeonPlayer"))
         {
+            PlayerHealth getPlayerHealth = GameObject.Find("HealthBar").GetComponent<PlayerHealth>();
+            getPlayerHealth.currenthealth-= 30;
             Debug.Log("shot player");
         }
     }

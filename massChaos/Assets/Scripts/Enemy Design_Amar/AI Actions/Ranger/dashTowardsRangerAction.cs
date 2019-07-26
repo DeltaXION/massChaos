@@ -47,7 +47,7 @@ public class dashTowardsRangerAction : GOAPAction
         Ranger currentEnemy = agent.GetComponent<Ranger>();
         // Currently target is automatically set to Player, this will be made dynamic later, with "Player" set first and then it changes to whoever has caused it most damage.
         //Create a hidden target between the enemy and the player and have him move to that.
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        GameObject player = GameObject.FindGameObjectWithTag("dungeonPlayer");
 
         //check if dash is possible acc to surrounding
 
@@ -63,7 +63,7 @@ public class dashTowardsRangerAction : GOAPAction
         }
         else
         {
-            if(rayCastToPlayer.collider.gameObject.CompareTag("Player"))
+            if(rayCastToPlayer.collider.gameObject.CompareTag("dungeonPlayer"))
             {
                 dashPossible = true;
             } else

@@ -31,7 +31,7 @@ public abstract class EnemyBaseClass : MonoBehaviour, IGOAP
     public float stamina;
     string enemyClass;
     //need to replace getPlayerHealth with actual script
-    playerTest getPlayerHealth;
+    PlayerHealth getPlayerHealth;
     //difficulty modifier will be incremented when a dungeon is raided successfully
     int difficultyModifier;
     //Booleans for procedural preconditons (AI)
@@ -76,13 +76,12 @@ public abstract class EnemyBaseClass : MonoBehaviour, IGOAP
     public void damageEnemy(float damage)
     {
         //look at player
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        GameObject player = GameObject.FindGameObjectWithTag("dungeonPlayer");
         Vector3 attackDirection = transform.position - player.transform.position;
         GetComponent<Rigidbody2D>().MovePosition(transform.position + Vector3.Normalize(attackDirection) *0.2f);
         rotateVision(player);
         animateDamage();
         health -= damage;   
-        Debug.Log("enemy hurt by " + damage + " points");
         enemyDeath();
     }
 
@@ -90,6 +89,7 @@ public abstract class EnemyBaseClass : MonoBehaviour, IGOAP
     {
         if(health <=0)
         {
+            Debug.Log("enemy dead");
             InstantiateDrops dropHandler = GameObject.FindGameObjectWithTag("instantiateDrops").GetComponent<InstantiateDrops>();
             
             dropHandler.dropGold(enemyType, enemyLevel, transform.position.x, transform.position.y);
@@ -261,10 +261,11 @@ public abstract class EnemyBaseClass : MonoBehaviour, IGOAP
     public void updateTheWorldStateForAI()
     {
         
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-        getPlayerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<playerTest>();
-        
-        if (getPlayerHealth.health <= 0)
+        GameObject player = GameObject.FindGameObjectWithTag("dungeonPlayer");
+        getPlayerHealth = GameObject.Find("HealthBar").GetComponent<PlayerHealth>();
+
+
+        if (getPlayerHealth.currenthealth <= 0)
         {
             playerDeath = true;
             

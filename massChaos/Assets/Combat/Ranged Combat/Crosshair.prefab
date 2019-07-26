@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7995456545192234935}
   - component: {fileID: 7995456545192234934}
+  - component: {fileID: 2006102088804866397}
   m_Layer: 0
   m_Name: Crosshair
   m_TagString: Untagged
@@ -68,7 +69,7 @@ SpriteRenderer:
   m_SortingLayerID: 384962111
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 916136f1c8f64c347a35347462b53851, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 863ca20db9d34f6438531efc0ca82bcb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -79,3 +80,15 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 1
+--- !u!114 &2006102088804866397
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7995456545192234920}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3900f27f5b36f9f46bd7667c7f868035, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
