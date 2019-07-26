@@ -15,7 +15,7 @@ public class FountDragHandler : MonoBehaviour, IDragHandler, IEndDragHandler
     //float z;
     //public GameObject houseImg;
     public int stoneCountAvl;
-    public static int FountBuilt;
+
     Timer2 timer;
     public void OnBeginDrag(PointerEventData eventData)
     {
@@ -55,7 +55,8 @@ public class FountDragHandler : MonoBehaviour, IDragHandler, IEndDragHandler
                 //transform.position = Vector3.zero;
                 //Destroy (clone, 0.1f);
                 ResourceManager.subStone(5);
-                FountBuilt++;
+                BB_BasicControls.FountBuilt++;
+                BB_BasicControls.buildBuilt++;
 
                 //Debug.Log("Ennnnd" + transform.position.x);
                 //Debug.Log("Ennnnnd" + transform.position.y);
@@ -65,6 +66,7 @@ public class FountDragHandler : MonoBehaviour, IDragHandler, IEndDragHandler
                 linehandler.transform.SetAsLastSibling();
                 linehandler.transform.position = mousepos;
                 linehandler.SetActive(true);
+                //CommonHappinessIndex.RecaclculateHappinessIndex();
 
 
             }
