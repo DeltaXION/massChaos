@@ -8,9 +8,18 @@ public class ApplicantAccept : MonoBehaviour, ISelectHandler
 {
     // Start is called before the first frame update
     NPCList n;
+    public static GameObject g;
     void Start()
     {
-        
+        //g = GameObject.Find("Select");
+        //g.transform.GetChild(0);
+       // Resources.FindObjectsOfTypeAll(typeof(GameObject));
+        foreach (GameObject go in Resources.FindObjectsOfTypeAll(typeof(GameObject)) as GameObject[]) {
+            if (go.name == "ClassSelect") {
+                g = go;
+            }
+        }
+            g.SetActive(false);
     }
 
     // Update is called once per frame
@@ -28,10 +37,13 @@ public class ApplicantAccept : MonoBehaviour, ISelectHandler
     public void OnSelect(BaseEventData eventData)
     {
         string id = transform.parent.gameObject.transform.GetChild(0).gameObject.GetComponent<Text>().text.ToString();
+        Debug.Log("!!!!!!!!!!!!!" +id);
         BaseCharachteristics b;
         if (this.gameObject.name == "accept") {
-             b = NPCApplicants.GetFollowerByID(int.Parse((id)));
-            NPCSystem.addFollower(b.Name, b.Type,"", "", "", "idle");
+            g.SetActive(true);
+            b = NPCApplicants.GetFollowerByID(int.Parse((id)));
+            NPCSystem.followerToAdd = b;
+            //NPCSystem.addFollower(b.Name, b.Type,"", "", "", "idle");
             
             Destroy(transform.parent.gameObject);
             NPCApplicants.removeFollower(int.Parse((id)));
@@ -42,4 +54,6 @@ public class ApplicantAccept : MonoBehaviour, ISelectHandler
             NPCApplicants.removeFollower(int.Parse((id)));
         }
     }
+
+   
 }

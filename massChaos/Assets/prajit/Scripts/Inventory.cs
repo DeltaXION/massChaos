@@ -46,7 +46,7 @@ public class Inventory : MonoBehaviour {
 				return false;
 			}
 
-			items.Add(item);	// Add item to list
+			items.Add(item);	// Add item to list 
 
 			// Trigger callback
 			if (onItemChangedCallback != null)

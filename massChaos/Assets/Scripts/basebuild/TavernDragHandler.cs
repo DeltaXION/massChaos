@@ -50,7 +50,7 @@ public class TavernDragHandler : MonoBehaviour, IDragHandler, IEndDragHandler
         timer = FindObjectOfType<Timer2>();
         if (timer.timeOfDay < 150 && !Timer2.harshWeather)
 
-            if (ResourceManager.wood >= 5 && NPCCountAvl >= 1)
+            if (ResourceManager.wood >= 5 && NPCCountAvl >= 1 && tavernBuilt < 1 )
         {
                 //transform.position = Vector3.zero;
                 //Destroy (clone, 0.1f);

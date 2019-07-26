@@ -52,7 +52,7 @@ public class dashAwayWarriorAction : GOAPAction
         // Currently target is automatically set to Player, this will be made dynamic later, with "Player" set first and then it changes to whoever has caused it most damage.
         //Create a hidden target behind the enemy in the direction of the player and have him move to that.
 
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        GameObject player = GameObject.FindGameObjectWithTag("dungeonPlayer");
 
         //Creating a raycast to track colliders, opposite to direction of player
         //THIS NEEDS A LAYER CALLED ENEMIES TO PUT THE ENEMIES ON.
@@ -109,15 +109,8 @@ public class dashAwayWarriorAction : GOAPAction
         Debug.Log("dashed away");
         //Play dash animation;
         dashedAway = true;
-        if (currentEnemy.bottomIsEmpty == false || currentEnemy.topIsEmpty == false || currentEnemy.rightIsEmpty == false || currentEnemy.leftIsEmpty == false)
-        {
-            dashSuccessful = false;
-        }
-        else
-        {
-            dashSuccessful = true;
-        }
-        return dashSuccessful;
+        
+        return dashedAway;
     }
 
 }

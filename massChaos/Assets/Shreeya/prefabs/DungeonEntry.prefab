@@ -145,6 +145,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa1b605a3046698438d3f768b0599a37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  starterRoom: {fileID: 4536464819111672006, guid: aeb41176fa69e5a4a884ff2aa4b61b21,
+    type: 3}
+  dungeonGenerationObject: {fileID: 389118978258921552, guid: c47649283cbda0f4c80bf9ff32ecce6e,
+    type: 3}
+  dungeonCamera: {fileID: 0}
 --- !u!1 &329611912039043744
 GameObject:
   m_ObjectHideFlags: 0

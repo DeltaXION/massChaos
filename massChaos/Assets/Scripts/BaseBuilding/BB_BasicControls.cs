@@ -24,14 +24,16 @@ public class BB_BasicControls : MonoBehaviour
 
         myRigidbody = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        SetUpBoundaries();
     }
 
     // Update is called once per frame
     void Update()
     {
         MoveTowardsCursorClickPosition(); // Basic Movement towards cursor click
-        SetUpBoundaries();  //Boundary Limit for the Player Movement 
+  
         speed = timer.playerSpeed;
+
     }
 
     private void MoveTowardsCursorClickPosition()
@@ -57,6 +59,7 @@ public class BB_BasicControls : MonoBehaviour
 
     private void SetUpBoundaries()
     {
+        
         TargetPosition.x = Mathf.Clamp(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, MinPlayerBoundary.x, MaxPlayerBoundary.x);
         TargetPosition.y = Mathf.Clamp(Camera.main.ScreenToWorldPoint(Input.mousePosition).y, MinPlayerBoundary.y, MaxPlayerBoundary.y);
         

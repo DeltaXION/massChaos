@@ -1,4 +1,6 @@
 using UnityEngine;
+using System.Collections.Generic;
+using System.Collections;
 
 /* The base item class. All items should derive from this. */
 
@@ -10,6 +12,10 @@ public class Item : ScriptableObject {
     public bool isDefaultItem = false;      // Is the item default wear?
     public GameObject prefab = null;
 
+    public ItemType itemtype;
+
+
+
     // Called when the item is pressed in the inventory
     public virtual void Use()
     {
@@ -17,6 +23,22 @@ public class Item : ScriptableObject {
         // Something might happen
 
         Debug.Log("Using " + name);
+
+        switch(itemtype)
+        {
+            case ItemType.item:
+                EquipmentManager.instance.Equip(this);
+                RemoveFromInventory();
+                    break;
+            case ItemType.Weapon:
+                EquipmentManager.instance.EquipWeapon(this);
+                RemoveFromWeaponInventory();
+                break;
+                
+
+
+        }
+
     }
 
     public void RemoveFromInventory()
@@ -28,4 +50,9 @@ public class Item : ScriptableObject {
     {
         WeaponInventory.instance1.Remove(this);
     }
+
 }
+
+public enum ItemType {Weapon, item }; 
+
+

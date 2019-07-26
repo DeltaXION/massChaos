@@ -2,15 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.UI;
 
 public class NPCSystem : MonoBehaviour
 {
 
     public GameObject can;
+    public Dropdown classOptions;
+
+    public static BaseCharachteristics followerToAdd;
 
     public static int id = 0;
     public static List<BaseCharachteristics> followers = new List<BaseCharachteristics>();
     BaseCharachteristics b;
+
 
    
     public float totalHappiness;
@@ -20,19 +25,26 @@ public class NPCSystem : MonoBehaviour
     public double totalMimax;
     public int baseCapacity;
     public int numberOfNpcs;
+    public static string classFinal = "Warrior";
+    
     NPCList n;
     // Start is called before the first frame update
-
+    public GameObject g;
 
     void Start()
     {
         setHappinessIndex();
+
+        populateList();
+
         addFollower("Broom",  "N", "warrior", "gun", "sword", "idle");
         addFollower("Groom", "Fr", "maige", "sword", "bazooka", "idle");
 
         setPrestige();
-        can.SetActive(false);
+        //can.SetActive(false);
         AppplicantsCalculation();
+        g = GameObject.Find("ClassSelect");
+        //g.SetActive(false);
         //b = GetFollowerByID(2);
         //Debug.Log(b.Name);
         Debug.Log("Happpy = " + Nomad.HappinessIndex);
@@ -42,6 +54,31 @@ public class NPCSystem : MonoBehaviour
     void Update()
     {
       
+    }
+
+
+    void populateList()
+    {
+
+        classOptions.AddOptions(classes);
+    }
+
+    public void classSelected() {
+        Debug.Log(classFinal);
+        addFollower(followerToAdd.Name, followerToAdd.Type, classFinal, "", "", "idle");
+        GameObject.Find("ClassSelect").SetActive(false);
+    }
+
+
+    // Start is called before the first frame update
+
+    List<string> classes = new List<string>() { "Warrior", "Maige", "Ranger" };
+
+    public void Dropdown_IndexChange(int index)
+    {
+       // Debug.Log(classes[index]);
+        classFinal = classes[index];
+        Debug.Log(classes[index]);
     }
 
     void Applications() {
@@ -73,9 +110,11 @@ public class NPCSystem : MonoBehaviour
         Mimax.happinessIndex = 17;
     }
 
+
     public static void addFollower( string name, string type, string classType, string secItem, string priItem, string status) {
         id++;
         followers.Add(new BaseCharachteristics(id, name, type, classType, secItem, priItem, status));
+
 
     }
 
@@ -109,8 +148,10 @@ public class NPCSystem : MonoBehaviour
 
     public void OnMouseDown()
     {
+
         can.SetActive(true);
-        Debug.Log("mouse");
+       // Debug.Log("mouse");
+
         
         n = new NPCList();
         n.UpdateNPCList();
@@ -119,15 +160,18 @@ public class NPCSystem : MonoBehaviour
     }
 
     public void onExitClick() {
+
        
-       
-        Debug.Log("mouse2");
+        
+       // Debug.Log("mouse2");
         GameObject[] entries= GameObject.FindGameObjectsWithTag("NPCEntry");
         foreach (GameObject go in entries)
         {
             Destroy(go);
         }
+        can = GameObject.Find("NPCCanvas");
         can.SetActive(false);
+
     }
 
     public void classAssign() {
@@ -171,4 +215,5 @@ public class NPCSystem : MonoBehaviour
     public void ApplicantSelect() {
         Debug.Log("Cliccked");
     }
+
 }

@@ -41,7 +41,7 @@ public class attackPlayerAction : GOAPAction
         
         // Currently target is automatically set to Player, this will be made dynamic later, with "Player" set first and then it changes to whoever has caused it most damage.
 
-        target = GameObject.FindGameObjectWithTag("Player");
+        target = GameObject.FindGameObjectWithTag("dungeonPlayer");
        
         Warrior currentEnemy = agent.GetComponent<Warrior>();
 
@@ -64,7 +64,7 @@ public class attackPlayerAction : GOAPAction
     
     {
         
-        target.GetComponent<playerTest>().health -= 1;
+        
         Warrior currentEnemy = agent.GetComponent<Warrior>();
         currentEnemy.stamina -= staminaCost;
         currentEnemy.attackPlayer();
