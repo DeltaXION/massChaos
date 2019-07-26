@@ -33,6 +33,7 @@ public class BB_BuildingUpgrades : MonoBehaviour
     {
         assignList.SetActive(true);
         spriteRenderer = GetComponent<SpriteRenderer>();
+
         
 
         npcApplicant.text = "Name: \n" + ApplicantList[0].name.ToString() + "\n\n" + ApplicantList[1].name.ToString();
@@ -62,15 +63,19 @@ public class BB_BuildingUpgrades : MonoBehaviour
         assignList.SetActive(false);
 
         ApplicantList[i].status = "idle";
+        ApplicantList[i].houseId  = FindObjectOfType<BB_House>().GetHouseID();
 
         NPCSystem.addFollower(ApplicantList[i].name,
                                 ApplicantList[i].type, 
                                 ApplicantList[i].classType, 
                                 ApplicantList[i].secItem, 
                                 ApplicantList[i].priItem, 
-                                ApplicantList[i].status);
-
+                                ApplicantList[i].status,
+                                ApplicantList[i].houseId);
+        
         FindObjectOfType<BB_GlobalStats>().addToPopulation();
+
+        FindObjectOfType<BaseHealth>().BaseHealthCalc();
 
         changeSpirte();
     }
@@ -89,15 +94,19 @@ public class BB_BuildingUpgrades : MonoBehaviour
         assignList.SetActive(false);
 
         ApplicantList[i].status = "idle";
+        ApplicantList[i].houseId = FindObjectOfType<BB_House>().GetHouseID();
 
         NPCSystem.addFollower(ApplicantList[i].name, 
                               ApplicantList[i].type, 
                               ApplicantList[i].classType, 
                               ApplicantList[i].secItem, 
                               ApplicantList[i].priItem,
-                              ApplicantList[i].status);
+                              ApplicantList[i].status,
+                              ApplicantList[i].houseId);
 
         FindObjectOfType<BB_GlobalStats>().addToPopulation();
+
+        FindObjectOfType<BaseHealth>().BaseHealthCalc();
 
         changeSpirte();
     }

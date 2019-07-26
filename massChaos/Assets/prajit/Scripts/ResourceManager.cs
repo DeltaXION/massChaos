@@ -15,6 +15,7 @@ public class ResourceManager : MonoBehaviour
     public static Text foodText;
     public static Text ironText;
     public static Text stoneText;
+    public GameObject baseInventory;
 
     // Start is called before the first frame update
     void Start()
@@ -40,9 +41,10 @@ public class ResourceManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        
     }
 
+  
     public static void addGold(int n)                      //increment gold
     {
         gold += n;

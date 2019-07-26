@@ -22,14 +22,6 @@ public class DungeonResourceController1 : MonoBehaviour
         dungeonWoodText = GameObject.FindGameObjectWithTag("dungeonWoodText").GetComponent<Text>();
         dungeonFoodText = GameObject.FindGameObjectWithTag("dungeonFoodText").GetComponent<Text>();
         dungeonIronText = GameObject.FindGameObjectWithTag("dungeonIronText").GetComponent<Text>();
-        addDungeonGold(4);
-        addDungeonFood(65);
-        addDungeonIron(1);
-        addDungeonWood(25);
-        subDungeonFood(2);
-        subDungeonGold(1);
-        subDungeonIron(1);
-        subDungeonWood(2);
     }
 
     // Update is called once per frame

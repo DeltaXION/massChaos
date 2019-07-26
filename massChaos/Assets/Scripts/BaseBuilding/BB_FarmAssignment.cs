@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class BB_FarmAssignment : MonoBehaviour
 {
-    List<BaseCharachteristics> ApplicantList = NPCApplicants.applicants;
+    List<BaseCharachteristics> permanentList = NPCSystem.followers;
 
     string[] assignmentName = new string[20];
 
@@ -21,7 +21,7 @@ public class BB_FarmAssignment : MonoBehaviour
     void Start()
     {
         assignList.SetActive(true);
-        npcAssignment.text = "Name: \n" + ApplicantList[0].name.ToString() + "\n\n" + ApplicantList[1].name.ToString();
+        npcAssignment.text = "Name: \n" + permanentList[0].name.ToString() + "\n\n" + permanentList[1].name.ToString();
     }
 
     private void Update()
@@ -33,14 +33,14 @@ public class BB_FarmAssignment : MonoBehaviour
     public void addNPCtoFarmFirstButton()
     {
         int i = 0;
-        npcAssignment.text = ApplicantList[i].name.ToString() + " Works in Farm Now";
-        assignmentName[0] = ApplicantList[i].name.ToString();
+        npcAssignment.text = permanentList[i].name.ToString() + " Works in Farm Now";
+        assignmentName[0] = permanentList[i].name.ToString();
 
         button1.gameObject.SetActive(false);
         button2.gameObject.SetActive(false);
 
         
-        ApplicantList[i].status = "Farm";
+        permanentList[i].status = "Farm";
 
         //NPCSystem.addFollower(ApplicantList[i].name,
         //                        ApplicantList[i].type,
@@ -55,15 +55,15 @@ public class BB_FarmAssignment : MonoBehaviour
     public void addNPCtoFarmSecondButton()
     {
         int i = 1;
-        npcAssignment.text = ApplicantList[i].name.ToString() + " Works in Farm Now";
-        assignmentName[0] = ApplicantList[i].name.ToString();
+        npcAssignment.text = permanentList[i].name.ToString() + " Works in Farm Now";
+        assignmentName[0] = permanentList[i].name.ToString();
 
         button1.gameObject.SetActive(false);
         button2.gameObject.SetActive(false);
 
         
 
-        ApplicantList[i].status = "Farm";
+        permanentList[i].status = "Farm";
 
         //NPCSystem.addFollower(ApplicantList[i].name,
         //                      ApplicantList[i].type,

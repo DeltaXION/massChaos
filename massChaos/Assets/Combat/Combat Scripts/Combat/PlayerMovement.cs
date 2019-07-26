@@ -61,8 +61,11 @@ public class PlayerMovement : MonoBehaviour
 
     public void goBackToBase()
     {
+        Canvas inventoryCanvas = GameObject.Find("Common Inventory Canvas").GetComponent<Canvas>();
+        
         Camera baseCamera = GameObject.Find("BB_Main Camera").GetComponent<Camera>();
         baseCamera.enabled = true;
+        inventoryCanvas.worldCamera = baseCamera;
         Camera dungeonCamera = GameObject.Find("DungeonCamera").GetComponent<Camera>();
         dungeonCamera.enabled = false;
         GameObject[] dungeonRooms = GameObject.FindGameObjectsWithTag("dungeonMap");
@@ -70,6 +73,9 @@ public class PlayerMovement : MonoBehaviour
         {
             Destroy(obj);
         }
+        ResourceManager.addGold(DungeonResourceController1.dungeonGold);
+        DungeonResourceController1.dungeonGold = 0;
+        
     }
 
     void GetInput()

@@ -13,7 +13,7 @@ public class EquipmentManager : MonoBehaviour
     }
 
     #endregion
-
+    public GameObject baseInventory;
     Item[] currentEquipment;
 
 
@@ -152,6 +152,25 @@ public class EquipmentManager : MonoBehaviour
         for(int i = 0; ;i++)
         {
             Unequip(i);
+        }
+    }
+    private void Update()
+    {
+        callInventory();
+    }
+
+    private void callInventory()
+    {
+        if (Input.GetKey(KeyCode.P))
+        {
+            if (baseInventory.active)
+            {
+                baseInventory.active = false;
+            }
+            else
+            {
+                baseInventory.active = true;
+            }
         }
     }
 

@@ -84,7 +84,7 @@ public class HouseDragHandler : MonoBehaviour, IDragHandler, IEndDragHandler {
                 ResourceManager.subWood(5);
                 BB_BasicControls.houseBuilt++;
                 BB_BasicControls.buildBuilt++;
-                //CommonHappinessIndex.RecaclculateHappinessIndex();
+                CommonHappinessIndex.RecaclculateHappinessIndex();
 
 
 

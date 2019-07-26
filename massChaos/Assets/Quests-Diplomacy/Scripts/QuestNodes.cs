@@ -116,7 +116,7 @@ public class QuestNodes : MonoBehaviour
             GameObject.Find("FollowerSlots").GetComponent<FollowerSlotsManager>().ChangeFollowerStatebetweenBusyandIdle(IDofFollowerdoingQuest);
 
             //NIYATI's HAPPINESS
-            //CommonHappinessIndex.RecaclculateHappinessIndex();
+            CommonHappinessIndex.RecaclculateHappinessIndex();
 
             QuestisActive = true;
             NodeisActive = false;

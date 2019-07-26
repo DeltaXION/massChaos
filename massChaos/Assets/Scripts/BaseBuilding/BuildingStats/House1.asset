@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BuildingSprite: {fileID: -1661822637734891871, guid: 09959466fd415324c9e9587dca238fba,
     type: 3}
-  capacity: 2
+  capacity: 1
   currentLevel: Level 1
   NPC_LivingName: Froot
   RepairNeeded: building1

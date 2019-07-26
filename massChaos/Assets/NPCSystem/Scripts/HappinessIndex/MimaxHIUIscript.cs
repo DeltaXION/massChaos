@@ -19,7 +19,7 @@ public class MimaxHIUIscript : MonoBehaviour
 
     void ReadjustHappiness()
     {
-        CurrentHappiness = MimaxHappniessIndex.MimaxHappiness;
+        CurrentHappiness = MimaxHappinessIndex.MimaxHappiness;
         Happiness.fillAmount = CurrentHappiness / 10;
     }
 

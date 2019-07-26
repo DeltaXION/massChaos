@@ -47,11 +47,12 @@ public class BB_BasicControls : MonoBehaviour
 
     private void MoveTowardsCursorClickPosition()
     {
-        
+        Camera baseCam = GameObject.Find("BB_Main Camera").GetComponent<Camera>();
         // Get Cursor Position
-       if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && baseCam.enabled == true)
        {
-           TargetPositionClick = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+           
+           TargetPositionClick = baseCam.ScreenToWorldPoint(Input.mousePosition);
            stopMovement = false;
        }
 

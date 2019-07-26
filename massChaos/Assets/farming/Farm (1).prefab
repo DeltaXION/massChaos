@@ -177,4 +177,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 907b233acfd9e224c8521211dbe0e67d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FarmCanvas: {fileID: 0}
+  FarmCanvas: {fileID: 3156584970722440352, guid: f6f2b94adc472e14dbfc352955001b2b,
+    type: 3}

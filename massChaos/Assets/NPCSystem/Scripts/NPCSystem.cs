@@ -41,8 +41,8 @@ public class NPCSystem : MonoBehaviour
 
     void Start()
     {
-        addFollower("Broom", "N", "", "sword", "sword", "idle", 0);
-        addFollower("Groom", "Fr", "", "", "", "idle", 0);
+        //addFollower("Broom", "N", "", "sword", "sword", "idle", 0);
+        //addFollower("Groom", "Fr", "", "", "", "idle", 0);
         setHappinessIndex();
 
         
@@ -239,6 +239,11 @@ public class NPCSystem : MonoBehaviour
     public static void removeFollower(int id)
     {
         int index = id - 1;
+        if(index<0)
+        {
+            index = 0;
+        }
+        
         followers.RemoveAt(index);
     }
 

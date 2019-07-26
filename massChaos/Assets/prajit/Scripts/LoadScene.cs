@@ -12,6 +12,10 @@ public class LoadScene : MonoBehaviour
     public GameObject playerPrefab;
     public void LoadByIndex(int sceneIndex)
     {
+        //setInventory
+        Canvas inventoryCanvas = GameObject.Find("Common Inventory Canvas").GetComponent<Canvas>();
+        inventoryCanvas.worldCamera = dungeonCamera;
+
         setDungeonCamera();
         DungeonUI.SetActive(false);
         dungeonCamera = GameObject.Find("DungeonCamera").GetComponent<Camera>();

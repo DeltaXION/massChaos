@@ -37,7 +37,14 @@ TagManager:
   - MimaxQuestNode
   - dungeonPlayer
   - dungeonMap
-
+  - AppleSeed
+  - minibossspawner
+  - Tavern
+  - Market
+  - Workshop
+  - Barracks
+  - Fountain
+  - Outpost
   layers:
   - Default
   - TransparentFX
@@ -57,11 +64,6 @@ TagManager:
   - enemy
   - player
   - userInterface
-  - 
-  - 
-  - 
-  - 
-  - 
   - 
   - 
   - 

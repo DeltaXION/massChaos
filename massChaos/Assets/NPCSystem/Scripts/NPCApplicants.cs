@@ -40,7 +40,7 @@ public class NPCApplicants : MonoBehaviour
 
     public void PopulateList() {
 
-        Debug.Log(NPCSystem.followers[0].Name +"!!!!!!!!!!!!!");
+        //Debug.Log(NPCSystem.followers[0].Name +"!!!!!!!!!!!!!");
             foreach (var o in NPCSystem.followers)
             {
           

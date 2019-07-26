@@ -77,7 +77,7 @@ public class FarmDargHandler : MonoBehaviour, IDragHandler, IEndDragHandler
                 linehandler.transform.SetAsLastSibling();
                 linehandler.transform.position = mousepos;
                 linehandler.SetActive(true);
-                //CommonHappinessIndex.RecaclculateHappinessIndex();
+                CommonHappinessIndex.RecaclculateHappinessIndex();
                 // Debug.Log(FarmBuilt);
             }
  

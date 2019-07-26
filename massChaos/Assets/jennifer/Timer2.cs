@@ -53,11 +53,12 @@ public class Timer2 : MonoBehaviour
     static public bool itsDay;
     public GameObject exitDuBut;
     float test = 0;
-    
+
+    private GameObject BaseHealthObj;
 
     void Start()
     {
-        
+        BaseHealthObj = GameObject.Find("baseValue");
         playerSpeed = 8;
 
         GameObject.DontDestroyOnLoad(this.gameObject);
@@ -153,7 +154,7 @@ public class Timer2 : MonoBehaviour
 
         if (displayDate == 100)
         {
-           // BaseDamage.MiniBDamage();
+           BaseDamage.MiniBDamage();
         }
 
 
@@ -183,7 +184,11 @@ public class Timer2 : MonoBehaviour
         // DAY :-
         if (timeOfDay <= wholeDaySeconds / 2)
         {
-            
+            if (timeOfDay >= 20 && timeOfDay <= 21)
+            {
+                BaseHealthObj.GetComponent<BaseHealth>().BaseHealthCalc();
+            }
+
             DayText.SetActive(true);
             NightText.SetActive(false);
             timeBar.fillAmount = timeOfDay / Daymax;
@@ -195,8 +200,11 @@ public class Timer2 : MonoBehaviour
         if (timeOfDay >= wholeDaySeconds / 2)
         { // activate the code below once merged - NIYATI.
 
-            if (timeOfDay >= 20 && timeOfDay <= 21)
-            { // CommonHappinessIndex.RecacluclateHappinessIndex();
+            if (timeOfDay >= 160 && timeOfDay <= 161)
+            {
+                CommonHappinessIndex.TimeToEat();
+                CommonHappinessIndex.RecaclculateHappinessIndex();
+                GameObject.Find("HappinessIndex Variant").GetComponent<FollowerLeaving>().updateFollowerLeaving();
             }
 
             NightText.SetActive(true);
@@ -279,7 +287,7 @@ public class Timer2 : MonoBehaviour
             {// SHREEYA :- HARSH DAMAGE - 1DAY
                 if (timeOfDay >= 20 && timeOfDay <= 21)
                 { 
-                    //  BaseDamage.WeatherDamage();
+                      BaseDamage.WeatherDamage();
                                     
                 }
                
@@ -307,7 +315,7 @@ public class Timer2 : MonoBehaviour
             if (displayDate == 37)
             {// SHREEYA :- HARSH DAMAGE - 1DAY
                 if (timeOfDay >= 20 && timeOfDay <= 21)
-                { //  BaseDamage.WeatherDamage();
+                {  BaseDamage.WeatherDamage();
                   
                 }
                   
@@ -334,7 +342,7 @@ public class Timer2 : MonoBehaviour
             {
                 // SHREEYA :- HARSH DAMAGE - 1DAY
                 if (timeOfDay >= 20 && timeOfDay <= 21)
-                { //  BaseDamage.WeatherDamage();
+                {  BaseDamage.WeatherDamage();
                    
                   
                 }
@@ -362,7 +370,7 @@ public class Timer2 : MonoBehaviour
             {
                 // SHREEYA :- HARSH DAMAGE - 1DAY
                 if (timeOfDay >= 20 && timeOfDay <= 21)
-                { //  BaseDamage.WeatherDamage();
+                { BaseDamage.WeatherDamage();
                     
                    
                 }

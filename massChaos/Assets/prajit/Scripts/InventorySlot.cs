@@ -52,7 +52,7 @@ public class InventorySlot : MonoBehaviour {
 
     public void Update()
     {
-        current = item;
+       // current = item;
     }
 
 }

@@ -41,14 +41,14 @@ public class FrootHappinessIndex : MonoBehaviour
     {
         
 		QuestManager = GameObject.Find("QuestsDiplomacyManager");
-		FrootHappiness = 0f;
+		
 
 		StartCoroutine (IdleFollower());
     }
 
     private static void SetFrootHappiness()
     {
-        
+        Debug.Log("Froot happiness calculation");   
 		FrootHappiness = (CommonHappinessIndex.CommonHappiness + FrootAssignments + FrootPrestige);
         
 		//FrootHappinessUI.text = "Froot Happiness:" + FrootHappiness;

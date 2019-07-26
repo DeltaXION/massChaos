@@ -32,10 +32,7 @@ public class PlayerHealth : MonoBehaviour
             {
                 currenthealth = maxhealth;
             }
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                currenthealth -= 10;
-            }
+           
             if (Input.GetButtonDown("Heal") && currentpotions > 0)
             {
                 currentpotions -= 1;
@@ -47,7 +44,7 @@ public class PlayerHealth : MonoBehaviour
             if (currenthealth <= 0)
             {
                 currenthealth = 0;
-                GameObject.Find("Player").SetActive(false);
+                GameObject.FindGameObjectWithTag("dungeonPlayer").GetComponent<PlayerMovement>().goBackToBase();
                 healthtext.text = "you died!!!!!!!!!!!!!!11";
 
             }

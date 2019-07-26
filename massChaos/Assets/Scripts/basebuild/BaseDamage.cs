@@ -23,7 +23,7 @@ public class BaseDamage : MonoBehaviour
 
     public static void WeatherDamage()
     {
-        NPC = new NPCSystem();
+        //NPC = new NPCSystem();
         baseHlth = new BaseHealth();
         foreach (var o in NPCSystem.followers)
         {
@@ -41,7 +41,7 @@ public class BaseDamage : MonoBehaviour
                             Destroy(barracks);
                             destroyedbuilds++;
                             //destroyedbuilds = destroyedbuilds + 1;
-                            NPC.removeFollower(o.Id);
+                            NPCSystem.removeFollower(o.Id);
                             baseHlth.BaseHealthCalc();
                         }
                     }
@@ -64,7 +64,7 @@ public class BaseDamage : MonoBehaviour
                             GameObject market = GameObject.FindWithTag("Market");
                             Destroy(market);
                             destroyedbuilds++;
-                            NPC.removeFollower(o.Id);
+                            NPCSystem.removeFollower(o.Id);
                             baseHlth.BaseHealthCalc();
                         }
 
@@ -86,7 +86,7 @@ public class BaseDamage : MonoBehaviour
                             GameObject farm = GameObject.FindWithTag("Farm");
                             Destroy(farm);
                             destroyedbuilds++;
-                            NPC.removeFollower(o.Id);
+                            NPCSystem.removeFollower(o.Id);
                             baseHlth.BaseHealthCalc();
                         }
 
@@ -109,7 +109,7 @@ public class BaseDamage : MonoBehaviour
                             GameObject workshop = GameObject.FindWithTag("Workshop");
                             Destroy(workshop);
                             destroyedbuilds++;
-                            NPC.removeFollower(o.Id);
+                            NPCSystem.removeFollower(o.Id);
                             baseHlth.BaseHealthCalc();
                         }
                     }
@@ -132,7 +132,7 @@ public class BaseDamage : MonoBehaviour
                             GameObject house = GameObject.FindWithTag("House");
                             Destroy(house);
                             destroyedbuilds++;
-                            NPC.removeFollower(o.Id);
+                            NPCSystem.removeFollower(o.Id);
                             baseHlth.BaseHealthCalc();
                         }
 
@@ -173,7 +173,7 @@ public class BaseDamage : MonoBehaviour
                             Destroy(house);
                             destroyedbuilds++;
                             n--;
-                            NPC.removeFollower(o.Id);
+                            NPCSystem.removeFollower(o.Id);
                             baseHlth.BaseHealthCalc();
 
                         }
@@ -194,7 +194,7 @@ public class BaseDamage : MonoBehaviour
                             Destroy(outpost);
                             destroyedbuilds++;
                             n1--;
-                            NPC.removeFollower(o.Id);
+                            NPCSystem.removeFollower(o.Id);
                             baseHlth.BaseHealthCalc();
                         }
 
@@ -208,7 +208,7 @@ public class BaseDamage : MonoBehaviour
                         GameObject building = GameObject.FindWithTag(tags);
                         Destroy(building);
                         destroyedbuilds++;
-                        NPC.removeFollower(o.Id);
+                        NPCSystem.removeFollower(o.Id);
                         baseHlth.BaseHealthCalc();
 
                     }

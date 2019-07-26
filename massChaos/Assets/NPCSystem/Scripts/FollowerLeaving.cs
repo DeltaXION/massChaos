@@ -42,12 +42,14 @@ public class FollowerLeaving : MonoBehaviour
                 }
             }
         }
-
-        int FrootIDIndexToLeave = Random.Range(0, FrootIDs.Length - 1);
-        int FrootIDToLeave = FrootIDs[FrootIDIndexToLeave];
-
-        //NPCSystem.removeFollower(FrootIDToLeave);
-        //BaseHealthObj.GetComponent<BaseHealth>().BaseHealthCalc();
+        if (FrootIDs.Length > 0 && FrootIDs != null)
+        {
+            int FrootIDIndexToLeave = Random.Range(0, FrootIDs.Length - 1);
+            int FrootIDToLeave = FrootIDs[FrootIDIndexToLeave]; 
+          NPCSystem.removeFollower(FrootIDToLeave);
+           
+        BaseHealthObj.GetComponent<BaseHealth>().BaseHealthCalc();
+        }
         yield return new WaitForSeconds(5f);
 
 	}
@@ -77,12 +79,14 @@ public class FollowerLeaving : MonoBehaviour
                 }
             }
         }
-
-        int FerroIDIndexToLeave = Random.Range(0, FerroIDs.Length - 1);
+        if (FerroIDs.Length > 0 && FerroIDs != null)
+        {
+            int FerroIDIndexToLeave = Random.Range(0, FerroIDs.Length - 1);
         int FerroIDToLeave = FerroIDs[FerroIDIndexToLeave];
 
-        //NPCSystem.removeFollower(FerroIDToLeave);
-        //BaseHealthObj.GetComponent<BaseHealth>().BaseHealthCalc();
+        NPCSystem.removeFollower(FerroIDToLeave);
+        BaseHealthObj.GetComponent<BaseHealth>().BaseHealthCalc();
+        }
 
         yield return new WaitForSeconds(5f);
 
@@ -113,13 +117,14 @@ public class FollowerLeaving : MonoBehaviour
                 }
             }
         }
+        if (MimaxIDs.Length > 0 && MimaxIDs != null)
+        {
+            int MimaxIDIndexToLeave = Random.Range(0, MimaxIDs.Length - 1);
+            int MimaxIDToLeave = MimaxIDs[MimaxIDIndexToLeave];
 
-        int MimaxIDIndexToLeave = Random.Range(0, MimaxIDs.Length - 1);
-        int MimaxIDToLeave = MimaxIDs[MimaxIDIndexToLeave];
-
-        //NPCSystem.removeFollower(MimaxIDToLeave);
-        //BaseHealthObj.GetComponent<BaseHealth>().BaseHealthCalc();
-
+            NPCSystem.removeFollower(MimaxIDToLeave);
+            BaseHealthObj.GetComponent<BaseHealth>().BaseHealthCalc();
+        }
         yield return new WaitForSeconds(5f);
 
     }
@@ -150,26 +155,28 @@ public class FollowerLeaving : MonoBehaviour
             }
         }
 
-        int NomadIDIndexToLeave = Random.Range(0, NomadIDs.Length - 1);
-        int NomadIDToLeave = NomadIDs[NomadIDIndexToLeave];
+        if (NomadIDs.Length > 0 && NomadIDs != null)
+        {
+            int NomadIDIndexToLeave = Random.Range(0, NomadIDs.Length - 1);
+            int NomadIDToLeave = NomadIDs[NomadIDIndexToLeave];
 
-        //NPCSystem.removeFollower(NomadIDToLeave);
-        //BaseHealthObj.GetComponent<BaseHealth>().BaseHealthCalc();
-
+            NPCSystem.removeFollower(NomadIDToLeave);
+            BaseHealthObj.GetComponent<BaseHealth>().BaseHealthCalc();
+        }
         yield return new WaitForSeconds(5f);
 
     }
 
     
-    void Update()
+    public  void updateFollowerLeaving()
     {
         CurrentFrootHappiness = FrootHappinessIndex.FrootHappiness;
         CurrentFerroHappiness = FerroHappinessIndex.FerroHappiness;
-        CurrentMimaxHappiness = MimaxHappniessIndex.MimaxHappiness;
+        CurrentMimaxHappiness = MimaxHappinessIndex.MimaxHappiness;
         CurrentNomadHappiness = NomadHappinessIndex.NomadHappiness;
 
         
-		if(CurrentFrootHappiness < 4)
+		if(CurrentFrootHappiness < 4 )
 		{
 		StartCoroutine (FrootFollowersWillNowLeave());
 		}

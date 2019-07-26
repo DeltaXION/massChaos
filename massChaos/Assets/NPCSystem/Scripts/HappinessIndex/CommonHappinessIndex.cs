@@ -5,7 +5,7 @@ using UnityEngine;
 public class CommonHappinessIndex : MonoBehaviour
 {
     private static float Foodfactor; //Food Dependency of HI (Common)
-    private static float BaseHealth; //Base Health Dependency HI (Common)
+    private static float BaseHealthfactor; //Base Health Dependency HI (Common)
     private static float BaseComfort; //Base Shelter Dependency of HI
     public static float CommonHappiness;
 
@@ -30,12 +30,12 @@ public class CommonHappinessIndex : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        BaseHealthObj = GameObject.Find("BaseHealth");
+        BaseHealthObj = GameObject.Find("baseValue");
     }
 
     static void SetCommonHappiness()
     {
-        CommonHappiness = Foodfactor /*+ BaseHealth + BaseComfort*/;
+        CommonHappiness = Foodfactor + BaseHealthfactor + BaseComfort;
     }
 
     public static void RecaclculateHappinessIndex()
@@ -43,7 +43,7 @@ public class CommonHappinessIndex : MonoBehaviour
         FrootHappinessIndex.RecalculateFrootHappinessIndex();
         FerroHappinessIndex.RecalculateFerroHappinessIndex();
         NomadHappinessIndex.RecalculateNomadHappinessIndex();
-        MimaxHappniessIndex.RecalculateMimaxHappinessIndex();
+        MimaxHappinessIndex.RecalculateMimaxHappinessIndex();
     }
 
     static void SetFoodFactor()
@@ -67,27 +67,37 @@ public class CommonHappinessIndex : MonoBehaviour
             Foodfactor = (F - ((StarvingPercentage) * F)) / 10;
         }
 
-        ResourceManager.subFood(n);
+        
 
     }
 
-    /*static void SetBaseHealth()
+
+    public static void TimeToEat()
+    {
+        float TotalFollowers = (float)NPCSystem.followers.Count;
+
+        int n = (int)TotalFollowers * (int)ConsumptionRate;
+
+        ResourceManager.subFood(n);
+    }
+    
+    static void SetBaseHealth()
 	{
 		float TotalBH = 10;
 		float MaxBaseHealth = 100;
-		float CurrentBaseHealth = BaseHealthObj.GetComponent<BaseHealth>().baseHealth;
+        float CurrentBaseHealth = BaseHealth.baseHealth;
 		float PercentReductionInBaseHealth = (CurrentBaseHealth / MaxBaseHealth);
 		if(CurrentBaseHealth == MaxBaseHealth)
 		{
-			BaseHealth = 1;
+			BaseHealthfactor = 1;
 		}
 		else
 		{
-			BaseHealth = (TotalBH - ((PercentReductionInBaseHealth) * TotalBH)) / 10;
+			BaseHealthfactor = (TotalBH - ((PercentReductionInBaseHealth) * TotalBH)) / 10;
 		}
-	}*/
+	}
 
-    /*static void SetBaseComfort()
+    static void SetBaseComfort()
     {
         float TotalBC = 10f;
         float BCCap = 1f * TotalBC;
@@ -108,7 +118,7 @@ public class CommonHappinessIndex : MonoBehaviour
         float y = ((PercentOfDamagedBuildings * BCCap) * DamagedBuildingReduction); 
 
         BaseComfort = (x - y) / 10;
-    }*/
+    }
 
     // Update is called once per frame
     void Update()

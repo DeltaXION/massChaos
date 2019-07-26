@@ -15,21 +15,22 @@ public class BaseHealth : MonoBehaviour
         float MaxOutpostHealth = 60f;
         float MaxOutposts = 10;
 
-        //float CurrentOutpost = BB_BasicControls.OutpBuilt;
-        float CurrentOutpost = 5;
+        float CurrentOutpost = BB_BasicControls.OutpBuilt;
+        //float CurrentOutpost = 5;
 
         float CurrentOutPostHealth = (CurrentOutpost * MaxOutpostHealth) / (MaxOutposts);
 
         float MaxFollowerHealth = 40f;
         float MaxFollowers = 20;
 
-        //float CurrentFollowercount = NPCSystem.followers.Count;
-        float CurrentFollowercount = 6;
+        float CurrentFollowercount = NPCSystem.followers.Count;
+        //float CurrentFollowercount = 6;
         float CurrentFollowerHealth = (CurrentFollowercount * MaxFollowerHealth) / (MaxFollowers);
 
         baseHealth = CurrentOutPostHealth + CurrentFollowerHealth;
 
         baseH.fillAmount = baseHealth/100;
+        Debug.Log(baseHealth);
     }
 
 

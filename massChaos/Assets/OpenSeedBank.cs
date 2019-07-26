@@ -18,6 +18,6 @@ public class OpenSeedBank : MonoBehaviour
     }
     public void OnMouseDown()
     {
-        seedsPanel1.transform.localScale = new Vector3(0, 0, 0);
+        seedsPanel1.transform.localScale = new Vector3(1, 1, 1);
     }
 }

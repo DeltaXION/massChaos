@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿/*
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -60,7 +61,7 @@ public class BaseAssignmentStatus : MonoBehaviour
                
             }
         }
-    }*/
+    }
 
 
     void Update()
@@ -68,3 +69,4 @@ public class BaseAssignmentStatus : MonoBehaviour
         
     }
 }
+*/
